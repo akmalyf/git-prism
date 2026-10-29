@@ -1,0 +1,63 @@
+{
+  "viewsContainers": {
+    "activitybar": [
+      {
+        "id": "jbGitCommit",
+        "title": "Commit",
+        "icon": "$(git-commit)"
+      }
+    ],
+    "panel": [
+      {
+        "id": "jbGitPanel",
+        "title": "Git",
+        "icon": "$(git-branch)"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "command": "jbGit.console.show",
+      "title": "Show Git Console",
+      "category": "Git"
+    }
+  ],
+  "configuration": {
+    "properties": {
+      "jbGit.gitPath": {
+        "type": "string",
+        "default": "",
+        "description": "Path to the git executable. Empty uses `git` from PATH."
+      }
+    }
+  },
+  "submenus": [
+    {
+      "id": "jbGit.fileMenu",
+      "label": "Git"
+    }
+  ],
+  "menus": {
+    "explorer/context": [
+      {
+        "submenu": "jbGit.fileMenu",
+        "group": "jbgit@1",
+        "when": "jbGit.active"
+      }
+    ],
+    "editor/context": [
+      {
+        "submenu": "jbGit.fileMenu",
+        "group": "jbgit@1",
+        "when": "jbGit.active"
+      }
+    ],
+    "editor/title/context": [
+      {
+        "submenu": "jbGit.fileMenu",
+        "group": "jbgit@1",
+        "when": "jbGit.active"
+      }
+    ]
+  }
+}

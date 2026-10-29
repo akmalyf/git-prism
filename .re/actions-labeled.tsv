@@ -1,0 +1,611 @@
+intellij.platform.vcs.dvcs.impl.shared	action	ChangesView.GroupBy.Repository	Repository	SetRepositoryChangesGroupingAction
+intellij.platform.vcs.log.impl	group	Log.Unsorted.KeymapGroup		
+intellij.platform.vcs.log.impl	action	Vcs.Log.GoToRef	Go To Hash/Branch/Tag	GoToHashOrRefAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.GoToParent	Go to Parent Commit	GoToParentRowAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.GoToChild	Go to Child Commit	GoToChildRowAction
+intellij.platform.vcs.log.impl	action	Vcs.Show.Log	Show VCS Log	VcsShowLogAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.CompactReferencesView	Compact References View	CompactReferencesViewAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowTagNames	Tag Names	ShowTagNamesAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.AlignLabels	References on the Left	AlignLabelsAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.CollapseAll		CollapseGraphAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ExpandAll		ExpandGraphAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowLongEdges	Long Edges	ShowLongEdgesAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowDetailsAction	Show Details	ShowDetailsAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowDiffPreview	Show Diff Preview	ShowDiffPreviewAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.MoveDiffPreviewToBottom	Bottom	MoveDiffPreviewToBottomAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.MoveDiffPreviewToRight	Right	MoveDiffPreviewToRightAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowChangesFromParents	Show Changes to Parents	ShowChangesFromParentsAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowOnlyAffectedChanges	Show Only Affected Changes	ShowOnlyAffectedChangesAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowRootsColumnAction	Root Names	ShowRootsColumnAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.PreferCommitDate	Commit Timestamp	PreferCommitDateAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.FocusTextFilter	Focus Text Filter	FocusTextFilterAction
+intellij.platform.vcs.log.impl	group	Vcs.Log.ToggleColumns	Columns	ToggleLogColumnsActionGroup
+intellij.platform.vcs.log.impl	group	Vcs.Log.HighlightersActionGroup		HighlightersActionGroup
+intellij.platform.vcs.log.impl	action	Vcs.Log.OpenAnotherTab		OpenAnotherLogTabAction$InToolWindow
+intellij.platform.vcs.log.impl	action	Vcs.Log.OpenAnotherTabInEditor		OpenAnotherLogTabAction$InEditor
+intellij.platform.vcs.log.impl	action	Vcs.Log.Refresh	Refresh	RefreshLogAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowTooltip	Show Commit Tooltip	ShowCommitTooltipAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.EnableFilterByRegexAction	Regex	EnableFilterByRegexAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.MatchCaseAction	Match Case	EnableMatchCaseAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.OpenRepositoryVersion	Show File at Revision	OpenRepositoryVersionFromHistoryAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.AnnotateRevisionAction	Annotate	AnnotateRevisionFromHistoryAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowAllAffected	Show All Affected Files	ShowAllAffectedFromHistoryAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.CompareRevisions	Compare Versions	CompareRevisionsFromLogAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ResumeIndexing	Resume Indexing	ResumeIndexingAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.InvalidateCaches		InvalidateVcsLogCaches
+intellij.platform.vcs.log.impl	action	Vcs.Log.CheckSelectedCommitsIndexData		CheckSelectedCommits
+intellij.platform.vcs.log.impl	action	Vcs.Log.CheckFirstCommitsIndexData		CheckOldCommits
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowBigRepositories	Show Repositories with Disabled Indexing	VcsLogShowBigRepositoriesList
+intellij.platform.vcs.log.impl	action	Vcs.Log.SelectInLog	Show in VCS Log	ShowCommitInLogAction
+intellij.platform.vcs.log.impl	action	Vcs.Log.ShowSettingsAction	Settings	VcsLogShowSettingsAction
+intellij.platform.vcs.log.impl	group	Vcs.Log.BranchActionsGroup		
+intellij.platform.vcs.log.impl	group	Vcs.Log.PresentationSettings	View Options	VcsLogToolbarPopupActionGroup
+intellij.platform.vcs.log.impl	group	Vcs.Log.TextFilterSettings	Text Filter Settings	
+intellij.platform.vcs.log.impl	group	Vcs.Log.Toolbar.Internal		
+intellij.platform.vcs.log.impl	group	Vcs.Log.ContextMenu		
+intellij.platform.vcs.log.impl	group	Vcs.Log.Toolbar.RightCorner		
+intellij.platform.vcs.log.impl	group	Vcs.Log.Toolbar		
+intellij.platform.vcs.log.impl	group	Vcs.Log.Diff.Preview.Location	Diff Preview Location	DiffPreviewLocationActionGroup
+intellij.platform.vcs.log.impl	group	Vcs.Log.LayoutConfiguration	Configure Layout	VcsLogToolbarPopupActionGroup
+intellij.platform.vcs.log.impl	group	Vcs.Log.ChangesBrowser.PresentationSettings	View Options	
+intellij.platform.vcs.log.impl	group	Vcs.Log.ChangesBrowser.Toolbar		
+intellij.platform.vcs.log.impl	group	Vcs.Log.ChangesBrowser.Popup		
+intellij.platform.vcs.log.impl	group	Vcs.Log.ToolWindow.TabActions		
+intellij.platform.vcs.log.impl	group	Vcs.Log.ToolWindow.TabActions.DropDown		VcsLogToolWindowDropdownActionGroup
+intellij.platform.vcs.log.impl	group	Vcs.FileHistory.ContextMenu		
+intellij.platform.vcs.log.impl	group	Vcs.FileHistory.PresentationSettings	View Options	VcsLogToolbarPopupActionGroup
+intellij.platform.vcs.log.impl	group	Vcs.FileHistory.Toolbar		
+intellij.platform.vcs.log.impl	group	Vcs.FileHistory.Toolbar.RightCorner		
+intellij.platform.vcs.log.impl	group	Vcs.Log.Internal	VCS Log	
+intellij.platform.vcs.log.impl	group	Log.KeymapGroup	Log	
+intellij.platform.vcs.log.impl	group	Log.FileHistory.KeymapGroup		
+intellij.platform.vcs.impl.shared	group	ChangesViewPopupMenuShared		
+intellij.platform.vcs.impl.shared	group	ChangesView.GroupBy	Group By	SelectChangesGroupingActionGroup
+intellij.platform.vcs.impl.shared	action	ChangesView.GroupBy.Directory	Directory	SetDirectoryChangesGroupingAction
+intellij.platform.vcs.impl.shared	group	CommitView.GearActions		
+intellij.platform.vcs.impl.shared	group	CommitView.ShowOnDoubleClick	Show on Double-Click	
+intellij.platform.vcs.impl.shared	action	CommitView.ShowOnDoubleClick.EditorPreview	Show Diff on Double-Click	ShowOnDoubleClickToggleAction$EditorPreview
+intellij.platform.vcs.impl.shared	action	CommitView.ShowOnDoubleClick.Source	Show Source on Double-Click	ShowOnDoubleClickToggleAction$Source
+intellij.platform.vcs.impl.shared	group	LocalChangesView.GearActions		
+intellij.platform.vcs.impl.shared	group	LocalChangesView.ShowOnDoubleClick	Show on Double-Click	NonEmptyActionGroup
+intellij.platform.vcs.impl.shared	group	ChangesViewToolbar.Shared		
+intellij.platform.vcs.impl.shared	group	ChangesView.ViewOptions	View Options	
+intellij.platform.vcs.impl.shared	action	ChangesView.ShowIgnored	Ignored Files	ToggleShowIgnoredAction
+intellij.platform.vcs.impl.shared	group	ChangesViewToolbar.Shared.Other		
+intellij.platform.vcs.impl.shared	action	ChangesView.SelectFile	Select Opened File in Changes View	SelectInChangesViewAction
+intellij.platform.vcs.dvcs.impl	action	Vcs.CopyCurrentBranchName	Copy Branch Name	CopyCurrentBranchNameAction
+intellij.platform.vcs.dvcs.impl	action	Vcs.CherryPick		VcsCherryPickAction
+intellij.platform.vcs.dvcs.impl	action	Vcs.Push	Push\u2026	VcsPushAction
+intellij.platform.vcs.dvcs.impl	group	Vcs.Push.Actions		
+intellij.platform.vcs.dvcs.impl	action	Vcs.Push.Simple		SimplePushAction
+intellij.platform.vcs.dvcs.impl	action	Vcs.Push.Force	_Force Push	ForcePushAction
+intellij.platform.vcs.dvcs.impl	group	Dvcs.Log.ContextMenu		
+intellij.platform.vcs.dvcs.impl	group	Dvcs.FileHistory.ContextMenu		
+intellij.platform.vcs.dvcs.impl	group	Dvcs.Log.Toolbar		
+intellij.platform.vcs.dvcs.impl	group	Vcs.CherryPick.KeymapGroup		
+intellij.platform.vcs.dvcs.impl	action	CheckIgnoredAndNotExcludedDirectories	Check Ignored but not Excluded Directories	CheckIgnoredToExcludeAction
+intellij.platform.vcs.dvcs.impl	group	vcs		
+intellij.vcs.git.shared	group	MainToolbarVCSGroup	VCS Group	
+intellij.vcs.git.shared	action	git.branches.show.tags	Show Tags	GitBranchesTreeShowTagsAction
+intellij.vcs.git.shared	group	Git.Branches.Popup.SpeedSearch		
+intellij.vcs.git.shared	group	Git.Branches.Popup.Settings		GitBranchesTreePopupSettings
+intellij.vcs.git.shared	group	git.branches.popup.filter.by.separator		GitBranchesTreePopupFilterSeparatorWithText
+intellij.vcs.git.shared	action	git.branches.popup.filter.by.action	Actions	GitBranchesTreePopupFilterByAction
+intellij.vcs.git.shared	action	git.branches.popup.filter.by.repository	Repositories	GitBranchesTreePopupFilterByRepository
+intellij.vcs.git.shared	action	git.branches.group.by.directory	Group by Directory	GitGroupBranchByDirectoryAction
+intellij.vcs.git.shared	action	git.branches.group.by.repository	Group by Repository	GitGroupBranchByRepositoryAction
+intellij.vcs.git.shared	action	git.branches.show.recent	Show Recent Branches	GitBranchesTreePopupShowRecentBranchesAction
+intellij.vcs.git.shared	action	git.branches.popup.resize		GitBranchesTreePopupResizeAction
+intellij.vcs.git.shared	group	Git.Branch		
+intellij.vcs.git.shared	group	Git.Branch.Checkout		
+intellij.vcs.git.shared	action	Git.Checkout.Update	Checkout and Update	GitCheckoutWithUpdateAction
+intellij.vcs.git.shared	group	Git.Branch.Placeholder		
+intellij.platform.vcs.impl.lang.actions	group	ChangesView.ApplyPatch.LangGroup		
+intellij.vcs.git.frontend	action	main.toolbar.git.Branches	VCS Widget	GitToolbarWidgetAction
+intellij.vcs.git.frontend	group	GitMainToolbarQuickActions		
+intellij.vcs.git.frontend	group	MainToolbarQuickActions.VCS		ToolbarQuickActionsGroup
+intellij.platform.vcs.impl	action	Vcs.ShowTabbedFileHistory	Show _History	TabbedShowHistoryAction
+intellij.platform.vcs.impl	action	Vcs.ShowHistoryForRevision	History Up to Here	TabbedShowHistoryForRevisionAction
+intellij.platform.vcs.impl	action	CheckinProject	Comm_it\u2026	CommonCheckinProjectAction
+intellij.platform.vcs.impl	action	ChangesView.ToggleCommitUi	Toggle Commit UI\u2026	ToggleChangesViewCommitUiAction
+intellij.platform.vcs.impl	action	CheckinFiles	Comm_it File	CommonCheckinFilesAction
+intellij.platform.vcs.impl	action	UpdateFiles	_Update	CommonUpdateFileOrDirectoryAction
+intellij.platform.vcs.impl	action	CheckStatusForFiles	Chec_k Status	CommonStatusFileOrDirectoryAction
+intellij.platform.vcs.impl	action	IntegrateFiles	Integrate	CommonIntegrateFileOrDirectoryAction
+intellij.platform.vcs.impl	action	Annotate	A_nnotate	AnnotateToggleAction
+intellij.platform.vcs.impl	action	Show.Current.Revision	Show Current Revision	ShowBaseRevisionAction
+intellij.platform.vcs.impl	action	Compare.SameVersion	Compare with Same Repositor_y Version	CompareWithTheSameVersionAction
+intellij.platform.vcs.impl	action	Compare.LastVersion	Compare with Latest Repository _Version	CompareWithLastVersion
+intellij.platform.vcs.impl	action	Compare.Selected	_Compare with Revision\u2026	CompareWithSelectedRevisionAction
+intellij.platform.vcs.impl	action	Compare.Specified	Com_pare with Specified Revision\u2026	SelectAndCompareWithSelectedRevisionAction
+intellij.platform.vcs.impl	action	Vcs.ShowHistoryForBlock	Show History _for Selection\u2026	SelectedBlockHistoryAction
+intellij.platform.vcs.impl	action	Vcs.GetVersion	Get	GetVersionAction
+intellij.platform.vcs.impl	action	Vcs.RefreshFileHistory		RefreshFileHistoryAction
+intellij.platform.vcs.impl	action	Vcs.ShowDiffWithLocal.Before	Compare Before with Local	ShowDiffBeforeWithLocalAction
+intellij.platform.vcs.impl	action	Vcs.ShowDiffWithLocal	Compare with Local	ShowDiffAfterWithLocalAction
+intellij.platform.vcs.impl	action	Vcs.VcsClone	Get from Version Control\u2026	GetFromVersionControlAction
+intellij.platform.vcs.impl	group	VcsGroup	Version Control	VcsActionGroup
+intellij.platform.vcs.impl	action	Vcs.UpdateProject	_Update Project	CommonUpdateProjectAction
+intellij.platform.vcs.impl	action	Vcs.Toolbar.ShowMoreActions	Version Control	VcsQuickActionsToolbarPopup
+intellij.platform.vcs.impl	group	VcsFileGroupPopup	Version Control Group	VcsGroupsWrapper
+intellij.platform.vcs.impl	group	GoToChangeMarkerGroup	Change Navigation Actions	
+intellij.platform.vcs.impl	action	VcsShowNextChangeMarker	Next C_hange	ShowChangeMarkerAction$Next
+intellij.platform.vcs.impl	action	VcsShowPrevChangeMarker	Previous Ch_ange	ShowChangeMarkerAction$Prev
+intellij.platform.vcs.impl	action	VcsShowCurrentChangeMarker	C_hange Under Caret	ShowChangeMarkerAction$Current
+intellij.platform.vcs.impl	group	VcsTouchBarGroup		
+intellij.platform.vcs.impl	action	ChangesView.Refresh	Refresh	RefreshAction
+intellij.platform.vcs.impl	action	ChangesView.SingleClickPreview	Preview Diff	ToggleDetailsAction
+intellij.platform.vcs.impl	group	VcsGroups	_Git	VcsGroupsActionGroup
+intellij.platform.vcs.impl	group	Vcs.MainMenu		VcsMainMenuActionGroup
+intellij.platform.vcs.impl	action	Start.Use.Vcs	_Enable Version Control Integration\u2026	StartUseVcsAction
+intellij.platform.vcs.impl	group	VcsGlobalGroup	VCS Group	VcsActionGroup
+intellij.platform.vcs.impl	action	Vcs.QuickListPopupAction	VCS Operations Popup\u2026	VcsQuickListPopupAction
+intellij.platform.vcs.impl	action	Vcs.IntegrateProject	Inte_grate Project	CommonIntegrateProjectAction
+intellij.platform.vcs.impl	group	Vcs.Specific		NonEmptyActionGroup
+intellij.platform.vcs.impl	action	ChangesView.CreatePatch	Create Patch from Local Changes\u2026	CreatePatchAction
+intellij.platform.vcs.impl	action	ChangesView.ApplyPatch	Apply Patch\u2026	ApplyPatchAction
+intellij.platform.vcs.impl	action	ChangesView.ApplyPatchFromClipboard	Apply Patch from Clipboard\u2026	ApplyPatchFromClipboardAction
+intellij.platform.vcs.impl	action	ChangesView.Shelve	Shelve Changes\u2026	ShelveChangesAction
+intellij.platform.vcs.impl	group	Vcs.Browse	Browse VCS Repository	NonEmptyActionGroup
+intellij.platform.vcs.impl	group	Vcs.Import	Import into Version Control	NonEmptyActionGroup
+intellij.platform.vcs.impl	group	Patch.MainMenu	Patch	
+intellij.platform.vcs.impl	group	Vcs.UmlDiff		
+intellij.platform.vcs.impl	action	ChangesView.Revert	_Rollback\u2026	RollbackAction
+intellij.platform.vcs.impl	action	ChangesView.RevertFiles	_Rollback File\u2026	RollbackFilesAction
+intellij.platform.vcs.impl	group	ChangesViewToolbar		
+intellij.platform.vcs.impl	group	ChangesView.Changelists	Changelists	ChangeListActionGroup
+intellij.platform.vcs.impl	action	ChangesView.NewChangeList	New Changelist\u2026	AddChangeListAction
+intellij.platform.vcs.impl	action	ChangesView.Rename	Edit Changelist\u2026	RenameChangeListAction
+intellij.platform.vcs.impl	action	ChangesView.RemoveChangeList	Delete Changelist	RemoveChangeListAction
+intellij.platform.vcs.impl	action	ChangesView.SetDefault	Set Active Changelist	SetDefaultChangeListAction
+intellij.platform.vcs.impl	action	ChangesView.Move	Move to Another Changelist\u2026	MoveChangesToAnotherListAction
+intellij.platform.vcs.impl	action	ChangesView.ShelveSilently	Shelve Silently	ShelveSilentlyAction
+intellij.platform.vcs.impl	action	ChangesView.SaveToShelve	Save To Shelf	SaveToShelveAction
+intellij.platform.vcs.impl	action	Vcs.Diff.ShowCombinedDiff	Show Combined Diff	ShowCombinedDiffAction
+intellij.platform.vcs.impl	action	Vcs.CombinedDiff.CaretToPrevBlock	Previous File	CombinedCaretToPrevBlockAction
+intellij.platform.vcs.impl	action	Vcs.CombinedDiff.CaretToNextBlock	Next File	CombinedCaretToNextBlockAction
+intellij.platform.vcs.impl	action	Vcs.CombinedDiff.ToggleCollapseBlock	Collapse File	CombinedToggleBlockCollapseAction
+intellij.platform.vcs.impl	group	ChangesViewPopupMenu		
+intellij.platform.vcs.impl	action	ChangesView.EditSource		ChangesViewPopupJumpToSourceAction
+intellij.platform.vcs.impl	action	ChangesView.AddUnversioned	Add to VCS	ScheduleForAdditionWithIgnoredFilesConfirmationAction
+intellij.platform.vcs.impl	action	ChangesView.RemoveDeleted	Remove from VCS	ScheduleForRemovalAction
+intellij.platform.vcs.impl	action	ChangesView.Edit	Check Out	EditAction
+intellij.platform.vcs.impl	action	ChangesView.CreatePatchToClipboard	Copy as Patch to Clipboard	CreatePatchFromChangesAction$Clipboard
+intellij.platform.vcs.impl	group	Unversioned.Files.Dialog		
+intellij.platform.vcs.impl	group	Unversioned.Files.Dialog.Popup		
+intellij.platform.vcs.impl	group	ShelvedChangesPopupMenu		
+intellij.platform.vcs.impl	action	ShelveChanges.UnshelveWithDialog	Unshelve\u2026	UnshelveWithDialogAction
+intellij.platform.vcs.impl	action	ShelvedChanges.Restore	Restore Applied Shelved Change	RestoreShelvedChange
+intellij.platform.vcs.impl	action	ChangesView.CreatePatchFromChanges	Create Patch\u2026	CreatePatchFromChangesAction$Dialog
+intellij.platform.vcs.impl	action	ShelvedChanges.ImportPatches		ImportIntoShelfAction
+intellij.platform.vcs.impl	action	ShelvedChanges.Rename	Rename\u2026	RenameShelvedChangeListAction
+intellij.platform.vcs.impl	group	ShelvedChangesToolbar		
+intellij.platform.vcs.impl	action	ChangesView.UnshelveSilently	Unshelve Silently	UnshelveSilentlyAction
+intellij.platform.vcs.impl	group	ShelvedChangesToolbar.ViewOptions	View Options	
+intellij.platform.vcs.impl	action	ShelvedChanges.ShowHideDeleted	Show/Hide Applied Shelved Changes	ShowHideRecycledAction
+intellij.platform.vcs.impl	action	Vcs.Shelf.Apply		ApplyShelfAction
+intellij.platform.vcs.impl	action	Vcs.Shelf.Pop		PopShelfAction
+intellij.platform.vcs.impl	action	Vcs.Shelf.Drop		DropShelfAction
+intellij.platform.vcs.impl	action	Vcs.Shelf.UnshelveChanges		UnshelveChangesAction
+intellij.platform.vcs.impl	action	Vcs.Shelf.UnshelveChangesAndRemove		UnshelveChangesAndRemoveAction
+intellij.platform.vcs.impl	group	Vcs.Shelf.Operations.ContextMenu		ShelfOperationsGroup
+intellij.platform.vcs.impl	group	Vcs.Shelf.ChangesBrowser.ContextMenu		ShelfOperationsGroup
+intellij.platform.vcs.impl	action	Vcs.EditSource	Edit Source	EditSourceFromChangesBrowserAction
+intellij.platform.vcs.impl	action	Vcs.OpenRepositoryVersion		OpenRepositoryVersionAction
+intellij.platform.vcs.impl	action	Vcs.RevertSelectedChanges	Revert Selected Changes	RevertSelectedChangesAction$Revert
+intellij.platform.vcs.impl	action	Vcs.ApplySelectedChanges	Cherry-Pick Selected Changes	RevertSelectedChangesAction$Apply
+intellij.platform.vcs.impl	group	Vcs.SavedPatches.ContextMenu		
+intellij.platform.vcs.impl	group	Vcs.SavedPatches.ChangesBrowser.ContextMenu		
+intellij.platform.vcs.impl	group	Vcs.SavedPatches.ChangesBrowser.Toolbar		
+intellij.platform.vcs.impl	group	VcsHistoryActionsGroup		
+intellij.platform.vcs.impl	group	VcsHistoryActionsGroup.Toolbar		
+intellij.platform.vcs.impl	action	FileHistory.AnnotateRevision		AnnotateRevisionAction
+intellij.platform.vcs.impl	group	VcsHistoryInternalGroup.Popup		
+intellij.platform.vcs.impl	group	VcsHistoryInternalGroup.Toolbar		
+intellij.platform.vcs.impl	group	CommittedChangesToolbar		
+intellij.platform.vcs.impl	action	CommittedChanges.Refresh	Refresh	RefreshCommittedAction
+intellij.platform.vcs.impl	action	CommittedChanges.Filter	Filter	FilterCommittedAction
+intellij.platform.vcs.impl	action	CommittedChanges.Details	Show Details	ChangeListDetailsAction
+intellij.platform.vcs.impl	action	CommittedChanges.Revert	Revert Changes	RevertChangeListAction
+intellij.platform.vcs.impl	action	CommittedChanges.Clear	Clear	ClearCommittedAction
+intellij.platform.vcs.impl	group	Vcs.RepositoryChangesBrowserToolbar		
+intellij.platform.vcs.impl	group	ChangesBrowser.FiltererGroup		ChangesFilterer$FilterGroup
+intellij.platform.vcs.impl	group	Vcs.RepositoryChangesBrowserMenu		
+intellij.platform.vcs.impl	group	RepositoryChangesBrowserToolbar		
+intellij.platform.vcs.impl	group	IncomingChangesToolbar		
+intellij.platform.vcs.impl	action	IncomingChanges.Refresh	Refresh	RefreshIncomingChangesAction
+intellij.platform.vcs.impl	group	Vcs.History		
+intellij.platform.vcs.impl	action	VcsHistory.ShowAllAffected	Show All Affected Files	ShowAllAffectedGenericAction
+intellij.platform.vcs.impl	action	ChangesView.Browse	Browse Changes\u2026	BrowseCommittedChangesAction
+intellij.platform.vcs.impl	group	EditorGutterVcsPopupMenu		
+intellij.platform.vcs.impl	group	Vcs.CheckinProjectToolbar		
+intellij.platform.vcs.impl	group	Vcs.CheckinProjectMenu		
+intellij.platform.vcs.impl	group	UpdateActionGroup		
+intellij.platform.vcs.impl	action	Vcs.ReformatCommitMessage		ReformatCommitMessageAction
+intellij.platform.vcs.impl	group	Vcs.MessageActionGroup		
+intellij.platform.vcs.impl	action	Vcs.ShowMessageHistory	Commit Message History	ShowMessageHistoryAction
+intellij.platform.vcs.impl	group	Vcs.Commit.PrimaryCommitActions		
+intellij.platform.vcs.impl	group	Vcs.CommitExecutor.Actions		
+intellij.platform.vcs.impl	group	ChangesView.CommitToolbar		
+intellij.platform.vcs.impl	action	Vcs.ToggleAmendCommitMode	Amend Commit	ToggleAmendCommitModeAction
+intellij.platform.vcs.impl	action	ChangesView.ShowCommitOptions	Show Commit Options	ShowCommitOptionsAction
+intellij.platform.vcs.impl	action	Vcs.RunCommitChecks	Run Commit Checks	RunCommitChecksAction
+intellij.platform.vcs.impl	action	VcsToolbarLabelAction	VCS Label	VcsToolbarLabelAction
+intellij.platform.vcs.impl	group	VcsToolbarActions	VCS Actions	
+intellij.platform.vcs.impl	group	VcsNavBarToolbarActions		
+intellij.platform.vcs.impl	action	CloseAllUnmodifiedEditors	Close _Unmodified Tabs	CloseAllUnmodifiedEditorsAction
+intellij.platform.vcs.impl	group	Vcs.Diff.Commit.KeymapGroup		
+intellij.platform.vcs.impl	action	Vcs.Diff.IncludeChangedLinesIntoCommit	Split Chunks and Include Selected Lines into Commit	EmptyAction
+intellij.platform.vcs.impl	action	Vcs.Diff.ExcludeChangedLinesFromCommit	Split Chunks and Exclude Selected Lines from Commit	EmptyAction
+intellij.platform.vcs.impl	action	Vcs.Diff.IncludeWholeChangedLinesIntoCommit	Include Lines into Commit	EmptyAction
+intellij.platform.vcs.impl	group	Vcs.Diff.KeymapGroup		
+intellij.platform.vcs.impl	action	Vcs.RollbackChangedLines	Rollback Lines	RollbackLineStatusAction
+intellij.platform.vcs.impl	action	Vcs.ShowDiffChangedLines	Show Diff for Lines	ShowDiffLineStatusAction
+intellij.platform.vcs.impl	action	Vcs.MoveChangedLinesToChangelist	Move Lines to Another Changelist\u2026	MoveChangesLineStatusAction
+intellij.platform.vcs.impl	action	Vcs.Diff.ToggleDiffAligningMode	Align Changes In Side-by-Side Diff	ToggleDiffAligningModeAction
+intellij.platform.vcs.impl	action	Vcs.Diff.ResolveConflictsInImports	Resolve Conflicts in Import Statements	ResolveConflictsInImportsToggleAction
+intellij.platform.vcs.impl	action	Vcs.Diff.ShowDiffInEditorTab	Show Diff in Editor Tab	MoveDiffEditorAction$ToEditor
+intellij.platform.vcs.impl	action	Vcs.Diff.ShowDiffInNewWindow	Show Diff in Separate Window	MoveDiffEditorAction$ToWindow
+intellij.platform.vcs.impl	action	Vcs.Diff.EnableDisableCombinedDiff	Show All Files in One Diff View	CombinedDiffToggleAction
+intellij.platform.vcs.impl	group	Vcs.Diff.EditorTabs.Group		
+intellij.platform.vcs.impl	action	Vcs.CombinedDiff.ToggleCollapseAllBlock	Collapse All Files	CombinedToggleBlockCollapseAllAction
+intellij.platform.vcs.impl	action	Vcs.Diff.ToggleSearchInChanges	Search In Changes	ToggleSearchInChangesAction
+intellij.platform.vcs.impl	action	Vcs.CopyRevisionNumberAction	Copy Revision Number	CopyRevisionNumberAction
+intellij.platform.vcs.impl	action	Vcs.CopyCommitSubjectAction	Copy Commit Subject	CopyCommitSubjectAction
+intellij.platform.vcs.impl	group	VcsSelectionHistoryDialog.Popup		
+intellij.platform.vcs.impl	group	Shelve.KeymapGroup	Shelve	
+intellij.platform.vcs.impl	group	FileHistory.KeymapGroup	File History	
+intellij.platform.vcs.impl	group	VcsActions.KeymapGroup		
+intellij.platform.vcs.impl	group	Diff.CompareWith.KeymapGroup		
+intellij.platform.vcs.impl	group	Vcs.ToolWindow.CreateRepository		
+intellij.platform.vcs.impl	action	ActivateCommitToolWindow		ActivateCommitToolWindowAction
+intellij.platform.vcs.impl	action	Vcs.ShowConsoleTab	Show VCS Console Tab	ShowVcsConsoleTabAction
+intellij.platform.vcs.impl	action	CommitView.CloseWindowedFloatingTwOnCommit	Close the Commit Tool Window in Window/Float Mode After Committing	CloseWindowedFloatingTwOnCommitAction
+intellij.platform.vcs.impl	group	LocalChangesView.TabActions		
+intellij.platform.vcs.impl	group	Vcs.Show.Toolwindow.Tab		
+intellij.platform.vcs.impl	action	Vcs.Show.Local.Changes	Show Local Changes	VcsShowLocalChangesAction
+intellij.platform.vcs.impl	action	Vcs.Show.Shelf	Show Shelf	VcsShowShelfAction
+intellij.platform.vcs.impl	action	AnnotateStackTraceAction.show.files.modification.info	Show Files Modification Info	AnnotateStackTraceAction
+intellij.platform.vcs.impl	action	Vcs.Operations.Popup.Annotate	Annotated Line Operations	ShowAnnotateOperationsPopup
+intellij.platform.vcs.impl	group	Vcs.Operations.Popup		
+intellij.platform.vcs.impl	group	Vcs.Operations.Popup.VcsAware		VcsQuickListPopupAction$VcsAware
+intellij.platform.vcs.impl	group	Vcs.Operations.Popup.VcsNameSeparator		VcsQuickListPopupAction$VcsNameSeparator
+intellij.platform.vcs.impl	group	Vcs.Operations.Popup.Vcs.Providers		VcsQuickListPopupAction$Providers
+intellij.platform.vcs.impl	group	Vcs.Operations.Popup.NonVcsAware		VcsQuickListPopupAction$NonVcsAware
+intellij.platform.vcs.impl	group	ShowAnnotateOperationsPopupGroup	Annotated Line	ShowAnnotateOperationsPopup$Group
+intellij.platform.vcs.impl	action	MarkFileDirty	Mark File Dirty in VCS	MarkFileDirtyAction
+intellij.platform.vcs.impl	group	Vcs.Internal	VCS	
+intellij.platform.vcs.impl	action	Vcs.Commit.CloseDialog	Close Commit Dialog	CloseCommitDialogAction
+intellij.platform.diff.impl	action	Diff.PrevChange	Compare Previous File	DiffPreviousFileAction
+intellij.platform.diff.impl	action	Diff.NextChange	Compare Next File	DiffNextFileAction
+intellij.platform.diff.impl	action	PreviousDiff	Previous Difference	DiffPreviousDifferenceAction
+intellij.platform.diff.impl	action	NextDiff	Next Difference	DiffNextDifferenceAction
+intellij.platform.diff.impl	action	Diff.OpenInEditor		OpenInEditorAction
+intellij.vcs.git.localHistory	group	Git.Stage.Tree.Menu.LocalHistory		
+intellij.vcs.git.localHistory	group	Vcs.ToolbarWidget.CreateRepository.LocalHistory		
+vcs-git	action	Git.Init	Create Git Repository\u2026	GitInit
+vcs-git	action	Git.Log	Show Git Repository Log\u2026	GitShowExternalLogAction
+vcs-git	action	Git.BrowseRepoAtRevision	Show Repository at Revision	GitBrowseRepoAtRevisionAction
+vcs-git	group	Git.CheckoutGroup	Checkout	GitCheckoutActionGroup
+vcs-git	group	Git.BranchOperationGroup		GitLogBranchOperationsActionGroup
+vcs-git	action	Git.CheckoutRevision	Checkout Revision	GitCheckoutRevisionAction
+vcs-git	action	Git.CreateNewBranch	New Branch\u2026	GitCreateNewBranchAction
+vcs-git	action	Git.CreateNewTag	New Tag\u2026	GitCreateTagAction
+vcs-git	action	Git.PushUpToCommit	Push All up to Here\u2026	GitPushUpToCommitAction
+vcs-git	action	Git.Reset.In.Log	Reset Current Branch to Here\u2026	GitResetAction
+vcs-git	action	Git.Revert.In.Log	Revert Commit	GitRevertAction
+vcs-git	action	Git.Uncommit	Undo Commit\u2026	GitUncommitAction
+vcs-git	action	Git.Reword.Commit	Edit Commit Message\u2026	GitRewordAction
+vcs-git	action	Git.Squash.Commits	Squash Commits\u2026	GitSquashLogAction
+vcs-git	action	Git.Drop.Commits	Drop Commits	GitDropLogAction
+vcs-git	action	Git.Show.WorkingTrees	Worktrees\u2026	ShowWorkingTreesAction
+vcs-git	action	Git.CreateNewWorkingTree	New Worktree\u2026	GitCreateWorkingTreeAction
+vcs-git	action	Git.Drop.Selected.Changes	Drop Selected Changes	GitDropSelectedChangesAction
+vcs-git	action	Git.InMemory.Extract.Selected.Changes	Extract Selected Changes to Separate Commit\u2026	GitExtractSelectedChangesAction
+vcs-git	action	Git.New.Branch.In.Log		BranchesDashboardActions$NewBranchAction
+vcs-git	action	Git.Log.Branches.Change.Branch.Filter	Update Branch Filter in Log	BranchesDashboardActions$UpdateBranchFilterInLogAction
+vcs-git	group	Git.Log.Branches.Toolbar.Actions		
+vcs-git	action	Git.Log.Branches.Navigate.Log.To.Selected.Branch	Navigate Log to Selected Branch Head	BranchesDashboardActions$NavigateLogToSelectedBranchAction
+vcs-git	action	Git.Log.Hide.Branches	Hide Git Branches	BranchesDashboardActions$HideBranchesAction
+vcs-git	group	Git.Log.Branches.Settings	Branches Pane Settings	NonTrivialActionGroup
+vcs-git	action	Git.Log.Branches.Change.Branch.Filter.On.Selection	Update Branch Filter	BranchesDashboardActions$ChangeBranchFilterAction
+vcs-git	action	Git.Log.Branches.Navigate.Log.To.Branch.On.Selection	Navigate Log to Branch Head	BranchesDashboardActions$NavigateLogToBranchAction
+vcs-git	action	Git.Fixup.To.Commit	Fixup\u2026	GitCommitFixupBySubjectAction
+vcs-git	action	Git.Squash.Into.Commit	Squash Into\u2026	GitCommitSquashBySubjectAction
+vcs-git	action	Git.Interactive.Rebase	Interactively Rebase from Here\u2026	GitInteractiveRebaseAction
+vcs-git	action	Git.Commit.And.Push.Executor		GitCommitAndPushExecutorAction
+vcs-git	group	Git.FileActions		
+vcs-git	action	Git.Add	Add	ScheduleForAdditionWithIgnoredFilesConfirmationAction
+vcs-git	action	Git.CompareWithBranch	Compare with Branch or Tag\u2026	GitCompareWithRefAction
+vcs-git	action	Git.Cleanup.Branches	Clean Up Branches\u2026	CleanupBranchesAction
+vcs-git	group	Git.MainMenu.FileActions		GitFileActionGroup
+vcs-git	group	Git.MainMenu.RebaseActions	_Rebase	GitRepositoryStateActionGroup$Rebase
+vcs-git	action	Git.Rebase.Abort	Abort Rebase	GitRebaseAbort
+vcs-git	action	Git.Rebase.Continue	Continue Rebase	GitRebaseContinue
+vcs-git	action	Git.Rebase.Skip	Skip Commit	GitRebaseSkip
+vcs-git	group	Git.MainMenu.MergeActions	_Merge	GitRepositoryStateActionGroup$Merge
+vcs-git	action	Git.Merge.Commit	Commit merge	GitMergeCommitAction
+vcs-git	action	Git.Merge.Abort	Abort Merge	GitAbortOperationAction$Merge
+vcs-git	group	Git.MainMenu.LocalChanges	_Uncommitted Changes	
+vcs-git	action	Git.Stash	Stash Changes\u2026	GitStash
+vcs-git	action	Git.Unstash	Unstash Changes\u2026	GitUnstash
+vcs-git	group	Git.MainMenu		GitMainMenuActionGroup
+vcs-git	action	Git.Pull	Pull\u2026	GitPull
+vcs-git	action	Git.Fetch	Fetch	GitFetch
+vcs-git	action	Git.Unshallow	Unshallow repository	GitUnshallowRepositoryAction
+vcs-git	action	Git.Merge	Merge\u2026	GitMerge
+vcs-git	action	Git.Rebase	Rebase\u2026	GitRebase
+vcs-git	action	Git.ResolveConflicts	Resolve Conflicts\u2026	GitResolveConflictsAction
+vcs-git	action	Git.RevertResolved	Revert Resolved	GitRevertResolvedAction
+vcs-git	action	Git.Branches	_Branches\u2026	GitBranchesAction
+vcs-git	action	Git.Tag	New Tag\u2026	GitTag
+vcs-git	action	Git.Reset	Reset HEAD\u2026	GitResetHead
+vcs-git	action	Git.Configure.Remotes	Manage Remotes\u2026	GitConfigureRemotesAction
+vcs-git	action	Git.Clone	Clone\u2026	GitCloneAction
+vcs-git	action	Git.Revert.Abort	Abort Revert	GitAbortOperationAction$Revert
+vcs-git	action	Git.CherryPick.Continue	Continue Cherry-Pick	GitCherryPickContinueAction
+vcs-git	action	Git.CherryPick.Abort	Abort Cherry-Pick	GitAbortOperationAction$CherryPick
+vcs-git	group	GitRepositoryActions		
+vcs-git	action	git.update.force.pushed.branch	Update Force-Pushed Branch	GitForcePushedBranchUpdateAction
+vcs-git	action	Git.FindMergedLocalBranches	Find Merged Local Branches	FindMergedLocalBranchesAction
+vcs-git	group	Git.Ongoing.Rebase.Actions		
+vcs-git	group	Git.Compare.With.Branch.Popup.Settings		GitBranchesTreePopupSettings
+vcs-git	group	Git.Branches.List		
+vcs-git	group	Git.Branch.Backend.Checkout		
+vcs-git	group	Git.Branch.Backend		
+vcs-git	action	Git.Ref.Compare.With		GitCompareWithBranchAction
+vcs-git	action	Git.Ref.Diff.With.Local		GitShowDiffWithRefAction
+vcs-git	group	Git.Branch.Tracked		GitTrackedBranchActionGroup
+vcs-git	group	Git.Push.Tags		GitPushTagsActionGroup
+vcs-git	action	Git.Rename.Local.Branch		GitRenameBranchAction
+vcs-git	action	Git.Tag.Push		GitPushTagAction
+vcs-git	group	Git.Menu	_Git	GitMenu
+vcs-git	group	Git.ContextMenu	_Git	GitMenu
+vcs-git	action	Git.ShowBranches	Show Branches	GitBranchesComboBoxAction
+vcs-git	action	Git.Toolbar.ShowMoreActions	Version Control	GitQuickActionsToolbarPopup
+vcs-git	action	Git.Log.Show.Command	Show Git Log for Command	ShowGitLogCommandAction
+vcs-git	group	Git.LogContextMenu		
+vcs-git	group	Git.FileHistory.ContextMenu		
+vcs-git	group	Git.Log.ContextMenu.CheckoutBrowse		
+vcs-git	group	Git.Log.ContextMenu		
+vcs-git	action	Git.AddCommitToRemoteBranch	Add Commits to Remote Branch\u2026	GitAddCommitToRemoteBranchAction
+vcs-git	action	Git.CreateNewBranch.FromCommit	New Branch\u2026	GitCreateNewBranchFromCommitAction
+vcs-git	group	Git.Log.Toolbar		
+vcs-git	action	Git.Log.HighlightCherryPickedCommits	Not Cherry-Picked Commits	HighlightCherryPickedCommitsAction
+vcs-git	group	Git.Log.Internal		
+vcs-git	action	Git.OpenExcludeFile		OpenGitExcludeAction
+vcs-git	group	Git.Ignore.File		GitIgnoreFileActionGroup
+vcs-git	action	git4idea.commands.TestGitHttpLoginDialogAction	Test Git Login Dialog	TestGitHttpLoginDialogAction
+vcs-git	action	CopyPathFromRepositoryRootProvider	Path From Repository Root	CopyPathFromRepositoryRootProvider
+vcs-git	action	Git.Show.Stage	Show Staging Area	GitShowStagingAreaAction
+vcs-git	action	Git.Commit.Stage	Commit\u2026	GitCommitWithStagingAreaAction
+vcs-git	action	Git.Stage.Enable	Staging Area	GitEnableStagingAreaAction
+vcs-git	action	Git.Stage.Disable	Changelists	GitDisableStagingAreaAction
+vcs-git	action	Git.Stage.Add		GitAddAction
+vcs-git	action	Git.Stage.Add.No.Content		GitAddWithoutContent
+vcs-git	action	Git.Stage.Reset		GitResetAction
+vcs-git	action	Git.Stage.Revert		GitRevertAction
+vcs-git	action	Git.Stage.AcceptTheirs		GitStageAcceptTheirsAction
+vcs-git	action	Git.Stage.AcceptYours		GitStageAcceptYoursAction
+vcs-git	action	Git.Stage.Merge		GitStageMergeConflictAction
+vcs-git	action	Git.Stage.ThreeSideDiff	Compare HEAD, Staged and Local Versions	GitStageThreeSideDiffAction
+vcs-git	action	Git.Stage.ToggleIgnored		GitToggleIgnoredFilesAction
+vcs-git	action	Git.Stage.ToggleCommitAll	Commit All when Nothing Is Staged	GitToggleCommitAllAction
+vcs-git	action	Git.Stage.Add.All	Stage All	GitStageAllAction
+vcs-git	action	Git.Stage.Add.Tracked	Stage All Tracked	GitStageTrackedAction
+vcs-git	action	Git.Stage.Show.Staged	Show Staged Version	GitShowStagedVersionAction
+vcs-git	action	Git.Stage.Show.Local	Show Local Version	GitShowLocalVersionAction
+vcs-git	action	Git.Stage.Compare.Local.Staged	Compare with Staged Version	GitStageCompareLocalWithStagedAction
+vcs-git	action	Git.Stage.Compare.Staged.Local	Compare with Local Version	GitStageCompareStagedWithLocalAction
+vcs-git	action	Git.Stage.Compare.Staged.Head	Compare with HEAD Version	GitStageCompareStagedWithHeadAction
+vcs-git	action	Git.Stage.Compare.Three.Versions	Compare HEAD, Staged and Local Versions	GitStageCompareThreeVersionsAction
+vcs-git	action	Git.Stage.Stash.Files		GitStageStashFilesAction
+vcs-git	group	Git.ChangesView.Conflicts		
+vcs-git	action	Git.ChangesView.Merge		GitMergeConflictAction
+vcs-git	action	Git.ChangesView.AcceptTheirs		GitAcceptTheirsAction
+vcs-git	action	Git.ChangesView.AcceptYours		GitAcceptYoursAction
+vcs-git	action	Git.Stash.Silently	Stash Silently	GitStashSilentlyAction
+vcs-git	group	Git.Stage.Configure	Configure Local Changes	
+vcs-git	group	Git.Stage.Toolbar		
+vcs-git	group	Git.Stage.Ui.Settings	View Options	
+vcs-git	group	Git.Stage.Tree.Menu		
+vcs-git	group	Git.Stage.Local.File.Menu		
+vcs-git	group	Git.Stage.Index.File.Menu	Git	GitStageIndexFileMenuGroup
+vcs-git	action	Git.Stash.Pop	&Pop	GitPopStashAction
+vcs-git	action	Git.Stash.Apply	&Apply	GitApplyStashAction
+vcs-git	action	Git.Stash.UnstashAs	&Unstash\u2026	GitUnstashAsAction
+vcs-git	action	Git.Stash.Drop	&Drop	GitDropStashAction
+vcs-git	action	Git.Stash.Clear	&Clear	GitClearStashesAction
+vcs-git	action	Git.Show.Stash	Show Git Stash	GitShowStashTabAction
+vcs-git	action	Git.Stash.Refresh	Refresh Stashes	GitRefreshStashesAction
+vcs-git	action	Git.Stash.Toggle.Split.Preview	Preview Diff	GitStashToggleSplitPreviewAction
+vcs-git	group	Git.Stash.Operations.ContextMenu		GitStashOperationsGroup
+vcs-git	group	Git.Stash.ChangesBrowser.ContextMenu		GitStashOperationsGroup
+vcs-git	group	Git.Experimental.Branch.Popup.Actions		
+vcs-git	group	Vcs.ToolbarWidget.CreateRepository		
+vcs-git	group	Vcs.ToolbarWidget.ShareProject	Share Project On	
+vcs-git	action	main.toolbar.git.MergeRebase	VCS Merge/Rebase Widget	GitMergeRebaseWidget
+vcs-git	group	GitMergeRebaseWidgetGroup		
+vcs-git	group	Git.Hosting.Open.In.Browser.Group		
+vcs-git	group	Git.Hosting.Copy.Link.Group		
+vcs-git	action	gpg.agent.configuration	Configure GPG Agent	GpgAgentConfigurationAction
+vcs-git	action	Git.Branches.Popup.Fetch		GitBranchPopupFetchAction
+vcs-git	action	Git.WorkingTrees.Remove	Delete\u2026	RemoveWorkingTreeAction
+vcs-git	action	Git.WorkingTrees.Open	Open as a Project	OpenWorkingTreeAction
+vcs-git	action	Git.WorkingTrees.Refresh	Refresh	RefreshWorkingTreesAction
+vcs-git	action	Git.WorkingTrees.Prune	Prune	PruneWorkingTreesAction
+vcs-git	group	Git.WorkingTrees.ToolwindowGroup.Toolbar		
+vcs-git	group	Git.WorkingTrees.ToolwindowGroup.Popup		
+vcs-git	action	Git.Init	Create Git Repository\u2026	GitInit
+vcs-git	action	Git.Log	Show Git Repository Log\u2026	GitShowExternalLogAction
+vcs-git	action	Git.BrowseRepoAtRevision	Show Repository at Revision	GitBrowseRepoAtRevisionAction
+vcs-git	group	Git.CheckoutGroup	Checkout	GitCheckoutActionGroup
+vcs-git	group	Git.BranchOperationGroup		GitLogBranchOperationsActionGroup
+vcs-git	action	Git.CheckoutRevision	Checkout Revision	GitCheckoutRevisionAction
+vcs-git	action	Git.CreateNewBranch	New Branch\u2026	GitCreateNewBranchAction
+vcs-git	action	Git.CreateNewTag	New Tag\u2026	GitCreateTagAction
+vcs-git	action	Git.PushUpToCommit	Push All up to Here\u2026	GitPushUpToCommitAction
+vcs-git	action	Git.Reset.In.Log	Reset Current Branch to Here\u2026	GitResetAction
+vcs-git	action	Git.Revert.In.Log	Revert Commit	GitRevertAction
+vcs-git	action	Git.Uncommit	Undo Commit\u2026	GitUncommitAction
+vcs-git	action	Git.Reword.Commit	Edit Commit Message\u2026	GitRewordAction
+vcs-git	action	Git.Squash.Commits	Squash Commits\u2026	GitSquashLogAction
+vcs-git	action	Git.Drop.Commits	Drop Commits	GitDropLogAction
+vcs-git	action	Git.Show.WorkingTrees	Worktrees\u2026	ShowWorkingTreesAction
+vcs-git	action	Git.CreateNewWorkingTree	New Worktree\u2026	GitCreateWorkingTreeAction
+vcs-git	action	Git.Drop.Selected.Changes	Drop Selected Changes	GitDropSelectedChangesAction
+vcs-git	action	Git.InMemory.Extract.Selected.Changes	Extract Selected Changes to Separate Commit\u2026	GitExtractSelectedChangesAction
+vcs-git	action	Git.New.Branch.In.Log		BranchesDashboardActions$NewBranchAction
+vcs-git	action	Git.Log.Branches.Change.Branch.Filter	Update Branch Filter in Log	BranchesDashboardActions$UpdateBranchFilterInLogAction
+vcs-git	group	Git.Log.Branches.Toolbar.Actions		
+vcs-git	action	Git.Log.Branches.Navigate.Log.To.Selected.Branch	Navigate Log to Selected Branch Head	BranchesDashboardActions$NavigateLogToSelectedBranchAction
+vcs-git	action	Git.Log.Hide.Branches	Hide Git Branches	BranchesDashboardActions$HideBranchesAction
+vcs-git	group	Git.Log.Branches.Settings	Branches Pane Settings	NonTrivialActionGroup
+vcs-git	action	Git.Log.Branches.Change.Branch.Filter.On.Selection	Update Branch Filter	BranchesDashboardActions$ChangeBranchFilterAction
+vcs-git	action	Git.Log.Branches.Navigate.Log.To.Branch.On.Selection	Navigate Log to Branch Head	BranchesDashboardActions$NavigateLogToBranchAction
+vcs-git	action	Git.Fixup.To.Commit	Fixup\u2026	GitCommitFixupBySubjectAction
+vcs-git	action	Git.Squash.Into.Commit	Squash Into\u2026	GitCommitSquashBySubjectAction
+vcs-git	action	Git.Interactive.Rebase	Interactively Rebase from Here\u2026	GitInteractiveRebaseAction
+vcs-git	action	Git.Commit.And.Push.Executor		GitCommitAndPushExecutorAction
+vcs-git	group	Git.FileActions		
+vcs-git	action	Git.Add	Add	ScheduleForAdditionWithIgnoredFilesConfirmationAction
+vcs-git	action	Git.CompareWithBranch	Compare with Branch or Tag\u2026	GitCompareWithRefAction
+vcs-git	action	Git.Cleanup.Branches	Clean Up Branches\u2026	CleanupBranchesAction
+vcs-git	group	Git.MainMenu.FileActions		GitFileActionGroup
+vcs-git	group	Git.MainMenu.RebaseActions	_Rebase	GitRepositoryStateActionGroup$Rebase
+vcs-git	action	Git.Rebase.Abort	Abort Rebase	GitRebaseAbort
+vcs-git	action	Git.Rebase.Continue	Continue Rebase	GitRebaseContinue
+vcs-git	action	Git.Rebase.Skip	Skip Commit	GitRebaseSkip
+vcs-git	group	Git.MainMenu.MergeActions	_Merge	GitRepositoryStateActionGroup$Merge
+vcs-git	action	Git.Merge.Commit	Commit merge	GitMergeCommitAction
+vcs-git	action	Git.Merge.Abort	Abort Merge	GitAbortOperationAction$Merge
+vcs-git	group	Git.MainMenu.LocalChanges	_Uncommitted Changes	
+vcs-git	action	Git.Stash	Stash Changes\u2026	GitStash
+vcs-git	action	Git.Unstash	Unstash Changes\u2026	GitUnstash
+vcs-git	group	Git.MainMenu		GitMainMenuActionGroup
+vcs-git	action	Git.Pull	Pull\u2026	GitPull
+vcs-git	action	Git.Fetch	Fetch	GitFetch
+vcs-git	action	Git.Unshallow	Unshallow repository	GitUnshallowRepositoryAction
+vcs-git	action	Git.Merge	Merge\u2026	GitMerge
+vcs-git	action	Git.Rebase	Rebase\u2026	GitRebase
+vcs-git	action	Git.ResolveConflicts	Resolve Conflicts\u2026	GitResolveConflictsAction
+vcs-git	action	Git.RevertResolved	Revert Resolved	GitRevertResolvedAction
+vcs-git	action	Git.Branches	_Branches\u2026	GitBranchesAction
+vcs-git	action	Git.Tag	New Tag\u2026	GitTag
+vcs-git	action	Git.Reset	Reset HEAD\u2026	GitResetHead
+vcs-git	action	Git.Configure.Remotes	Manage Remotes\u2026	GitConfigureRemotesAction
+vcs-git	action	Git.Clone	Clone\u2026	GitCloneAction
+vcs-git	action	Git.Revert.Abort	Abort Revert	GitAbortOperationAction$Revert
+vcs-git	action	Git.CherryPick.Continue	Continue Cherry-Pick	GitCherryPickContinueAction
+vcs-git	action	Git.CherryPick.Abort	Abort Cherry-Pick	GitAbortOperationAction$CherryPick
+vcs-git	group	GitRepositoryActions		
+vcs-git	action	git.update.force.pushed.branch	Update Force-Pushed Branch	GitForcePushedBranchUpdateAction
+vcs-git	action	Git.FindMergedLocalBranches	Find Merged Local Branches	FindMergedLocalBranchesAction
+vcs-git	group	Git.Ongoing.Rebase.Actions		
+vcs-git	group	Git.Compare.With.Branch.Popup.Settings		GitBranchesTreePopupSettings
+vcs-git	group	Git.Branches.List		
+vcs-git	group	Git.Branch.Backend.Checkout		
+vcs-git	group	Git.Branch.Backend		
+vcs-git	action	Git.Ref.Compare.With		GitCompareWithBranchAction
+vcs-git	action	Git.Ref.Diff.With.Local		GitShowDiffWithRefAction
+vcs-git	group	Git.Branch.Tracked		GitTrackedBranchActionGroup
+vcs-git	group	Git.Push.Tags		GitPushTagsActionGroup
+vcs-git	action	Git.Rename.Local.Branch		GitRenameBranchAction
+vcs-git	action	Git.Tag.Push		GitPushTagAction
+vcs-git	group	Git.Menu	_Git	GitMenu
+vcs-git	group	Git.ContextMenu	_Git	GitMenu
+vcs-git	action	Git.ShowBranches	Show Branches	GitBranchesComboBoxAction
+vcs-git	action	Git.Toolbar.ShowMoreActions	Version Control	GitQuickActionsToolbarPopup
+vcs-git	action	Git.Log.Show.Command	Show Git Log for Command	ShowGitLogCommandAction
+vcs-git	group	Git.LogContextMenu		
+vcs-git	group	Git.FileHistory.ContextMenu		
+vcs-git	group	Git.Log.ContextMenu.CheckoutBrowse		
+vcs-git	group	Git.Log.ContextMenu		
+vcs-git	action	Git.AddCommitToRemoteBranch	Add Commits to Remote Branch\u2026	GitAddCommitToRemoteBranchAction
+vcs-git	action	Git.CreateNewBranch.FromCommit	New Branch\u2026	GitCreateNewBranchFromCommitAction
+vcs-git	group	Git.Log.Toolbar		
+vcs-git	action	Git.Log.HighlightCherryPickedCommits	Not Cherry-Picked Commits	HighlightCherryPickedCommitsAction
+vcs-git	group	Git.Log.Internal		
+vcs-git	action	Git.OpenExcludeFile		OpenGitExcludeAction
+vcs-git	group	Git.Ignore.File		GitIgnoreFileActionGroup
+vcs-git	action	git4idea.commands.TestGitHttpLoginDialogAction	Test Git Login Dialog	TestGitHttpLoginDialogAction
+vcs-git	action	CopyPathFromRepositoryRootProvider	Path From Repository Root	CopyPathFromRepositoryRootProvider
+vcs-git	action	Git.Show.Stage	Show Staging Area	GitShowStagingAreaAction
+vcs-git	action	Git.Commit.Stage	Commit\u2026	GitCommitWithStagingAreaAction
+vcs-git	action	Git.Stage.Enable	Staging Area	GitEnableStagingAreaAction
+vcs-git	action	Git.Stage.Disable	Changelists	GitDisableStagingAreaAction
+vcs-git	action	Git.Stage.Add		GitAddAction
+vcs-git	action	Git.Stage.Add.No.Content		GitAddWithoutContent
+vcs-git	action	Git.Stage.Reset		GitResetAction
+vcs-git	action	Git.Stage.Revert		GitRevertAction
+vcs-git	action	Git.Stage.AcceptTheirs		GitStageAcceptTheirsAction
+vcs-git	action	Git.Stage.AcceptYours		GitStageAcceptYoursAction
+vcs-git	action	Git.Stage.Merge		GitStageMergeConflictAction
+vcs-git	action	Git.Stage.ThreeSideDiff	Compare HEAD, Staged and Local Versions	GitStageThreeSideDiffAction
+vcs-git	action	Git.Stage.ToggleIgnored		GitToggleIgnoredFilesAction
+vcs-git	action	Git.Stage.ToggleCommitAll	Commit All when Nothing Is Staged	GitToggleCommitAllAction
+vcs-git	action	Git.Stage.Add.All	Stage All	GitStageAllAction
+vcs-git	action	Git.Stage.Add.Tracked	Stage All Tracked	GitStageTrackedAction
+vcs-git	action	Git.Stage.Show.Staged	Show Staged Version	GitShowStagedVersionAction
+vcs-git	action	Git.Stage.Show.Local	Show Local Version	GitShowLocalVersionAction
+vcs-git	action	Git.Stage.Compare.Local.Staged	Compare with Staged Version	GitStageCompareLocalWithStagedAction
+vcs-git	action	Git.Stage.Compare.Staged.Local	Compare with Local Version	GitStageCompareStagedWithLocalAction
+vcs-git	action	Git.Stage.Compare.Staged.Head	Compare with HEAD Version	GitStageCompareStagedWithHeadAction
+vcs-git	action	Git.Stage.Compare.Three.Versions	Compare HEAD, Staged and Local Versions	GitStageCompareThreeVersionsAction
+vcs-git	action	Git.Stage.Stash.Files		GitStageStashFilesAction
+vcs-git	group	Git.ChangesView.Conflicts		
+vcs-git	action	Git.ChangesView.Merge		GitMergeConflictAction
+vcs-git	action	Git.ChangesView.AcceptTheirs		GitAcceptTheirsAction
+vcs-git	action	Git.ChangesView.AcceptYours		GitAcceptYoursAction
+vcs-git	action	Git.Stash.Silently	Stash Silently	GitStashSilentlyAction
+vcs-git	group	Git.Stage.Configure	Configure Local Changes	
+vcs-git	group	Git.Stage.Toolbar		
+vcs-git	group	Git.Stage.Ui.Settings	View Options	
+vcs-git	group	Git.Stage.Tree.Menu		
+vcs-git	group	Git.Stage.Local.File.Menu		
+vcs-git	group	Git.Stage.Index.File.Menu	Git	GitStageIndexFileMenuGroup
+vcs-git	action	Git.Stash.Pop	&Pop	GitPopStashAction
+vcs-git	action	Git.Stash.Apply	&Apply	GitApplyStashAction
+vcs-git	action	Git.Stash.UnstashAs	&Unstash\u2026	GitUnstashAsAction
+vcs-git	action	Git.Stash.Drop	&Drop	GitDropStashAction
+vcs-git	action	Git.Stash.Clear	&Clear	GitClearStashesAction
+vcs-git	action	Git.Show.Stash	Show Git Stash	GitShowStashTabAction
+vcs-git	action	Git.Stash.Refresh	Refresh Stashes	GitRefreshStashesAction
+vcs-git	action	Git.Stash.Toggle.Split.Preview	Preview Diff	GitStashToggleSplitPreviewAction
+vcs-git	group	Git.Stash.Operations.ContextMenu		GitStashOperationsGroup
+vcs-git	group	Git.Stash.ChangesBrowser.ContextMenu		GitStashOperationsGroup
+vcs-git	group	Git.Experimental.Branch.Popup.Actions		
+vcs-git	group	Vcs.ToolbarWidget.CreateRepository		
+vcs-git	group	Vcs.ToolbarWidget.ShareProject	Share Project On	
+vcs-git	action	main.toolbar.git.MergeRebase	VCS Merge/Rebase Widget	GitMergeRebaseWidget
+vcs-git	group	GitMergeRebaseWidgetGroup		
+vcs-git	group	Git.Hosting.Open.In.Browser.Group		
+vcs-git	group	Git.Hosting.Copy.Link.Group		
+vcs-git	action	gpg.agent.configuration	Configure GPG Agent	GpgAgentConfigurationAction
+vcs-git	action	Git.Branches.Popup.Fetch		GitBranchPopupFetchAction
+vcs-git	action	Git.WorkingTrees.Remove	Delete\u2026	RemoveWorkingTreeAction
+vcs-git	action	Git.WorkingTrees.Open	Open as a Project	OpenWorkingTreeAction
+vcs-git	action	Git.WorkingTrees.Refresh	Refresh	RefreshWorkingTreesAction
+vcs-git	action	Git.WorkingTrees.Prune	Prune	PruneWorkingTreesAction
+vcs-git	group	Git.WorkingTrees.ToolwindowGroup.Toolbar		
+vcs-git	group	Git.WorkingTrees.ToolwindowGroup.Popup		
+vcs-git	group	Git.Stage.Tree.Menu.LocalHistory		
+vcs-git	group	Vcs.ToolbarWidget.CreateRepository.LocalHistory		
+vcs-git	group	MainToolbarVCSGroup	VCS Group	
+vcs-git	action	git.branches.show.tags	Show Tags	GitBranchesTreeShowTagsAction
+vcs-git	group	Git.Branches.Popup.SpeedSearch		
+vcs-git	group	Git.Branches.Popup.Settings		GitBranchesTreePopupSettings
+vcs-git	group	git.branches.popup.filter.by.separator		GitBranchesTreePopupFilterSeparatorWithText
+vcs-git	action	git.branches.popup.filter.by.action	Actions	GitBranchesTreePopupFilterByAction
+vcs-git	action	git.branches.popup.filter.by.repository	Repositories	GitBranchesTreePopupFilterByRepository
+vcs-git	action	git.branches.group.by.directory	Group by Directory	GitGroupBranchByDirectoryAction
+vcs-git	action	git.branches.group.by.repository	Group by Repository	GitGroupBranchByRepositoryAction
+vcs-git	action	git.branches.show.recent	Show Recent Branches	GitBranchesTreePopupShowRecentBranchesAction
+vcs-git	action	git.branches.popup.resize		GitBranchesTreePopupResizeAction
+vcs-git	group	Git.Branch		
+vcs-git	group	Git.Branch.Checkout		
+vcs-git	action	Git.Checkout.Update	Checkout and Update	GitCheckoutWithUpdateAction
+vcs-git	group	Git.Branch.Placeholder		
+vcs-git	action	main.toolbar.git.Branches	VCS Widget	GitToolbarWidgetAction
+vcs-git	group	GitMainToolbarQuickActions		
+vcs-git	group	MainToolbarQuickActions.VCS		ToolbarQuickActionsGroup

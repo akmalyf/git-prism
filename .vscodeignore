@@ -1,0 +1,10 @@
+src/**
+scripts/**
+vendor/**
+.re/**
+node_modules/**
+dist-test/**
+tsconfig.json
+*.map
+PLAN.md
+ARCHITECTURE.md
