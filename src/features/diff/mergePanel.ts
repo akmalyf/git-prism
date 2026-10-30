@@ -62,7 +62,7 @@ async function doMerge(ctx: FeatureContext, args: { repoRoot: string; path: stri
     const titles = mergeTitles(await titleInfo(repo));
     const reason = await textMergeBlocker(repo, stages);
     if (reason) return await acceptPrompt(repo, rel, stages, reverse, reason);
-    const [base, left, right] = await Promise.all([1, sides.left, sides.right].map((s) => loadStage(repo, rel, stages, s as Stage)));
+    const [base, left, right] = await Promise.all([1, sides.left, sides.right].map((s) => loadStage(repo, stages, s as Stage)));
     if (left.binary || right.binary || base.binary) return await acceptPrompt(repo, rel, stages, reverse, 'binary file');
     const init: MergeInit = {
       path: rel,
@@ -83,7 +83,7 @@ async function doMerge(ctx: FeatureContext, args: { repoRoot: string; path: stri
   }
 }
 
-async function loadStage(repo: Repository, rel: string, stages: Stages, s: Stage): Promise<Decoded> {
+async function loadStage(repo: Repository, stages: Stages, s: Stage): Promise<Decoded> {
   if (!stages[s]) return { binary: false, text: '', meta: { ...DEFAULT_META } };
   const bytes = await repo.buffer(['cat-file', 'blob', stages[s]!.hash], { quiet: true });
   return decode(bytes);

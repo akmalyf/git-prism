@@ -87,7 +87,7 @@ export class LogController implements vscode.Disposable {
 
   constructor(
     private readonly ctx: FeatureContext,
-    private readonly webview: vscode.Webview,
+    webview: vscode.Webview,
     private readonly opts: ControllerOptions,
   ) {
     const saved = opts.persistKey ? ctx.extension.workspaceState.get<Persisted>(opts.persistKey) : undefined;

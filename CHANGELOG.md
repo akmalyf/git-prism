@@ -4,19 +4,19 @@
 
 First release.
 
-- Commit tool window: Changes / Unversioned Files tree with checkboxes, changelists, partial (per-line) commits,
-  Staging Area mode, Amend, Commit Message History, Commit Options, Commit and Push….
-- Git tool window: Log with branches tree, commit graph, filter bar (text/hash, Branch, User, Date, Paths), changed
-  files tree, commit details and diff preview; Console tab with every git command.
-- Commit operations from the log: Cherry-Pick, Revert, Reset Current Branch to Here, Undo Commit, Edit Commit
+- **Git panel › Log**: branches tree, commit graph with IntelliJ's commit ordering (by commit date or IntelliSort),
+  lane colors and row highlights, filter bar (text/hash, Branch, User, Date, Paths), changed files tree, commit
+  details, diff preview and a collapsible Console pane with every git command.
+- **Commit operations** from the log: Cherry-Pick, Revert, Reset Current Branch to Here, Undo Commit, Edit Commit
   Message, Fixup, Squash, Drop, Interactive Rebase, Push All up to Here, Create Patch, Drop / Extract Selected
   Changes.
-- Compare with Branch or Tag / Revision / Latest Repository Version, Show History (file, folder, selection), Show
-  Repository at Revision.
-- Annotate with Git Blame with annotated line actions; gutter change markers with Rollback Lines and Show Diff for
-  Lines.
-- Diff viewer and three-way merge tool; Resolve Conflicts dialog; Merge/Rebase operation widget.
-- Branches popup and status bar widget; New/Rename/Delete branch, tags, Clean Up Branches, Manage Remotes,
-  Worktrees, Clone, Init, Unshallow, VCS Operations Popup.
-- Push, Pull, Fetch, Update Project, Merge, Rebase and Reset HEAD dialogs.
-- Stash, Shelf and patches (create, copy, apply, import).
+- **Editor Git menu**: Show Diff, Compare with Revision / Branch or Tag / Latest Repository Version, Show History
+  (file, folder, selection), Show Current Revision, Annotate with Git Blame, Rollback, Add, Add to .gitignore.
+- **Branches**: Branches popup, New / Rename / Delete branch, tags, Checkout Tag or Revision, Clean Up Branches,
+  Manage Remotes, Worktrees, Clone, Create Git Repository, Unshallow, VCS Operations Popup.
+- **Sync**: Push (force push, tags, protected branches), Pull, Fetch, Update Project, Merge, Rebase and Reset HEAD
+  dialogs.
+- **Diff & merge**: side-by-side / unified diff viewer, three-way merge tool, Resolve Conflicts dialog, Continue /
+  Skip / Abort of running operations, gutter change markers with Rollback Lines and Show Diff for Lines.
+- **Stash & patches**: Stash / Unstash, Create / Copy / Apply Patch.
+- Native VS Code context menus; file icons from the active file icon theme; UI font from the workbench.

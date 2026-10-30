@@ -94,10 +94,6 @@ const SHORTCUTS: Partial<Record<CommitAction, string>> = {
   goToParent: 'Left',
 };
 
-export function actionLabel(id: CommitAction): string {
-  return LABELS[id];
-}
-
 export function buildCommitMenu(sel: readonly MenuCommit[], roots: readonly MenuRoot[]): CommitMenuEntry[] {
   const n = sel.length;
   const one = n === 1 ? sel[0] : undefined;

@@ -151,16 +151,6 @@ export async function notifyConflicts(repo: Repository, message: string): Promis
   else if (pick?.startsWith('Abort')) invoke('jbGit.operation.abort', { repoRoot: repo.root });
 }
 
-/** After a failed command: conflicts → conflict notification (returns true); otherwise false. */
-export async function handleConflicts(repo: Repository, message: string, e?: unknown): Promise<boolean> {
-  const text = e instanceof Error ? e.message : '';
-  if ((await hasConflicts(repo)) || /CONFLICT|Applying autostash resulted in conflicts/.test(text)) {
-    await notifyConflicts(repo, message);
-    return true;
-  }
-  return false;
-}
-
 /** Restored-with-conflicts warning when the autostash could not be re-applied cleanly. */
 export function autostashConflict(output: string): boolean {
   return /Applying autostash resulted in conflicts|Your changes are safe in the stash/.test(output);

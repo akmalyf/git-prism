@@ -1,10 +1,23 @@
 {
   "name": "jetbrains-git-tools",
   "displayName": "JetBrains Git Tools",
-  "description": "PhpStorm / IntelliJ-style Git tools: Commit tool window, Git Log with graph, Compare with Branch/Revision, History, Annotate, Branches popup, Push/Pull/Merge/Rebase dialogs, Interactive Rebase, conflict resolver, Stash and Shelf.",
+  "description": "PhpStorm / IntelliJ-style Git log for VS Code: branches tree, commit graph with IntelliJ ordering and colors, changed files, and the IDE's Git actions (compare, history, annotate, rebase, merge, conflicts, stash) in the editor menu.",
   "version": "0.1.0",
   "publisher": "akmalyf",
   "license": "MIT",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akmalyf/vscode-git-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akmalyf/vscode-git-tools/issues"
+  },
+  "homepage": "https://github.com/akmalyf/vscode-git-tools#readme",
+  "galleryBanner": {
+    "color": "#1E1F22",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.140.0"
   },
@@ -14,14 +27,15 @@
   ],
   "keywords": [
     "git",
+    "git log",
+    "git graph",
     "jetbrains",
     "phpstorm",
     "intellij",
-    "git log",
-    "commit",
+    "blame",
     "rebase",
     "merge",
-    "blame"
+    "history"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
@@ -3405,8 +3419,9 @@
     "watch": "node scripts/build.mjs --watch",
     "typecheck": "tsc --noEmit && tsc --noEmit -p src/webview",
     "vscode:prepublish": "npm run contributes && npm run typecheck && npm run build",
-    "package": "vsce package --no-dependencies --allow-missing-repository",
-    "test": "node scripts/build.mjs --test && node --test dist-test/"
+    "package": "vsce package --no-dependencies",
+    "test": "node scripts/build.mjs --test && node --test dist-test/",
+    "publish": "vsce publish --no-dependencies"
   },
   "devDependencies": {
     "@codemirror/lang-cpp": "^6.0.3",

@@ -1,77 +1,57 @@
 # JetBrains Git Tools
 
-PhpStorm / IntelliJ (2026.2, New UI "Islands") Git tooling for VS Code: the Commit tool window, the Git tool window
-with Log and Console, Compare with Branch/Revision, Show History, Annotate, the Branches popup, Push / Pull / Merge /
-Rebase dialogs, Interactive Rebase, the conflict resolver, Stash and Shelf. Labels, menu order and behavior follow
-PhpStorm's own resources (GitBundle, VcsBundle, VcsLogBundle, DvcsBundle, DiffBundle).
+The PhpStorm / IntelliJ IDEA Git log in VS Code: the **Git** panel with the branches tree, the commit graph and the
+changed files of a commit, plus the IDE's Git actions in the editor context menu (compare, history, annotate,
+branches, push/pull/merge/rebase, conflicts, stash, patches).
 
-The extension talks to the `git` CLI directly (no dependency on the built-in `vscode.git` API) and works with
-multiple repositories in one workspace, empty repositories, detached HEAD and in-progress merge/rebase/cherry-pick.
-Every git command it runs is logged in the **Console** tab of the Git tool window.
+Labels, menu order, commit ordering and graph colors follow PhpStorm 2026.2 (New UI "Islands"): the commit order is
+a port of IntelliJ's `VcsLogSorter` / IntelliSort, the lane colors come from its `DefaultColorGenerator`, and the
+row highlights use the Islands theme values. Icons and fonts follow your VS Code theme and file icon theme.
 
-## Features
+The extension talks to the `git` CLI directly, supports several repositories in one workspace, empty repositories,
+detached HEAD and in-progress merge / rebase / cherry-pick / revert. Every git command it runs is shown in the
+**Console** pane at the bottom of the log.
 
-### Commit tool window (activity bar, "Commit")
-- **Changes** / **Unversioned Files** tree with checkboxes per file, directory and changelist; group by Directory,
-  Module and Repository; optional Ignored Files node.
-- Toolbar: Refresh, Rollback, Update Project, Shelve, Stash, View Options, Select Opened File, Expand All, Collapse All.
-- Changelists: New, Edit, Delete, Set Active, Move to Another Changelist; partial (per-line) include of changes.
-- **Staging Area** mode (`jbGit.commit.useStagingArea`): Staged / Unstaged, Stage / Unstage, Show Staged Version,
-  Compare with Staged Version, Compare HEAD, Staged and Local Versions.
-- Commit message editor with **Amend**, **Commit Message History**, **Commit** and **Commit and Push…**, Commit
-  Options (author, sign-off, GPG signing, …).
-- Double-click shows diff or source; diff preview; Rollback…, Add, Add to .gitignore, Commit File….
+## Git panel › Log
 
-### Git tool window (panel, "Git: Log | Console")
-- Branches tree (HEAD, Local, Remote › origin, Tags) with search, favorites, grouping by `/` prefix and a vertical
-  toolbar (New Branch, Update, Delete, Compare, Fetch, Favorite, …).
-- Commit table: Author, graph + subject with right-aligned reference labels, Date; my commits bold, merge commits grey,
-  `author*` when author ≠ committer, HEAD drawn as a ring. Virtualized and paged for big repositories.
-- Filter bar: Text or hash (regex, match case), Branch, User, Date, Paths; IntelliSort / topological / date sorting,
-  First Parent, Long Edges.
-- Changed files tree of the selected commit (compacted folders, counts) and commit details (message, hash, author,
-  date, containing branches); optional diff preview.
-- Commit context menu: Copy Revision Number, Create Patch…, Cherry-Pick, Checkout Revision, Show Repository at
+- **Branches** tree: HEAD, Local, Remote › `<remote>`, Tags; search, favorites, grouping by `/` prefix; single click
+  filters the log by the branch, context menu with Checkout, New Branch from…, Compare with Current, Merge / Rebase,
+  Push…, Rename…, Delete…
+- **Commit table**: Author, graph + subject with reference labels, Date; my commits bold, merge commits grey, current
+  branch highlighted, `author*` when author ≠ committer, HEAD drawn as a ring. Virtualized and paged for big
+  repositories.
+- **Filter bar**: Text or hash (regex, match case), Branch, User, Date, Paths; sort by commit date or IntelliSort;
+  First Parent, Long Edges; Go To Hash/Branch/Tag.
+- **Changes**: changed files of the selected commit(s) (compacted folders, counts, status colors) and commit details
+  (message, hash, author, date, containing branches); optional diff preview on the right or at the bottom.
+- **Commit context menu**: Copy Revision Number, Create Patch…, Cherry-Pick, Checkout Revision, Show Repository at
   Revision, Compare with Local, Reset Current Branch to Here…, Revert Commit, Undo Commit…, Edit Commit Message…,
   Fixup…, Squash Into…, Squash Commits…, Drop Commits, Interactively Rebase from Here…, Push All up to Here…,
-  New Branch…, New Tag…, Go To Hash/Branch/Tag.
-- File context menu: Show Diff, Compare with Local, Show File at Revision, Annotate, Show History, Drop / Extract
-  Selected Changes.
-- **Console** tab listing every git command and its output.
+  New Branch…, New Tag…
+- **File context menu**: Show Diff, Compare with Local, Show File at Revision, Annotate, Show History, Drop /
+  Extract Selected Changes.
+- Context menus are VS Code's native menus.
 
-### Compare & History
-- Compare with Branch or Tag…, Compare with Revision…, Compare with Latest Repository Version, Show Diff (vs HEAD).
-- Show History (file / folder) and Show History for Selection…, Show Current Revision, Show Repository at Revision.
+## Editor context menu › Git
 
-### Annotate
-- Annotate with Git Blame gutter: Revision / Date / Author / Commit Subject columns, name styles, color by order or
-  author, ignore whitespaces, detect movements, commit timestamp.
-- Annotated line actions: Show Diff, Show Affected Files, Show in Git Log, Copy Revision Number, Annotate Revision,
-  Annotate Previous Revision.
-- Gutter change markers: Next / Previous Change, Rollback Lines, Show Diff for Lines, Copy Original Lines.
+| Group | Actions |
+|---|---|
+| Commit | Add, Add to .gitignore |
+| Compare | Show Diff, Compare with Revision…, Compare with Branch or Tag…, Compare with Latest Repository Version, Show History, Show History for Selection…, Annotate with Git Blame |
+| Rollback | Show Current Revision, Rollback…, Resolve Conflicts… |
+| Remote | Push…, Pull…, Fetch, Update Project… |
+| Branch | Merge…, Rebase…, Reset HEAD…, Branches…, New Branch…, New Tag…, Checkout Tag or Revision…, Clean Up Branches…; Continue / Skip / Abort of a running merge, rebase, cherry-pick or revert |
+| Stash | Stash Changes…, Unstash Changes…, Create Patch…, Apply Patch… |
+| Repository | Manage Remotes…, Worktrees…, Clone…, Create Git Repository…, Unshallow repository |
 
-### Diff & merge
-- Side-by-side / unified diff viewer for commits, changes, stashes and shelves.
-- Three-way merge tool with Accept Yours / Accept Theirs / Merge; **Resolve Conflicts…** dialog; Merge/Rebase
-  operation widget with Continue / Skip / Abort.
+## Diff, merge and conflicts
 
-### Branches
-- Branches popup: Recent, Local, Remote, Tags with search; per branch Checkout, New Branch from…, Checkout and
-  Rebase onto…, Compare with Current, Show Diff with Working Tree, Rebase / Merge into Current, Pull into using
-  Rebase / Merge, Push…, Update, Rename…, Delete.
-- New Tag…, Delete Tag…, Checkout Tag or Revision…, Clean Up Branches…, Find Merged Branches…, Manage Remotes…,
-  Worktrees…, Clone…, Create Git Repository…, Unshallow repository, VCS Operations Popup….
-- Status bar branch widget.
-
-### Sync
-- Push dialog (Force Push, push tags, protected branches), Pull…, Fetch, Update Project… (merge / rebase, stash /
-  shelve local changes), Merge…, Rebase…, Reset HEAD… (soft / mixed / hard / keep).
-
-### Stash, Shelf & patches
-- Stash Changes…, Stash Silently, Unstash Changes… (Apply / Pop / Drop / Clear, unstash as new branch).
-- Shelf: Shelve Changes…, Shelve Silently, Save To Shelf, Unshelve…, Unshelve Silently, Import Patches…, show
-  applied shelves. Shelves are stored as patches in `<git common dir>/jb-shelf/`.
-- Create Patch…, Copy as Patch to Clipboard, Apply Patch…, Apply Patch from Clipboard….
+- Side-by-side / unified diff viewer with previous / next file navigation and an editable right side for working
+  tree files.
+- Three-way merge tool with Accept Yours / Accept Theirs / Merge; **Resolve Conflicts…** dialog listing the unmerged
+  files; conflict notification with "Resolve…".
+- Annotate with Git Blame gutter (revision / date / author / subject, name style, colors) and annotated line actions;
+  gutter change markers with Next / Previous Change, Rollback Lines and Show Diff for Lines.
 
 ## Commands
 
@@ -79,8 +59,6 @@ All commands are in the **Git** category of the Command Palette. Main entry poin
 
 | Command | Id |
 |---|---|
-| Commit… | `jbGit.commit.focus` |
-| Commit and Push… | `jbGit.commit.commitAndPush` |
 | Show VCS Log | `jbGit.log.show` |
 | Show Git Console | `jbGit.console.show` |
 | Branches… | `jbGit.branches.show` |
@@ -89,50 +67,37 @@ All commands are in the **Git** category of the Command Palette. Main entry poin
 | Update Project… | `jbGit.updateProject` |
 | Merge… / Rebase… / Reset HEAD… | `jbGit.merge` / `jbGit.rebase` / `jbGit.resetHead` |
 | Resolve Conflicts… | `jbGit.conflicts.resolve` |
-| Compare with Branch or Tag… | `jbGit.compareWithBranch` |
-| Compare with Revision… | `jbGit.compareWithRevision` |
+| Compare with Branch or Tag… / with Revision… | `jbGit.compareWithBranch` / `jbGit.compareWithRevision` |
 | Show History / Show History for Selection… | `jbGit.showHistory` / `jbGit.showHistoryForSelection` |
 | Annotate with Git Blame | `jbGit.annotate.toggle` |
 | Stash Changes… / Unstash Changes… | `jbGit.stash.create` / `jbGit.stash.unstash` |
-| Shelve Changes… / Unshelve… | `jbGit.shelf.shelve` / `jbGit.shelf.unshelve` |
 | Create Patch… / Apply Patch… | `jbGit.patch.create` / `jbGit.patch.apply` |
 | Clean Up Branches… / Manage Remotes… / Worktrees… | `jbGit.cleanupBranches` / `jbGit.remotes.manage` / `jbGit.worktrees` |
 | VCS Operations Popup… | `jbGit.vcsOperations` |
 
-File-level actions are also available from the explorer and editor context menus under **Git**.
-
 ## Keybindings
-
-PhpStorm (macOS / Windows-Linux) defaults:
 
 | Action | macOS | Windows / Linux |
 |---|---|---|
-| Commit… | `Cmd+K` | `Ctrl+K` |
-| Commit and Push… | `Cmd+Alt+K` | `Ctrl+Alt+K` |
-| Push… | `Cmd+Shift+K` | `Ctrl+Shift+K` |
-| Update Project… | `Cmd+T` | `Ctrl+T` |
-| VCS Operations Popup… | `Ctrl+V` | ``Alt+` `` |
+| VCS Operations Popup… | `Ctrl+V` | — |
 | Rollback Lines | `Cmd+Alt+Z` | `Ctrl+Alt+Z` |
 | Next / Previous Change | `Ctrl+Alt+Shift+Down/Up` | `Ctrl+Alt+Shift+Down/Up` |
-
-The commit/push/update shortcuts are only active outside the text editor and terminal, so they do not shadow VS
-Code's own `Cmd+K` chords while typing.
 
 ## Settings
 
 | Setting | Default | Description |
 |---|---|---|
 | `jbGit.gitPath` | `""` | Path to the git executable (empty = `git` from PATH). |
-| `jbGit.commit.useStagingArea` | `false` | Staging Area instead of changelists in the Commit tool window. |
-| `jbGit.log.*` | | Sort type, First Parent, Long Edges, columns, date format, pretty dates, highlights (my / merge commits, current branch), tag names, compact references, references on the left, details, diff preview and its location, branches tree. |
+| `jbGit.log.sortType` | `"date"` | `date` (PhpStorm default: by commit date, children above parents) or `topological` (IntelliSort). |
+| `jbGit.log.*` | | First Parent, Long Edges, columns, date format, pretty dates, highlights (my / merge commits, current branch), tag names, compact references, references on the left, details, diff preview and its location, branches tree. |
 | `jbGit.annotate.*` | | Visible columns, name style, colors, ignore whitespaces, detect movements, commit timestamp. |
 | `jbGit.branches.*` | | Tags, Recent, group by directory / repository, only favorites. |
 | `jbGit.push.protectedBranches` | `"master, main"` | Protected branches (force push prohibited). |
 | `jbGit.fetch.prune` | `true` | Fetch with `--prune`. |
 | `jbGit.update.showDialog` | `true` | Show the Update Project dialog. |
 | `jbGit.update.method` | `"merge"` | Merge or rebase for Update Project. |
-| `jbGit.update.saveChangesPolicy` | `"stash"` | Stash or shelve local changes before updating. |
-| `jbGit.cherryPick.addSuffix` | `false` | Add "cherry picked from" suffix. |
+| `jbGit.update.saveChangesPolicy` | `"stash"` | Stash local changes before updating. |
+| `jbGit.cherryPick.addSuffix` | `false` | Add the "cherry picked from" suffix. |
 | `jbGit.commitOps.showDropCommitDialog` | `true` | Confirm Drop Commits. |
 | `jbGit.conflicts.showNotification` | `true` | Notify about merge conflicts. |
 | `jbGit.diff.gutterMarkers` | `true` | Changed-line markers in the gutter and overview ruler. |
@@ -146,24 +111,25 @@ Code's own `Cmd+K` chords while typing.
 
 ```sh
 npm install
-npm run contributes      # merge src/**/contributes.json into package.json
+npm run contributes      # merge src/**/contributes.json + src/webview/*/menus.json into package.json
 npm run typecheck        # extension host + webviews
 npm run build            # dist/extension.js + dist/media/*.js
-npm test                 # pure unit tests (node:test)
+npm test                 # unit tests (node:test)
 npm run package          # .vsix
 ```
 
-See `ARCHITECTURE.md` for the layout and rules.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the layout.
 
 ## Known gaps
 
-- Not a pixel-identical copy: view headers, tool window tabs and the activity bar are drawn by VS Code, so their
-  chrome follows VS Code rather than the Islands theme.
-- No AI commit message generation and no pre-commit inspections (code analysis, reformat, optimize imports, TODO
-  check) from Commit Options.
-- "Group by Module" uses the top-level folder, since VS Code has no module concept.
-- Shelves are stored as patches under the git directory (not in `.idea/shelf`) and are not shared with PhpStorm.
-- Reverting merge commits from the log is disabled (as `git revert -m` needs a parent choice).
-- Splitting commits (Extract Selected Changes) does not support changes inside git submodule entries.
-- Only the `git` CLI is supported; no GitHub/GitLab integrations (pull requests, review, sharing).
-- `package.json` has no `repository` field yet (`vsce` warns; `npm run package` passes `--allow-missing-repository`).
+- Only the `git` CLI is supported; no GitHub / GitLab integrations.
+- The graph layout is computed on the loaded (filtered) commits, so with a branch filter secondary lanes may differ
+  from PhpStorm, which lays out the whole repository.
+- Reverting merge commits from the log is disabled (`git revert -m` needs a parent choice).
+- Extract Selected Changes does not support changes inside git submodule entries.
+
+## License
+
+MIT. Not affiliated with JetBrains; PhpStorm and IntelliJ IDEA are trademarks of JetBrains s.r.o. The commit
+ordering and graph coloring are ports of Apache-2.0 code from
+[intellij-community](https://github.com/JetBrains/intellij-community).

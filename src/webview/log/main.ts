@@ -20,7 +20,7 @@ import {
 import { BranchesPanel, branchActions } from './branches';
 import { ChangesPanel } from './changes';
 import { ConsolePane } from './console';
-import { buildCommitMenu, type CommitAction, type CommitMenuEntry, type MenuCommit } from './commitmenu';
+import { buildCommitMenu, type CommitAction, type MenuCommit } from './commitmenu';
 import { CommitTable } from './committable';
 import { DetailsPane } from './details';
 import { FilterBar } from './filterbar';

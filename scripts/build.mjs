@@ -38,6 +38,8 @@ if (test) {
   process.exit(0);
 }
 
+// start from a clean dist/media so bundles of removed webviews don't linger in the package
+fs.rmSync(r('dist/media'), { recursive: true, force: true });
 fs.mkdirSync(r('dist/media'), { recursive: true });
 for (const f of ['codicon.css', 'codicon.ttf']) fs.copyFileSync(r('node_modules/@vscode/codicons/dist', f), r('dist/media', f));
 
