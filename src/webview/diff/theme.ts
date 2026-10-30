@@ -31,7 +31,7 @@ export const BASE_CSS = `
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; padding: 0; overflow: hidden; font-family: var(--vscode-font-family); font-size: 13px;
+body { margin: 0; padding: 0; overflow: hidden; font-family: var(--vscode-font-family); font-size: var(--vscode-font-size, 13px); -webkit-font-smoothing: antialiased;
   color: var(--vscode-foreground); background: var(--vscode-editor-background); }
 #app { height: 100%; display: flex; flex-direction: column; min-height: 0; }
 body .idd-theme-dark, body .idd-theme-light {
@@ -39,7 +39,7 @@ body .idd-theme-dark, body .idd-theme-light {
   --idd-font-size: var(--vscode-editor-font-size);
   --idd-line-height: calc(var(--vscode-editor-font-size) * 1.6);
   --idd-ui-font-family: var(--vscode-font-family);
-  --idd-ui-font-size: 13px;
+  --idd-ui-font-size: var(--vscode-font-size, 13px);
   --idd-editor-bg: var(--vscode-editor-background);
   --idd-editor-fg: var(--vscode-editor-foreground);
   --idd-gutter-bg: var(--vscode-editorGutter-background, var(--vscode-editor-background));
