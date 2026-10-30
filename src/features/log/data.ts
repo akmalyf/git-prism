@@ -3,7 +3,7 @@
 import type { Repository } from '../../core/repository';
 import { LOG_FORMAT, LOG_FORMAT_NO_BODY, parseLog } from '../../core/parse';
 import type { Commit, Ref } from '../../core/types';
-import { CommitGraph, stringHash } from './graph';
+import { CommitGraph } from './graph';
 import type { CommitDetails, ContainingBranches, LogFilters, LogRow, LogSettings, RefLabel, RootInfo } from './protocol';
 import {
   authorPatterns,
@@ -17,8 +17,8 @@ import {
   rowMatcher,
   type Topology,
 } from './query';
-import { bestLayoutRef, compareLayoutRefs, dateTopoOrder, intelliSort, type HeadRef } from './intellisort';
-import { colorName, isDefaultFavorite, labelsByHash } from './refs';
+import { bestLayoutRef, compareLayoutRefs, dateTopoOrder, intelliSort, javaStringHash, type HeadRef } from './intellisort';
+import { isDefaultFavorite, labelsByHash } from './refs';
 
 /** commits loaded first; loadMore() adds MORE_PAGE more each time */
 export const FIRST_PAGE = 20000;
@@ -178,16 +178,18 @@ export class LogData {
     parentStart[n] = parentRows.length;
     // layout priority: branch heads in IntelliJ's HeadCommitsComparator order (childless rows follow in row order)
     const headOrder: number[] = [];
+    const headRefs = new Map(visible.map((r) => [r.info.index, headRefsByHash(r.refs, r.info.head)]));
     for (const r of visible) for (const h of branchHeadOrder(r.refs, r.info.head)) headOrder.push(rowOf[r.info.index].get(h) ?? -1);
     const graph = new CommitGraph({
       count: n,
       parentStart,
       parentRows: Int32Array.from(parentRows),
       headOrder: headOrder.filter((x) => x >= 0),
+      // GraphColorManagerImpl.getColor: hashCode of the head's best ref name (0 = no ref → JBColor.BLACK)
       headColor: (row) => {
         const r = roots[rowRoot[row]];
-        const hash = r.topo.hashes[rowPos[row]];
-        return stringHash(colorName(r.labels.get(hash), hash));
+        const best = bestLayoutRef(headRefs.get(r.info.index)?.get(r.topo.hashes[rowPos[row]]) ?? []);
+        return best ? javaStringHash(best.name) : 0;
       },
     });
 

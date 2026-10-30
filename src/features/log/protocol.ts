@@ -157,7 +157,7 @@ export interface RefLabel {
  *               toPosition = position; target = row of the other end, click → jump there)
  *     flags 4 = dotted (edge to a parent that is not loaded)
  *     target  = row index of the other end for terminal arrows, else -1
- * - color: color id (non-negative int) → palette[color % palette.length]
+ * - color: IntelliJ color id (int32: hashCode of the lineage's ref name, or the layout index) → DefaultColorGenerator
  */
 export interface GraphRowPrint {
   node: number;

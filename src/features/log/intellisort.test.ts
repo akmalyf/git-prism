@@ -1,7 +1,7 @@
 // Unit tests for intellisort.ts (node --test).
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { compareLayoutRefs, dateTopoOrder, intelliSort, naturalCompare, sortHeads, type HeadRef } from './intellisort';
+import { compareLayoutRefs, dateTopoOrder, intelliSort, javaStringHash, naturalCompare, sortHeads, type HeadRef } from './intellisort';
 
 /** commits as [parents, time]; index = id */
 const graph = (c: [number[], number][]) => ({ parents: c.map((x) => x[0]), times: c.map((x) => x[1]) });
@@ -66,4 +66,10 @@ test('intelliSort: every commit placed once, topological, for a random DAG', () 
   const order = intelliSort(g, (x) => (x % 37 === 0 ? [{ name: `b${x}`, kind: 'local' }] : []));
   assert.equal(new Set(order).size, n);
   topological(order, g.parents as number[][]);
+});
+
+test('javaStringHash matches java.lang.String.hashCode', () => {
+  assert.equal(javaStringHash('origin/master'), 468329835);
+  assert.equal(javaStringHash('master'), -1081267614);
+  assert.equal(javaStringHash(''), 0);
 });

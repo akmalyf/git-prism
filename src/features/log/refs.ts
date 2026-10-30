@@ -1,6 +1,6 @@
 // Pure reference helpers for the Git Log (no vscode/node imports): IntelliJ GitRefManager ordering of reference
-// labels (HEAD, local, remote, tags; main/master first), branch head priority for the graph layout and the
-// default favorites.
+// labels (HEAD, local, remote, tags; main/master first) and the default favorites. Graph head order and lane colors
+// live in intellisort.ts / data.ts.
 import type { Ref } from '../../core/types';
 import type { RefItem, RefLabel } from './protocol';
 
@@ -55,30 +55,6 @@ export function labelsByHash(refs: readonly Ref[], head: string | undefined, cur
   }
   for (const list of map.values()) list.sort(compareLabels);
   return map;
-}
-
-/**
- * Layout priority of branch heads (lower first): the HEAD commit, then commits by their best label
- * (current branch, main/master, local, remote, tags). Returns hashes in priority order.
- */
-export function headPriority(labels: ReadonlyMap<string, RefLabel[]>, head: string | undefined): string[] {
-  const entries = [...labels.entries()].map(([hash, ls]) => ({ hash, best: ls[0] }));
-  entries.sort((a, b) => {
-    if (a.hash === head) return -1;
-    if (b.hash === head) return 1;
-    return compareLabels(a.best, b.best);
-  });
-  const out = entries.map((e) => e.hash);
-  if (head && !labels.has(head)) out.unshift(head);
-  return out;
-}
-
-/** The ref name used for the color of a head's main lineage. */
-export function colorName(labels: readonly RefLabel[] | undefined, hash: string): string {
-  const l = labels?.find((x) => x.kind === 'local' || x.kind === 'remote') ?? labels?.[0];
-  if (!l) return hash;
-  // a local branch and its remote counterpart get the same color
-  return l.kind === 'remote' ? l.name.slice(l.name.indexOf('/') + 1) : l.name;
 }
 
 export function toRefItem(r: Ref, current: string | undefined, favorites: ReadonlySet<string>): RefItem {

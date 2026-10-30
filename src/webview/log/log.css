@@ -311,8 +311,20 @@
   display: none;
 }
 .jb-table-row.lg-on-current:not(.jb-selected) {
-  /* IntelliJ VersionControl.Log.Commit.currentBranchBackground: a faint blue tint */
-  background: color-mix(in srgb, #4a7ef0 11%, transparent);
+  /* VersionControl.Log.Commit.currentBranchBackground of the Islands Dark / Light themes */
+  background: #1d2336;
+}
+body.vscode-light .jb-table-row.lg-on-current:not(.jb-selected),
+body.vscode-high-contrast-light .jb-table-row.lg-on-current:not(.jb-selected) {
+  background: #edf3ff;
+}
+/* VersionControl.Log.Commit.unmatchedForeground (merge commits, filtered-out commits) */
+.jb-table-row.jb-dim {
+  color: #6f737a;
+}
+body.vscode-light .jb-table-row.jb-dim,
+body.vscode-high-contrast-light .jb-table-row.jb-dim {
+  color: #818594;
 }
 .jb-table-row.lg-on-current:not(.jb-selected):hover {
   background: var(--jb-hover);

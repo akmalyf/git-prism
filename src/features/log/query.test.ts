@@ -17,7 +17,7 @@ import {
   rowMatcher,
   type QuerySpec,
 } from './query';
-import { colorName, headPriority, isDefaultFavorite, labelsByHash } from './refs';
+import { isDefaultFavorite, labelsByHash } from './refs';
 
 const base: QuerySpec = { sort: 'topological', firstParent: false, hasHead: true, authors: [], paths: [], history: false, limit: 0 };
 
@@ -127,12 +127,8 @@ test('reference labels order, head priority and colors', () => {
   assert.equal(m.get('a')![0].upstream, 'origin/main');
   assert.equal(m.get('a')![0].favorite, true);
   assert.equal(m.get('b')![0].current, true);
-  assert.deepEqual(headPriority(m, 'b'), ['b', 'a', 'c']);
   const detached = labelsByHash(refs, 'd', undefined, fav);
   assert.deepEqual(detached.get('d')!.map((l) => l.kind), ['HEAD']);
-  assert.equal(headPriority(detached, 'd')[0], 'd');
-  assert.equal(colorName(m.get('c'), 'c'), 'dev');
-  assert.equal(colorName(undefined, 'abc'), 'abc');
   assert.ok(isDefaultFavorite('origin/master') && !isDefaultFavorite('dev'));
 });
 

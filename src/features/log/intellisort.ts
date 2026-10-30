@@ -24,6 +24,13 @@ function layoutType(r: HeadRef): number {
   }
 }
 
+/** java.lang.String.hashCode (int32 overflow), the graph color id of a ref name. */
+export function javaStringHash(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
+  return h;
+}
+
 /** com.intellij.openapi.util.text.NaturalComparator (case-insensitive, digit runs by value). */
 export function naturalCompare(a: string, b: string): number {
   return a.localeCompare(b, 'en', { numeric: true, sensitivity: 'base' }) || (a < b ? -1 : a > b ? 1 : 0);

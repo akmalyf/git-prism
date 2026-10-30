@@ -13,7 +13,7 @@ export interface GraphInput {
   parentRows: Int32Array;
   /** rows that start a lineage first, in priority order (branch heads: current branch first) */
   headOrder?: readonly number[];
-  /** color id (non-negative int) of the main lineage of a head row, e.g. a hash of its branch name */
+  /** color id of the main lineage of a head row (IntelliJ: Java hashCode of its best ref name, 0 = no ref) */
   headColor?: (row: number) => number;
 }
 
@@ -141,12 +141,12 @@ export class CommitGraph {
         } else stack.push(next);
       }
     }
+    // GraphColorManagerImpl: the lineage a head starts gets the head's color id, every other lane its layout index
     const color = (this.liColor = new Int32Array(cur + 1));
-    const headColor = input.headColor ?? ((row: number) => row);
+    const headColor = input.headColor ?? (() => 0);
     for (let l = 1; l < cur; l++) {
       const head = liHead[l];
-      const base = headColor(head) & 0x7fffffff;
-      color[l] = headStart.get(head) === l ? base : mixColor(base, l);
+      color[l] = headStart.get(head) === l ? headColor(head) | 0 : l;
     }
   }
 
@@ -350,21 +350,6 @@ export class CommitGraph {
 }
 
 /** Color id of a non-main lineage of a head (stable for the same head color + layout index). */
-function mixColor(base: number, layoutIndex: number): number {
-  let h = Math.imul(base ^ 0x5bd1e995, 31) + Math.imul(layoutIndex, 0x9e3779b1);
-  h ^= h >>> 15;
-  h = Math.imul(h, 0x85ebca6b);
-  h ^= h >>> 13;
-  return h & 0x7fffffff;
-}
-
-/** Stable non-negative 31-bit hash of a string (branch names → color ids). */
-export function stringHash(s: string): number {
-  let h = 0;
-  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
-  return h & 0x7fffffff;
-}
-
 /** Builds the CSR parent arrays from per-row parent lists. */
 export function toCsr(parents: readonly (readonly number[])[]): { parentStart: Int32Array; parentRows: Int32Array } {
   const parentStart = new Int32Array(parents.length + 1);

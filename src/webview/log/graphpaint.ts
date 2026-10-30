@@ -1,25 +1,76 @@
 // Paints one row of the commit graph on a canvas (IntelliJ SimpleGraphCellPainter semantics, see PROTOCOL.md):
 // half-row edge segments, arrows for long/terminal edges, dotted edges to unloaded parents, the commit node
-// (HEAD drawn as a ring) in a JetBrains-like lane palette for dark and light themes; hit-testing of arrows.
+// (HEAD drawn as a ring); lane colors are IntelliJ's DefaultColorGenerator (color id → hue, saturation/brightness of
+// the Islands Dark / Light themes); hit-testing of arrows.
 import { EDGE_DOWN, EDGE_TUPLE, FLAG_ARROW, FLAG_DOTTED, FLAG_TERMINAL } from '../../features/log/graph';
 import type { GraphRowPrint } from '../../features/log/protocol';
 
-/** lane width (IntelliJ WIDTH_NODE 15 at 22 px rows, scaled to 24 px) */
+/** lane width (IntelliJ PaintParameters.getElementWidth) */
 export const LANE = 16;
-const RADIUS = 4.25;
-const LINE = 1.6;
+/** PaintParameters.getCircleRadius / getLineThickness */
+const RADIUS = 4;
+const LINE = 1.5;
 const ARROW = 4;
-
-const DARK = ['#548af7', '#5fad65', '#d6845a', '#a571e6', '#2fa3b0', '#d6ae58', '#e06c75', '#e55b9c', '#8fb365', '#8e97e8', '#c9a26d', '#56b6c2'];
-const LIGHT = ['#3574f0', '#3b8547', '#b5592b', '#834df0', '#16808f', '#9e7614', '#c94f4f', '#c23d84', '#5e8a33', '#5160d6', '#8f6a37', '#1e8a99'];
 
 export function isLightTheme(): boolean {
   return /\bvscode-(light|high-contrast-light)\b/.test(document.body.className);
 }
 
+// java.awt.Color.RGBtoHSB / HSBtoRGB
+function hue(r: number, g: number, b: number): number {
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  if (max === min) return 0;
+  const d = max - min;
+  const rc = (max - r) / d;
+  const gc = (max - g) / d;
+  const bc = (max - b) / d;
+  let h = r === max ? bc - gc : g === max ? 2 + rc - bc : 4 + gc - rc;
+  h /= 6;
+  return h < 0 ? h + 1 : h;
+}
+function hsbToRgb(h: number, s: number, v: number): [number, number, number] {
+  if (s === 0) {
+    const x = Math.trunc(v * 255 + 0.5);
+    return [x, x, x];
+  }
+  const hh = (h - Math.floor(h)) * 6;
+  const f = hh - Math.floor(hh);
+  const p = v * (1 - s);
+  const q = v * (1 - s * f);
+  const t = v * (1 - s * (1 - f));
+  let rgb: [number, number, number];
+  switch (Math.floor(hh)) {
+    case 0: rgb = [v, t, p]; break;
+    case 1: rgb = [q, v, p]; break;
+    case 2: rgb = [p, v, t]; break;
+    case 3: rgb = [p, q, v]; break;
+    case 4: rgb = [t, p, v]; break;
+    default: rgb = [v, p, q];
+  }
+  return rgb.map((x) => Math.trunc(x * 255 + 0.5)) as [number, number, number];
+}
+const rangeFix = (n: number) => Math.abs(n % 100) + 70;
+const cache = new Map<string, string>();
+
+/**
+ * IntelliJ DefaultColorGenerator.calcColor: color id → hue, with the VersionControl.Log.Graph saturation/brightness
+ * of the Islands themes (dark 0.6/0.6, light 0.6/0.7). Id 0 (a lineage without a ref) is JBColor.BLACK.
+ */
 export function laneColor(id: number, light = isLightTheme()): string {
-  const p = light ? LIGHT : DARK;
-  return p[((id % p.length) + p.length) % p.length];
+  id |= 0;
+  if (id === 0) return light ? '#000000' : '#bbbbbb';
+  const key = `${light ? 'l' : 'd'}${id}`;
+  let c = cache.get(key);
+  if (!c) {
+    const r = rangeFix((Math.imul(id, 200) + 30) | 0);
+    const g = rangeFix((Math.imul(id, 130) + 50) | 0);
+    const b = rangeFix((Math.imul(id, 90) + 100) | 0);
+    const [R, G, B] = hsbToRgb(hue(r, g, b), 0.6, light ? 0.7 : 0.6);
+    c = `#${[R, G, B].map((x) => x.toString(16).padStart(2, '0')).join('')}`;
+    cache.set(key, c);
+  }
+  return c;
 }
 
 /** Width in px taken by the graph of a row (text starts after it). */
