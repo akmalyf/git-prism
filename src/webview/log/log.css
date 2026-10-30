@@ -1,0 +1,493 @@
+/* Git Log webview: three islands (branches | commits | changes + details), filter bar, graph table, details. */
+.lg-app {
+  background: var(--vscode-panel-background, var(--vscode-editor-background));
+  padding: 2px;
+}
+.lg-app.lg-editor-tab {
+  background: var(--vscode-editor-background);
+  padding: 4px;
+}
+.lg-island {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.lg-rest {
+  display: flex;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.lg-rest > .jb-split {
+  flex: 1 1 auto;
+}
+.lg-branches-strip {
+  flex: none;
+  width: 22px;
+  margin-right: 5px;
+  border: none;
+  border-radius: var(--jb-radius);
+  background: var(--jb-island-bg);
+  color: var(--jb-fg);
+  font: inherit;
+  padding: 10px 0;
+  cursor: default;
+  writing-mode: vertical-rl;
+  text-align: start;
+}
+.lg-branches-strip:hover {
+  background: var(--jb-hover);
+}
+
+/* ---------- branches pane ---------- */
+.lg-branches {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+}
+.lg-branches-toolbar {
+  flex: none;
+  padding: 4px 2px;
+  border-right: 1px solid var(--jb-border);
+}
+.lg-branches-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.jb-search.lg-branches-search {
+  flex: none;
+  margin: 6px 6px 4px;
+}
+.lg-branches-tree {
+  flex: 1 1 auto;
+}
+.jb-ui .lg-fav,
+.jb-ui .lg-head {
+  color: var(--jb-ref-head);
+}
+.jb-ui .lg-current {
+  color: var(--jb-ref-local);
+}
+.jb-ui .lg-tag {
+  color: var(--jb-ref-tag);
+}
+.jb-ui .lg-branch {
+  color: var(--jb-fg-muted);
+}
+.lg-branches-tree .jb-tree-desc {
+  color: var(--jb-git-modified);
+}
+
+/* ---------- filter bar ---------- */
+.lg-filterbar {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 4px 6px;
+}
+.jb-search.lg-text-filter {
+  flex: 0 1 240px;
+  width: 240px;
+  min-width: 150px;
+  margin-right: 4px;
+}
+.lg-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
+}
+.lg-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 24px;
+  max-width: 260px;
+  padding: 0 6px;
+  border: none;
+  border-radius: var(--jb-radius-sm);
+  background: transparent;
+  color: var(--jb-fg);
+  font: inherit;
+  white-space: nowrap;
+  cursor: default;
+  flex: none;
+}
+.lg-filter:hover:not(:disabled),
+.lg-filter.jb-pressed {
+  background: var(--jb-hover);
+}
+.lg-filter:focus-visible {
+  outline: 1px solid var(--jb-focus);
+  outline-offset: -1px;
+}
+.lg-filter-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  max-width: 180px;
+}
+.lg-filter.lg-set {
+  background: color-mix(in srgb, var(--jb-fg) 8%, transparent);
+}
+.lg-filter.lg-set .jb-chevron {
+  display: none;
+}
+.lg-filter.lg-readonly {
+  color: var(--jb-fg-muted);
+}
+.lg-filter.lg-readonly .lg-filter-clear,
+.lg-filter.lg-set.lg-readonly .lg-filter-clear,
+.lg-filter.lg-readonly .jb-chevron {
+  display: none;
+}
+.lg-filter-clear {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  color: var(--jb-fg-muted);
+}
+.lg-filter-clear:hover {
+  background: var(--jb-hover);
+  color: var(--jb-fg);
+}
+.jb-ui .lg-filter-clear .codicon[class*='codicon-'].jb-icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+}
+.lg-filter.lg-set .lg-filter-clear {
+  display: inline-flex;
+}
+.lg-filterbar-sort {
+  flex: none;
+  margin-left: 2px;
+}
+.lg-filterbar-spacer {
+  flex: 1 1 auto;
+  min-width: 4px;
+}
+.lg-filterbar-right {
+  flex: none;
+}
+.lg-banner {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  padding: 0 4px 0 10px;
+  background: var(--vscode-editorInfo-background, color-mix(in srgb, var(--jb-link) 14%, transparent));
+  border-bottom: 1px solid var(--jb-border);
+}
+.lg-banner > span:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- commit table ---------- */
+.lg-table {
+  flex: 1 1 auto;
+}
+.lg-table .jb-table-header {
+  height: 24px;
+}
+.jb-td.lg-subject-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 0;
+}
+.lg-graph {
+  flex: none;
+  order: 0;
+}
+.lg-subject-text {
+  order: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lg-refs {
+  order: 2;
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  max-width: 60%;
+  overflow: hidden;
+  font-weight: normal;
+}
+.lg-refs:empty {
+  display: none;
+}
+.lg-refs-left .lg-refs {
+  order: 1;
+  justify-content: flex-start;
+}
+.lg-refs-left .lg-subject-text {
+  order: 2;
+}
+.lg-ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
+  white-space: nowrap;
+}
+.lg-ref-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jb-ui .lg-ref .codicon[class*='codicon-'].jb-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+}
+.lg-ref-icon.lg-ref-local {
+  color: var(--jb-ref-local);
+}
+.lg-ref-icon.lg-ref-remote {
+  color: var(--jb-ref-remote);
+}
+.lg-ref-icon.lg-ref-tag {
+  color: var(--jb-ref-tag);
+}
+.lg-ref-icon.lg-ref-HEAD,
+.lg-ref-icon.codicon-star-full {
+  color: var(--jb-ref-head);
+}
+.lg-ref-icononly + .lg-ref-icononly {
+  margin-left: -6px;
+}
+.jb-td.lg-hash {
+  color: var(--jb-fg-muted);
+  font-size: var(--jb-font-size-sm);
+}
+.jb-table-row.jb-selected .jb-td.lg-hash {
+  color: inherit;
+}
+.jb-td.lg-root-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 2px;
+}
+.jb-td.lg-root-cell.lg-root-wide {
+  justify-content: flex-start;
+}
+.lg-root-bar {
+  flex: none;
+  width: 6px;
+  height: 100%;
+}
+.lg-root-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lg-root-name:empty {
+  display: none;
+}
+.jb-table-row.lg-on-current:not(.jb-selected) {
+  background: color-mix(in srgb, var(--jb-git-modified) 9%, transparent);
+}
+.jb-table-row.lg-on-current:not(.jb-selected):hover {
+  background: var(--jb-hover);
+}
+
+/* ---------- changes ---------- */
+.lg-changes {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.lg-changes-toolbar {
+  flex: none;
+  padding: 4px 4px 2px;
+}
+.lg-changes-tree {
+  flex: 1 1 auto;
+}
+
+/* ---------- details ---------- */
+.lg-details {
+  height: 100%;
+  overflow: auto;
+  padding: 8px 12px 12px;
+  outline: none;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+.lg-details .jb-empty {
+  user-select: none;
+}
+.lg-details-summary {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.lg-details-message {
+  font-family: var(--jb-mono);
+  font-size: var(--jb-mono-size);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 8px;
+}
+.lg-details-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 6px 0;
+}
+.lg-details-info {
+  margin-top: 2px;
+}
+.lg-details-author {
+  font-weight: 600;
+}
+.lg-details-branches {
+  margin-top: 6px;
+}
+.lg-details-sep {
+  height: 1px;
+  background: var(--jb-border);
+  margin: 10px 0;
+}
+.lg-details a.jb-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+.lg-details a.jb-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- diff preview ---------- */
+.lg-preview {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+}
+.lg-preview-title {
+  flex: none;
+  padding: 4px 10px;
+  color: var(--jb-fg-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lg-preview-title:empty {
+  display: none;
+}
+.lg-preview-host {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+}
+.lg-preview-host > * {
+  height: 100%;
+}
+body .idd-theme-dark,
+body .idd-theme-light {
+  --idd-font-family: var(--vscode-editor-font-family);
+  --idd-font-size: var(--vscode-editor-font-size);
+  --idd-line-height: calc(var(--vscode-editor-font-size) * 1.6);
+  --idd-ui-font-family: var(--vscode-font-family);
+  --idd-ui-font-size: 13px;
+  --idd-editor-bg: var(--vscode-editor-background);
+  --idd-editor-fg: var(--vscode-editor-foreground);
+  --idd-gutter-bg: var(--vscode-editorGutter-background, var(--vscode-editor-background));
+  --idd-divider-bg: var(--vscode-editorGutter-background, var(--vscode-editor-background));
+  --idd-caret: var(--vscode-editorCursor-foreground);
+  --idd-selection-bg: var(--vscode-editor-selectionBackground);
+  --idd-line-number: var(--vscode-editorLineNumber-foreground);
+  --idd-line-number-caret-row: var(--vscode-editorLineNumber-activeForeground);
+  --idd-panel-bg: var(--vscode-editor-background);
+  --idd-toolbar-bg: var(--vscode-editor-background);
+  --idd-window-bg: var(--vscode-editorWidget-background);
+  --idd-border: var(--jb-border);
+  --idd-fg: var(--vscode-foreground);
+  --idd-title-fg: var(--vscode-foreground);
+  --idd-fg-muted: var(--vscode-descriptionForeground);
+  --idd-fg-disabled: var(--vscode-disabledForeground);
+  --idd-button-hover-bg: var(--vscode-toolbar-hoverBackground);
+  --idd-popup-bg: var(--vscode-menu-background, var(--vscode-editorWidget-background));
+  --idd-popup-border: var(--vscode-menu-border, var(--vscode-widget-border, var(--jb-border)));
+  --idd-list-selection-bg: var(--vscode-menu-selectionBackground, var(--vscode-list-activeSelectionBackground));
+  --idd-list-hover-bg: var(--vscode-list-hoverBackground);
+  --idd-focus: var(--vscode-focusBorder);
+  --idd-accent: var(--vscode-focusBorder);
+  --idd-link: var(--vscode-textLink-foreground);
+  --idd-scrollbar-thumb: var(--vscode-scrollbarSlider-background);
+  --idd-scrollbar-thumb-hover: var(--vscode-scrollbarSlider-hoverBackground);
+}
+
+/* ---------- dialogs ---------- */
+.lg-period {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 10px;
+  align-items: center;
+}
+.lg-paths-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lg-paths-list {
+  height: 220px;
+  overflow: auto;
+  border: 1px solid var(--jb-border);
+  border-radius: var(--jb-radius-sm);
+}
+.lg-paths-chosen {
+  max-height: 130px;
+  overflow: auto;
+}
+.lg-paths-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 6px;
+}
+.lg-paths-suggestion:hover {
+  background: var(--jb-hover);
+}
+.lg-paths-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lg-paths-label {
+  margin-top: 4px;
+}
+.lg-filterbar .jb-toolbar-overflow {
+  display: none;
+}

@@ -1,0 +1,559 @@
+{
+  "commands": [
+    {
+      "command": "jbGit.annotate.toggle",
+      "title": "Annotate with Git Blame",
+      "category": "Git",
+      "icon": "$(git-commit)"
+    },
+    {
+      "command": "jbGit.annotate.close",
+      "title": "Close Annotations",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.revision",
+      "title": "Annotate Revision",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.currentRevision",
+      "title": "Annotate Revision",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.previous",
+      "title": "Annotate Previous Revision",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.previousRevision",
+      "title": "Annotate Previous Revision",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.showDiff",
+      "title": "Show Diff",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.showAffectedFiles",
+      "title": "Show Affected Files",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.showCommitInLog",
+      "title": "Show in Git Log",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.copyRevision",
+      "title": "Copy Revision Number",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.annotate.view.revision",
+      "title": "Revision",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.showRevision"
+    },
+    {
+      "command": "jbGit.annotate.view.date",
+      "title": "Date",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.showDate"
+    },
+    {
+      "command": "jbGit.annotate.view.author",
+      "title": "Author",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.showAuthor"
+    },
+    {
+      "command": "jbGit.annotate.view.subject",
+      "title": "Commit Subject",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.showSubject"
+    },
+    {
+      "command": "jbGit.annotate.names.initials",
+      "title": "Initials",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.names == 'initials'"
+    },
+    {
+      "command": "jbGit.annotate.names.lastName",
+      "title": "Last Name",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.names == 'lastName'"
+    },
+    {
+      "command": "jbGit.annotate.names.firstName",
+      "title": "First Name",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.names == 'firstName'"
+    },
+    {
+      "command": "jbGit.annotate.names.fullName",
+      "title": "Full Name",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.names == 'fullName'"
+    },
+    {
+      "command": "jbGit.annotate.names.email",
+      "title": "Email",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.names == 'email'"
+    },
+    {
+      "command": "jbGit.annotate.colors.order",
+      "title": "Order",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.colors == 'order'"
+    },
+    {
+      "command": "jbGit.annotate.colors.author",
+      "title": "Author",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.colors == 'author'"
+    },
+    {
+      "command": "jbGit.annotate.colors.hide",
+      "title": "Hide",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.colors == 'hide'"
+    },
+    {
+      "command": "jbGit.annotate.option.ignoreWhitespaces",
+      "title": "Ignore Whitespaces",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.ignoreWhitespaces"
+    },
+    {
+      "command": "jbGit.annotate.option.detectWithinFile",
+      "title": "Detect Movements Within File",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.detectMovements == 'inner' || config.jbGit.annotate.detectMovements == 'outer'"
+    },
+    {
+      "command": "jbGit.annotate.option.detectAcrossFiles",
+      "title": "Detect Movements Across Files",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.detectMovements == 'outer'"
+    },
+    {
+      "command": "jbGit.annotate.option.commitTimestamp",
+      "title": "Show Commit Timestamp",
+      "category": "Git",
+      "toggled": "config.jbGit.annotate.preferCommitTimestamp"
+    },
+    {
+      "command": "jbGit.rollbackLines",
+      "title": "Rollback Lines",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.showDiffForLines",
+      "title": "Show Diff for Lines",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.copyHunkOriginal",
+      "title": "Copy Original Lines",
+      "category": "Git"
+    }
+  ],
+  "submenus": [
+    {
+      "id": "jbGit.annotate.viewMenu",
+      "label": "View"
+    },
+    {
+      "id": "jbGit.annotate.namesMenu",
+      "label": "Names"
+    },
+    {
+      "id": "jbGit.annotate.colorsMenu",
+      "label": "Colors"
+    },
+    {
+      "id": "jbGit.annotate.optionsMenu",
+      "label": "Options"
+    }
+  ],
+  "menus": {
+    "commandPalette": [
+      {
+        "command": "jbGit.annotate.option.commitTimestamp",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.revision",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.previous",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.view.revision",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.view.date",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.view.author",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.view.subject",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.names.initials",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.names.lastName",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.names.firstName",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.names.fullName",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.names.email",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.colors.order",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.colors.author",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.colors.hide",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.option.ignoreWhitespaces",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.option.detectWithinFile",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.option.detectAcrossFiles",
+        "when": "false"
+      },
+      {
+        "command": "jbGit.annotate.toggle",
+        "when": "editorIsOpen && !jbGit.annotate.active"
+      },
+      {
+        "command": "jbGit.annotate.close",
+        "when": "jbGit.annotate.active"
+      },
+      {
+        "command": "jbGit.annotate.previousRevision",
+        "when": "jbGit.annotate.active"
+      },
+      {
+        "command": "jbGit.annotate.showDiff",
+        "when": "jbGit.annotate.active"
+      },
+      {
+        "command": "jbGit.annotate.showAffectedFiles",
+        "when": "jbGit.annotate.active"
+      },
+      {
+        "command": "jbGit.annotate.showCommitInLog",
+        "when": "jbGit.annotate.active"
+      },
+      {
+        "command": "jbGit.annotate.copyRevision",
+        "when": "jbGit.annotate.active"
+      },
+      {
+        "command": "jbGit.rollbackLines",
+        "when": "editorIsOpen && resourceScheme == file"
+      },
+      {
+        "command": "jbGit.showDiffForLines",
+        "when": "editorIsOpen && resourceScheme == file"
+      },
+      {
+        "command": "jbGit.copyHunkOriginal",
+        "when": "editorIsOpen && resourceScheme == file"
+      },
+      {
+        "command": "jbGit.annotate.currentRevision",
+        "when": "jbGit.annotate.active"
+      }
+    ],
+    "editor/lineNumber/context": [
+      {
+        "command": "jbGit.annotate.toggle",
+        "group": "1_annotate@1",
+        "when": "!(resourcePath in jbGit.annotate.paths) && (resourceScheme == file || resourceScheme == jbgit-rev || resourceScheme == jbgit-annotate)"
+      },
+      {
+        "command": "jbGit.annotate.showDiff",
+        "group": "1_annotate@1",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "submenu": "jbGit.annotate.viewMenu",
+        "group": "1_annotate@2",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "command": "jbGit.annotate.copyRevision",
+        "group": "1_annotate@3",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "command": "jbGit.annotate.currentRevision",
+        "group": "2_revision@1",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "command": "jbGit.annotate.previousRevision",
+        "group": "2_revision@2",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "submenu": "jbGit.annotate.optionsMenu",
+        "group": "3_extensions@1",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "command": "jbGit.annotate.showAffectedFiles",
+        "group": "3_extensions@2",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "command": "jbGit.annotate.showCommitInLog",
+        "group": "3_extensions@3",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "command": "jbGit.annotate.close",
+        "group": "4_close@1",
+        "when": "resourcePath in jbGit.annotate.paths"
+      },
+      {
+        "command": "jbGit.rollbackLines",
+        "group": "5_changes@1",
+        "when": "resourceScheme == file && !editorReadonly"
+      },
+      {
+        "command": "jbGit.showDiffForLines",
+        "group": "5_changes@2",
+        "when": "resourceScheme == file"
+      },
+      {
+        "command": "jbGit.copyHunkOriginal",
+        "group": "5_changes@3",
+        "when": "resourceScheme == file"
+      }
+    ],
+    "jbGit.fileMenu": [
+      {
+        "command": "jbGit.annotate.toggle",
+        "group": "2_diff@0",
+        "when": "!explorerResourceIsFolder && !(resourcePath in jbGit.annotate.paths)"
+      },
+      {
+        "command": "jbGit.annotate.close",
+        "group": "2_diff@0",
+        "when": "!explorerResourceIsFolder && resourcePath in jbGit.annotate.paths"
+      }
+    ],
+    "jbGit.annotate.viewMenu": [
+      {
+        "command": "jbGit.annotate.view.revision",
+        "group": "1_aspects@0"
+      },
+      {
+        "command": "jbGit.annotate.view.date",
+        "group": "1_aspects@1"
+      },
+      {
+        "command": "jbGit.annotate.view.author",
+        "group": "1_aspects@2"
+      },
+      {
+        "command": "jbGit.annotate.view.subject",
+        "group": "1_aspects@3"
+      },
+      {
+        "submenu": "jbGit.annotate.colorsMenu",
+        "group": "2_presentation@0"
+      },
+      {
+        "submenu": "jbGit.annotate.namesMenu",
+        "group": "2_presentation@1"
+      }
+    ],
+    "jbGit.annotate.namesMenu": [
+      {
+        "command": "jbGit.annotate.names.initials",
+        "group": "1@0"
+      },
+      {
+        "command": "jbGit.annotate.names.lastName",
+        "group": "1@1"
+      },
+      {
+        "command": "jbGit.annotate.names.firstName",
+        "group": "1@2"
+      },
+      {
+        "command": "jbGit.annotate.names.fullName",
+        "group": "1@3"
+      },
+      {
+        "command": "jbGit.annotate.names.email",
+        "group": "1@4"
+      }
+    ],
+    "jbGit.annotate.colorsMenu": [
+      {
+        "command": "jbGit.annotate.colors.order",
+        "group": "1@0"
+      },
+      {
+        "command": "jbGit.annotate.colors.author",
+        "group": "1@1"
+      },
+      {
+        "command": "jbGit.annotate.colors.hide",
+        "group": "1@2"
+      }
+    ],
+    "jbGit.annotate.optionsMenu": [
+      {
+        "command": "jbGit.annotate.option.ignoreWhitespaces",
+        "group": "1@0"
+      },
+      {
+        "command": "jbGit.annotate.option.detectWithinFile",
+        "group": "1@1"
+      },
+      {
+        "command": "jbGit.annotate.option.detectAcrossFiles",
+        "group": "1@2"
+      },
+      {
+        "command": "jbGit.annotate.option.commitTimestamp",
+        "group": "1@3"
+      }
+    ]
+  },
+  "keybindings": [
+    {
+      "command": "jbGit.rollbackLines",
+      "key": "ctrl+alt+z",
+      "mac": "cmd+alt+z",
+      "when": "editorTextFocus && !editorReadonly && resourceScheme == file"
+    }
+  ],
+  "configuration": {
+    "properties": {
+      "jbGit.annotate.showRevision": {
+        "type": "boolean",
+        "default": false,
+        "description": "Annotations: show the short commit hash (Revision)."
+      },
+      "jbGit.annotate.showDate": {
+        "type": "boolean",
+        "default": true,
+        "description": "Annotations: show the commit date."
+      },
+      "jbGit.annotate.showAuthor": {
+        "type": "boolean",
+        "default": true,
+        "description": "Annotations: show the author."
+      },
+      "jbGit.annotate.showSubject": {
+        "type": "boolean",
+        "default": false,
+        "description": "Annotations: show the commit subject."
+      },
+      "jbGit.annotate.names": {
+        "type": "string",
+        "enum": [
+          "initials",
+          "lastName",
+          "firstName",
+          "fullName",
+          "email"
+        ],
+        "enumItemLabels": [
+          "Initials",
+          "Last Name",
+          "First Name",
+          "Full Name",
+          "Email"
+        ],
+        "default": "lastName",
+        "description": "Annotations: how author names are shown."
+      },
+      "jbGit.annotate.colors": {
+        "type": "string",
+        "enum": [
+          "order",
+          "author",
+          "hide"
+        ],
+        "enumDescriptions": [
+          "Color by commit age: recent commits are more saturated",
+          "A color per author",
+          "No background colors"
+        ],
+        "default": "order",
+        "description": "Annotations: background colors."
+      },
+      "jbGit.annotate.ignoreWhitespaces": {
+        "type": "boolean",
+        "default": true,
+        "description": "Annotations: ignore whitespace changes (git blame -w)."
+      },
+      "jbGit.annotate.detectMovements": {
+        "type": "string",
+        "enum": [
+          "none",
+          "inner",
+          "outer"
+        ],
+        "enumItemLabels": [
+          "None",
+          "Detect Movements Within File",
+          "Detect Movements Across Files"
+        ],
+        "enumDescriptions": [
+          "git blame without -M/-C",
+          "git blame -M: lines moved or copied within the file",
+          "git blame -C: also lines moved or copied from other files of the same commit"
+        ],
+        "default": "none",
+        "description": "Annotations: detect moved or copied lines."
+      },
+      "jbGit.annotate.preferCommitTimestamp": {
+        "type": "boolean",
+        "default": false,
+        "description": "Annotations: show the commit timestamp instead of the author timestamp."
+      }
+    }
+  }
+}

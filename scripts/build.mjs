@@ -32,6 +32,9 @@ if (test) {
     external: ['vscode'],
     logLevel: 'warning',
   });
+  // Newer Node resolves `node --test dist-test/` as a module path: give it an index that loads every test file.
+  const outs = walk(r('dist-test')).filter((f) => f.endsWith('.test.js'));
+  fs.writeFileSync(r('dist-test/index.js'), outs.map((f) => `require('./${path.relative(r('dist-test'), f).split(path.sep).join('/')}');`).join('\n') + '\n');
   process.exit(0);
 }
 

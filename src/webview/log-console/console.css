@@ -1,0 +1,56 @@
+/* Git Console tab: thin vertical toolbar + monospace output island (IntelliJ VcsConsoleView). */
+.cn-app {
+  flex-direction: row;
+  background: var(--vscode-panel-background, var(--vscode-editor-background));
+  padding: 2px;
+  gap: 2px;
+}
+.cn-toolbar {
+  flex: none;
+  padding-top: 4px;
+}
+.cn-island {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  background: var(--vscode-editor-background);
+}
+.cn-out {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 4px 8px;
+  font-family: var(--jb-mono);
+  font-size: var(--jb-mono-size);
+  line-height: 1.45;
+  color: var(--vscode-editor-foreground, var(--jb-fg));
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+  outline: none;
+}
+.cn-line {
+  white-space: pre;
+  min-height: 1.45em;
+}
+.cn-out.cn-wrap .cn-line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.cn-time {
+  color: var(--jb-fg-muted);
+}
+.cn-command .cn-cmd {
+  color: var(--vscode-terminal-ansiBlue, var(--jb-link));
+}
+body.vscode-light .cn-command .cn-cmd {
+  color: var(--vscode-terminal-ansiBlue, #0033b3);
+}
+.cn-error {
+  color: var(--vscode-errorForeground, var(--jb-error));
+}
+.cn-warning {
+  color: var(--vscode-editorWarning-foreground, var(--jb-warning));
+}
+.cn-out ::selection {
+  background: var(--vscode-editor-selectionBackground);
+}

@@ -1,0 +1,68 @@
+{
+  "commands": [
+    { "command": "jbGit.branches.show", "title": "Branches…", "category": "Git", "icon": "$(git-branch)" },
+    { "command": "jbGit.branch.new", "title": "New Branch…", "category": "Git", "icon": "$(add)" },
+    { "command": "jbGit.branch.checkout", "title": "Checkout", "category": "Git" },
+    { "command": "jbGit.branch.rename", "title": "Rename Branch…", "category": "Git" },
+    { "command": "jbGit.branch.delete", "title": "Delete Branch…", "category": "Git" },
+    { "command": "jbGit.branch.actions", "title": "Branch Actions", "category": "Git" },
+    { "command": "jbGit.tag.new", "title": "New Tag…", "category": "Git", "icon": "$(tag)" },
+    { "command": "jbGit.tag.delete", "title": "Delete Tag…", "category": "Git" },
+    { "command": "jbGit.checkoutRevision", "title": "Checkout Tag or Revision…", "category": "Git" },
+    { "command": "jbGit.cleanupBranches", "title": "Clean Up Branches…", "category": "Git" },
+    { "command": "jbGit.findMergedBranches", "title": "Find Merged Branches…", "category": "Git" },
+    { "command": "jbGit.remotes.manage", "title": "Manage Remotes…", "category": "Git" },
+    { "command": "jbGit.worktrees", "title": "Worktrees…", "category": "Git" },
+    { "command": "jbGit.clone", "title": "Clone…", "category": "Git" },
+    { "command": "jbGit.init", "title": "Create Git Repository…", "category": "Git" },
+    { "command": "jbGit.unshallow", "title": "Unshallow repository", "category": "Git" },
+    { "command": "jbGit.copyBranchName", "title": "Copy Branch Name", "category": "Git" },
+    { "command": "jbGit.vcsOperations", "title": "VCS Operations Popup…", "category": "Git" }
+  ],
+  "menus": {
+    "jbGit.fileMenu": [
+      { "command": "jbGit.branches.show", "group": "5_branch@1" },
+      { "command": "jbGit.branch.new", "group": "5_branch@2" },
+      { "command": "jbGit.tag.new", "group": "5_branch@3" },
+      { "command": "jbGit.checkoutRevision", "group": "5_branch@4" },
+      { "command": "jbGit.cleanupBranches", "group": "5_branch@5" },
+      { "command": "jbGit.remotes.manage", "group": "7_repo@1" },
+      { "command": "jbGit.worktrees", "group": "7_repo@2" },
+      { "command": "jbGit.clone", "group": "7_repo@3" },
+      { "command": "jbGit.init", "group": "7_repo@4" },
+      { "command": "jbGit.unshallow", "group": "7_repo@5" }
+    ],
+    "commandPalette": [
+      { "command": "jbGit.branches.show", "when": "jbGit.active" },
+      { "command": "jbGit.branch.new", "when": "jbGit.active" },
+      { "command": "jbGit.branch.checkout", "when": "false" },
+      { "command": "jbGit.branch.rename", "when": "jbGit.active" },
+      { "command": "jbGit.branch.delete", "when": "jbGit.active" },
+      { "command": "jbGit.branch.actions", "when": "false" },
+      { "command": "jbGit.tag.new", "when": "jbGit.active" },
+      { "command": "jbGit.tag.delete", "when": "jbGit.active" },
+      { "command": "jbGit.checkoutRevision", "when": "jbGit.active" },
+      { "command": "jbGit.cleanupBranches", "when": "jbGit.active" },
+      { "command": "jbGit.findMergedBranches", "when": "jbGit.active" },
+      { "command": "jbGit.remotes.manage", "when": "jbGit.active" },
+      { "command": "jbGit.worktrees", "when": "jbGit.active" },
+      { "command": "jbGit.clone", "when": "jbGit.active" },
+      { "command": "jbGit.init", "when": "jbGit.active" },
+      { "command": "jbGit.unshallow", "when": "jbGit.active" },
+      { "command": "jbGit.copyBranchName", "when": "jbGit.active" },
+      { "command": "jbGit.vcsOperations", "when": "jbGit.active" }
+    ]
+  },
+  "keybindings": [
+    { "command": "jbGit.vcsOperations", "key": "ctrl+v", "when": "isMac && jbGit.active && !terminalFocus" }
+  ],
+  "configuration": {
+    "properties": {
+      "jbGit.branches.showTags": { "type": "boolean", "default": true, "description": "Branches popup: show the Tags section." },
+      "jbGit.branches.showRecent": { "type": "boolean", "default": true, "description": "Branches popup: show recently checked out branches." },
+      "jbGit.branches.groupByDirectory": { "type": "boolean", "default": true, "description": "Branches popup: group branches by their '/' prefix." },
+      "jbGit.branches.groupByRepository": { "type": "boolean", "default": false, "description": "Branches popup: show branches per repository when the workspace has several repositories." },
+      "jbGit.branches.showOnlyFavorites": { "type": "boolean", "default": false, "description": "Branches popup: show only favorite branches." }
+    }
+  }
+}

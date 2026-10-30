@@ -5,6 +5,9 @@ vendor/**
 node_modules/**
 dist-test/**
 tsconfig.json
-*.map
+**/*.map
 PLAN.md
 ARCHITECTURE.md
+resources/**
+.claude/**
+*.vsix

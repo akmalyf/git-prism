@@ -1,0 +1,62 @@
+{
+  "commands": [
+    { "command": "jbGit.commit.copyHash", "title": "Copy Revision Number", "category": "Git" },
+    { "command": "jbGit.commit.createPatch", "title": "Create Patch…", "category": "Git" },
+    { "command": "jbGit.commit.cherryPick", "title": "Cherry-Pick", "category": "Git" },
+    { "command": "jbGit.commit.checkoutRevision", "title": "Checkout Revision", "category": "Git" },
+    { "command": "jbGit.commit.resetToHere", "title": "Reset Current Branch to Here…", "category": "Git" },
+    { "command": "jbGit.commit.revert", "title": "Revert Commit", "category": "Git" },
+    { "command": "jbGit.commit.undo", "title": "Undo Commit…", "category": "Git" },
+    { "command": "jbGit.commit.reword", "title": "Edit Commit Message…", "category": "Git" },
+    { "command": "jbGit.commit.fixup", "title": "Fixup…", "category": "Git" },
+    { "command": "jbGit.commit.squashInto", "title": "Squash Into…", "category": "Git" },
+    { "command": "jbGit.commit.squash", "title": "Squash Commits…", "category": "Git" },
+    { "command": "jbGit.commit.drop", "title": "Drop Commits", "category": "Git" },
+    { "command": "jbGit.commit.interactiveRebase", "title": "Interactively Rebase from Here…", "category": "Git" },
+    { "command": "jbGit.commit.pushUpTo", "title": "Push All up to Here…", "category": "Git" },
+    { "command": "jbGit.commit.newBranch", "title": "New Branch…", "category": "Git" },
+    { "command": "jbGit.commit.newTag", "title": "New Tag…", "category": "Git" },
+    { "command": "jbGit.commitOps.dropSelectedChanges", "title": "Drop Selected Changes", "category": "Git" },
+    { "command": "jbGit.commitOps.extractSelectedChanges", "title": "Extract Selected Changes to Separate Commit…", "category": "Git" },
+    { "command": "jbGit.commit.dropSelectedChanges", "title": "Drop Selected Changes", "category": "Git" },
+    { "command": "jbGit.commit.extractSelectedChanges", "title": "Extract Selected Changes to Separate Commit…", "category": "Git" }
+  ],
+  "menus": {
+    "commandPalette": [
+      { "command": "jbGit.commit.copyHash", "when": "false" },
+      { "command": "jbGit.commit.createPatch", "when": "false" },
+      { "command": "jbGit.commit.cherryPick", "when": "false" },
+      { "command": "jbGit.commit.checkoutRevision", "when": "false" },
+      { "command": "jbGit.commit.resetToHere", "when": "false" },
+      { "command": "jbGit.commit.revert", "when": "false" },
+      { "command": "jbGit.commit.undo", "when": "false" },
+      { "command": "jbGit.commit.reword", "when": "false" },
+      { "command": "jbGit.commit.fixup", "when": "false" },
+      { "command": "jbGit.commit.squashInto", "when": "false" },
+      { "command": "jbGit.commit.squash", "when": "false" },
+      { "command": "jbGit.commit.drop", "when": "false" },
+      { "command": "jbGit.commit.interactiveRebase", "when": "false" },
+      { "command": "jbGit.commit.pushUpTo", "when": "false" },
+      { "command": "jbGit.commit.newBranch", "when": "false" },
+      { "command": "jbGit.commit.newTag", "when": "false" },
+      { "command": "jbGit.commitOps.dropSelectedChanges", "when": "false" },
+      { "command": "jbGit.commitOps.extractSelectedChanges", "when": "false" },
+      { "command": "jbGit.commit.dropSelectedChanges", "when": "false" },
+      { "command": "jbGit.commit.extractSelectedChanges", "when": "false" }
+    ]
+  },
+  "configuration": {
+    "properties": {
+      "jbGit.cherryPick.addSuffix": {
+        "type": "boolean",
+        "default": false,
+        "description": "Add the 'cherry-picked from <hash>' suffix when picking commits pushed to protected branches (jbGit.push.protectedBranches)"
+      },
+      "jbGit.commitOps.showDropCommitDialog": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the confirmation dialog before Drop Commits (unset by \"OK, Don't Ask Again\"). Protected branches for history editing are the ones of jbGit.push.protectedBranches."
+      }
+    }
+  }
+}
