@@ -12,7 +12,7 @@ export const DEFAULT_SETTINGS: LogSettings = {
   prettyDates: true,
   highlightMyCommits: true,
   highlightMergeCommits: true,
-  highlightCurrentBranch: false,
+  highlightCurrentBranch: true,
   showTagNames: true,
   compactReferences: false,
   referencesOnLeft: false,

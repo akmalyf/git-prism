@@ -1385,7 +1385,7 @@
         },
         "jbGit.log.highlightCurrentBranch": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Git Log: Highlight › Current Branch."
         },
         "jbGit.log.showTagNames": {

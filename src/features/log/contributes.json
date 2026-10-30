@@ -160,7 +160,7 @@
       },
       "jbGit.log.highlightCurrentBranch": {
         "type": "boolean",
-        "default": false,
+        "default": true,
         "description": "Git Log: Highlight \u203a Current Branch."
       },
       "jbGit.log.showTagNames": {

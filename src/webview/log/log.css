@@ -311,7 +311,8 @@
   display: none;
 }
 .jb-table-row.lg-on-current:not(.jb-selected) {
-  background: color-mix(in srgb, var(--jb-git-modified) 9%, transparent);
+  /* IntelliJ VersionControl.Log.Commit.currentBranchBackground: a faint blue tint */
+  background: color-mix(in srgb, #4a7ef0 11%, transparent);
 }
 .jb-table-row.lg-on-current:not(.jb-selected):hover {
   background: var(--jb-hover);

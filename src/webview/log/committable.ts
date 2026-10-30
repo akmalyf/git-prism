@@ -168,8 +168,15 @@ export class CommitTable {
     const out: string[] = [];
     if ((s.highlightMergeCommits && r.parents.length > 1) || this.host.isPicked(r)) out.push('jb-dim');
     if (s.highlightMyCommits && r.mine) out.push('jb-bold');
-    if (s.highlightCurrentBranch && r.onCurrentBranch) out.push('lg-on-current');
+    if (s.highlightCurrentBranch && r.onCurrentBranch && !this.onlyCurrentBranchShown(r.root)) out.push('lg-on-current');
     return out.join(' ') || undefined;
+  }
+
+  /** IntelliJ's CurrentBranchHighlighter stays off when the log is filtered to just the current branch (or HEAD). */
+  private onlyCurrentBranchShown(root: number): boolean {
+    const b = this.model.state.filters.branches;
+    if (b?.length !== 1) return false;
+    return b[0] === 'HEAD' || b[0] === this.model.state.roots[root]?.branch;
   }
 
   private renderAuthor(cell: HTMLElement, slot: Slot): void {
