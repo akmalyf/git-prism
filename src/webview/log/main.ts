@@ -57,7 +57,7 @@ const table = new CommitTable(
   {
     isPicked: (r) => picked.size > 0 && picked.has(`${r.root}|${r.hash}`),
     showDiff: () => (history ? runHistoryAction('showDiff') : void changes.showDiffForCommit()),
-    contextMenu: (x, y) => (history ? void historyContextMenu(x, y) : commitContextMenu(x, y)),
+    contextMenu: (x, y) => (history ? historyContextMenu(x, y) : commitContextMenu(x, y)),
   },
   (w) => viewState.set('log.columnWidths', w),
   viewState.get<Partial<Record<LogColumn, number>>>('log.columnWidths', {}),
@@ -366,13 +366,38 @@ function runHistoryAction(action: HistoryAction): void {
   if (commits.length) void rpc.call('historyAction', { action, commits });
 }
 
+// The history row menu needs the file in the selected revision (renames, deletion) for Get / Show File at Revision /
+// Annotate, but a native context menu must be built synchronously inside the right-click: the info is prefetched on
+// selection change; while it is unknown those actions stay enabled (the host re-checks and warns).
+const historyInfos = new Map<string, HistoryFileInfo>();
+let historyDir: boolean | undefined;
+const historyKey = (c: CommitId) => `${c.root}|${c.hash}`;
+
+function prefetchHistoryInfo(): void {
+  const ids = commitIds();
+  if (ids.length !== 1 || historyInfos.has(historyKey(ids[0]))) return;
+  const id = ids[0];
+  void rpc.call<HistoryFileInfo>('historyInfo', id).then((info) => {
+    if (historyInfos.size > 200) historyInfos.clear();
+    historyInfos.set(historyKey(id), info);
+    historyDir = info.dir;
+  }, () => {});
+}
+if (history) table.onDidChangeSelection(prefetchHistoryInfo);
+
 /** Vcs.FileHistory.ContextMenu of a "History: <file>" tab. */
-async function historyContextMenu(x: number, y: number): Promise<void> {
+function historyContextMenu(x: number, y: number): void {
   const rows = table.selectedRows();
   if (!rows.length) return;
   const ids = commitIds();
-  // the file in that revision (renames, deletion) decides Get / Show File at Revision / Annotate
-  const info = ids.length === 1 ? await rpc.call<HistoryFileInfo>('historyInfo', ids[0]).catch(() => undefined) : undefined;
+  let info: HistoryFileInfo | undefined;
+  if (ids.length === 1) {
+    info = historyInfos.get(historyKey(ids[0]));
+    if (!info) {
+      prefetchHistoryInfo();
+      info = { root: ids[0].root, hash: ids[0].hash, dir: historyDir ?? false, path: historyDir ? undefined : '?', deleted: false, changed: true };
+    }
+  }
   const entries = buildFileHistoryMenu(menuCommits(rows), menuRoots(), info);
   const items: MenuItem[] = entries.map((e: FileHistoryMenuEntry): MenuItem => {
     if (e === '-') return '-';
@@ -391,36 +416,68 @@ async function historyContextMenu(x: number, y: number): Promise<void> {
           return runHistoryAction(e.id);
       }
     };
-    return { label: e.label, shortcut: e.shortcut, disabled: e.disabled, run };
+    // "Show Diff" reads "Compare" for two revisions: a separate native item
+    const id = e.id === 'showDiff' && e.label === 'Compare' ? 'compare' : e.id;
+    return { id, label: e.label, shortcut: e.shortcut, disabled: e.disabled, run };
   });
-  showContextMenu(items, x, y);
+  showContextMenu(items, x, y, { section: 'history' });
 }
 
 function commitContextMenu(x: number, y: number): void {
   const rows = table.selectedRows();
   if (!rows.length) return;
+  const rootIndex = rows[0].root;
+  const root = model.state.roots[rootIndex]?.root ?? '';
   const entries = buildCommitMenu(menuCommits(rows), menuRoots());
-  const items: MenuItem[] = entries.map((e: CommitMenuEntry): MenuItem => {
-    if (e === '-') return '-';
-    if ('branch' in e) {
-      const b = e.branch;
-      const kind = b.kind === 'remote' ? 'remote' : 'local';
-      const root = model.state.roots[rows[0].root]?.root ?? '';
-      return { label: `Branch '${b.name}'`, icon: 'git-branch', submenu: () => branchActions(kind, b.name, [{ root, item: refItemOf(rows[0].root, b.name, kind) }], model.refs) };
-    }
-    if (e.checkoutBranches?.length) {
-      const root = model.state.roots[rows[0].root]?.root ?? '';
-      return {
+  // "Branch 'x'" submenus (one per branch at the commit) can't be static native items: a single "Branch Actions…"
+  // item opens them in a popup at the click point
+  const branchRefs = entries.flatMap((e) => (typeof e === 'object' && 'branch' in e ? [e.branch] : []));
+  const branchMenu = (b: (typeof branchRefs)[number]): MenuItem[] => {
+    const kind = b.kind === 'remote' ? 'remote' : 'local';
+    return branchActions(kind, b.name, [{ root, item: refItemOf(rootIndex, b.name, kind) }], model.refs);
+  };
+  const items: MenuItem[] = [];
+  for (const e of entries) {
+    if (e === '-') items.push('-');
+    else if ('branch' in e) {
+      if (e.branch !== branchRefs[0]) continue;
+      items.push({
+        id: 'branchActions',
+        label: 'Branch Actions…',
+        icon: 'git-branch',
+        run: () =>
+          void showContextMenu(
+            branchRefs.length === 1
+              ? [{ header: `Branch '${branchRefs[0].name}'` }, ...branchMenu(branchRefs[0])]
+              : branchRefs.map((b): MenuItem => ({ label: `Branch '${b.name}'`, icon: 'git-branch', submenu: () => branchMenu(b) })),
+            x,
+            y,
+            { selectFirst: true },
+          ),
+      });
+    } else if (e.checkoutBranches?.length) {
+      const branches = e.checkoutBranches;
+      items.push({
+        id: 'checkout',
         label: e.label,
         submenu: [
-          ...e.checkoutBranches.map((b): MenuItem => ({ label: b.name, icon: 'git-branch', run: () => void rpc.call('refOp', { op: 'checkout', root, ref: b.name }) })),
-          { label: e.revisionLabel ?? 'Checkout Revision', run: () => runAction('checkoutRevision') },
+          {
+            id: 'branch',
+            label: 'Branch…',
+            run: () =>
+              void showContextMenu(
+                branches.map((b): MenuItem => ({ label: b.name, icon: 'git-branch', run: () => void rpc.call('refOp', { op: 'checkout', root, ref: b.name }) })),
+                x,
+                y,
+                { selectFirst: true },
+              ),
+          },
+          { id: 'revision', label: e.revisionLabel ?? 'Checkout Revision', run: () => runAction('checkoutRevision') },
         ],
-      };
-    }
-    return { label: e.label, shortcut: e.shortcut, disabled: e.disabled, run: () => runAction(e.id) };
-  });
-  showContextMenu(items, x, y);
+      });
+    } else items.push({ id: e.id, label: e.label, shortcut: e.shortcut, disabled: e.disabled, run: () => runAction(e.id) });
+  }
+  showContextMenu(items, x, y, { section: 'commits' });
 }
 
 // ---------------------------------------------------------------- highlighters

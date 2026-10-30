@@ -1,36 +1,108 @@
 {
   "commands": [
-    { "command": "jbGit.push", "title": "Push…", "category": "Git", "icon": "$(arrow-up)" },
-    { "command": "jbGit.pull", "title": "Pull…", "category": "Git", "icon": "$(arrow-down)" },
-    { "command": "jbGit.fetch", "title": "Fetch", "category": "Git", "icon": "$(repo-fetch)" },
-    { "command": "jbGit.updateProject", "title": "Update Project…", "category": "Git", "icon": "$(arrow-down)" },
-    { "command": "jbGit.merge", "title": "Merge…", "category": "Git", "icon": "$(git-merge)" },
-    { "command": "jbGit.rebase", "title": "Rebase…", "category": "Git" },
-    { "command": "jbGit.resetHead", "title": "Reset HEAD…", "category": "Git" }
+    {
+      "command": "jbGit.push",
+      "title": "Push\u2026",
+      "category": "Git",
+      "icon": "$(arrow-up)"
+    },
+    {
+      "command": "jbGit.pull",
+      "title": "Pull\u2026",
+      "category": "Git",
+      "icon": "$(arrow-down)"
+    },
+    {
+      "command": "jbGit.fetch",
+      "title": "Fetch",
+      "category": "Git",
+      "icon": "$(repo-fetch)"
+    },
+    {
+      "command": "jbGit.updateProject",
+      "title": "Update Project\u2026",
+      "category": "Git",
+      "icon": "$(arrow-down)"
+    },
+    {
+      "command": "jbGit.merge",
+      "title": "Merge\u2026",
+      "category": "Git",
+      "icon": "$(git-merge)"
+    },
+    {
+      "command": "jbGit.rebase",
+      "title": "Rebase\u2026",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.resetHead",
+      "title": "Reset HEAD\u2026",
+      "category": "Git"
+    }
   ],
   "menus": {
     "commandPalette": [
-      { "command": "jbGit.push", "when": "jbGit.active" },
-      { "command": "jbGit.pull", "when": "jbGit.active" },
-      { "command": "jbGit.fetch", "when": "jbGit.active" },
-      { "command": "jbGit.updateProject", "when": "jbGit.active" },
-      { "command": "jbGit.merge", "when": "jbGit.active" },
-      { "command": "jbGit.rebase", "when": "jbGit.active" },
-      { "command": "jbGit.resetHead", "when": "jbGit.active" }
+      {
+        "command": "jbGit.push",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.pull",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.fetch",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.updateProject",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.merge",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.rebase",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.resetHead",
+        "when": "jbGit.active"
+      }
     ],
     "jbGit.fileMenu": [
-      { "command": "jbGit.push", "group": "4_remote@1" },
-      { "command": "jbGit.updateProject", "group": "4_remote@4" },
-      { "command": "jbGit.pull", "group": "4_remote@2" },
-      { "command": "jbGit.fetch", "group": "4_remote@3" },
-      { "command": "jbGit.merge", "group": "5_branch@0.1" },
-      { "command": "jbGit.rebase", "group": "5_branch@0.2" },
-      { "command": "jbGit.resetHead", "group": "5_branch@3.5" }
+      {
+        "command": "jbGit.push",
+        "group": "4_remote@1"
+      },
+      {
+        "command": "jbGit.updateProject",
+        "group": "4_remote@4"
+      },
+      {
+        "command": "jbGit.pull",
+        "group": "4_remote@2"
+      },
+      {
+        "command": "jbGit.fetch",
+        "group": "4_remote@3"
+      },
+      {
+        "command": "jbGit.merge",
+        "group": "5_branch@0.1"
+      },
+      {
+        "command": "jbGit.rebase",
+        "group": "5_branch@0.2"
+      },
+      {
+        "command": "jbGit.resetHead",
+        "group": "5_branch@3.5"
+      }
     ]
   },
-  "keybindings": [
-    { "command": "jbGit.push", "key": "ctrl+shift+k", "mac": "cmd+shift+k", "when": "jbGit.active && !editorTextFocus && !terminalFocus" }
-  ],
   "configuration": {
     "properties": {
       "jbGit.push.protectedBranches": {
@@ -50,15 +122,29 @@
       },
       "jbGit.update.method": {
         "type": "string",
-        "enum": ["merge", "rebase", "branchDefault"],
-        "enumDescriptions": ["Merge incoming changes into the current branch", "Rebase the current branch on top of incoming changes", "Branch Default (branch.<name>.rebase / pull.rebase)"],
+        "enum": [
+          "merge",
+          "rebase",
+          "branchDefault"
+        ],
+        "enumDescriptions": [
+          "Merge incoming changes into the current branch",
+          "Rebase the current branch on top of incoming changes",
+          "Branch Default (branch.<name>.rebase / pull.rebase)"
+        ],
         "default": "merge",
         "description": "Update method of Update Project and of updating after a rejected push."
       },
       "jbGit.update.saveChangesPolicy": {
         "type": "string",
-        "enum": ["stash", "shelve"],
-        "enumDescriptions": ["Using Stash", "Using Shelve (mapped to stash in VS Code)"],
+        "enum": [
+          "stash",
+          "shelve"
+        ],
+        "enumDescriptions": [
+          "Using Stash",
+          "Using Shelve (mapped to stash in VS Code)"
+        ],
         "default": "stash",
         "description": "Clean working tree before update."
       }

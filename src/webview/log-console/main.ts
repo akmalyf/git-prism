@@ -111,11 +111,12 @@ function menu(x: number, y: number): void {
     '-',
     { label: 'Open in Output Panel', run: () => void rpc.call('openOutput') },
   ];
-  showContextMenu(items, x, y);
+  showContextMenu(items, x, y, { section: 'console' });
 }
 
+// no preventDefault: VS Code shows the native menu (src/webview/log-console/menus.json); Shift+F10 / the
+// ContextMenu key fire this event too
 out.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
   menu(e.clientX, e.clientY);
 });
 out.addEventListener('keydown', (e) => {
@@ -126,10 +127,6 @@ out.addEventListener('keydown', (e) => {
     out.scrollTop = out.scrollHeight;
   } else if (e.key === 'Home' && isCtrlCmd(e)) {
     out.scrollTop = 0;
-  } else if (e.key === 'ContextMenu' || (e.shiftKey && e.key === 'F10')) {
-    e.preventDefault();
-    const r = out.getBoundingClientRect();
-    menu(r.left + 20, r.top + 20);
   }
 });
 // scrolling up turns "Scroll to End" off, reaching the bottom again keeps following (IntelliJ behavior)

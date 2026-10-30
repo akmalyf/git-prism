@@ -234,7 +234,12 @@ type MenuItem = '-' | { header: string } | {
   label: string; id?: string; icon?: string; shortcut?: string; checked?: boolean; radio?: boolean;
   disabled?: boolean; description?: string; run?(): void; submenu?: MenuItem[] | (() => MenuItem[]);
 };
-showContextMenu(items, x, y) → MenuHandle;
+showContextMenu(items, x, y, { section? }) → MenuHandle;
+// Inside a right-click this shows VS Code's NATIVE menu: list every possible item of the menu in
+// src/webview/<bundle>/menus.json under `section` (default "main"), in order, "-" for separators, submenus as
+// { id, title, items }. Item key = item.id ?? camelCase(label); give dynamic labels an explicit id. Call it
+// synchronously from the contextmenu event and never preventDefault that event. Outside a right-click
+// (keyboard, toolbar) it falls back to the in-page popup.
 showDropdownMenu(items, anchorEl, { align: 'start' | 'end' }) → MenuHandle;   // { close(), closed: Promise<void> }
 ```
 Keyboard: ↑↓ Home End, → / Enter open submenu, ← closes it, Enter runs, Esc / blur / outside click close,

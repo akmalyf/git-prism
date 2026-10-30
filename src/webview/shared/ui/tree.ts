@@ -8,7 +8,6 @@ import { SelectionModel, type SelectionNav } from './selection';
 import { SpeedSearch } from './speedsearch';
 import { emptyState, type EmptyLine } from './empty';
 import { delegateTooltip, setTooltip } from './tooltip';
-import { contextMenuPoint } from './menu';
 import { loadState, saveState } from './persist';
 import { ensureStyles } from './styles';
 
@@ -755,7 +754,6 @@ export class Tree<D = any> {
   }
 
   private onContext(e: MouseEvent): void {
-    e.preventDefault();
     const i = this.rowAt(e);
     if (i !== undefined) {
       const n = this.rows[i].node;
@@ -830,13 +828,6 @@ export class Tree<D = any> {
         if (this.o.checkboxes && this.sel.size) this.toggleChecks(this.getSelectedIds());
         else return;
         break;
-      case 'F10':
-        if (!e.shiftKey) return;
-        this.keyboardContextMenu(e);
-        break;
-      case 'ContextMenu':
-        this.keyboardContextMenu(e);
-        break;
       case 'a':
       case 'A':
         if (!isCtrlCmd(e)) return;
@@ -856,17 +847,6 @@ export class Tree<D = any> {
     }
     e.preventDefault();
     e.stopPropagation();
-  }
-
-  private keyboardContextMenu(e: KeyboardEvent): void {
-    const i = this.sel.lead !== undefined ? this.rowIndex.get(this.sel.lead) : undefined;
-    let pt: { x: number; y: number };
-    if (i !== undefined) {
-      this.ensureVisible(i, false);
-      const el = this.pool.find((p) => p.dataset.index === String(i) && p.style.display !== 'none');
-      pt = el ? contextMenuPoint(el.querySelector('.jb-tree-label') ?? el) : contextMenuPoint(this.element);
-    } else pt = contextMenuPoint(this.element);
-    this.contextMenu.fire({ nodes: this.getSelection(), node: this.getLead(), x: pt.x, y: pt.y, event: e });
   }
 
   dispose(): void {

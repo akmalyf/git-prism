@@ -1,12 +1,5 @@
 {
   "viewsContainers": {
-    "activitybar": [
-      {
-        "id": "jbGitCommit",
-        "title": "Commit",
-        "icon": "$(git-commit)"
-      }
-    ],
     "panel": [
       {
         "id": "jbGitPanel",
@@ -38,21 +31,7 @@
     }
   ],
   "menus": {
-    "explorer/context": [
-      {
-        "submenu": "jbGit.fileMenu",
-        "group": "jbgit@1",
-        "when": "jbGit.active"
-      }
-    ],
     "editor/context": [
-      {
-        "submenu": "jbGit.fileMenu",
-        "group": "jbgit@1",
-        "when": "jbGit.active"
-      }
-    ],
-    "editor/title/context": [
       {
         "submenu": "jbGit.fileMenu",
         "group": "jbgit@1",

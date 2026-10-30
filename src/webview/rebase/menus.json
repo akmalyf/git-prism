@@ -1,0 +1,12 @@
+{
+  "main": [
+    { "id": "pick", "title": "Pick" },
+    { "id": "stopToEdit", "title": "Stop to Edit" },
+    { "id": "reword", "title": "Reword" },
+    { "id": "squash", "title": "Squash" },
+    { "id": "fixup", "title": "Fixup" },
+    { "id": "drop", "title": "Drop" },
+    "-",
+    { "id": "viewGitCommands", "title": "View Git Commands" }
+  ]
+}

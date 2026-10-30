@@ -1,60 +1,61 @@
 {
-  "views": {
-    "jbGitCommit": [
-      { "type": "webview", "id": "jbGit.stashView", "name": "Stash", "when": "jbGit.hasStashes" },
-      { "type": "webview", "id": "jbGit.shelfView", "name": "Shelf", "when": "jbGit.hasShelves" }
-    ]
-  },
   "commands": [
-    { "command": "jbGit.stash.create", "title": "Stash Changes…", "category": "Git", "icon": "$(git-stash)" },
-    { "command": "jbGit.stash.silently", "title": "Stash Silently", "category": "Git" },
-    { "command": "jbGit.stash.unstash", "title": "Unstash Changes…", "category": "Git", "icon": "$(git-stash-pop)" },
-    { "command": "jbGit.stash.refresh", "title": "Refresh Stashes", "category": "Git", "icon": "$(refresh)" },
-    { "command": "jbGit.stash.togglePreview", "title": "Preview Diff", "category": "Git" },
-    { "command": "jbGit.stash.show", "title": "Show Git Stash", "category": "Git" },
-    { "command": "jbGit.shelf.shelve", "title": "Shelve Changes…", "category": "Git", "icon": "$(archive)" },
-    { "command": "jbGit.shelf.shelveSilently", "title": "Shelve Silently", "category": "Git" },
-    { "command": "jbGit.shelf.saveToShelf", "title": "Save To Shelf", "category": "Git" },
-    { "command": "jbGit.shelf.unshelve", "title": "Unshelve…", "category": "Git" },
-    { "command": "jbGit.shelf.unshelveSilently", "title": "Unshelve Silently", "category": "Git" },
-    { "command": "jbGit.shelf.importPatches", "title": "Import Patches…", "category": "Git", "icon": "$(cloud-download)" },
-    { "command": "jbGit.shelf.toggleShowApplied", "title": "Show/Hide Applied Shelved Changes", "category": "Git" },
-    { "command": "jbGit.shelf.refresh", "title": "Refresh", "category": "Git", "icon": "$(refresh)" },
-    { "command": "jbGit.shelf.show", "title": "Show Shelf", "category": "Git" },
-    { "command": "jbGit.patch.create", "title": "Create Patch…", "category": "Git" },
-    { "command": "jbGit.patch.copyToClipboard", "title": "Copy as Patch to Clipboard", "category": "Git" },
-    { "command": "jbGit.patch.apply", "title": "Apply Patch…", "category": "Git" },
-    { "command": "jbGit.patch.applyFromClipboard", "title": "Apply Patch from Clipboard…", "category": "Git" }
+    {
+      "command": "jbGit.stash.create",
+      "title": "Stash Changes\u2026",
+      "category": "Git",
+      "icon": "$(git-stash)"
+    },
+    {
+      "command": "jbGit.stash.silently",
+      "title": "Stash Silently",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.stash.unstash",
+      "title": "Unstash Changes\u2026",
+      "category": "Git",
+      "icon": "$(git-stash-pop)"
+    },
+    {
+      "command": "jbGit.patch.create",
+      "title": "Create Patch\u2026",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.patch.copyToClipboard",
+      "title": "Copy as Patch to Clipboard",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.patch.apply",
+      "title": "Apply Patch\u2026",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.patch.applyFromClipboard",
+      "title": "Apply Patch from Clipboard\u2026",
+      "category": "Git"
+    }
   ],
   "menus": {
-    "commandPalette": [
-      { "command": "jbGit.stash.togglePreview", "when": "false" },
-      { "command": "jbGit.stash.refresh", "when": "jbGit.hasStashes" },
-      { "command": "jbGit.shelf.refresh", "when": "false" },
-      { "command": "jbGit.shelf.toggleShowApplied", "when": "jbGit.hasShelves" }
-    ],
-    "view/title": [
-      { "command": "jbGit.stash.refresh", "when": "view == jbGit.stashView", "group": "1_stash@1" },
-      { "command": "jbGit.stash.create", "when": "view == jbGit.stashView", "group": "2_stash@1" },
-      { "command": "jbGit.stash.silently", "when": "view == jbGit.stashView", "group": "2_stash@2" },
-      { "command": "jbGit.stash.unstash", "when": "view == jbGit.stashView", "group": "2_stash@3" },
-      { "command": "jbGit.shelf.shelve", "when": "view == jbGit.shelfView", "group": "1_shelf@1" },
-      { "command": "jbGit.shelf.shelveSilently", "when": "view == jbGit.shelfView", "group": "1_shelf@2" },
-      { "command": "jbGit.shelf.unshelve", "when": "view == jbGit.shelfView", "group": "1_shelf@3" },
-      { "command": "jbGit.shelf.unshelveSilently", "when": "view == jbGit.shelfView", "group": "1_shelf@4" },
-      { "command": "jbGit.shelf.importPatches", "when": "view == jbGit.shelfView", "group": "2_shelf@1" },
-      { "command": "jbGit.shelf.toggleShowApplied", "when": "view == jbGit.shelfView", "group": "3_shelf@1" }
-    ],
     "jbGit.fileMenu": [
-      { "command": "jbGit.stash.create", "group": "6_stash@1" },
-      { "command": "jbGit.stash.unstash", "group": "6_stash@2" },
-      { "command": "jbGit.shelf.shelve", "group": "6_stash@3" },
-      { "command": "jbGit.shelf.unshelve", "group": "6_stash@4" },
-      { "command": "jbGit.patch.create", "group": "6_stash@5" },
-      { "command": "jbGit.patch.apply", "group": "6_stash@6" }
-    ],
-    "explorer/context": [
-      { "command": "jbGit.patch.apply", "group": "jbgit@2", "when": "jbGit.active && resourceExtname =~ /^\\.(patch|diff)$/" }
+      {
+        "command": "jbGit.stash.create",
+        "group": "6_stash@1"
+      },
+      {
+        "command": "jbGit.stash.unstash",
+        "group": "6_stash@2"
+      },
+      {
+        "command": "jbGit.patch.create",
+        "group": "6_stash@5"
+      },
+      {
+        "command": "jbGit.patch.apply",
+        "group": "6_stash@6"
+      }
     ]
   }
 }

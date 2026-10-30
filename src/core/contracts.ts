@@ -140,7 +140,6 @@ export interface Commands {
   /** Stash Changes dialog; `paths` limits the stash to these repo-relative paths */
   'jbGit.stash.create': { repoRoot?: string; paths?: string[] };
   'jbGit.stash.unstash': { repoRoot?: string };
-  'jbGit.shelf.shelve': { repoRoot?: string; paths?: string[] };
   'jbGit.patch.create': { repoRoot?: string; paths?: string[] };
   'jbGit.patch.apply': { repoRoot?: string };
   // core

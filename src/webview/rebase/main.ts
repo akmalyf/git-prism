@@ -354,9 +354,15 @@ list.addEventListener('dblclick', (e) => {
   if (row) startReword(row.dataset.hash);
 });
 list.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
+  // no preventDefault here: showMenu() → showContextMenu() turns this right-click into VS Code's native menu
+  // (menus.json); the reword editor keeps the default Cut/Copy/Paste menu
+  if (editing && (e.target as HTMLElement).tagName === 'TEXTAREA') return;
   const row = (e.target as HTMLElement).closest<HTMLElement>('.rb-row');
   if (row && !selected.has(row.dataset.hash!)) selectOnly(row.dataset.hash!);
+  if (!selected.size || editing) {
+    e.preventDefault();
+    return;
+  }
   showMenu(e.clientX, e.clientY);
 });
 

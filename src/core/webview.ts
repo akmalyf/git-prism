@@ -60,6 +60,8 @@ export function webviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions 
 
 /** Routes `rpc.call(method, params)` from the webview to `handlers[method]` and lets the host push events. */
 export class RpcBridge implements vscode.Disposable {
+  /** the bridge whose webview opened the last native context menu (see registerWebviewMenus) */
+  static menuTarget: RpcBridge | undefined;
   private readonly sub: vscode.Disposable;
 
   constructor(
@@ -71,6 +73,11 @@ export class RpcBridge implements vscode.Disposable {
 
   private async handle(m: RpcRequest): Promise<void> {
     if (!m || m.kind !== 'req') return;
+    if (m.method === '__menuOpened') {
+      RpcBridge.menuTarget = this;
+      this.webview.postMessage({ kind: 'res', id: m.id } satisfies RpcOut);
+      return;
+    }
     const fn = this.handlers[m.method];
     let out: RpcOut;
     try {
@@ -88,6 +95,20 @@ export class RpcBridge implements vscode.Disposable {
   }
 
   dispose(): void {
+    if (RpcBridge.menuTarget === this) RpcBridge.menuTarget = undefined;
     this.sub.dispose();
+  }
+}
+
+/**
+ * Registers the jbGit.m.<bundle>.<section>.<key> commands generated from src/webview/<bundle>/menus.json: VS Code
+ * runs them from a webview's native context menu and they hand the item key back to that webview.
+ */
+export function registerWebviewMenus(context: vscode.ExtensionContext): void {
+  const commands: { command: string }[] = context.extension.packageJSON.contributes?.commands ?? [];
+  for (const { command } of commands) {
+    if (!command.startsWith('jbGit.m.')) continue;
+    const key = command.split('.').slice(4).join('.');
+    context.subscriptions.push(vscode.commands.registerCommand(command, () => RpcBridge.menuTarget?.emit('__menuAction', key)));
   }
 }

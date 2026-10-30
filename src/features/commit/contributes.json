@@ -1,77 +1,55 @@
 {
-  "views": {
-    "jbGitCommit": [
-      { "type": "webview", "id": "jbGit.commitView", "name": "Commit" }
-    ]
-  },
   "commands": [
-    { "command": "jbGit.commit.focus", "title": "Commit…", "category": "Git", "icon": "$(git-commit)" },
-    { "command": "jbGit.commit.commitAndPush", "title": "Commit and Push…", "category": "Git" },
-    { "command": "jbGit.commit.showStagedVersion", "title": "Show Staged Version", "category": "Git" },
-    { "command": "jbGit.commit.compareWithStaged", "title": "Compare with Staged Version", "category": "Git" },
-    { "command": "jbGit.commit.compareThreeVersions", "title": "Compare HEAD, Staged and Local Versions", "category": "Git" },
-    { "command": "jbGit.commitFile", "title": "Commit File…", "category": "Git" },
-    { "command": "jbGit.add", "title": "Add", "category": "Git" },
-    { "command": "jbGit.addToGitignore", "title": "Add to .gitignore", "category": "Git" },
-    { "command": "jbGit.rollback", "title": "Rollback…", "category": "Git" },
-    { "command": "jbGit.commit.view.changelists", "title": "Changelists", "category": "Git", "toggled": "!jbGit.commit.stagingArea" },
-    { "command": "jbGit.commit.view.stagingArea", "title": "Staging Area", "category": "Git", "toggled": "jbGit.commit.stagingArea" },
-    { "command": "jbGit.commit.view.showIgnored", "title": "Ignored Files", "category": "Git", "toggled": "jbGit.commit.showIgnored" },
-    { "command": "jbGit.commit.view.doubleClickDiff", "title": "Show Diff on Double-Click", "category": "Git", "toggled": "!jbGit.commit.doubleClickSource" },
-    { "command": "jbGit.commit.view.doubleClickSource", "title": "Show Source on Double-Click", "category": "Git", "toggled": "jbGit.commit.doubleClickSource" },
-    { "command": "jbGit.commit.view.previewDiff", "title": "Preview Diff", "category": "Git", "toggled": "jbGit.commit.previewDiff" },
-    { "command": "jbGit.commit.view.commitAll", "title": "Commit All when Nothing Is Staged", "category": "Git", "toggled": "jbGit.commit.commitAll" }
+    {
+      "command": "jbGit.commit.focus",
+      "title": "Commit\u2026",
+      "category": "Git",
+      "icon": "$(git-commit)"
+    },
+    {
+      "command": "jbGit.add",
+      "title": "Add",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.addToGitignore",
+      "title": "Add to .gitignore",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.rollback",
+      "title": "Rollback\u2026",
+      "category": "Git"
+    }
   ],
   "menus": {
     "commandPalette": [
-      { "command": "jbGit.commit.commitAndPush", "when": "jbGit.active" },
-      { "command": "jbGit.commit.showStagedVersion", "when": "jbGit.active && jbGit.commit.stagingArea" },
-      { "command": "jbGit.commit.compareWithStaged", "when": "jbGit.active && jbGit.commit.stagingArea" },
-      { "command": "jbGit.commit.compareThreeVersions", "when": "jbGit.active && jbGit.commit.stagingArea" },
-      { "command": "jbGit.commitFile", "when": "jbGit.active" },
-      { "command": "jbGit.add", "when": "jbGit.active" },
-      { "command": "jbGit.addToGitignore", "when": "jbGit.active" },
-      { "command": "jbGit.rollback", "when": "jbGit.active" },
-      { "command": "jbGit.commit.view.changelists", "when": "false" },
-      { "command": "jbGit.commit.view.stagingArea", "when": "false" },
-      { "command": "jbGit.commit.view.showIgnored", "when": "false" },
-      { "command": "jbGit.commit.view.doubleClickDiff", "when": "false" },
-      { "command": "jbGit.commit.view.doubleClickSource", "when": "false" },
-      { "command": "jbGit.commit.view.previewDiff", "when": "false" },
-      { "command": "jbGit.commit.view.commitAll", "when": "false" }
-    ],
-    "view/title": [
-      { "command": "jbGit.commit.view.doubleClickDiff", "when": "view == jbGit.commitView", "group": "1_dblclick@1" },
-      { "command": "jbGit.commit.view.doubleClickSource", "when": "view == jbGit.commitView", "group": "1_dblclick@2" },
-      { "command": "jbGit.commit.view.previewDiff", "when": "view == jbGit.commitView", "group": "2_preview@1" },
-      { "command": "jbGit.commit.view.changelists", "when": "view == jbGit.commitView", "group": "3_mode@1" },
-      { "command": "jbGit.commit.view.stagingArea", "when": "view == jbGit.commitView", "group": "3_mode@2" },
-      { "command": "jbGit.commit.view.commitAll", "when": "view == jbGit.commitView && jbGit.commit.stagingArea", "group": "3_mode@3" },
-      { "command": "jbGit.commit.view.showIgnored", "when": "view == jbGit.commitView", "group": "4_show@1" }
+      {
+        "command": "jbGit.add",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.addToGitignore",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.rollback",
+        "when": "jbGit.active"
+      }
     ],
     "jbGit.fileMenu": [
-      { "command": "jbGit.commitFile", "group": "1_commit@1" },
-      { "command": "jbGit.add", "group": "1_commit@2" },
-      { "command": "jbGit.addToGitignore", "group": "1_commit@3" },
-      { "command": "jbGit.rollback", "group": "3_rollback@1" },
-      { "command": "jbGit.commit.showStagedVersion", "when": "jbGit.commit.stagingArea", "group": "3_rollback@2" },
-      { "command": "jbGit.commit.compareWithStaged", "when": "jbGit.commit.stagingArea", "group": "3_rollback@3" },
-      { "command": "jbGit.commit.compareThreeVersions", "when": "jbGit.commit.stagingArea", "group": "3_rollback@4" }
-    ]
-  },
-  "keybindings": [
-    { "command": "jbGit.commit.focus", "key": "ctrl+k", "mac": "cmd+k", "when": "jbGit.active && !editorTextFocus && !terminalFocus" },
-    { "command": "jbGit.commit.commitAndPush", "key": "ctrl+alt+k", "mac": "cmd+alt+k", "when": "jbGit.active && !terminalFocus && focusedView != 'jbGit.commitView'" },
-    { "command": "jbGit.updateProject", "key": "ctrl+t", "mac": "cmd+t", "when": "jbGit.active && !editorTextFocus && !terminalFocus && focusedView != 'jbGit.commitView'" },
-    { "command": "jbGit.vcsOperations", "key": "alt+`", "when": "!isMac && jbGit.active && !terminalFocus" }
-  ],
-  "configuration": {
-    "properties": {
-      "jbGit.commit.useStagingArea": {
-        "type": "boolean",
-        "default": false,
-        "markdownDescription": "Use the Git staging area instead of changelists in the Commit tool window (PhpStorm: *Settings › Version Control › Git › Enable staging area*)."
+      {
+        "command": "jbGit.add",
+        "group": "1_commit@2"
+      },
+      {
+        "command": "jbGit.addToGitignore",
+        "group": "1_commit@3"
+      },
+      {
+        "command": "jbGit.rollback",
+        "group": "3_rollback@1"
       }
-    }
+    ]
   }
 }

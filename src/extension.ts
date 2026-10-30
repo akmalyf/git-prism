@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { gitConsole } from './core/console';
 import type { Feature, FeatureContext } from './core/context';
 import { RepositoryManager } from './core/repository';
+import { registerWebviewMenus } from './core/webview';
 import * as annotate from './features/annotate';
 import * as branches from './features/branches';
 import * as commit from './features/commit';
@@ -18,6 +19,7 @@ const FEATURES: Record<string, Feature> = { diff, conflicts, commit, log, commit
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
   const repos = new RepositoryManager();
   context.subscriptions.push(repos, gitConsole(), vscode.commands.registerCommand('jbGit.console.show', () => gitConsole().show()));
+  registerWebviewMenus(context);
   const ctx: FeatureContext = { extension: context, repos };
   for (const [name, f] of Object.entries(FEATURES)) {
     try {

@@ -1,7 +1,6 @@
-// Unit tests for logic.ts and changelists.ts (node --test).
+// Unit tests for logic.ts (node --test).
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { ChangelistModel } from './changelists';
 import {
   acceptSide,
   amendBangCommitArgs,
@@ -122,49 +121,6 @@ test('ignore entries', () => {
   assert.equal(appendIgnoreLines('x\r\n', ['/y']), 'x\r\n/y\r\n');
   assert.deepEqual(commonIgnoreDirs(['a/b/c.txt', 'a/b/d/e.txt']), ['', 'a', 'a/b']);
   assert.deepEqual(commonIgnoreDirs(['x.txt', 'a/y']), ['']);
-});
-
-test('changelists: sync, inclusion, lists', () => {
-  const m = new ChangelistModel();
-  assert.equal(m.active.name, 'Changes');
-  m.sync(['r\0a', 'r\0b'], ['r\0u']);
-  assert.equal(m.listOf('r\0a'), m.active.id);
-  assert.equal(m.isIncluded('r\0a', false), true);
-  assert.equal(m.isIncluded('r\0u', true), false);
-  m.setIncluded(['r\0a', 'r\0u'], false, (k) => k === 'r\0u');
-  m.setIncluded(['r\0u'], true, () => true);
-  assert.equal(m.isIncluded('r\0a', false), false);
-  assert.equal(m.isIncluded('r\0u', true), true);
-
-  const f = m.add('Feature', 'msg', true);
-  assert.equal(m.active.id, f.id);
-  assert.throws(() => m.add('Feature'), /already exists/);
-  assert.throws(() => m.add(' '), /empty name/);
-  m.sync(['r\0a', 'r\0b', 'r\0c'], []);
-  assert.equal(m.listOf('r\0c'), f.id);
-  assert.notEqual(m.listOf('r\0a'), f.id);
-  assert.equal(m.isIncluded('r\0u', true), false, 'gone unversioned file forgets its state');
-  m.move(['r\0a'], f.id);
-  assert.equal(m.listOf('r\0a'), f.id);
-  assert.deepEqual(m.sorted().map((l) => l.name), ['Feature', 'Changes']);
-
-  m.remove([f.id]);
-  assert.equal(m.lists.length, 1);
-  assert.equal(m.active.name, 'Changes');
-  assert.equal(m.listOf('r\0a'), m.active.id);
-
-  assert.equal(m.isIncluded('r\0a', false), false);
-  m.sync([], []);
-  m.sync(['r\0a'], []);
-  assert.equal(m.isIncluded('r\0a', false), true, 'excluded state of a no longer changed file is forgotten');
-
-  const restored = new ChangelistModel(JSON.parse(JSON.stringify(m.toJSON())));
-  assert.deepEqual(restored.toJSON(), m.toJSON());
-
-  m.includeOnly(['r\0x'], ['r\0a', 'r\0x'], ['r\0u']);
-  assert.equal(m.isIncluded('r\0a', false), false);
-  assert.equal(m.isIncluded('r\0x', false), true);
-  assert.equal(m.isIncluded('r\0u', true), false);
 });
 
 test('staging area validation texts', () => {

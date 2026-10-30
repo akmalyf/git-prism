@@ -30,13 +30,6 @@
   ],
   "contributes": {
     "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "jbGitCommit",
-          "title": "Commit",
-          "icon": "$(git-commit)"
-        }
-      ],
       "panel": [
         {
           "id": "jbGitPanel",
@@ -313,31 +306,6 @@
         "icon": "$(git-commit)"
       },
       {
-        "command": "jbGit.commit.commitAndPush",
-        "title": "Commit and Push…",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.commit.showStagedVersion",
-        "title": "Show Staged Version",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.commit.compareWithStaged",
-        "title": "Compare with Staged Version",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.commit.compareThreeVersions",
-        "title": "Compare HEAD, Staged and Local Versions",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.commitFile",
-        "title": "Commit File…",
-        "category": "Git"
-      },
-      {
         "command": "jbGit.add",
         "title": "Add",
         "category": "Git"
@@ -351,48 +319,6 @@
         "command": "jbGit.rollback",
         "title": "Rollback…",
         "category": "Git"
-      },
-      {
-        "command": "jbGit.commit.view.changelists",
-        "title": "Changelists",
-        "category": "Git",
-        "toggled": "!jbGit.commit.stagingArea"
-      },
-      {
-        "command": "jbGit.commit.view.stagingArea",
-        "title": "Staging Area",
-        "category": "Git",
-        "toggled": "jbGit.commit.stagingArea"
-      },
-      {
-        "command": "jbGit.commit.view.showIgnored",
-        "title": "Ignored Files",
-        "category": "Git",
-        "toggled": "jbGit.commit.showIgnored"
-      },
-      {
-        "command": "jbGit.commit.view.doubleClickDiff",
-        "title": "Show Diff on Double-Click",
-        "category": "Git",
-        "toggled": "!jbGit.commit.doubleClickSource"
-      },
-      {
-        "command": "jbGit.commit.view.doubleClickSource",
-        "title": "Show Source on Double-Click",
-        "category": "Git",
-        "toggled": "jbGit.commit.doubleClickSource"
-      },
-      {
-        "command": "jbGit.commit.view.previewDiff",
-        "title": "Preview Diff",
-        "category": "Git",
-        "toggled": "jbGit.commit.previewDiff"
-      },
-      {
-        "command": "jbGit.commit.view.commitAll",
-        "title": "Commit All when Nothing Is Staged",
-        "category": "Git",
-        "toggled": "jbGit.commit.commitAll"
       },
       {
         "command": "jbGit.commit.copyHash",
@@ -738,70 +664,6 @@
         "icon": "$(git-stash-pop)"
       },
       {
-        "command": "jbGit.stash.refresh",
-        "title": "Refresh Stashes",
-        "category": "Git",
-        "icon": "$(refresh)"
-      },
-      {
-        "command": "jbGit.stash.togglePreview",
-        "title": "Preview Diff",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.stash.show",
-        "title": "Show Git Stash",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.shelf.shelve",
-        "title": "Shelve Changes…",
-        "category": "Git",
-        "icon": "$(archive)"
-      },
-      {
-        "command": "jbGit.shelf.shelveSilently",
-        "title": "Shelve Silently",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.shelf.saveToShelf",
-        "title": "Save To Shelf",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.shelf.unshelve",
-        "title": "Unshelve…",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.shelf.unshelveSilently",
-        "title": "Unshelve Silently",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.shelf.importPatches",
-        "title": "Import Patches…",
-        "category": "Git",
-        "icon": "$(cloud-download)"
-      },
-      {
-        "command": "jbGit.shelf.toggleShowApplied",
-        "title": "Show/Hide Applied Shelved Changes",
-        "category": "Git"
-      },
-      {
-        "command": "jbGit.shelf.refresh",
-        "title": "Refresh",
-        "category": "Git",
-        "icon": "$(refresh)"
-      },
-      {
-        "command": "jbGit.shelf.show",
-        "title": "Show Shelf",
-        "category": "Git"
-      },
-      {
         "command": "jbGit.patch.create",
         "title": "Create Patch…",
         "category": "Git"
@@ -860,6 +722,461 @@
         "command": "jbGit.resetHead",
         "title": "Reset HEAD…",
         "category": "Git"
+      },
+      {
+        "command": "jbGit.m.changes.main.showDiff",
+        "title": "Show Diff"
+      },
+      {
+        "command": "jbGit.m.changes.main.compareWithLocal",
+        "title": "Compare with Local"
+      },
+      {
+        "command": "jbGit.m.changes.main.get",
+        "title": "Get"
+      },
+      {
+        "command": "jbGit.m.changes.main.showHistory",
+        "title": "Show History"
+      },
+      {
+        "command": "jbGit.m.changes.main.jumpToSource",
+        "title": "Jump to Source"
+      },
+      {
+        "command": "jbGit.m.compare-branches.main.showDiff",
+        "title": "Show Diff"
+      },
+      {
+        "command": "jbGit.m.compare-branches.main.compareWithLocal",
+        "title": "Compare with Local"
+      },
+      {
+        "command": "jbGit.m.compare-branches.main.get",
+        "title": "Get"
+      },
+      {
+        "command": "jbGit.m.compare-branches.main.showHistory",
+        "title": "Show History"
+      },
+      {
+        "command": "jbGit.m.compare-branches.main.jumpToSource",
+        "title": "Jump to Source"
+      },
+      {
+        "command": "jbGit.m.conflicts.main.acceptYours",
+        "title": "Accept Yours"
+      },
+      {
+        "command": "jbGit.m.conflicts.main.acceptTheirs",
+        "title": "Accept Theirs"
+      },
+      {
+        "command": "jbGit.m.conflicts.main.merge",
+        "title": "Merge…"
+      },
+      {
+        "command": "jbGit.m.conflicts.main.openInEditor",
+        "title": "Open in Editor"
+      },
+      {
+        "command": "jbGit.m.history-selection.main.showDiff",
+        "title": "Show Diff"
+      },
+      {
+        "command": "jbGit.m.history-selection.main.compareWithLocal",
+        "title": "Compare with Local"
+      },
+      {
+        "command": "jbGit.m.history-selection.main.showFileAtRevision",
+        "title": "Show File at Revision"
+      },
+      {
+        "command": "jbGit.m.history-selection.main.showInGitLog",
+        "title": "Show in Git Log"
+      },
+      {
+        "command": "jbGit.m.history-selection.main.copyRevisionNumber",
+        "title": "Copy Revision Number"
+      },
+      {
+        "command": "jbGit.m.history-selection.main.copyCommitSubject",
+        "title": "Copy Commit Subject"
+      },
+      {
+        "command": "jbGit.m.log.commits.copyHash",
+        "title": "Copy Revision Number"
+      },
+      {
+        "command": "jbGit.m.log.commits.createPatch",
+        "title": "Create Patch…"
+      },
+      {
+        "command": "jbGit.m.log.commits.cherryPick",
+        "title": "Cherry-Pick"
+      },
+      {
+        "command": "jbGit.m.log.commits.checkoutRevision",
+        "title": "Checkout Revision"
+      },
+      {
+        "command": "jbGit.m.log.commits.checkout_branch",
+        "title": "Branch…"
+      },
+      {
+        "command": "jbGit.m.log.commits.checkout_revision",
+        "title": "Revision"
+      },
+      {
+        "command": "jbGit.m.log.commits.repoAtRevision",
+        "title": "Show Repository at Revision"
+      },
+      {
+        "command": "jbGit.m.log.commits.compareVersions",
+        "title": "Compare Versions"
+      },
+      {
+        "command": "jbGit.m.log.commits.compareWithLocal",
+        "title": "Compare with Local"
+      },
+      {
+        "command": "jbGit.m.log.commits.resetToHere",
+        "title": "Reset Current Branch to Here…"
+      },
+      {
+        "command": "jbGit.m.log.commits.revert",
+        "title": "Revert Commit"
+      },
+      {
+        "command": "jbGit.m.log.commits.undo",
+        "title": "Undo Commit…"
+      },
+      {
+        "command": "jbGit.m.log.commits.reword",
+        "title": "Edit Commit Message…"
+      },
+      {
+        "command": "jbGit.m.log.commits.fixup",
+        "title": "Fixup…"
+      },
+      {
+        "command": "jbGit.m.log.commits.squashInto",
+        "title": "Squash Into…"
+      },
+      {
+        "command": "jbGit.m.log.commits.drop",
+        "title": "Drop Commits"
+      },
+      {
+        "command": "jbGit.m.log.commits.squash",
+        "title": "Squash Commits…"
+      },
+      {
+        "command": "jbGit.m.log.commits.interactiveRebase",
+        "title": "Interactively Rebase from Here…"
+      },
+      {
+        "command": "jbGit.m.log.commits.pushUpTo",
+        "title": "Push All up to Here…"
+      },
+      {
+        "command": "jbGit.m.log.commits.branchActions",
+        "title": "Branch Actions…"
+      },
+      {
+        "command": "jbGit.m.log.commits.newBranch",
+        "title": "New Branch…"
+      },
+      {
+        "command": "jbGit.m.log.commits.newTag",
+        "title": "New Tag…"
+      },
+      {
+        "command": "jbGit.m.log.commits.goToChild",
+        "title": "Go to Child Commit"
+      },
+      {
+        "command": "jbGit.m.log.commits.goToParent",
+        "title": "Go to Parent Commit"
+      },
+      {
+        "command": "jbGit.m.log.history.copyHash",
+        "title": "Copy Revision Number"
+      },
+      {
+        "command": "jbGit.m.log.history.createPatch",
+        "title": "Create Patch…"
+      },
+      {
+        "command": "jbGit.m.log.history.cherryPick",
+        "title": "Cherry-Pick"
+      },
+      {
+        "command": "jbGit.m.log.history.get",
+        "title": "Get"
+      },
+      {
+        "command": "jbGit.m.log.history.openFile",
+        "title": "Show File at Revision"
+      },
+      {
+        "command": "jbGit.m.log.history.compareWithLocal",
+        "title": "Compare with Local"
+      },
+      {
+        "command": "jbGit.m.log.history.showDiff",
+        "title": "Show Diff"
+      },
+      {
+        "command": "jbGit.m.log.history.compare",
+        "title": "Compare"
+      },
+      {
+        "command": "jbGit.m.log.history.showDiffNewTab",
+        "title": "Show Diff in a New Tab"
+      },
+      {
+        "command": "jbGit.m.log.history.showAllAffected",
+        "title": "Show All Affected Files"
+      },
+      {
+        "command": "jbGit.m.log.history.annotate",
+        "title": "Annotate"
+      },
+      {
+        "command": "jbGit.m.log.history.selectInLog",
+        "title": "Show in Git Log"
+      },
+      {
+        "command": "jbGit.m.log.history.revert",
+        "title": "Revert Commit"
+      },
+      {
+        "command": "jbGit.m.log.history.fixup",
+        "title": "Fixup…"
+      },
+      {
+        "command": "jbGit.m.log.history.squashInto",
+        "title": "Squash Into…"
+      },
+      {
+        "command": "jbGit.m.log.history.newTag",
+        "title": "New Tag…"
+      },
+      {
+        "command": "jbGit.m.log.files.showDiff",
+        "title": "Show Diff"
+      },
+      {
+        "command": "jbGit.m.log.files.compareWithLocal",
+        "title": "Compare with Local"
+      },
+      {
+        "command": "jbGit.m.log.files.compareBeforeWithLocal",
+        "title": "Compare Before with Local"
+      },
+      {
+        "command": "jbGit.m.log.files.jumpToSource",
+        "title": "Jump to Source"
+      },
+      {
+        "command": "jbGit.m.log.files.showFileAtRevision",
+        "title": "Show File at Revision"
+      },
+      {
+        "command": "jbGit.m.log.files.revertSelectedChanges",
+        "title": "Revert Selected Changes"
+      },
+      {
+        "command": "jbGit.m.log.files.cherryPickSelectedChanges",
+        "title": "Cherry-Pick Selected Changes"
+      },
+      {
+        "command": "jbGit.m.log.files.dropSelectedChanges",
+        "title": "Drop Selected Changes"
+      },
+      {
+        "command": "jbGit.m.log.files.extractSelectedChangesToSeparateCommit",
+        "title": "Extract Selected Changes to Separate Commit…"
+      },
+      {
+        "command": "jbGit.m.log.files.get",
+        "title": "Get"
+      },
+      {
+        "command": "jbGit.m.log.files.historyUpToHere",
+        "title": "History Up to Here"
+      },
+      {
+        "command": "jbGit.m.log.files.annotate",
+        "title": "Annotate"
+      },
+      {
+        "command": "jbGit.m.log.files.copyPathReference_absolutePath",
+        "title": "Absolute Path"
+      },
+      {
+        "command": "jbGit.m.log.files.copyPathReference_pathFromRepositoryRoot",
+        "title": "Path From Repository Root"
+      },
+      {
+        "command": "jbGit.m.log.files.copyPathReference_fileName",
+        "title": "File Name"
+      },
+      {
+        "command": "jbGit.m.log.files.showChangesToParents",
+        "title": "Show Changes to Parents",
+        "toggled": "jbmc_showChangesToParents"
+      },
+      {
+        "command": "jbGit.m.log.branches.updateBranchFilterInLog",
+        "title": "Update Branch Filter in Log"
+      },
+      {
+        "command": "jbGit.m.log.branches.navigateLogToSelectedBranchHead",
+        "title": "Navigate Log to Selected Branch Head"
+      },
+      {
+        "command": "jbGit.m.log.branches.newBranchFromCurrent",
+        "title": "New Branch from Current…"
+      },
+      {
+        "command": "jbGit.m.log.branches.checkout",
+        "title": "Checkout"
+      },
+      {
+        "command": "jbGit.m.log.branches.newBranchFromSelected",
+        "title": "New Branch from Selected…"
+      },
+      {
+        "command": "jbGit.m.log.branches.checkoutAndRebase",
+        "title": "Checkout and Rebase onto Current"
+      },
+      {
+        "command": "jbGit.m.log.branches.compareWithCurrent",
+        "title": "Compare with Current"
+      },
+      {
+        "command": "jbGit.m.log.branches.showDiffWithWorkingTree",
+        "title": "Show Diff with Working Tree"
+      },
+      {
+        "command": "jbGit.m.log.branches.rebaseCurrentOntoSelected",
+        "title": "Rebase Current onto Selected"
+      },
+      {
+        "command": "jbGit.m.log.branches.mergeIntoCurrent",
+        "title": "Merge into Current Branch"
+      },
+      {
+        "command": "jbGit.m.log.branches.pullRebase",
+        "title": "Pull into Current Using Rebase"
+      },
+      {
+        "command": "jbGit.m.log.branches.pullMerge",
+        "title": "Pull into Current Using Merge"
+      },
+      {
+        "command": "jbGit.m.log.branches.update",
+        "title": "Update"
+      },
+      {
+        "command": "jbGit.m.log.branches.updateSelected",
+        "title": "Update Selected"
+      },
+      {
+        "command": "jbGit.m.log.branches.push",
+        "title": "Push…"
+      },
+      {
+        "command": "jbGit.m.log.branches.rename",
+        "title": "Rename…"
+      },
+      {
+        "command": "jbGit.m.log.branches.delete",
+        "title": "Delete"
+      },
+      {
+        "command": "jbGit.m.log.branches.markUnmarkAsFavorite",
+        "title": "Mark/Unmark As Favorite"
+      },
+      {
+        "command": "jbGit.m.log.branches.fetch",
+        "title": "Fetch"
+      },
+      {
+        "command": "jbGit.m.log-console.console.copy",
+        "title": "Copy"
+      },
+      {
+        "command": "jbGit.m.log-console.console.copyAll",
+        "title": "Copy All"
+      },
+      {
+        "command": "jbGit.m.log-console.console.selectAll",
+        "title": "Select All"
+      },
+      {
+        "command": "jbGit.m.log-console.console.softWrap",
+        "title": "Soft-Wrap",
+        "toggled": "jbmc_softWrap"
+      },
+      {
+        "command": "jbGit.m.log-console.console.scrollToEnd",
+        "title": "Scroll to End",
+        "toggled": "jbmc_scrollToEnd"
+      },
+      {
+        "command": "jbGit.m.log-console.console.clearAll",
+        "title": "Clear All"
+      },
+      {
+        "command": "jbGit.m.log-console.console.openInOutputPanel",
+        "title": "Open in Output Panel"
+      },
+      {
+        "command": "jbGit.m.rebase.main.pick",
+        "title": "Pick"
+      },
+      {
+        "command": "jbGit.m.rebase.main.stopToEdit",
+        "title": "Stop to Edit"
+      },
+      {
+        "command": "jbGit.m.rebase.main.reword",
+        "title": "Reword"
+      },
+      {
+        "command": "jbGit.m.rebase.main.squash",
+        "title": "Squash"
+      },
+      {
+        "command": "jbGit.m.rebase.main.fixup",
+        "title": "Fixup"
+      },
+      {
+        "command": "jbGit.m.rebase.main.drop",
+        "title": "Drop"
+      },
+      {
+        "command": "jbGit.m.rebase.main.viewGitCommands",
+        "title": "View Git Commands"
+      },
+      {
+        "command": "jbGit.m.repo-at-revision.main.showFileAtRevision",
+        "title": "Show File at Revision"
+      },
+      {
+        "command": "jbGit.m.repo-at-revision.main.compareWithLocal",
+        "title": "Compare with Local"
+      },
+      {
+        "command": "jbGit.m.repo-at-revision.main.showHistory",
+        "title": "Show History"
+      },
+      {
+        "command": "jbGit.m.repo-at-revision.main.copyPath",
+        "title": "Copy Path"
       }
     ],
     "configuration": {
@@ -978,11 +1295,6 @@
           "type": "boolean",
           "default": false,
           "description": "Branches popup: show only favorite branches."
-        },
-        "jbGit.commit.useStagingArea": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Use the Git staging area instead of changelists in the Commit tool window (PhpStorm: *Settings › Version Control › Git › Enable staging area*)."
         },
         "jbGit.cherryPick.addSuffix": {
           "type": "boolean",
@@ -1184,29 +1496,18 @@
       {
         "id": "jbGit.annotate.optionsMenu",
         "label": "Options"
+      },
+      {
+        "id": "jbGit.m.log.commits.checkout.menu",
+        "label": "Checkout"
+      },
+      {
+        "id": "jbGit.m.log.files.copyPathReference.menu",
+        "label": "Copy Path/Reference…"
       }
     ],
     "menus": {
-      "explorer/context": [
-        {
-          "submenu": "jbGit.fileMenu",
-          "group": "jbgit@1",
-          "when": "jbGit.active"
-        },
-        {
-          "command": "jbGit.patch.apply",
-          "group": "jbgit@2",
-          "when": "jbGit.active && resourceExtname =~ /^\\.(patch|diff)$/"
-        }
-      ],
       "editor/context": [
-        {
-          "submenu": "jbGit.fileMenu",
-          "group": "jbgit@1",
-          "when": "jbGit.active"
-        }
-      ],
-      "editor/title/context": [
         {
           "submenu": "jbGit.fileMenu",
           "group": "jbgit@1",
@@ -1403,26 +1704,6 @@
           "when": "jbGit.active"
         },
         {
-          "command": "jbGit.commit.commitAndPush",
-          "when": "jbGit.active"
-        },
-        {
-          "command": "jbGit.commit.showStagedVersion",
-          "when": "jbGit.active && jbGit.commit.stagingArea"
-        },
-        {
-          "command": "jbGit.commit.compareWithStaged",
-          "when": "jbGit.active && jbGit.commit.stagingArea"
-        },
-        {
-          "command": "jbGit.commit.compareThreeVersions",
-          "when": "jbGit.active && jbGit.commit.stagingArea"
-        },
-        {
-          "command": "jbGit.commitFile",
-          "when": "jbGit.active"
-        },
-        {
           "command": "jbGit.add",
           "when": "jbGit.active"
         },
@@ -1433,34 +1714,6 @@
         {
           "command": "jbGit.rollback",
           "when": "jbGit.active"
-        },
-        {
-          "command": "jbGit.commit.view.changelists",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.commit.view.stagingArea",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.commit.view.showIgnored",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.commit.view.doubleClickDiff",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.commit.view.doubleClickSource",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.commit.view.previewDiff",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.commit.view.commitAll",
-          "when": "false"
         },
         {
           "command": "jbGit.commit.copyHash",
@@ -1707,22 +1960,6 @@
           "when": "false"
         },
         {
-          "command": "jbGit.stash.togglePreview",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.stash.refresh",
-          "when": "jbGit.hasStashes"
-        },
-        {
-          "command": "jbGit.shelf.refresh",
-          "when": "false"
-        },
-        {
-          "command": "jbGit.shelf.toggleShowApplied",
-          "when": "jbGit.hasShelves"
-        },
-        {
           "command": "jbGit.push",
           "when": "jbGit.active"
         },
@@ -1749,6 +1986,458 @@
         {
           "command": "jbGit.resetHead",
           "when": "jbGit.active"
+        },
+        {
+          "command": "jbGit.m.changes.main.showDiff",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.changes.main.compareWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.changes.main.get",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.changes.main.showHistory",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.changes.main.jumpToSource",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.compare-branches.main.showDiff",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.compare-branches.main.compareWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.compare-branches.main.get",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.compare-branches.main.showHistory",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.compare-branches.main.jumpToSource",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.conflicts.main.acceptYours",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.conflicts.main.acceptTheirs",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.conflicts.main.merge",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.conflicts.main.openInEditor",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.showDiff",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.compareWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.showFileAtRevision",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.showInGitLog",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.copyRevisionNumber",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.copyCommitSubject",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.copyHash",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.createPatch",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.cherryPick",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.checkoutRevision",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.checkout_branch",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.checkout_revision",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.repoAtRevision",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.compareVersions",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.compareWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.resetToHere",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.revert",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.undo",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.reword",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.fixup",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.squashInto",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.drop",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.squash",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.interactiveRebase",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.pushUpTo",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.branchActions",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.newBranch",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.newTag",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.goToChild",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.commits.goToParent",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.copyHash",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.createPatch",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.cherryPick",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.get",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.openFile",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.compareWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.showDiff",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.compare",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.showDiffNewTab",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.showAllAffected",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.annotate",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.selectInLog",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.revert",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.fixup",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.squashInto",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.history.newTag",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.showDiff",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.compareWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.compareBeforeWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.jumpToSource",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.showFileAtRevision",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.revertSelectedChanges",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.cherryPickSelectedChanges",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.dropSelectedChanges",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.extractSelectedChangesToSeparateCommit",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.get",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.historyUpToHere",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.annotate",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.copyPathReference_absolutePath",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.copyPathReference_pathFromRepositoryRoot",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.copyPathReference_fileName",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.files.showChangesToParents",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.updateBranchFilterInLog",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.navigateLogToSelectedBranchHead",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.newBranchFromCurrent",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.checkout",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.newBranchFromSelected",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.checkoutAndRebase",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.compareWithCurrent",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.showDiffWithWorkingTree",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.rebaseCurrentOntoSelected",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.mergeIntoCurrent",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.pullRebase",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.pullMerge",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.update",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.updateSelected",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.push",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.rename",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.delete",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.markUnmarkAsFavorite",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log.branches.fetch",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log-console.console.copy",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log-console.console.copyAll",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log-console.console.selectAll",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log-console.console.softWrap",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log-console.console.scrollToEnd",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log-console.console.clearAll",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.log-console.console.openInOutputPanel",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.rebase.main.pick",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.rebase.main.stopToEdit",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.rebase.main.reword",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.rebase.main.squash",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.rebase.main.fixup",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.rebase.main.drop",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.rebase.main.viewGitCommands",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.showFileAtRevision",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.compareWithLocal",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.showHistory",
+          "when": "false"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.copyPath",
+          "when": "false"
         }
       ],
       "editor/lineNumber/context": [
@@ -1870,10 +2559,6 @@
           "group": "7_repo@5"
         },
         {
-          "command": "jbGit.commitFile",
-          "group": "1_commit@1"
-        },
-        {
           "command": "jbGit.add",
           "group": "1_commit@2"
         },
@@ -1884,21 +2569,6 @@
         {
           "command": "jbGit.rollback",
           "group": "3_rollback@1"
-        },
-        {
-          "command": "jbGit.commit.showStagedVersion",
-          "when": "jbGit.commit.stagingArea",
-          "group": "3_rollback@2"
-        },
-        {
-          "command": "jbGit.commit.compareWithStaged",
-          "when": "jbGit.commit.stagingArea",
-          "group": "3_rollback@3"
-        },
-        {
-          "command": "jbGit.commit.compareThreeVersions",
-          "when": "jbGit.commit.stagingArea",
-          "group": "3_rollback@4"
         },
         {
           "command": "jbGit.showDiffWithHead",
@@ -1986,14 +2656,6 @@
         {
           "command": "jbGit.stash.unstash",
           "group": "6_stash@2"
-        },
-        {
-          "command": "jbGit.shelf.shelve",
-          "group": "6_stash@3"
-        },
-        {
-          "command": "jbGit.shelf.unshelve",
-          "group": "6_stash@4"
         },
         {
           "command": "jbGit.patch.create",
@@ -2114,41 +2776,6 @@
       ],
       "view/title": [
         {
-          "command": "jbGit.commit.view.doubleClickDiff",
-          "when": "view == jbGit.commitView",
-          "group": "1_dblclick@1"
-        },
-        {
-          "command": "jbGit.commit.view.doubleClickSource",
-          "when": "view == jbGit.commitView",
-          "group": "1_dblclick@2"
-        },
-        {
-          "command": "jbGit.commit.view.previewDiff",
-          "when": "view == jbGit.commitView",
-          "group": "2_preview@1"
-        },
-        {
-          "command": "jbGit.commit.view.changelists",
-          "when": "view == jbGit.commitView",
-          "group": "3_mode@1"
-        },
-        {
-          "command": "jbGit.commit.view.stagingArea",
-          "when": "view == jbGit.commitView",
-          "group": "3_mode@2"
-        },
-        {
-          "command": "jbGit.commit.view.commitAll",
-          "when": "view == jbGit.commitView && jbGit.commit.stagingArea",
-          "group": "3_mode@3"
-        },
-        {
-          "command": "jbGit.commit.view.showIgnored",
-          "when": "view == jbGit.commitView",
-          "group": "4_show@1"
-        },
-        {
           "command": "jbGit.log.openInEditor",
           "when": "view == jbGit.logView",
           "group": "navigation@1"
@@ -2157,56 +2784,587 @@
           "command": "jbGit.log.clearConsole",
           "when": "view == jbGit.consoleView",
           "group": "navigation@1"
+        }
+      ],
+      "webview/context": [
+        {
+          "command": "jbGit.m.changes.main.showDiff",
+          "group": "00_changes@0",
+          "when": "jbmMenu == 'changes.main' && jbm_showDiff"
         },
         {
-          "command": "jbGit.stash.refresh",
-          "when": "view == jbGit.stashView",
-          "group": "1_stash@1"
+          "command": "jbGit.m.changes.main.compareWithLocal",
+          "group": "00_changes@1",
+          "when": "jbmMenu == 'changes.main' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.stash.create",
-          "when": "view == jbGit.stashView",
-          "group": "2_stash@1"
+          "command": "jbGit.m.changes.main.get",
+          "group": "00_changes@2",
+          "when": "jbmMenu == 'changes.main' && jbm_get"
         },
         {
-          "command": "jbGit.stash.silently",
-          "when": "view == jbGit.stashView",
-          "group": "2_stash@2"
+          "command": "jbGit.m.changes.main.showHistory",
+          "group": "01_changes@0",
+          "when": "jbmMenu == 'changes.main' && jbm_showHistory"
         },
         {
-          "command": "jbGit.stash.unstash",
-          "when": "view == jbGit.stashView",
-          "group": "2_stash@3"
+          "command": "jbGit.m.changes.main.jumpToSource",
+          "group": "01_changes@1",
+          "when": "jbmMenu == 'changes.main' && jbm_jumpToSource"
         },
         {
-          "command": "jbGit.shelf.shelve",
-          "when": "view == jbGit.shelfView",
-          "group": "1_shelf@1"
+          "command": "jbGit.m.compare-branches.main.showDiff",
+          "group": "00_compare-branches@0",
+          "when": "jbmMenu == 'compare-branches.main' && jbm_showDiff"
         },
         {
-          "command": "jbGit.shelf.shelveSilently",
-          "when": "view == jbGit.shelfView",
-          "group": "1_shelf@2"
+          "command": "jbGit.m.compare-branches.main.compareWithLocal",
+          "group": "00_compare-branches@1",
+          "when": "jbmMenu == 'compare-branches.main' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.shelf.unshelve",
-          "when": "view == jbGit.shelfView",
-          "group": "1_shelf@3"
+          "command": "jbGit.m.compare-branches.main.get",
+          "group": "00_compare-branches@2",
+          "when": "jbmMenu == 'compare-branches.main' && jbm_get"
         },
         {
-          "command": "jbGit.shelf.unshelveSilently",
-          "when": "view == jbGit.shelfView",
-          "group": "1_shelf@4"
+          "command": "jbGit.m.compare-branches.main.showHistory",
+          "group": "01_compare-branches@0",
+          "when": "jbmMenu == 'compare-branches.main' && jbm_showHistory"
         },
         {
-          "command": "jbGit.shelf.importPatches",
-          "when": "view == jbGit.shelfView",
-          "group": "2_shelf@1"
+          "command": "jbGit.m.compare-branches.main.jumpToSource",
+          "group": "01_compare-branches@1",
+          "when": "jbmMenu == 'compare-branches.main' && jbm_jumpToSource"
         },
         {
-          "command": "jbGit.shelf.toggleShowApplied",
-          "when": "view == jbGit.shelfView",
-          "group": "3_shelf@1"
+          "command": "jbGit.m.conflicts.main.acceptYours",
+          "group": "00_conflicts@0",
+          "when": "jbmMenu == 'conflicts.main' && jbm_acceptYours"
+        },
+        {
+          "command": "jbGit.m.conflicts.main.acceptTheirs",
+          "group": "00_conflicts@1",
+          "when": "jbmMenu == 'conflicts.main' && jbm_acceptTheirs"
+        },
+        {
+          "command": "jbGit.m.conflicts.main.merge",
+          "group": "00_conflicts@2",
+          "when": "jbmMenu == 'conflicts.main' && jbm_merge"
+        },
+        {
+          "command": "jbGit.m.conflicts.main.openInEditor",
+          "group": "01_conflicts@0",
+          "when": "jbmMenu == 'conflicts.main' && jbm_openInEditor"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.showDiff",
+          "group": "00_history-selection@0",
+          "when": "jbmMenu == 'history-selection.main' && jbm_showDiff"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.compareWithLocal",
+          "group": "00_history-selection@1",
+          "when": "jbmMenu == 'history-selection.main' && jbm_compareWithLocal"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.showFileAtRevision",
+          "group": "00_history-selection@2",
+          "when": "jbmMenu == 'history-selection.main' && jbm_showFileAtRevision"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.showInGitLog",
+          "group": "01_history-selection@0",
+          "when": "jbmMenu == 'history-selection.main' && jbm_showInGitLog"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.copyRevisionNumber",
+          "group": "01_history-selection@1",
+          "when": "jbmMenu == 'history-selection.main' && jbm_copyRevisionNumber"
+        },
+        {
+          "command": "jbGit.m.history-selection.main.copyCommitSubject",
+          "group": "01_history-selection@2",
+          "when": "jbmMenu == 'history-selection.main' && jbm_copyCommitSubject"
+        },
+        {
+          "command": "jbGit.m.log.commits.copyHash",
+          "group": "00_log@0",
+          "when": "jbmMenu == 'log.commits' && jbm_copyHash"
+        },
+        {
+          "command": "jbGit.m.log.commits.createPatch",
+          "group": "00_log@1",
+          "when": "jbmMenu == 'log.commits' && jbm_createPatch"
+        },
+        {
+          "command": "jbGit.m.log.commits.cherryPick",
+          "group": "00_log@2",
+          "when": "jbmMenu == 'log.commits' && jbm_cherryPick"
+        },
+        {
+          "command": "jbGit.m.log.commits.checkoutRevision",
+          "group": "01_log@0",
+          "when": "jbmMenu == 'log.commits' && jbm_checkoutRevision"
+        },
+        {
+          "submenu": "jbGit.m.log.commits.checkout.menu",
+          "group": "01_log@1",
+          "when": "jbmMenu == 'log.commits' && jbm_checkout"
+        },
+        {
+          "command": "jbGit.m.log.commits.repoAtRevision",
+          "group": "01_log@2",
+          "when": "jbmMenu == 'log.commits' && jbm_repoAtRevision"
+        },
+        {
+          "command": "jbGit.m.log.commits.compareVersions",
+          "group": "01_log@3",
+          "when": "jbmMenu == 'log.commits' && jbm_compareVersions"
+        },
+        {
+          "command": "jbGit.m.log.commits.compareWithLocal",
+          "group": "01_log@4",
+          "when": "jbmMenu == 'log.commits' && jbm_compareWithLocal"
+        },
+        {
+          "command": "jbGit.m.log.commits.resetToHere",
+          "group": "02_log@0",
+          "when": "jbmMenu == 'log.commits' && jbm_resetToHere"
+        },
+        {
+          "command": "jbGit.m.log.commits.revert",
+          "group": "02_log@1",
+          "when": "jbmMenu == 'log.commits' && jbm_revert"
+        },
+        {
+          "command": "jbGit.m.log.commits.undo",
+          "group": "02_log@2",
+          "when": "jbmMenu == 'log.commits' && jbm_undo"
+        },
+        {
+          "command": "jbGit.m.log.commits.reword",
+          "group": "03_log@0",
+          "when": "jbmMenu == 'log.commits' && jbm_reword"
+        },
+        {
+          "command": "jbGit.m.log.commits.fixup",
+          "group": "03_log@1",
+          "when": "jbmMenu == 'log.commits' && jbm_fixup"
+        },
+        {
+          "command": "jbGit.m.log.commits.squashInto",
+          "group": "03_log@2",
+          "when": "jbmMenu == 'log.commits' && jbm_squashInto"
+        },
+        {
+          "command": "jbGit.m.log.commits.drop",
+          "group": "03_log@3",
+          "when": "jbmMenu == 'log.commits' && jbm_drop"
+        },
+        {
+          "command": "jbGit.m.log.commits.squash",
+          "group": "03_log@4",
+          "when": "jbmMenu == 'log.commits' && jbm_squash"
+        },
+        {
+          "command": "jbGit.m.log.commits.interactiveRebase",
+          "group": "03_log@5",
+          "when": "jbmMenu == 'log.commits' && jbm_interactiveRebase"
+        },
+        {
+          "command": "jbGit.m.log.commits.pushUpTo",
+          "group": "03_log@6",
+          "when": "jbmMenu == 'log.commits' && jbm_pushUpTo"
+        },
+        {
+          "command": "jbGit.m.log.commits.branchActions",
+          "group": "04_log@0",
+          "when": "jbmMenu == 'log.commits' && jbm_branchActions"
+        },
+        {
+          "command": "jbGit.m.log.commits.newBranch",
+          "group": "04_log@1",
+          "when": "jbmMenu == 'log.commits' && jbm_newBranch"
+        },
+        {
+          "command": "jbGit.m.log.commits.newTag",
+          "group": "04_log@2",
+          "when": "jbmMenu == 'log.commits' && jbm_newTag"
+        },
+        {
+          "command": "jbGit.m.log.commits.goToChild",
+          "group": "05_log@0",
+          "when": "jbmMenu == 'log.commits' && jbm_goToChild"
+        },
+        {
+          "command": "jbGit.m.log.commits.goToParent",
+          "group": "05_log@1",
+          "when": "jbmMenu == 'log.commits' && jbm_goToParent"
+        },
+        {
+          "command": "jbGit.m.log.history.copyHash",
+          "group": "00_log@0",
+          "when": "jbmMenu == 'log.history' && jbm_copyHash"
+        },
+        {
+          "command": "jbGit.m.log.history.createPatch",
+          "group": "00_log@1",
+          "when": "jbmMenu == 'log.history' && jbm_createPatch"
+        },
+        {
+          "command": "jbGit.m.log.history.cherryPick",
+          "group": "00_log@2",
+          "when": "jbmMenu == 'log.history' && jbm_cherryPick"
+        },
+        {
+          "command": "jbGit.m.log.history.get",
+          "group": "01_log@0",
+          "when": "jbmMenu == 'log.history' && jbm_get"
+        },
+        {
+          "command": "jbGit.m.log.history.openFile",
+          "group": "01_log@1",
+          "when": "jbmMenu == 'log.history' && jbm_openFile"
+        },
+        {
+          "command": "jbGit.m.log.history.compareWithLocal",
+          "group": "01_log@2",
+          "when": "jbmMenu == 'log.history' && jbm_compareWithLocal"
+        },
+        {
+          "command": "jbGit.m.log.history.showDiff",
+          "group": "01_log@3",
+          "when": "jbmMenu == 'log.history' && jbm_showDiff"
+        },
+        {
+          "command": "jbGit.m.log.history.compare",
+          "group": "01_log@4",
+          "when": "jbmMenu == 'log.history' && jbm_compare"
+        },
+        {
+          "command": "jbGit.m.log.history.showDiffNewTab",
+          "group": "01_log@5",
+          "when": "jbmMenu == 'log.history' && jbm_showDiffNewTab"
+        },
+        {
+          "command": "jbGit.m.log.history.showAllAffected",
+          "group": "01_log@6",
+          "when": "jbmMenu == 'log.history' && jbm_showAllAffected"
+        },
+        {
+          "command": "jbGit.m.log.history.annotate",
+          "group": "01_log@7",
+          "when": "jbmMenu == 'log.history' && jbm_annotate"
+        },
+        {
+          "command": "jbGit.m.log.history.selectInLog",
+          "group": "01_log@8",
+          "when": "jbmMenu == 'log.history' && jbm_selectInLog"
+        },
+        {
+          "command": "jbGit.m.log.history.revert",
+          "group": "02_log@0",
+          "when": "jbmMenu == 'log.history' && jbm_revert"
+        },
+        {
+          "command": "jbGit.m.log.history.fixup",
+          "group": "02_log@1",
+          "when": "jbmMenu == 'log.history' && jbm_fixup"
+        },
+        {
+          "command": "jbGit.m.log.history.squashInto",
+          "group": "02_log@2",
+          "when": "jbmMenu == 'log.history' && jbm_squashInto"
+        },
+        {
+          "command": "jbGit.m.log.history.newTag",
+          "group": "03_log@0",
+          "when": "jbmMenu == 'log.history' && jbm_newTag"
+        },
+        {
+          "command": "jbGit.m.log.files.showDiff",
+          "group": "00_log@0",
+          "when": "jbmMenu == 'log.files' && jbm_showDiff"
+        },
+        {
+          "command": "jbGit.m.log.files.compareWithLocal",
+          "group": "00_log@1",
+          "when": "jbmMenu == 'log.files' && jbm_compareWithLocal"
+        },
+        {
+          "command": "jbGit.m.log.files.compareBeforeWithLocal",
+          "group": "00_log@2",
+          "when": "jbmMenu == 'log.files' && jbm_compareBeforeWithLocal"
+        },
+        {
+          "command": "jbGit.m.log.files.jumpToSource",
+          "group": "01_log@0",
+          "when": "jbmMenu == 'log.files' && jbm_jumpToSource"
+        },
+        {
+          "command": "jbGit.m.log.files.showFileAtRevision",
+          "group": "01_log@1",
+          "when": "jbmMenu == 'log.files' && jbm_showFileAtRevision"
+        },
+        {
+          "command": "jbGit.m.log.files.revertSelectedChanges",
+          "group": "02_log@0",
+          "when": "jbmMenu == 'log.files' && jbm_revertSelectedChanges"
+        },
+        {
+          "command": "jbGit.m.log.files.cherryPickSelectedChanges",
+          "group": "02_log@1",
+          "when": "jbmMenu == 'log.files' && jbm_cherryPickSelectedChanges"
+        },
+        {
+          "command": "jbGit.m.log.files.dropSelectedChanges",
+          "group": "02_log@2",
+          "when": "jbmMenu == 'log.files' && jbm_dropSelectedChanges"
+        },
+        {
+          "command": "jbGit.m.log.files.extractSelectedChangesToSeparateCommit",
+          "group": "02_log@3",
+          "when": "jbmMenu == 'log.files' && jbm_extractSelectedChangesToSeparateCommit"
+        },
+        {
+          "command": "jbGit.m.log.files.get",
+          "group": "02_log@4",
+          "when": "jbmMenu == 'log.files' && jbm_get"
+        },
+        {
+          "command": "jbGit.m.log.files.historyUpToHere",
+          "group": "02_log@5",
+          "when": "jbmMenu == 'log.files' && jbm_historyUpToHere"
+        },
+        {
+          "command": "jbGit.m.log.files.annotate",
+          "group": "03_log@0",
+          "when": "jbmMenu == 'log.files' && jbm_annotate"
+        },
+        {
+          "submenu": "jbGit.m.log.files.copyPathReference.menu",
+          "group": "04_log@0",
+          "when": "jbmMenu == 'log.files' && jbm_copyPathReference"
+        },
+        {
+          "command": "jbGit.m.log.files.showChangesToParents",
+          "group": "05_log@0",
+          "when": "jbmMenu == 'log.files' && jbm_showChangesToParents"
+        },
+        {
+          "command": "jbGit.m.log.branches.updateBranchFilterInLog",
+          "group": "00_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_updateBranchFilterInLog"
+        },
+        {
+          "command": "jbGit.m.log.branches.navigateLogToSelectedBranchHead",
+          "group": "00_log@1",
+          "when": "jbmMenu == 'log.branches' && jbm_navigateLogToSelectedBranchHead"
+        },
+        {
+          "command": "jbGit.m.log.branches.newBranchFromCurrent",
+          "group": "01_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_newBranchFromCurrent"
+        },
+        {
+          "command": "jbGit.m.log.branches.checkout",
+          "group": "01_log@1",
+          "when": "jbmMenu == 'log.branches' && jbm_checkout"
+        },
+        {
+          "command": "jbGit.m.log.branches.newBranchFromSelected",
+          "group": "01_log@2",
+          "when": "jbmMenu == 'log.branches' && jbm_newBranchFromSelected"
+        },
+        {
+          "command": "jbGit.m.log.branches.checkoutAndRebase",
+          "group": "01_log@3",
+          "when": "jbmMenu == 'log.branches' && jbm_checkoutAndRebase"
+        },
+        {
+          "command": "jbGit.m.log.branches.compareWithCurrent",
+          "group": "02_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_compareWithCurrent"
+        },
+        {
+          "command": "jbGit.m.log.branches.showDiffWithWorkingTree",
+          "group": "02_log@1",
+          "when": "jbmMenu == 'log.branches' && jbm_showDiffWithWorkingTree"
+        },
+        {
+          "command": "jbGit.m.log.branches.rebaseCurrentOntoSelected",
+          "group": "03_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_rebaseCurrentOntoSelected"
+        },
+        {
+          "command": "jbGit.m.log.branches.mergeIntoCurrent",
+          "group": "03_log@1",
+          "when": "jbmMenu == 'log.branches' && jbm_mergeIntoCurrent"
+        },
+        {
+          "command": "jbGit.m.log.branches.pullRebase",
+          "group": "04_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_pullRebase"
+        },
+        {
+          "command": "jbGit.m.log.branches.pullMerge",
+          "group": "04_log@1",
+          "when": "jbmMenu == 'log.branches' && jbm_pullMerge"
+        },
+        {
+          "command": "jbGit.m.log.branches.update",
+          "group": "05_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_update"
+        },
+        {
+          "command": "jbGit.m.log.branches.updateSelected",
+          "group": "05_log@1",
+          "when": "jbmMenu == 'log.branches' && jbm_updateSelected"
+        },
+        {
+          "command": "jbGit.m.log.branches.push",
+          "group": "05_log@2",
+          "when": "jbmMenu == 'log.branches' && jbm_push"
+        },
+        {
+          "command": "jbGit.m.log.branches.rename",
+          "group": "06_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_rename"
+        },
+        {
+          "command": "jbGit.m.log.branches.delete",
+          "group": "06_log@1",
+          "when": "jbmMenu == 'log.branches' && jbm_delete"
+        },
+        {
+          "command": "jbGit.m.log.branches.markUnmarkAsFavorite",
+          "group": "07_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_markUnmarkAsFavorite"
+        },
+        {
+          "command": "jbGit.m.log.branches.fetch",
+          "group": "08_log@0",
+          "when": "jbmMenu == 'log.branches' && jbm_fetch"
+        },
+        {
+          "command": "jbGit.m.log-console.console.copy",
+          "group": "00_log-console@0",
+          "when": "jbmMenu == 'log-console.console' && jbm_copy"
+        },
+        {
+          "command": "jbGit.m.log-console.console.copyAll",
+          "group": "00_log-console@1",
+          "when": "jbmMenu == 'log-console.console' && jbm_copyAll"
+        },
+        {
+          "command": "jbGit.m.log-console.console.selectAll",
+          "group": "00_log-console@2",
+          "when": "jbmMenu == 'log-console.console' && jbm_selectAll"
+        },
+        {
+          "command": "jbGit.m.log-console.console.softWrap",
+          "group": "01_log-console@0",
+          "when": "jbmMenu == 'log-console.console' && jbm_softWrap"
+        },
+        {
+          "command": "jbGit.m.log-console.console.scrollToEnd",
+          "group": "01_log-console@1",
+          "when": "jbmMenu == 'log-console.console' && jbm_scrollToEnd"
+        },
+        {
+          "command": "jbGit.m.log-console.console.clearAll",
+          "group": "02_log-console@0",
+          "when": "jbmMenu == 'log-console.console' && jbm_clearAll"
+        },
+        {
+          "command": "jbGit.m.log-console.console.openInOutputPanel",
+          "group": "03_log-console@0",
+          "when": "jbmMenu == 'log-console.console' && jbm_openInOutputPanel"
+        },
+        {
+          "command": "jbGit.m.rebase.main.pick",
+          "group": "00_rebase@0",
+          "when": "jbmMenu == 'rebase.main' && jbm_pick"
+        },
+        {
+          "command": "jbGit.m.rebase.main.stopToEdit",
+          "group": "00_rebase@1",
+          "when": "jbmMenu == 'rebase.main' && jbm_stopToEdit"
+        },
+        {
+          "command": "jbGit.m.rebase.main.reword",
+          "group": "00_rebase@2",
+          "when": "jbmMenu == 'rebase.main' && jbm_reword"
+        },
+        {
+          "command": "jbGit.m.rebase.main.squash",
+          "group": "00_rebase@3",
+          "when": "jbmMenu == 'rebase.main' && jbm_squash"
+        },
+        {
+          "command": "jbGit.m.rebase.main.fixup",
+          "group": "00_rebase@4",
+          "when": "jbmMenu == 'rebase.main' && jbm_fixup"
+        },
+        {
+          "command": "jbGit.m.rebase.main.drop",
+          "group": "00_rebase@5",
+          "when": "jbmMenu == 'rebase.main' && jbm_drop"
+        },
+        {
+          "command": "jbGit.m.rebase.main.viewGitCommands",
+          "group": "01_rebase@0",
+          "when": "jbmMenu == 'rebase.main' && jbm_viewGitCommands"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.showFileAtRevision",
+          "group": "00_repo-at-revision@0",
+          "when": "jbmMenu == 'repo-at-revision.main' && jbm_showFileAtRevision"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.compareWithLocal",
+          "group": "00_repo-at-revision@1",
+          "when": "jbmMenu == 'repo-at-revision.main' && jbm_compareWithLocal"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.showHistory",
+          "group": "01_repo-at-revision@0",
+          "when": "jbmMenu == 'repo-at-revision.main' && jbm_showHistory"
+        },
+        {
+          "command": "jbGit.m.repo-at-revision.main.copyPath",
+          "group": "01_repo-at-revision@1",
+          "when": "jbmMenu == 'repo-at-revision.main' && jbm_copyPath"
+        }
+      ],
+      "jbGit.m.log.commits.checkout.menu": [
+        {
+          "command": "jbGit.m.log.commits.checkout_branch",
+          "group": "00_log@0",
+          "when": "jbmMenu == 'log.commits' && jbm_checkout_branch"
+        },
+        {
+          "command": "jbGit.m.log.commits.checkout_revision",
+          "group": "00_log@1",
+          "when": "jbmMenu == 'log.commits' && jbm_checkout_revision"
+        }
+      ],
+      "jbGit.m.log.files.copyPathReference.menu": [
+        {
+          "command": "jbGit.m.log.files.copyPathReference_absolutePath",
+          "group": "00_log@0",
+          "when": "jbmMenu == 'log.files' && jbm_copyPathReference_absolutePath"
+        },
+        {
+          "command": "jbGit.m.log.files.copyPathReference_pathFromRepositoryRoot",
+          "group": "00_log@1",
+          "when": "jbmMenu == 'log.files' && jbm_copyPathReference_pathFromRepositoryRoot"
+        },
+        {
+          "command": "jbGit.m.log.files.copyPathReference_fileName",
+          "group": "00_log@2",
+          "when": "jbmMenu == 'log.files' && jbm_copyPathReference_fileName"
         }
       ]
     },
@@ -2223,29 +3381,6 @@
         "when": "isMac && jbGit.active && !terminalFocus"
       },
       {
-        "command": "jbGit.commit.focus",
-        "key": "ctrl+k",
-        "mac": "cmd+k",
-        "when": "jbGit.active && !editorTextFocus && !terminalFocus"
-      },
-      {
-        "command": "jbGit.commit.commitAndPush",
-        "key": "ctrl+alt+k",
-        "mac": "cmd+alt+k",
-        "when": "jbGit.active && !terminalFocus && focusedView != 'jbGit.commitView'"
-      },
-      {
-        "command": "jbGit.updateProject",
-        "key": "ctrl+t",
-        "mac": "cmd+t",
-        "when": "jbGit.active && !editorTextFocus && !terminalFocus && focusedView != 'jbGit.commitView'"
-      },
-      {
-        "command": "jbGit.vcsOperations",
-        "key": "alt+`",
-        "when": "!isMac && jbGit.active && !terminalFocus"
-      },
-      {
         "command": "jbGit.diff.nextChange",
         "key": "ctrl+alt+shift+down",
         "mac": "ctrl+alt+shift+down",
@@ -2256,34 +3391,9 @@
         "key": "ctrl+alt+shift+up",
         "mac": "ctrl+alt+shift+up",
         "when": "editorTextFocus && resourceScheme == file"
-      },
-      {
-        "command": "jbGit.push",
-        "key": "ctrl+shift+k",
-        "mac": "cmd+shift+k",
-        "when": "jbGit.active && !editorTextFocus && !terminalFocus"
       }
     ],
     "views": {
-      "jbGitCommit": [
-        {
-          "type": "webview",
-          "id": "jbGit.commitView",
-          "name": "Commit"
-        },
-        {
-          "type": "webview",
-          "id": "jbGit.stashView",
-          "name": "Stash",
-          "when": "jbGit.hasStashes"
-        },
-        {
-          "type": "webview",
-          "id": "jbGit.shelfView",
-          "name": "Shelf",
-          "when": "jbGit.hasShelves"
-        }
-      ],
       "jbGitPanel": [
         {
           "type": "webview",

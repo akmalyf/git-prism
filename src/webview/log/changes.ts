@@ -380,7 +380,7 @@ export class ChangesPanel {
       },
     ];
     if (this.result?.merge || opts.showChangesToParents) items.push('-', { label: 'Show Changes to Parents', checked: opts.showChangesToParents, run: () => this.host.setOption({ showChangesToParents: !opts.showChangesToParents }) });
-    showContextMenu(items, x, y);
+    showContextMenu(items, x, y, { section: 'files' });
   }
 
   focus(): void {

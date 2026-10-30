@@ -66,6 +66,7 @@ const configs = [
     target: 'chrome120',
     minify: !watch,
     loader: { '.css': 'text' },
+    define: { __JB_BUNDLE__: JSON.stringify(name) },
   })),
 ];
 

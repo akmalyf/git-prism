@@ -1,0 +1,11 @@
+{
+  "main": [
+    { "id": "showDiff", "title": "Show Diff" },
+    { "id": "compareWithLocal", "title": "Compare with Local" },
+    { "id": "showFileAtRevision", "title": "Show File at Revision" },
+    "-",
+    { "id": "showInGitLog", "title": "Show in Git Log" },
+    { "id": "copyRevisionNumber", "title": "Copy Revision Number" },
+    { "id": "copyCommitSubject", "title": "Copy Commit Subject" }
+  ]
+}

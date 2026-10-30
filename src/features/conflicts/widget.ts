@@ -108,7 +108,7 @@ export class OperationWidget implements vscode.Disposable {
     else if (snap.editStop) lines.push('Rebase stopped for editing');
     this.item.tooltip = lines.join('\n');
     this.item.backgroundColor = snap.conflicts ? new vscode.ThemeColor('statusBarItem.warningBackground') : undefined;
-    this.item.show();
+    // not shown: the extension only adds the Git Log and the editor's Git menu (which has the same actions)
   }
 
   /** Quick pick of the ongoing operation's actions (Continue Rebase / Skip Commit / Abort Rebase / Resolve Conflicts…). */

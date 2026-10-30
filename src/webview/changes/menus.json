@@ -1,0 +1,10 @@
+{
+  "main": [
+    { "id": "showDiff", "title": "Show Diff" },
+    { "id": "compareWithLocal", "title": "Compare with Local" },
+    { "id": "get", "title": "Get" },
+    "-",
+    { "id": "showHistory", "title": "Show History" },
+    { "id": "jumpToSource", "title": "Jump to Source" }
+  ]
+}

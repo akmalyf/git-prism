@@ -1,0 +1,9 @@
+{
+  "main": [
+    { "id": "showFileAtRevision", "title": "Show File at Revision" },
+    { "id": "compareWithLocal", "title": "Compare with Local" },
+    "-",
+    { "id": "showHistory", "title": "Show History" },
+    { "id": "copyPath", "title": "Copy Path" }
+  ]
+}

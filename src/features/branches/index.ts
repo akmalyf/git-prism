@@ -1,4 +1,4 @@
-// Branches feature: status bar branch widget, the Git Branches popup and per-ref actions, branch/tag
+// Branches feature: the Git Branches popup and per-ref actions, branch/tag
 // management, remotes, worktrees, clone/init, clean-up and the VCS Operations popup.
 import * as vscode from 'vscode';
 import type { FeatureContext } from '../../core/context';
@@ -11,7 +11,6 @@ import { showBranchesPopup } from './popup';
 import { checkout, checkoutRevision, deleteRef, deleteTag, newBranch, newTag, pickTag, renameBranch } from './ops';
 import { manageRemotes } from './remotes';
 import { checkShallow, cleanupBranches, cloneRepository, copyBranchName, findMergedBranches, initRepository, unshallow, vcsOperations } from './repoTools';
-import { registerStatusBar } from './statusBar';
 import { showWorktrees } from './worktrees';
 
 export function activate(ctx: FeatureContext): void {
@@ -71,7 +70,6 @@ export function activate(ctx: FeatureContext): void {
   reg('jbGit.copyBranchName', withRepo((repo, a) => copyBranchName(repo, a.ref)));
   reg('jbGit.vcsOperations', safe(() => vcsOperations()));
 
-  registerStatusBar(ctx);
 
   // "Shallow repository detected" hint
   const notified = new Set<string>();

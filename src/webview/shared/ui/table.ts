@@ -7,7 +7,7 @@ import { SpeedSearch } from './speedsearch';
 import { matchText } from './match';
 import { emptyState, type EmptyLine } from './empty';
 import { delegateTooltip, type TooltipContent } from './tooltip';
-import { showContextMenu, contextMenuPoint, type MenuItem } from './menu';
+import { showContextMenu, type MenuItem } from './menu';
 import { loadState, saveState } from './persist';
 import { ensureStyles } from './styles';
 
@@ -663,7 +663,6 @@ export class Table<R> {
   }
 
   private onContext(e: MouseEvent): void {
-    e.preventDefault();
     const hit = this.rowAt(e);
     if (hit) {
       const id = this.ids[hit.index];
@@ -710,13 +709,6 @@ export class Table<R> {
       case 'Enter':
         if (lead !== undefined) this.activated.fire({ row: this.rows[lead], index: lead, columnId: undefined, event: e });
         break;
-      case 'F10':
-        if (!e.shiftKey) return;
-        this.keyboardContextMenu(e);
-        break;
-      case 'ContextMenu':
-        this.keyboardContextMenu(e);
-        break;
       case 'a':
       case 'A':
         if (!isCtrlCmd(e)) return;
@@ -727,17 +719,6 @@ export class Table<R> {
     }
     e.preventDefault();
     e.stopPropagation();
-  }
-
-  private keyboardContextMenu(e: KeyboardEvent): void {
-    const lead = this.getLeadIndex();
-    let pt = contextMenuPoint(this.element);
-    if (lead !== undefined) {
-      this.scrollToIndex(lead, 'nearest');
-      const el = this.pool.find((p) => p.el.dataset.index === String(lead) && p.el.style.display !== 'none');
-      if (el) pt = contextMenuPoint(el.el);
-    }
-    this.contextMenu.fire({ rows: this.getSelection(), row: lead !== undefined ? this.rows[lead] : undefined, index: lead, columnId: undefined, x: pt.x, y: pt.y, event: e });
   }
 
   dispose(): void {

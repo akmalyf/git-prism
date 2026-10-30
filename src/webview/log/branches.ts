@@ -68,12 +68,12 @@ export function branchActions(kind: BranchKind, name: string, refs: readonly Bra
   }
   if (kind === 'local') {
     if (!isCurrent) items.push({ label: 'Checkout', run: run('checkout') });
-    items.push({ label: `New Branch from ${qn}…`, run: run('newBranch') });
+    items.push({ id: 'newBranchFromSelected', label: `New Branch from ${qn}…`, run: run('newBranch') });
     if (!isCurrent) {
-      if (!detached) items.push({ label: `Checkout and Rebase onto ${qc}`, run: run('checkoutAndRebase') });
-      items.push('-', { label: `Compare with ${qc}`, run: run('compareWithCurrent') }, { label: 'Show Diff with Working Tree', run: run('showDiffWithWorkingTree') }, '-');
-      if (!detached) items.push({ label: `Rebase ${qc} onto ${qn}`, run: run('rebase') });
-      items.push({ label: `Merge ${qn} into ${qc}`, run: run('merge') });
+      if (!detached) items.push({ id: 'checkoutAndRebase', label: `Checkout and Rebase onto ${qc}`, run: run('checkoutAndRebase') });
+      items.push('-', { id: 'compareWithCurrent', label: `Compare with ${qc}`, run: run('compareWithCurrent') }, { label: 'Show Diff with Working Tree', run: run('showDiffWithWorkingTree') }, '-');
+      if (!detached) items.push({ id: 'rebaseCurrentOntoSelected', label: `Rebase ${qc} onto ${qn}`, run: run('rebase') });
+      items.push({ id: 'mergeIntoCurrent', label: `Merge ${qn} into ${qc}`, run: run('merge') });
     } else items.push('-', { label: 'Show Diff with Working Tree', run: run('showDiffWithWorkingTree') });
     items.push('-');
     if (isCurrent || refs.some((r) => r.item.upstream)) items.push({ label: 'Update', run: run('update') });
@@ -82,18 +82,18 @@ export function branchActions(kind: BranchKind, name: string, refs: readonly Bra
     return items;
   }
   if (kind === 'remote') {
-    items.push({ label: 'Checkout', run: run('checkout') }, { label: `New Branch from ${qn}…`, run: run('newBranch') });
-    if (!detached) items.push({ label: `Checkout and Rebase onto ${qc}`, run: run('checkoutAndRebase') });
-    items.push('-', { label: `Compare with ${qc}`, run: run('compareWithCurrent') }, { label: 'Show Diff with Working Tree', run: run('showDiffWithWorkingTree') }, '-');
-    if (!detached) items.push({ label: `Rebase ${qc} onto ${qn}`, run: run('rebase') });
-    items.push({ label: `Merge ${qn} into ${qc}`, run: run('merge') }, '-');
-    items.push({ label: `Pull into ${qc} Using Rebase`, run: run('pullRebase'), disabled: detached }, { label: `Pull into ${qc} Using Merge`, run: run('pullMerge'), disabled: detached });
+    items.push({ label: 'Checkout', run: run('checkout') }, { id: 'newBranchFromSelected', label: `New Branch from ${qn}…`, run: run('newBranch') });
+    if (!detached) items.push({ id: 'checkoutAndRebase', label: `Checkout and Rebase onto ${qc}`, run: run('checkoutAndRebase') });
+    items.push('-', { id: 'compareWithCurrent', label: `Compare with ${qc}`, run: run('compareWithCurrent') }, { label: 'Show Diff with Working Tree', run: run('showDiffWithWorkingTree') }, '-');
+    if (!detached) items.push({ id: 'rebaseCurrentOntoSelected', label: `Rebase ${qc} onto ${qn}`, run: run('rebase') });
+    items.push({ id: 'mergeIntoCurrent', label: `Merge ${qn} into ${qc}`, run: run('merge') }, '-');
+    items.push({ id: 'pullRebase', label: `Pull into ${qc} Using Rebase`, run: run('pullRebase'), disabled: detached }, { id: 'pullMerge', label: `Pull into ${qc} Using Merge`, run: run('pullMerge'), disabled: detached });
     items.push('-', { label: 'Delete', run: run('delete') });
     return items;
   }
-  items.push({ label: 'Checkout', run: run('checkout') }, { label: `New Branch from ${qn}…`, run: run('newBranch') }, '-');
-  items.push({ label: `Compare with ${qc}`, run: run('compareWithCurrent') }, { label: 'Show Diff with Working Tree', run: run('showDiffWithWorkingTree') }, '-');
-  items.push({ label: `Merge ${qn} into ${qc}`, run: run('merge') }, '-', { label: 'Delete', run: run('deleteTag') });
+  items.push({ label: 'Checkout', run: run('checkout') }, { id: 'newBranchFromSelected', label: `New Branch from ${qn}…`, run: run('newBranch') }, '-');
+  items.push({ id: 'compareWithCurrent', label: `Compare with ${qc}`, run: run('compareWithCurrent') }, { label: 'Show Diff with Working Tree', run: run('showDiffWithWorkingTree') }, '-');
+  items.push({ id: 'mergeIntoCurrent', label: `Merge ${qn} into ${qc}`, run: run('merge') }, '-', { label: 'Delete', run: run('deleteTag') });
   return items;
 }
 
@@ -289,7 +289,7 @@ export class BranchesPanel {
       if (!remote) return;
       items = [{ label: 'Fetch', icon: 'repo-fetch', run: () => void Promise.all((remote.data!.roots ?? []).map((r) => refOp('fetch', r))) }];
     }
-    showContextMenu(items, x, y);
+    showContextMenu(items, x, y, { section: 'branches' });
   }
 
   dispose(): void {

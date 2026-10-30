@@ -1,0 +1,9 @@
+{
+  "main": [
+    { "id": "acceptYours", "title": "Accept Yours" },
+    { "id": "acceptTheirs", "title": "Accept Theirs" },
+    { "id": "merge", "title": "Merge…" },
+    "-",
+    { "id": "openInEditor", "title": "Open in Editor" }
+  ]
+}
