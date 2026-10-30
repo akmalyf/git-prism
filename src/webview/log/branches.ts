@@ -31,6 +31,8 @@ export interface BranchesHost {
 
 interface PaneSettings {
   singleClick: 'navigate' | 'filter';
+  /** the user picked the single-click behavior (older saved states predate the 'filter' default) */
+  singleClickChosen?: boolean;
   groupByDirectory: boolean;
   groupByRepository: boolean;
   showTags: boolean;
@@ -107,7 +109,9 @@ export class BranchesPanel {
   private suppressSelect = 0;
 
   constructor(private readonly host: BranchesHost) {
-    this.settings = { singleClick: 'navigate', groupByDirectory: true, groupByRepository: false, showTags: true, ...viewState.get<Partial<PaneSettings>>('log.branchesPane', {}) };
+    const saved = viewState.get<Partial<PaneSettings>>('log.branchesPane', {});
+    if (!saved.singleClickChosen) delete saved.singleClick;
+    this.settings = { singleClick: 'filter', groupByDirectory: true, groupByRepository: false, showTags: true, ...saved };
     this.toolbar = new Toolbar(null, { orientation: 'vertical', items: [], ariaLabel: 'Branches toolbar', className: 'lg-branches-toolbar' });
     this.search = new SearchField(null, { placeholder: 'Branch or tag', ariaLabel: 'Git branches search' });
     this.search.element.classList.add('lg-branches-search');
@@ -192,8 +196,8 @@ export class BranchesPanel {
         tooltip: 'Branches Pane Settings',
         dropdown: () => [
           { header: 'On Single Click' },
-          { label: 'Update Branch Filter', radio: true, checked: s.singleClick === 'filter', run: () => this.setPane({ singleClick: 'filter' }) },
-          { label: 'Navigate Log to Branch Head', radio: true, checked: s.singleClick === 'navigate', run: () => this.setPane({ singleClick: 'navigate' }) },
+          { label: 'Update Branch Filter', radio: true, checked: s.singleClick === 'filter', run: () => this.setPane({ singleClick: 'filter', singleClickChosen: true }) },
+          { label: 'Navigate Log to Branch Head', radio: true, checked: s.singleClick === 'navigate', run: () => this.setPane({ singleClick: 'navigate', singleClickChosen: true }) },
           '-',
           { label: 'Group by Directory', checked: s.groupByDirectory, run: () => this.setPane({ groupByDirectory: !s.groupByDirectory }) },
           ...(infos.length > 1 ? [{ label: 'Group by Repository', checked: s.groupByRepository, run: () => this.setPane({ groupByRepository: !s.groupByRepository }) }] : []),
