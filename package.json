@@ -1326,7 +1326,7 @@
             "Topologically: in case of merge, show incoming commits first, directly below merge commit",
             "By Commit Date: sort commits topologically and by commit date"
           ],
-          "default": "topological",
+          "default": "date",
           "description": "Git Log: commit sort order."
         },
         "jbGit.log.firstParent": {

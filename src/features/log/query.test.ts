@@ -22,7 +22,7 @@ import { colorName, headPriority, isDefaultFavorite, labelsByHash } from './refs
 const base: QuerySpec = { sort: 'topological', firstParent: false, hasHead: true, authors: [], paths: [], history: false, limit: 0 };
 
 test('rev-list args: defaults', () => {
-  assert.deepEqual(revListArgs(base), ['rev-list', '--timestamp', '--parents', '--topo-order', '--branches', '--remotes', '--tags', 'HEAD', '--']);
+  assert.deepEqual(revListArgs(base), ['rev-list', '--timestamp', '--parents', '--date-order', '--branches', '--remotes', '--tags', 'HEAD', '--']);
   assert.deepEqual(revListArgs({ ...base, hasHead: false, sort: 'date', limit: 100 }), [
     'rev-list', '--timestamp', '--parents', '--date-order', '--max-count=100', '--branches', '--remotes', '--tags', '--',
   ]);
@@ -31,7 +31,7 @@ test('rev-list args: defaults', () => {
 test('rev-list args: filters', () => {
   const a = revListArgs({ ...base, refs: ['refs/heads/main', 'HEAD'], text: 'fix (bug)', since: 10, until: 20.5, paths: ['src/a.ts'], firstParent: true });
   assert.deepEqual(a, [
-    'rev-list', '--timestamp', '--parents', '--topo-order', '--first-parent', '--since=@10', '--until=@20',
+    'rev-list', '--timestamp', '--parents', '--date-order', '--first-parent', '--since=@10', '--until=@20',
     '--fixed-strings', '--regexp-ignore-case', '--grep=fix (bug)', 'refs/heads/main', 'HEAD', '--', 'src/a.ts',
   ]);
   const b = revListArgs({ ...base, text: 'fix (bug)', authors: ['^Bob <'], matchCase: true });

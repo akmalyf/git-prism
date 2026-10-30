@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import type { LogColumn, LogSettingKey, LogSettings } from './protocol';
 
 export const DEFAULT_SETTINGS: LogSettings = {
-  sortType: 'topological',
+  sortType: 'date',
   firstParent: false,
   showLongEdges: false,
   columns: ['author', 'subject', 'date'],

@@ -17,7 +17,8 @@ import {
   rowMatcher,
   type Topology,
 } from './query';
-import { colorName, headPriority, isDefaultFavorite, labelsByHash } from './refs';
+import { bestLayoutRef, compareLayoutRefs, dateTopoOrder, intelliSort, type HeadRef } from './intellisort';
+import { colorName, isDefaultFavorite, labelsByHash } from './refs';
 
 /** commits loaded first; loadMore() adds MORE_PAGE more each time */
 export const FIRST_PAGE = 20000;
@@ -175,10 +176,9 @@ export class LogData {
       for (let j = 0; j < count; j++) parentRows.push(map.get(ps[j]) ?? -1);
     }
     parentStart[n] = parentRows.length;
-    // layout priority: HEAD of every root first, then branch heads
+    // layout priority: branch heads in IntelliJ's HeadCommitsComparator order (childless rows follow in row order)
     const headOrder: number[] = [];
-    for (const r of visible) if (r.info.head) headOrder.push(rowOf[r.info.index].get(r.info.head) ?? -1);
-    for (const r of visible) for (const h of headPriority(r.labels, r.info.head)) headOrder.push(rowOf[r.info.index].get(h) ?? -1);
+    for (const r of visible) for (const h of branchHeadOrder(r.refs, r.info.head)) headOrder.push(rowOf[r.info.index].get(h) ?? -1);
     const graph = new CommitGraph({
       count: n,
       parentStart,
@@ -274,6 +274,7 @@ export class LogData {
         topo = parseRevList((await repo.run(['rev-list', '--no-walk=sorted', '--timestamp', '--parents', '--stdin'], { quiet: true, input: all })).stdout);
       }
     }
+    if (!isStructureChanging(filters)) topo = sortTopology(topo, settings.sortType === 'topological' ? headRefsByHash(refs, head) : undefined);
     data.topo = topo;
     return data;
   }
@@ -502,4 +503,40 @@ async function hashCandidates(repo: Repository, words: string[]): Promise<string
     .map((l) => l.split(' '))
     .filter((f) => f[1] === 'commit')
     .map((f) => f[0]);
+}
+
+/** All refs of each commit for IntelliJ's head comparator (branches, tags and HEAD). */
+function headRefsByHash(refs: readonly Ref[], head: string | undefined): Map<string, HeadRef[]> {
+  const map = new Map<string, HeadRef[]>();
+  const add = (hash: string, r: HeadRef) => {
+    const list = map.get(hash);
+    if (list) list.push(r);
+    else map.set(hash, [r]);
+  };
+  if (head) add(head, { name: 'HEAD', kind: 'HEAD' });
+  for (const r of refs) {
+    const kind = r.type === 'head' ? 'local' : r.type === 'remote' ? 'remote' : r.type === 'tag' ? 'tag' : undefined;
+    if (kind) add(r.hash, { name: r.short, kind });
+  }
+  return map;
+}
+
+/** Commits of branches (and HEAD), most important first (GraphLayoutBuilder head order). */
+function branchHeadOrder(refs: readonly Ref[], head: string | undefined): string[] {
+  const byHash = headRefsByHash(refs, head);
+  const heads = [...byHash.entries()].filter(([, rs]) => rs.some((r) => r.kind !== 'tag'));
+  const best = new Map(heads.map(([h, rs]) => [h, bestLayoutRef(rs)!]));
+  return heads.map(([h]) => h).sort((a, b) => {
+    const x = best.get(a)!;
+    const y = best.get(b)!;
+    return compareLayoutRefs(x, y);
+  });
+}
+
+/** Reorders one repository's commits like PhpStorm: IntelliSort with `refs`, else its date order ("Off"). */
+function sortTopology(topo: Topology, refs: ReadonlyMap<string, HeadRef[]> | undefined): Topology {
+  const index = new Map(topo.hashes.map((h, i) => [h, i]));
+  const g = { parents: topo.parents.map((ps) => ps.map((p) => index.get(p) ?? -1)), times: topo.times };
+  const order = refs ? intelliSort(g, (c) => refs.get(topo.hashes[c]) ?? []) : dateTopoOrder(g);
+  return { hashes: order.map((i) => topo.hashes[i]), parents: order.map((i) => topo.parents[i]), times: order.map((i) => topo.times[i]) };
 }

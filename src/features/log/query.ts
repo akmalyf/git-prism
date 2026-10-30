@@ -74,7 +74,8 @@ export function authorPatterns(users: readonly string[], me: UserIdentity): stri
 
 /** Arguments of `git rev-list` printing "<commit time> <hash> <parents…>" lines in table order. */
 export function revListArgs(q: QuerySpec): string[] {
-  const args = ['rev-list', '--timestamp', '--parents', q.sort === 'date' ? '--date-order' : '--topo-order'];
+  // both orders load the newest commits by date; 'topological' is then reordered by IntelliSort (intellisort.ts)
+  const args = ['rev-list', '--timestamp', '--parents', '--date-order'];
   if (q.firstParent) args.push('--first-parent');
   if (q.limit > 0) args.push(`--max-count=${q.limit}`);
   if (q.since) args.push(`--since=@${Math.floor(q.since)}`);
