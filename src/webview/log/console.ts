@@ -17,7 +17,8 @@ export class ConsolePane {
   private lastId = 0;
   private softWrap = viewState.get('console.softWrap', false);
   private scrollToEnd = viewState.get('console.scrollToEnd', true);
-  private expanded = viewState.get('console.expanded', false);
+  /** always starts collapsed */
+  private expanded = false;
   private height = viewState.get('console.height', 180);
   private loaded = false;
 
@@ -74,7 +75,6 @@ export class ConsolePane {
 
   setExpanded(v: boolean): void {
     this.expanded = v;
-    viewState.set('console.expanded', v);
     this.apply();
     if (v) {
       void this.load();

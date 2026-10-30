@@ -105,7 +105,7 @@ function buildLevel(leaves: Leaf[], o: BranchTreeOptions, idPrefix: string): Nod
       const path = base ? `${base}/${seg}` : seg;
       items.push({
         key: seg,
-        node: () => ({ id: `${idPrefix}folder:${path}`, label: seg, icon: 'folder', searchText: seg, data: { group: 'folder', value: path }, children: convert(sub, path) }),
+        node: () => ({ id: `${idPrefix}folder:${path}`, label: seg, icon: 'folder:', searchText: seg, data: { group: 'folder', value: path }, children: convert(sub, path) }),
       });
     }
     for (const l of rest) items.push({ key: l.path.slice(l.path.lastIndexOf('/') + 1), node: () => leafNode(l, l.path.slice(l.path.lastIndexOf('/') + 1), idPrefix) });
@@ -155,7 +155,7 @@ export function buildBranchTree(infos: readonly RefsInfo[], o: BranchTreeOptions
   }
 
   const local = repoWrap('local', (list, prefix) => buildLevel(collect(list, (r) => r.local, 'local', o), o, prefix));
-  if (local.length) out.push({ id: 'local', label: 'Local', icon: 'folder', data: { group: 'section', value: 'local' }, children: local, expanded: true });
+  if (local.length) out.push({ id: 'local', label: 'Local', icon: 'folder:', data: { group: 'section', value: 'local' }, children: local, expanded: true });
 
   const remote = repoWrap('remote', (list, prefix) => {
     const remotes = new Map<string, Leaf[]>();
@@ -176,11 +176,11 @@ export function buildBranchTree(infos: readonly RefsInfo[], o: BranchTreeOptions
         children: buildLevel(leaves, o, `${prefix}${rn}/`),
       }));
   });
-  if (remote.length) out.push({ id: 'remote', label: 'Remote', icon: 'folder', data: { group: 'section', value: 'remote' }, children: remote });
+  if (remote.length) out.push({ id: 'remote', label: 'Remote', icon: 'folder:', data: { group: 'section', value: 'remote' }, children: remote });
 
   if (o.showTags) {
     const tags = repoWrap('tags', (list, prefix) => buildLevel(collect(list, (r) => r.tags, 'tag', o), o, prefix));
-    if (tags.length) out.push({ id: 'tags', label: 'Tags', icon: 'folder', data: { group: 'section', value: 'tags' }, children: tags, expanded: false });
+    if (tags.length) out.push({ id: 'tags', label: 'Tags', icon: 'folder:', data: { group: 'section', value: 'tags' }, children: tags, expanded: false });
   }
   return out;
 }
