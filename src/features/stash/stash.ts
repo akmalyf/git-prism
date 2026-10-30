@@ -1,4 +1,4 @@
-// Stash model (stashes of every repository, `jbGit.hasStashes`) and the stash operations with IntelliJ's
+// Stash model (stashes of every repository, `gitPrism.hasStashes`) and the stash operations with IntelliJ's
 // confirmations and notifications: Stash Changes… / Stash Silently, Unstash Changes… dialog, Apply / Pop / Drop /
 // Clear / Unstash…, Show Diff and the file actions of the Stash view.
 import * as vscode from 'vscode';
@@ -59,7 +59,7 @@ export class StashModel implements vscode.Disposable {
         if (json !== this.last) {
           this.last = json;
           this.repos = repos;
-          void vscode.commands.executeCommand('setContext', 'jbGit.hasStashes', repos.some((r) => r.stashes.length > 0));
+          void vscode.commands.executeCommand('setContext', 'gitPrism.hasStashes', repos.some((r) => r.stashes.length > 0));
           this._onDidChange.fire();
         }
       } while (this.again);
@@ -227,10 +227,10 @@ export class StashActions {
         vscode.window.showInformationMessage('Stash successfully applied');
         return true;
       case 'conflict': {
-        void invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+        void invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
         vscode.window
           .showWarningMessage('Conflicts were not resolved during unstash: Unstash is not complete, you have unresolved merges in your working tree.', 'Resolve conflicts…')
-          .then((p) => p && invoke('jbGit.conflicts.resolve', { repoRoot: repo.root }));
+          .then((p) => p && invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root }));
         return true;
       }
       case 'index-conflict':
@@ -323,7 +323,7 @@ export class StashActions {
         vscode.window.showInformationMessage(`${s.ref} contains no changes`);
         return;
       }
-      await invoke('jbGit.diff.show', { title: title ?? `${s.ref}: ${s.message}`, files: list.map((f) => this.diffFile(repo, s, f)), index, beside });
+      await invoke('gitPrism.diff.show', { title: title ?? `${s.ref}: ${s.message}`, files: list.map((f) => this.diffFile(repo, s, f)), index, beside });
     } catch (e) {
       showGitError(e, 'Cannot Show Diff');
     }
@@ -355,7 +355,7 @@ export class StashActions {
               : f.kind === 'D' ? { empty: true as const } : { rev: rev(f), path: f.path };
             return { repoRoot: repo.root, path: f.path, kind: f.kind, left, right: { worktree: true, path: f.path }, leftTitle: before ? short(hash) : s.ref, rightTitle: 'Your version' };
           });
-          await invoke('jbGit.diff.show', { files: diffs, index: 0 });
+          await invoke('gitPrism.diff.show', { files: diffs, index: 0 });
           break;
         }
         case 'editSource':
@@ -368,7 +368,7 @@ export class StashActions {
           }
           break;
         case 'openRevision':
-          for (const f of files) if (f.kind !== 'D') await invoke('jbGit.openFileAtRevision', { repoRoot: repo.root, path: f.path, rev: rev(f) });
+          for (const f of files) if (f.kind !== 'D') await invoke('gitPrism.openFileAtRevision', { repoRoot: repo.root, path: f.path, rev: rev(f) });
           break;
         case 'cherryPick': {
           const patch = await ops.stashPatch(repo, hash, files);

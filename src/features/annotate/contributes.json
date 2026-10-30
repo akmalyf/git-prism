@@ -1,468 +1,468 @@
 {
   "commands": [
     {
-      "command": "jbGit.annotate.toggle",
+      "command": "gitPrism.annotate.toggle",
       "title": "Annotate with Git Blame",
       "category": "Git",
       "icon": "$(git-commit)"
     },
     {
-      "command": "jbGit.annotate.close",
+      "command": "gitPrism.annotate.close",
       "title": "Close Annotations",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.revision",
+      "command": "gitPrism.annotate.revision",
       "title": "Annotate Revision",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.currentRevision",
+      "command": "gitPrism.annotate.currentRevision",
       "title": "Annotate Revision",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.previous",
+      "command": "gitPrism.annotate.previous",
       "title": "Annotate Previous Revision",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.previousRevision",
+      "command": "gitPrism.annotate.previousRevision",
       "title": "Annotate Previous Revision",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.showDiff",
+      "command": "gitPrism.annotate.showDiff",
       "title": "Show Diff",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.showAffectedFiles",
+      "command": "gitPrism.annotate.showAffectedFiles",
       "title": "Show Affected Files",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.showCommitInLog",
+      "command": "gitPrism.annotate.showCommitInLog",
       "title": "Show in Git Log",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.copyRevision",
+      "command": "gitPrism.annotate.copyRevision",
       "title": "Copy Revision Number",
       "category": "Git"
     },
     {
-      "command": "jbGit.annotate.view.revision",
+      "command": "gitPrism.annotate.view.revision",
       "title": "Revision",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.showRevision"
+      "toggled": "config.gitPrism.annotate.showRevision"
     },
     {
-      "command": "jbGit.annotate.view.date",
+      "command": "gitPrism.annotate.view.date",
       "title": "Date",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.showDate"
+      "toggled": "config.gitPrism.annotate.showDate"
     },
     {
-      "command": "jbGit.annotate.view.author",
+      "command": "gitPrism.annotate.view.author",
       "title": "Author",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.showAuthor"
+      "toggled": "config.gitPrism.annotate.showAuthor"
     },
     {
-      "command": "jbGit.annotate.view.subject",
+      "command": "gitPrism.annotate.view.subject",
       "title": "Commit Subject",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.showSubject"
+      "toggled": "config.gitPrism.annotate.showSubject"
     },
     {
-      "command": "jbGit.annotate.names.initials",
+      "command": "gitPrism.annotate.names.initials",
       "title": "Initials",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.names == 'initials'"
+      "toggled": "config.gitPrism.annotate.names == 'initials'"
     },
     {
-      "command": "jbGit.annotate.names.lastName",
+      "command": "gitPrism.annotate.names.lastName",
       "title": "Last Name",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.names == 'lastName'"
+      "toggled": "config.gitPrism.annotate.names == 'lastName'"
     },
     {
-      "command": "jbGit.annotate.names.firstName",
+      "command": "gitPrism.annotate.names.firstName",
       "title": "First Name",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.names == 'firstName'"
+      "toggled": "config.gitPrism.annotate.names == 'firstName'"
     },
     {
-      "command": "jbGit.annotate.names.fullName",
+      "command": "gitPrism.annotate.names.fullName",
       "title": "Full Name",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.names == 'fullName'"
+      "toggled": "config.gitPrism.annotate.names == 'fullName'"
     },
     {
-      "command": "jbGit.annotate.names.email",
+      "command": "gitPrism.annotate.names.email",
       "title": "Email",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.names == 'email'"
+      "toggled": "config.gitPrism.annotate.names == 'email'"
     },
     {
-      "command": "jbGit.annotate.colors.order",
+      "command": "gitPrism.annotate.colors.order",
       "title": "Order",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.colors == 'order'"
+      "toggled": "config.gitPrism.annotate.colors == 'order'"
     },
     {
-      "command": "jbGit.annotate.colors.author",
+      "command": "gitPrism.annotate.colors.author",
       "title": "Author",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.colors == 'author'"
+      "toggled": "config.gitPrism.annotate.colors == 'author'"
     },
     {
-      "command": "jbGit.annotate.colors.hide",
+      "command": "gitPrism.annotate.colors.hide",
       "title": "Hide",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.colors == 'hide'"
+      "toggled": "config.gitPrism.annotate.colors == 'hide'"
     },
     {
-      "command": "jbGit.annotate.option.ignoreWhitespaces",
+      "command": "gitPrism.annotate.option.ignoreWhitespaces",
       "title": "Ignore Whitespaces",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.ignoreWhitespaces"
+      "toggled": "config.gitPrism.annotate.ignoreWhitespaces"
     },
     {
-      "command": "jbGit.annotate.option.detectWithinFile",
+      "command": "gitPrism.annotate.option.detectWithinFile",
       "title": "Detect Movements Within File",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.detectMovements == 'inner' || config.jbGit.annotate.detectMovements == 'outer'"
+      "toggled": "config.gitPrism.annotate.detectMovements == 'inner' || config.gitPrism.annotate.detectMovements == 'outer'"
     },
     {
-      "command": "jbGit.annotate.option.detectAcrossFiles",
+      "command": "gitPrism.annotate.option.detectAcrossFiles",
       "title": "Detect Movements Across Files",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.detectMovements == 'outer'"
+      "toggled": "config.gitPrism.annotate.detectMovements == 'outer'"
     },
     {
-      "command": "jbGit.annotate.option.commitTimestamp",
+      "command": "gitPrism.annotate.option.commitTimestamp",
       "title": "Show Commit Timestamp",
       "category": "Git",
-      "toggled": "config.jbGit.annotate.preferCommitTimestamp"
+      "toggled": "config.gitPrism.annotate.preferCommitTimestamp"
     },
     {
-      "command": "jbGit.rollbackLines",
+      "command": "gitPrism.rollbackLines",
       "title": "Rollback Lines",
       "category": "Git"
     },
     {
-      "command": "jbGit.showDiffForLines",
+      "command": "gitPrism.showDiffForLines",
       "title": "Show Diff for Lines",
       "category": "Git"
     },
     {
-      "command": "jbGit.copyHunkOriginal",
+      "command": "gitPrism.copyHunkOriginal",
       "title": "Copy Original Lines",
       "category": "Git"
     }
   ],
   "submenus": [
     {
-      "id": "jbGit.annotate.viewMenu",
+      "id": "gitPrism.annotate.viewMenu",
       "label": "View"
     },
     {
-      "id": "jbGit.annotate.namesMenu",
+      "id": "gitPrism.annotate.namesMenu",
       "label": "Names"
     },
     {
-      "id": "jbGit.annotate.colorsMenu",
+      "id": "gitPrism.annotate.colorsMenu",
       "label": "Colors"
     },
     {
-      "id": "jbGit.annotate.optionsMenu",
+      "id": "gitPrism.annotate.optionsMenu",
       "label": "Options"
     }
   ],
   "menus": {
     "commandPalette": [
       {
-        "command": "jbGit.annotate.option.commitTimestamp",
+        "command": "gitPrism.annotate.option.commitTimestamp",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.revision",
+        "command": "gitPrism.annotate.revision",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.previous",
+        "command": "gitPrism.annotate.previous",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.view.revision",
+        "command": "gitPrism.annotate.view.revision",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.view.date",
+        "command": "gitPrism.annotate.view.date",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.view.author",
+        "command": "gitPrism.annotate.view.author",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.view.subject",
+        "command": "gitPrism.annotate.view.subject",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.names.initials",
+        "command": "gitPrism.annotate.names.initials",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.names.lastName",
+        "command": "gitPrism.annotate.names.lastName",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.names.firstName",
+        "command": "gitPrism.annotate.names.firstName",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.names.fullName",
+        "command": "gitPrism.annotate.names.fullName",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.names.email",
+        "command": "gitPrism.annotate.names.email",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.colors.order",
+        "command": "gitPrism.annotate.colors.order",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.colors.author",
+        "command": "gitPrism.annotate.colors.author",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.colors.hide",
+        "command": "gitPrism.annotate.colors.hide",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.option.ignoreWhitespaces",
+        "command": "gitPrism.annotate.option.ignoreWhitespaces",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.option.detectWithinFile",
+        "command": "gitPrism.annotate.option.detectWithinFile",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.option.detectAcrossFiles",
+        "command": "gitPrism.annotate.option.detectAcrossFiles",
         "when": "false"
       },
       {
-        "command": "jbGit.annotate.toggle",
-        "when": "editorIsOpen && !jbGit.annotate.active"
+        "command": "gitPrism.annotate.toggle",
+        "when": "editorIsOpen && !gitPrism.annotate.active"
       },
       {
-        "command": "jbGit.annotate.close",
-        "when": "jbGit.annotate.active"
+        "command": "gitPrism.annotate.close",
+        "when": "gitPrism.annotate.active"
       },
       {
-        "command": "jbGit.annotate.previousRevision",
-        "when": "jbGit.annotate.active"
+        "command": "gitPrism.annotate.previousRevision",
+        "when": "gitPrism.annotate.active"
       },
       {
-        "command": "jbGit.annotate.showDiff",
-        "when": "jbGit.annotate.active"
+        "command": "gitPrism.annotate.showDiff",
+        "when": "gitPrism.annotate.active"
       },
       {
-        "command": "jbGit.annotate.showAffectedFiles",
-        "when": "jbGit.annotate.active"
+        "command": "gitPrism.annotate.showAffectedFiles",
+        "when": "gitPrism.annotate.active"
       },
       {
-        "command": "jbGit.annotate.showCommitInLog",
-        "when": "jbGit.annotate.active"
+        "command": "gitPrism.annotate.showCommitInLog",
+        "when": "gitPrism.annotate.active"
       },
       {
-        "command": "jbGit.annotate.copyRevision",
-        "when": "jbGit.annotate.active"
+        "command": "gitPrism.annotate.copyRevision",
+        "when": "gitPrism.annotate.active"
       },
       {
-        "command": "jbGit.rollbackLines",
+        "command": "gitPrism.rollbackLines",
         "when": "editorIsOpen && resourceScheme == file"
       },
       {
-        "command": "jbGit.showDiffForLines",
+        "command": "gitPrism.showDiffForLines",
         "when": "editorIsOpen && resourceScheme == file"
       },
       {
-        "command": "jbGit.copyHunkOriginal",
+        "command": "gitPrism.copyHunkOriginal",
         "when": "editorIsOpen && resourceScheme == file"
       },
       {
-        "command": "jbGit.annotate.currentRevision",
-        "when": "jbGit.annotate.active"
+        "command": "gitPrism.annotate.currentRevision",
+        "when": "gitPrism.annotate.active"
       }
     ],
     "editor/lineNumber/context": [
       {
-        "command": "jbGit.annotate.toggle",
+        "command": "gitPrism.annotate.toggle",
         "group": "1_annotate@1",
-        "when": "!(resourcePath in jbGit.annotate.paths) && (resourceScheme == file || resourceScheme == jbgit-rev || resourceScheme == jbgit-annotate)"
+        "when": "!(resourcePath in gitPrism.annotate.paths) && (resourceScheme == file || resourceScheme == gitprism-rev || resourceScheme == gitprism-annotate)"
       },
       {
-        "command": "jbGit.annotate.showDiff",
+        "command": "gitPrism.annotate.showDiff",
         "group": "1_annotate@1",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "submenu": "jbGit.annotate.viewMenu",
+        "submenu": "gitPrism.annotate.viewMenu",
         "group": "1_annotate@2",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "command": "jbGit.annotate.copyRevision",
+        "command": "gitPrism.annotate.copyRevision",
         "group": "1_annotate@3",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "command": "jbGit.annotate.currentRevision",
+        "command": "gitPrism.annotate.currentRevision",
         "group": "2_revision@1",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "command": "jbGit.annotate.previousRevision",
+        "command": "gitPrism.annotate.previousRevision",
         "group": "2_revision@2",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "submenu": "jbGit.annotate.optionsMenu",
+        "submenu": "gitPrism.annotate.optionsMenu",
         "group": "3_extensions@1",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "command": "jbGit.annotate.showAffectedFiles",
+        "command": "gitPrism.annotate.showAffectedFiles",
         "group": "3_extensions@2",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "command": "jbGit.annotate.showCommitInLog",
+        "command": "gitPrism.annotate.showCommitInLog",
         "group": "3_extensions@3",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "command": "jbGit.annotate.close",
+        "command": "gitPrism.annotate.close",
         "group": "4_close@1",
-        "when": "resourcePath in jbGit.annotate.paths"
+        "when": "resourcePath in gitPrism.annotate.paths"
       },
       {
-        "command": "jbGit.rollbackLines",
+        "command": "gitPrism.rollbackLines",
         "group": "5_changes@1",
         "when": "resourceScheme == file && !editorReadonly"
       },
       {
-        "command": "jbGit.showDiffForLines",
+        "command": "gitPrism.showDiffForLines",
         "group": "5_changes@2",
         "when": "resourceScheme == file"
       },
       {
-        "command": "jbGit.copyHunkOriginal",
+        "command": "gitPrism.copyHunkOriginal",
         "group": "5_changes@3",
         "when": "resourceScheme == file"
       }
     ],
-    "jbGit.fileMenu": [
+    "gitPrism.fileMenu": [
       {
-        "command": "jbGit.annotate.toggle",
+        "command": "gitPrism.annotate.toggle",
         "group": "2_diff@0",
-        "when": "!explorerResourceIsFolder && !(resourcePath in jbGit.annotate.paths)"
+        "when": "!explorerResourceIsFolder && !(resourcePath in gitPrism.annotate.paths)"
       },
       {
-        "command": "jbGit.annotate.close",
+        "command": "gitPrism.annotate.close",
         "group": "2_diff@0",
-        "when": "!explorerResourceIsFolder && resourcePath in jbGit.annotate.paths"
+        "when": "!explorerResourceIsFolder && resourcePath in gitPrism.annotate.paths"
       }
     ],
-    "jbGit.annotate.viewMenu": [
+    "gitPrism.annotate.viewMenu": [
       {
-        "command": "jbGit.annotate.view.revision",
+        "command": "gitPrism.annotate.view.revision",
         "group": "1_aspects@0"
       },
       {
-        "command": "jbGit.annotate.view.date",
+        "command": "gitPrism.annotate.view.date",
         "group": "1_aspects@1"
       },
       {
-        "command": "jbGit.annotate.view.author",
+        "command": "gitPrism.annotate.view.author",
         "group": "1_aspects@2"
       },
       {
-        "command": "jbGit.annotate.view.subject",
+        "command": "gitPrism.annotate.view.subject",
         "group": "1_aspects@3"
       },
       {
-        "submenu": "jbGit.annotate.colorsMenu",
+        "submenu": "gitPrism.annotate.colorsMenu",
         "group": "2_presentation@0"
       },
       {
-        "submenu": "jbGit.annotate.namesMenu",
+        "submenu": "gitPrism.annotate.namesMenu",
         "group": "2_presentation@1"
       }
     ],
-    "jbGit.annotate.namesMenu": [
+    "gitPrism.annotate.namesMenu": [
       {
-        "command": "jbGit.annotate.names.initials",
+        "command": "gitPrism.annotate.names.initials",
         "group": "1@0"
       },
       {
-        "command": "jbGit.annotate.names.lastName",
+        "command": "gitPrism.annotate.names.lastName",
         "group": "1@1"
       },
       {
-        "command": "jbGit.annotate.names.firstName",
+        "command": "gitPrism.annotate.names.firstName",
         "group": "1@2"
       },
       {
-        "command": "jbGit.annotate.names.fullName",
+        "command": "gitPrism.annotate.names.fullName",
         "group": "1@3"
       },
       {
-        "command": "jbGit.annotate.names.email",
+        "command": "gitPrism.annotate.names.email",
         "group": "1@4"
       }
     ],
-    "jbGit.annotate.colorsMenu": [
+    "gitPrism.annotate.colorsMenu": [
       {
-        "command": "jbGit.annotate.colors.order",
+        "command": "gitPrism.annotate.colors.order",
         "group": "1@0"
       },
       {
-        "command": "jbGit.annotate.colors.author",
+        "command": "gitPrism.annotate.colors.author",
         "group": "1@1"
       },
       {
-        "command": "jbGit.annotate.colors.hide",
+        "command": "gitPrism.annotate.colors.hide",
         "group": "1@2"
       }
     ],
-    "jbGit.annotate.optionsMenu": [
+    "gitPrism.annotate.optionsMenu": [
       {
-        "command": "jbGit.annotate.option.ignoreWhitespaces",
+        "command": "gitPrism.annotate.option.ignoreWhitespaces",
         "group": "1@0"
       },
       {
-        "command": "jbGit.annotate.option.detectWithinFile",
+        "command": "gitPrism.annotate.option.detectWithinFile",
         "group": "1@1"
       },
       {
-        "command": "jbGit.annotate.option.detectAcrossFiles",
+        "command": "gitPrism.annotate.option.detectAcrossFiles",
         "group": "1@2"
       },
       {
-        "command": "jbGit.annotate.option.commitTimestamp",
+        "command": "gitPrism.annotate.option.commitTimestamp",
         "group": "1@3"
       }
     ]
   },
   "keybindings": [
     {
-      "command": "jbGit.rollbackLines",
+      "command": "gitPrism.rollbackLines",
       "key": "ctrl+alt+z",
       "mac": "cmd+alt+z",
       "when": "editorTextFocus && !editorReadonly && resourceScheme == file"
@@ -470,27 +470,27 @@
   ],
   "configuration": {
     "properties": {
-      "jbGit.annotate.showRevision": {
+      "gitPrism.annotate.showRevision": {
         "type": "boolean",
         "default": false,
         "description": "Annotations: show the short commit hash (Revision)."
       },
-      "jbGit.annotate.showDate": {
+      "gitPrism.annotate.showDate": {
         "type": "boolean",
         "default": true,
         "description": "Annotations: show the commit date."
       },
-      "jbGit.annotate.showAuthor": {
+      "gitPrism.annotate.showAuthor": {
         "type": "boolean",
         "default": true,
         "description": "Annotations: show the author."
       },
-      "jbGit.annotate.showSubject": {
+      "gitPrism.annotate.showSubject": {
         "type": "boolean",
         "default": false,
         "description": "Annotations: show the commit subject."
       },
-      "jbGit.annotate.names": {
+      "gitPrism.annotate.names": {
         "type": "string",
         "enum": [
           "initials",
@@ -509,7 +509,7 @@
         "default": "lastName",
         "description": "Annotations: how author names are shown."
       },
-      "jbGit.annotate.colors": {
+      "gitPrism.annotate.colors": {
         "type": "string",
         "enum": [
           "order",
@@ -524,12 +524,12 @@
         "default": "order",
         "description": "Annotations: background colors."
       },
-      "jbGit.annotate.ignoreWhitespaces": {
+      "gitPrism.annotate.ignoreWhitespaces": {
         "type": "boolean",
         "default": true,
         "description": "Annotations: ignore whitespace changes (git blame -w)."
       },
-      "jbGit.annotate.detectMovements": {
+      "gitPrism.annotate.detectMovements": {
         "type": "string",
         "enum": [
           "none",
@@ -549,7 +549,7 @@
         "default": "none",
         "description": "Annotations: detect moved or copied lines."
       },
-      "jbGit.annotate.preferCommitTimestamp": {
+      "gitPrism.annotate.preferCommitTimestamp": {
         "type": "boolean",
         "default": false,
         "description": "Annotations: show the commit timestamp instead of the author timestamp."

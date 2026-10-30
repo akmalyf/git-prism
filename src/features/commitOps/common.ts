@@ -75,9 +75,9 @@ export async function rangeToHead(repo: Repository, from: string): Promise<{ com
   return { commits: all.filter((c) => c.parents.length <= 1), merges: all.filter((c) => c.parents.length > 1), root };
 }
 
-/** IntelliJ has one "Protected branches" setting (Settings | Git); here it is the Push setting jbGit.push.protectedBranches. */
+/** IntelliJ has one "Protected branches" setting (Settings | Git); here it is the Push setting gitPrism.push.protectedBranches. */
 export function protectedPatterns(): string[] {
-  const v = vscode.workspace.getConfiguration('jbGit').get<string[] | string>('push.protectedBranches') ?? 'master, main';
+  const v = vscode.workspace.getConfiguration('gitPrism').get<string[] | string>('push.protectedBranches') ?? 'master, main';
   return (Array.isArray(v) ? v : v.split(/[;,]/)).map((s) => s.trim()).filter(Boolean);
 }
 
@@ -152,7 +152,7 @@ export async function reportError(e: unknown, title: string): Promise<void> {
   }
   const msg = e instanceof Error ? e.message : String(e);
   const pick = await vscode.window.showErrorMessage(`${title}: ${msg}`, 'Show Console');
-  if (pick) invoke('jbGit.console.show', undefined);
+  if (pick) invoke('gitPrism.console.show', undefined);
 }
 
 export async function unmergedFiles(repo: Repository): Promise<string[]> {
@@ -167,16 +167,16 @@ export async function notifyRebaseStopped(repo: Repository, output: string): Pro
   if (conflicts.length) {
     const resolve = 'Resolve…';
     const cont = 'Continue';
-    invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+    invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
     const pick = await vscode.window.showWarningMessage(
       `Rebase stopped due to conflicts: ${conflicts.length === 1 ? conflicts[0] : `${conflicts.length} files`} in ${repo.name}`,
       resolve,
       cont,
       abort,
     );
-    if (pick === resolve) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
-    else if (pick === cont) invoke('jbGit.operation.continue', { repoRoot: repo.root });
-    else if (pick === abort) invoke('jbGit.operation.abort', { repoRoot: repo.root });
+    if (pick === resolve) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
+    else if (pick === cont) invoke('gitPrism.operation.continue', { repoRoot: repo.root });
+    else if (pick === abort) invoke('gitPrism.operation.abort', { repoRoot: repo.root });
     return;
   }
   const cont = 'Continue';
@@ -185,8 +185,8 @@ export async function notifyRebaseStopped(repo: Repository, output: string): Pro
     ? `Rebase failed: ${lastLine(output)}`
     : `Rebase stopped for editing in ${repo.name}. Once you are satisfied with your changes you may continue.`;
   const pick = await (failedExec ? vscode.window.showErrorMessage(text, cont, abort) : vscode.window.showInformationMessage(text, cont, abort));
-  if (pick === cont) invoke('jbGit.operation.continue', { repoRoot: repo.root });
-  else if (pick === abort) invoke('jbGit.operation.abort', { repoRoot: repo.root });
+  if (pick === cont) invoke('gitPrism.operation.continue', { repoRoot: repo.root });
+  else if (pick === abort) invoke('gitPrism.operation.abort', { repoRoot: repo.root });
 }
 
 function lastLine(s: string): string {
@@ -201,7 +201,7 @@ export function warnAutostashConflict(repo: Repository): void {
   const view = 'View Stash…';
   vscode.window
     .showWarningMessage(`Local changes could not be restored in ${repo.name}: applying the autostash resulted in conflicts. Your changes are safe in the stash.`, view)
-    .then((p) => p && invoke('jbGit.stash.unstash', { repoRoot: repo.root }));
+    .then((p) => p && invoke('gitPrism.stash.unstash', { repoRoot: repo.root }));
 }
 
 export function stashMessage(op: string): string {

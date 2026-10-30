@@ -1,4 +1,4 @@
-// The "Git Branches" popup ('jbGit.branches.show'): top actions (Update Project…, Commit…, Push…, New Branch…,
+// The "Git Branches" popup ('gitPrism.branches.show'): top actions (Update Project…, Commit…, Push…, New Branch…,
 // Checkout Tag or Revision…), then Recent / Local / Remote / Tags sections, per repository or merged across
 // repositories ("Group by Repository"). Selecting a ref opens its action list; item buttons toggle favorites.
 import * as vscode from 'vscode';
@@ -57,8 +57,8 @@ export async function showBranchesPopup(ctx: Ctx, repoRoot?: string): Promise<vo
   const all = ctx.repos.all;
   if (!all.length) {
     const pick = await vscode.window.showWarningMessage('No Git repository found in the workspace.', 'Create Git Repository…', 'Clone…');
-    if (pick === 'Create Git Repository…') vscode.commands.executeCommand('jbGit.init');
-    else if (pick === 'Clone…') vscode.commands.executeCommand('jbGit.clone');
+    if (pick === 'Create Git Repository…') vscode.commands.executeCommand('gitPrism.init');
+    else if (pick === 'Clone…') vscode.commands.executeCommand('gitPrism.clone');
     return;
   }
   const first =
@@ -128,7 +128,7 @@ export async function showBranchesPopup(ctx: Ctx, repoRoot?: string): Promise<vo
   qp.onDidTriggerButton(async (b) => {
     if (b === FETCH) {
       qp.hide();
-      invoke('jbGit.fetch', { repoRoot: multi ? undefined : first.root });
+      invoke('gitPrism.fetch', { repoRoot: multi ? undefined : first.root });
       return;
     }
     const s = SETTINGS.find((x) => x.label === b.tooltip);
@@ -183,21 +183,21 @@ function buildItems(ctx: Ctx, data: RepoData[], multi: boolean): Item[] {
   for (const d of data) {
     const suffix = multi ? ` (${d.repo.name})` : '';
     if (d.op === 'rebase') {
-      items.push({ label: `$(debug-continue) Continue Rebase${suffix}`, run: () => invoke('jbGit.operation.continue', { repoRoot: d.repo.root }) });
-      items.push({ label: `$(debug-step-over) Skip Commit${suffix}`, run: () => invoke('jbGit.operation.skip', { repoRoot: d.repo.root }) });
-      items.push({ label: `$(close) Abort Rebase${suffix}`, run: () => invoke('jbGit.operation.abort', { repoRoot: d.repo.root }) });
+      items.push({ label: `$(debug-continue) Continue Rebase${suffix}`, run: () => invoke('gitPrism.operation.continue', { repoRoot: d.repo.root }) });
+      items.push({ label: `$(debug-step-over) Skip Commit${suffix}`, run: () => invoke('gitPrism.operation.skip', { repoRoot: d.repo.root }) });
+      items.push({ label: `$(close) Abort Rebase${suffix}`, run: () => invoke('gitPrism.operation.abort', { repoRoot: d.repo.root }) });
     } else if (d.op === 'merge') {
-      items.push({ label: `$(close) Abort Merge${suffix}`, run: () => invoke('jbGit.operation.abort', { repoRoot: d.repo.root }) });
+      items.push({ label: `$(close) Abort Merge${suffix}`, run: () => invoke('gitPrism.operation.abort', { repoRoot: d.repo.root }) });
     } else if (d.op === 'cherry-pick' || d.op === 'revert') {
       const op = d.op === 'cherry-pick' ? 'Cherry-Pick' : 'Revert';
-      items.push({ label: `$(debug-continue) Continue ${op}${suffix}`, run: () => invoke('jbGit.operation.continue', { repoRoot: d.repo.root }) });
-      items.push({ label: `$(close) Abort ${op}${suffix}`, run: () => invoke('jbGit.operation.abort', { repoRoot: d.repo.root }) });
+      items.push({ label: `$(debug-continue) Continue ${op}${suffix}`, run: () => invoke('gitPrism.operation.continue', { repoRoot: d.repo.root }) });
+      items.push({ label: `$(close) Abort ${op}${suffix}`, run: () => invoke('gitPrism.operation.abort', { repoRoot: d.repo.root }) });
     }
   }
   items.push(
-    { label: '$(sync) Update Project…', run: () => invoke('jbGit.updateProject', { repoRoot }) },
-    { label: '$(check) Commit…', run: () => invoke('jbGit.commit.focus', { repoRoot }) },
-    { label: '$(arrow-up) Push…', run: () => invoke('jbGit.push', { repoRoot }) },
+    { label: '$(sync) Update Project…', run: () => invoke('gitPrism.updateProject', { repoRoot }) },
+    { label: '$(check) Commit…', run: () => invoke('gitPrism.commit.focus', { repoRoot }) },
+    { label: '$(arrow-up) Push…', run: () => invoke('gitPrism.push', { repoRoot }) },
     {
       label: '$(add) New Branch…',
       run: async () => {

@@ -1,5 +1,5 @@
-// 'jbGit.repoAtRevision' (Show Repository at Revision): a webview tab with the file tree of a commit (one
-// `git ls-tree -r` listing, folders expanded lazily in the page), files opened read-only via 'jbGit.openFileAtRevision'.
+// 'gitPrism.repoAtRevision' (Show Repository at Revision): a webview tab with the file tree of a commit (one
+// `git ls-tree -r` listing, folders expanded lazily in the page), files opened read-only via 'gitPrism.openFileAtRevision'.
 import * as vscode from 'vscode';
 import { invoke, type CommitsArgs } from '../../core/contracts';
 import type { FeatureContext } from '../../core/context';
@@ -30,7 +30,7 @@ export async function showRepoAtRevision(ctx: FeatureContext, args: CommitsArgs)
     const c = await repo.commit(hash);
     const short = hash.slice(0, 8);
     const title = ctx.repos.all.length > 1 ? `${repo.name} at ${short}` : `Repository at ${short}`;
-    const panel = vscode.window.createWebviewPanel('jbGit.repoAtRevision', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
+    const panel = vscode.window.createWebviewPanel('gitPrism.repoAtRevision', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
     panel.iconPath = new vscode.ThemeIcon('repo');
     const init: RepoAtRevisionInit = { repoRoot: repo.root, rev: hash, short, subject: c.subject, author: c.author, date: c.authorDate };
     panel.webview.html = webviewHtml(panel.webview, ctx.extension.extensionUri, 'repo-at-revision', init, title);
@@ -43,11 +43,11 @@ export async function showRepoAtRevision(ctx: FeatureContext, args: CommitsArgs)
           .map((e) => ({ type: e.type, path: e.path, name: e.name }));
       },
       open: async (p: { paths: string[] }) => {
-        for (const path of p.paths) await invoke('jbGit.openFileAtRevision', { repoRoot: repo.root, path, rev: hash });
+        for (const path of p.paths) await invoke('gitPrism.openFileAtRevision', { repoRoot: repo.root, path, rev: hash });
       },
-      compareWithLocal: (p: { path: string }) => invoke('jbGit.compare.fileWithRevision', { repoRoot: repo.root, path: p.path, rev: hash }),
+      compareWithLocal: (p: { path: string }) => invoke('gitPrism.compare.fileWithRevision', { repoRoot: repo.root, path: p.path, rev: hash }),
       history: (p: { path: string }) => showHistory(repo, p.path ? [p.path] : [], p.path ? historyTitle(p.path) : `History: ${repo.name}`),
-      showInLog: () => invoke('jbGit.log.show', { repoRoot: repo.root, revision: hash }),
+      showInLog: () => invoke('gitPrism.log.show', { repoRoot: repo.root, revision: hash }),
       copy: (p: { text: string }) => vscode.env.clipboard.writeText(p.text),
     });
     panels.set(key, panel);

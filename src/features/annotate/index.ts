@@ -1,5 +1,5 @@
 // Annotate (git blame) feature: the annotation column with its hover and line operations, annotation view
-// options (persisted in jbGit.annotate.* settings) and the changed-lines actions (Rollback Lines, Show Diff for Lines).
+// options (persisted in gitPrism.annotate.* settings) and the changed-lines actions (Rollback Lines, Show Diff for Lines).
 import * as vscode from 'vscode';
 import type { FeatureContext } from '../../core/context';
 import { invoke } from '../../core/contracts';
@@ -10,19 +10,19 @@ import { OWN_SCHEME, REV_SCHEMES } from './target';
 
 /** Boolean view/option settings toggled from the annotation gutter menu. */
 const TOGGLES: Record<string, string> = {
-  'jbGit.annotate.view.revision': 'showRevision',
-  'jbGit.annotate.view.date': 'showDate',
-  'jbGit.annotate.view.author': 'showAuthor',
-  'jbGit.annotate.view.subject': 'showSubject',
-  'jbGit.annotate.option.ignoreWhitespaces': 'ignoreWhitespaces',
-  'jbGit.annotate.option.commitTimestamp': 'preferCommitTimestamp',
+  'gitPrism.annotate.view.revision': 'showRevision',
+  'gitPrism.annotate.view.date': 'showDate',
+  'gitPrism.annotate.view.author': 'showAuthor',
+  'gitPrism.annotate.view.subject': 'showSubject',
+  'gitPrism.annotate.option.ignoreWhitespaces': 'ignoreWhitespaces',
+  'gitPrism.annotate.option.commitTimestamp': 'preferCommitTimestamp',
 };
 
 const NAMES = ['initials', 'lastName', 'firstName', 'fullName', 'email'];
 const COLORS = ['order', 'author', 'hide'];
 
 function setting(key: string, value: unknown): Thenable<void> {
-  return vscode.workspace.getConfiguration('jbGit.annotate').update(key, value, vscode.ConfigurationTarget.Global);
+  return vscode.workspace.getConfiguration('gitPrism.annotate').update(key, value, vscode.ConfigurationTarget.Global);
 }
 
 export function activate(ctx: FeatureContext): void {
@@ -61,28 +61,28 @@ export function activate(ctx: FeatureContext): void {
   const uriArg = (a: unknown): vscode.Uri | undefined =>
     a instanceof vscode.Uri ? a : a && typeof a === 'object' && (a as { uri?: unknown }).uri instanceof vscode.Uri ? ((a as { uri: vscode.Uri }).uri) : undefined;
 
-  reg('jbGit.annotate.toggle', (a?: unknown) => annotator.toggle(uriArg(a)));
-  reg('jbGit.annotate.close', (a?: unknown) => annotator.close(uriArg(a)));
-  reg('jbGit.annotate.revision', (a: { repoRoot: string; path: string; rev: string }) => annotator.annotateRevision(a));
-  reg('jbGit.annotate.showCommitInLog', committed((t, hash) => invoke('jbGit.log.show', { repoRoot: t.a.repo.root, revision: hash })));
-  reg('jbGit.annotate.copyRevision', committed((_t, hash) => vscode.env.clipboard.writeText(hash)));
-  reg('jbGit.annotate.currentRevision', committed((t, hash) => annotator.currentRevision(t, hash)));
-  reg('jbGit.annotate.previousRevision', onLine((t) => annotator.previousRevision(t)));
-  reg('jbGit.annotate.previous', onLine((t) => annotator.previousRevision(t)));
-  reg('jbGit.annotate.showDiff', onLine((t) => annotator.showDiff(t)));
-  reg('jbGit.annotate.showAffectedFiles', committed((t) => annotator.showAffectedFiles(t)));
+  reg('gitPrism.annotate.toggle', (a?: unknown) => annotator.toggle(uriArg(a)));
+  reg('gitPrism.annotate.close', (a?: unknown) => annotator.close(uriArg(a)));
+  reg('gitPrism.annotate.revision', (a: { repoRoot: string; path: string; rev: string }) => annotator.annotateRevision(a));
+  reg('gitPrism.annotate.showCommitInLog', committed((t, hash) => invoke('gitPrism.log.show', { repoRoot: t.a.repo.root, revision: hash })));
+  reg('gitPrism.annotate.copyRevision', committed((_t, hash) => vscode.env.clipboard.writeText(hash)));
+  reg('gitPrism.annotate.currentRevision', committed((t, hash) => annotator.currentRevision(t, hash)));
+  reg('gitPrism.annotate.previousRevision', onLine((t) => annotator.previousRevision(t)));
+  reg('gitPrism.annotate.previous', onLine((t) => annotator.previousRevision(t)));
+  reg('gitPrism.annotate.showDiff', onLine((t) => annotator.showDiff(t)));
+  reg('gitPrism.annotate.showAffectedFiles', committed((t) => annotator.showAffectedFiles(t)));
 
   for (const [id, key] of Object.entries(TOGGLES)) {
-    reg(id, () => setting(key, !vscode.workspace.getConfiguration('jbGit.annotate').get<boolean>(key)));
+    reg(id, () => setting(key, !vscode.workspace.getConfiguration('gitPrism.annotate').get<boolean>(key)));
   }
   // IntelliJ's movement options are one setting: "within file" (-M) is implied by "across files" (-C)
-  const movements = () => vscode.workspace.getConfiguration('jbGit.annotate').get<string>('detectMovements', 'none');
-  reg('jbGit.annotate.option.detectWithinFile', () => setting('detectMovements', movements() === 'none' ? 'inner' : 'none'));
-  reg('jbGit.annotate.option.detectAcrossFiles', () => setting('detectMovements', movements() === 'outer' ? 'inner' : 'outer'));
-  for (const n of NAMES) reg(`jbGit.annotate.names.${n}`, () => setting('names', n));
-  for (const c of COLORS) reg(`jbGit.annotate.colors.${c}`, () => setting('colors', c));
+  const movements = () => vscode.workspace.getConfiguration('gitPrism.annotate').get<string>('detectMovements', 'none');
+  reg('gitPrism.annotate.option.detectWithinFile', () => setting('detectMovements', movements() === 'none' ? 'inner' : 'none'));
+  reg('gitPrism.annotate.option.detectAcrossFiles', () => setting('detectMovements', movements() === 'outer' ? 'inner' : 'outer'));
+  for (const n of NAMES) reg(`gitPrism.annotate.names.${n}`, () => setting('names', n));
+  for (const c of COLORS) reg(`gitPrism.annotate.colors.${c}`, () => setting('colors', c));
 
-  reg('jbGit.rollbackLines', (a?: unknown) => lines.rollback(a as never));
-  reg('jbGit.showDiffForLines', (a?: unknown) => lines.showDiff(a as never));
-  reg('jbGit.copyHunkOriginal', (a?: unknown) => lines.copyOriginal(a as never));
+  reg('gitPrism.rollbackLines', (a?: unknown) => lines.rollback(a as never));
+  reg('gitPrism.showDiffForLines', (a?: unknown) => lines.showDiff(a as never));
+  reg('gitPrism.copyHunkOriginal', (a?: unknown) => lines.copyOriginal(a as never));
 }

@@ -1,4 +1,4 @@
-// jbGit.log.* settings: reading them with defaults and writing a single key (View Options toggles in the log).
+// gitPrism.log.* settings: reading them with defaults and writing a single key (View Options toggles in the log).
 import * as vscode from 'vscode';
 import type { LogColumn, LogSettingKey, LogSettings } from './protocol';
 
@@ -25,7 +25,7 @@ export const DEFAULT_SETTINGS: LogSettings = {
 const COLUMNS: LogColumn[] = ['author', 'subject', 'date', 'hash', 'root'];
 
 export function readSettings(): LogSettings {
-  const c = vscode.workspace.getConfiguration('jbGit.log');
+  const c = vscode.workspace.getConfiguration('gitPrism.log');
   const out = { ...DEFAULT_SETTINGS } as Record<string, unknown>;
   for (const key of Object.keys(DEFAULT_SETTINGS) as LogSettingKey[]) {
     const v = c.get(key);
@@ -41,7 +41,7 @@ export function readSettings(): LogSettings {
 
 export async function writeSetting(key: LogSettingKey, value: unknown): Promise<void> {
   if (!(key in DEFAULT_SETTINGS)) throw new Error(`unknown setting ${key}`);
-  await vscode.workspace.getConfiguration('jbGit.log').update(key, value, vscode.ConfigurationTarget.Global);
+  await vscode.workspace.getConfiguration('gitPrism.log').update(key, value, vscode.ConfigurationTarget.Global);
 }
 
 /** Settings whose change requires reloading the commit list (git ordering / parents). */

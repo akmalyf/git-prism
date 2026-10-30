@@ -30,7 +30,7 @@ async function ask(title: string, detail: string, yes: string, no: string): Prom
   return pick === yesItem;
 }
 
-/** jbGit.conflicts.mergeFile: resolves to true when the file was resolved (and staged), false when cancelled. */
+/** gitPrism.conflicts.mergeFile: resolves to true when the file was resolved (and staged), false when cancelled. */
 export function mergeFile(ctx: FeatureContext, args: { repoRoot: string; path: string }): Promise<boolean> {
   const key = `${path.normalize(args.repoRoot ?? '')}\0${args.path}`;
   const running = open.get(key);
@@ -195,7 +195,7 @@ class MergePanel {
   ) {
     const ext = ctx.extension.extensionUri;
     const title = `Merge Revisions for ${init.path}`;
-    this.panel = vscode.window.createWebviewPanel('jbGit.merge', title, vscode.ViewColumn.Active, webviewOptions(ext));
+    this.panel = vscode.window.createWebviewPanel('gitPrism.merge', title, vscode.ViewColumn.Active, webviewOptions(ext));
     this.panel.iconPath = new vscode.ThemeIcon('git-merge');
     this.panel.webview.html = webviewHtml(this.panel.webview, ext, 'merge', init, title);
     this.bridge = new RpcBridge(this.panel.webview, {

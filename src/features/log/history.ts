@@ -87,16 +87,16 @@ export class FileHistoryActions {
         return this.compareWithLocal(r);
       case 'openFile':
         if (!r.path || r.deleted) return this.noFile(r);
-        return invoke('jbGit.openFileAtRevision', { repoRoot: r.root, path: r.path, rev: r.hash });
+        return invoke('gitPrism.openFileAtRevision', { repoRoot: r.root, path: r.path, rev: r.hash });
       case 'annotate':
         if (!r.path || r.deleted) return this.noFile(r);
-        return vscode.commands.executeCommand('jbGit.annotate.revision', { repoRoot: r.root, path: r.path, rev: r.hash });
+        return vscode.commands.executeCommand('gitPrism.annotate.revision', { repoRoot: r.root, path: r.path, rev: r.hash });
       case 'get':
         return this.get(r);
       case 'showAllAffected':
-        return invoke('jbGit.changes.show', { repoRoot: r.root, from: r.from, to: r.hash, title: `Paths affected in commit ${short(r.hash)}` });
+        return invoke('gitPrism.changes.show', { repoRoot: r.root, from: r.from, to: r.hash, title: `Paths affected in commit ${short(r.hash)}` });
       case 'selectInLog':
-        return invoke('jbGit.log.show', { repoRoot: r.root, revision: r.hash });
+        return invoke('gitPrism.log.show', { repoRoot: r.root, revision: r.hash });
     }
   }
 
@@ -125,7 +125,7 @@ export class FileHistoryActions {
     const [newer, older] = rows[0] >= 0 && rows[1] >= 0 && rows[1] < rows[0] ? [commits[1], commits[0]] : [commits[0], commits[1]];
     const [a, b] = await Promise.all([this.resolve(older), this.resolve(newer)]);
     if (a.dir) {
-      return invoke('jbGit.changes.show', { repoRoot: a.root, from: older.hash, to: newer.hash, paths: a.current && a.current !== '.' ? [a.current] : undefined, title: `${short(older.hash)} ↔ ${short(newer.hash)}` });
+      return invoke('gitPrism.changes.show', { repoRoot: a.root, from: older.hash, to: newer.hash, paths: a.current && a.current !== '.' ? [a.current] : undefined, title: `${short(older.hash)} ↔ ${short(newer.hash)}` });
     }
     const change = compareChange(a.deleted ? undefined : a.path, b.deleted ? undefined : b.path);
     if (!change) {
@@ -138,7 +138,7 @@ export class FileHistoryActions {
   private async compareWithLocal(r: Resolved): Promise<unknown> {
     if (r.dir) {
       const paths = r.current && r.current !== '.' ? [r.current] : undefined;
-      return invoke('jbGit.changes.show', { repoRoot: r.root, from: r.hash, paths, title: `${short(r.hash)} ↔ Local Changes` });
+      return invoke('gitPrism.changes.show', { repoRoot: r.root, from: r.hash, paths, title: `${short(r.hash)} ↔ Local Changes` });
     }
     const current = r.current ?? r.path;
     if (!current) return;
@@ -157,7 +157,7 @@ export class FileHistoryActions {
       rightTitle: 'Local Changes',
     };
     if (r.path && r.path !== current) file.oldPath = r.path;
-    return invoke('jbGit.diff.show', { files: [file] });
+    return invoke('gitPrism.diff.show', { files: [file] });
   }
 
   /** Get: the file's content in that revision replaces the local file (renamed: written to the current name). */

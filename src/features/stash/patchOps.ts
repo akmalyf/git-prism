@@ -51,10 +51,10 @@ export async function applyPatchInteractive(repo: Repository, patch: Buffer, str
       vscode.window.setStatusBarMessage('$(check) Patch successfully applied', 4000);
       return 'ok';
     case 'conflict':
-      void invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+      void invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
       vscode.window
         .showWarningMessage(`${title}: Apply patch conflict. Resolve the conflicts to complete applying the patch.`, 'Resolve Conflicts…')
-        .then((p) => p && invoke('jbGit.conflicts.resolve', { repoRoot: repo.root }));
+        .then((p) => p && invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root }));
       return 'conflict';
     case 'rejected': {
       const rej = res.rejected;

@@ -84,7 +84,7 @@ export class Operations {
       return;
     }
     if ((await unmerged(repo)).length) {
-      await invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+      await invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
       return;
     }
     if (op === 'merge') {
@@ -98,7 +98,7 @@ export class Operations {
   async focusMergeCommit(repo: Repository): Promise<void> {
     const raw = readGitFile(repo, 'MERGE_MSG');
     const message = raw !== undefined ? cleanMergeMessage(raw, await commentChar(repo)) : undefined;
-    await invoke('jbGit.commit.focus', { repoRoot: repo.root, message });
+    await invoke('gitPrism.commit.focus', { repoRoot: repo.root, message });
   }
 
   /** git rebase|cherry-pick|revert --continue|--skip, then reports where it ended. */
@@ -164,7 +164,7 @@ export class Operations {
           ? `Merge Conflicts${this.mention(repo)}: ${what}`
           : `${opName(op)[1]} was performed with conflicts${this.mention(repo)}: ${what}`;
     const pick = await vscode.window.showWarningMessage(text, resolve, abort);
-    if (pick === resolve) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+    if (pick === resolve) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
     else if (pick === abort) this.abort(repo);
   }
 
@@ -259,7 +259,7 @@ export class Operations {
       return;
     }
     if ((await unmerged(repo)).length) {
-      await invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+      await invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
       return;
     }
     await this.guard(repo, async () => {

@@ -126,7 +126,7 @@ export async function showDiff(req: ShowDiffRequest): Promise<void> {
     };
   });
   const index = Math.max(0, group.files.findIndex((f) => f.path === req.path));
-  await invoke('jbGit.diff.show', { files, index, beside: req.beside });
+  await invoke('gitPrism.diff.show', { files, index, beside: req.beside });
 }
 
 /** "Get": replaces the working tree files with their version from the revision (files absent there are deleted). */
@@ -182,7 +182,7 @@ export async function applySelectedChanges(repo: Repository, req: FilesAtRevisio
   }
   const conflicts: string[] = [];
   const failed: string[] = [];
-  const tmp = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'jbgit-apply-'));
+  const tmp = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'gitprism-apply-'));
   try {
     for (const p of req.paths) {
       const baseRev = revert ? req.rev : from;

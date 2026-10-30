@@ -51,7 +51,7 @@ export function repoItems(ctx: FeatureContext): RepoItem[] {
 }
 
 export function cfg(): vscode.WorkspaceConfiguration {
-  return vscode.workspace.getConfiguration('jbGit');
+  return vscode.workspace.getConfiguration('gitPrism');
 }
 
 const open = new Map<string, vscode.WebviewPanel>();
@@ -72,7 +72,7 @@ export function openDialog<T>(
   open.get(kind)?.dispose();
   return new Promise((resolve) => {
     const ext = ctx.extension.extensionUri;
-    const panel = vscode.window.createWebviewPanel(`jbGit.sync.${kind}`, title, { viewColumn: vscode.ViewColumn.Active, preserveFocus: false }, webviewOptions(ext));
+    const panel = vscode.window.createWebviewPanel(`gitPrism.sync.${kind}`, title, { viewColumn: vscode.ViewColumn.Active, preserveFocus: false }, webviewOptions(ext));
     panel.iconPath = new vscode.ThemeIcon('git-branch');
     open.set(kind, panel);
     let settled = false;
@@ -146,9 +146,9 @@ export async function notifyConflicts(repo: Repository, message: string): Promis
   if (op === 'rebase') actions.push('Continue Rebase', 'Abort Rebase');
   else if (op === 'merge') actions.push('Abort Merge');
   const pick = await vscode.window.showWarningMessage(message, ...actions);
-  if (pick === 'Resolve Conflicts…') invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
-  else if (pick === 'Continue Rebase') invoke('jbGit.operation.continue', { repoRoot: repo.root });
-  else if (pick?.startsWith('Abort')) invoke('jbGit.operation.abort', { repoRoot: repo.root });
+  if (pick === 'Resolve Conflicts…') invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
+  else if (pick === 'Continue Rebase') invoke('gitPrism.operation.continue', { repoRoot: repo.root });
+  else if (pick?.startsWith('Abort')) invoke('gitPrism.operation.abort', { repoRoot: repo.root });
 }
 
 /** Restored-with-conflicts warning when the autostash could not be re-applied cleanly. */
@@ -197,7 +197,7 @@ export async function withSavedChanges<T>(repo: Repository, operation: string, r
     if (save) {
       if (await hasConflicts(repo)) {
         void vscode.window.showInformationMessage(`Restore local changes: Local changes were saved before ${operation.toLowerCase()}`, 'View Stash…').then((pick) => {
-          if (pick) invoke('jbGit.stash.unstash', { repoRoot: repo.root });
+          if (pick) invoke('gitPrism.stash.unstash', { repoRoot: repo.root });
         });
       } else {
         const r = await repo.exec(['stash', 'pop'], { allowFail: true });
@@ -219,7 +219,7 @@ export async function notifyUpdated(results: { repo: Repository; from?: string; 
   const pick = await vscode.window.showInformationMessage(`${prefix}${updatedText(files, commits)}`, 'View Commits');
   if (pick) {
     const first = changed[0];
-    invoke('jbGit.log.show', { repoRoot: first.repo.root, revision: first.to });
+    invoke('gitPrism.log.show', { repoRoot: first.repo.root, revision: first.to });
   }
 }
 

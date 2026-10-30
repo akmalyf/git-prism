@@ -1,42 +1,42 @@
 {
   "commands": [
     {
-      "command": "jbGit.push",
+      "command": "gitPrism.push",
       "title": "Push\u2026",
       "category": "Git",
       "icon": "$(arrow-up)"
     },
     {
-      "command": "jbGit.pull",
+      "command": "gitPrism.pull",
       "title": "Pull\u2026",
       "category": "Git",
       "icon": "$(arrow-down)"
     },
     {
-      "command": "jbGit.fetch",
+      "command": "gitPrism.fetch",
       "title": "Fetch",
       "category": "Git",
       "icon": "$(repo-fetch)"
     },
     {
-      "command": "jbGit.updateProject",
+      "command": "gitPrism.updateProject",
       "title": "Update Project\u2026",
       "category": "Git",
       "icon": "$(arrow-down)"
     },
     {
-      "command": "jbGit.merge",
+      "command": "gitPrism.merge",
       "title": "Merge\u2026",
       "category": "Git",
       "icon": "$(git-merge)"
     },
     {
-      "command": "jbGit.rebase",
+      "command": "gitPrism.rebase",
       "title": "Rebase\u2026",
       "category": "Git"
     },
     {
-      "command": "jbGit.resetHead",
+      "command": "gitPrism.resetHead",
       "title": "Reset HEAD\u2026",
       "category": "Git"
     }
@@ -44,83 +44,83 @@
   "menus": {
     "commandPalette": [
       {
-        "command": "jbGit.push",
-        "when": "jbGit.active"
+        "command": "gitPrism.push",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.pull",
-        "when": "jbGit.active"
+        "command": "gitPrism.pull",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.fetch",
-        "when": "jbGit.active"
+        "command": "gitPrism.fetch",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.updateProject",
-        "when": "jbGit.active"
+        "command": "gitPrism.updateProject",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.merge",
-        "when": "jbGit.active"
+        "command": "gitPrism.merge",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.rebase",
-        "when": "jbGit.active"
+        "command": "gitPrism.rebase",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.resetHead",
-        "when": "jbGit.active"
+        "command": "gitPrism.resetHead",
+        "when": "gitPrism.active"
       }
     ],
-    "jbGit.fileMenu": [
+    "gitPrism.fileMenu": [
       {
-        "command": "jbGit.push",
+        "command": "gitPrism.push",
         "group": "4_remote@1"
       },
       {
-        "command": "jbGit.updateProject",
+        "command": "gitPrism.updateProject",
         "group": "4_remote@4"
       },
       {
-        "command": "jbGit.pull",
+        "command": "gitPrism.pull",
         "group": "4_remote@2"
       },
       {
-        "command": "jbGit.fetch",
+        "command": "gitPrism.fetch",
         "group": "4_remote@3"
       },
       {
-        "command": "jbGit.merge",
+        "command": "gitPrism.merge",
         "group": "5_branch@0.1"
       },
       {
-        "command": "jbGit.rebase",
+        "command": "gitPrism.rebase",
         "group": "5_branch@0.2"
       },
       {
-        "command": "jbGit.resetHead",
+        "command": "gitPrism.resetHead",
         "group": "5_branch@3.5"
       }
     ]
   },
   "configuration": {
     "properties": {
-      "jbGit.push.protectedBranches": {
+      "gitPrism.push.protectedBranches": {
         "type": "string",
         "default": "master, main",
         "description": "Protected branches (comma-separated regular expressions). Force Push to them is prohibited."
       },
-      "jbGit.fetch.prune": {
+      "gitPrism.fetch.prune": {
         "type": "boolean",
         "default": true,
         "description": "Prune obsolete remote-tracking references when fetching (--prune)."
       },
-      "jbGit.update.showDialog": {
+      "gitPrism.update.showDialog": {
         "type": "boolean",
         "default": true,
         "description": "Show the Update Project dialog before updating (uncheck \"Don't show this dialog again\" there to bring it back)."
       },
-      "jbGit.update.method": {
+      "gitPrism.update.method": {
         "type": "string",
         "enum": [
           "merge",
@@ -135,7 +135,7 @@
         "default": "merge",
         "description": "Update method of Update Project and of updating after a rejected push."
       },
-      "jbGit.update.saveChangesPolicy": {
+      "gitPrism.update.saveChangesPolicy": {
         "type": "string",
         "enum": [
           "stash",

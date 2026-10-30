@@ -1,4 +1,4 @@
-// File-level commit actions of the Git editor menu: Add, Add to .gitignore, Rollback…. jbGit.commit.focus (used by
+// File-level commit actions of the Git editor menu: Add, Add to .gitignore, Rollback…. gitPrism.commit.focus (used by
 // Fixup…/Squash Into… and "Commit merge") opens VS Code's Source Control view with the message prefilled.
 import * as fs from 'node:fs';
 import * as vscode from 'vscode';
@@ -18,7 +18,7 @@ export function activate(ctx: FeatureContext): void {
   const reg = (id: string, fn: (...args: any[]) => unknown) => sub.push(vscode.commands.registerCommand(id, fn));
 
   sub.push(
-    implement('jbGit.commit.focus', async ({ repoRoot, message }) => {
+    implement('gitPrism.commit.focus', async ({ repoRoot, message }) => {
       if (message !== undefined) {
         const api = vscode.extensions.getExtension<{ getAPI(v: 1): GitApi }>('vscode.git')?.exports?.getAPI(1);
         const repo = api?.repositories.find((r) => !repoRoot || r.rootUri.fsPath === repoRoot) ?? api?.repositories[0];
@@ -46,7 +46,7 @@ export function activate(ctx: FeatureContext): void {
     return map;
   };
 
-  reg('jbGit.rollback', async (uri?: vscode.Uri, uris?: vscode.Uri[]) => {
+  reg('gitPrism.rollback', async (uri?: vscode.Uri, uris?: vscode.Uri[]) => {
     await ctx.repos.ready();
     for (const [repo, paths] of byRepo(targets(uri, uris))) {
       try {
@@ -71,7 +71,7 @@ export function activate(ctx: FeatureContext): void {
       }
     }
   });
-  reg('jbGit.add', async (uri?: vscode.Uri, uris?: vscode.Uri[]) => {
+  reg('gitPrism.add', async (uri?: vscode.Uri, uris?: vscode.Uri[]) => {
     await ctx.repos.ready();
     for (const [repo, paths] of byRepo(targets(uri, uris))) {
       try {
@@ -81,7 +81,7 @@ export function activate(ctx: FeatureContext): void {
       }
     }
   });
-  reg('jbGit.addToGitignore', async (uri?: vscode.Uri, uris?: vscode.Uri[]) => {
+  reg('gitPrism.addToGitignore', async (uri?: vscode.Uri, uris?: vscode.Uri[]) => {
     await ctx.repos.ready();
     for (const [repo, paths] of byRepo(targets(uri, uris))) {
       const rels = paths.map((p) => {

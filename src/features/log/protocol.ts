@@ -9,7 +9,7 @@ export type SortType = 'topological' | 'date';
 export type LogColumn = 'author' | 'subject' | 'date' | 'hash' | 'root';
 export type DiffPreviewLocation = 'right' | 'bottom';
 
-/** VS Code settings jbGit.log.* (global presentation settings). */
+/** VS Code settings gitPrism.log.* (global presentation settings). */
 export interface LogSettings {
   sortType: SortType;
   /** graph option "First Parent" */
@@ -338,7 +338,7 @@ export type RefOp =
   | 'updateProject'
   /** Checkout and Rebase onto Current (`git rebase <current> <ref>`) */
   | 'checkoutAndRebase'
-  /** Show Diff with Working Tree (jbGit.compare.withWorkingTree) */
+  /** Show Diff with Working Tree (gitPrism.compare.withWorkingTree) */
   | 'showDiffWithWorkingTree'
   /** Update: the current branch → Update Project; another local branch → fast-forward from its tracked branch */
   | 'update'
@@ -506,7 +506,7 @@ export interface LogEvents {
   state: LogState;
   /** settings changed (also included in the next state) */
   settings: LogSettings;
-  /** select this commit (jbGit.log.show revision / Go to) */
+  /** select this commit (gitPrism.log.show revision / Go to) */
   select: { row: number; hash: string; root: string };
   /** refs/HEAD changed without the commit list changing; refresh the branches tree */
   refs: undefined;

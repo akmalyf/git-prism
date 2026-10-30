@@ -92,6 +92,6 @@ export function consoleHandlers(feed: ConsoleFeed) {
 /** Starts collecting console lines; the Log view shows them in its bottom pane. */
 export function activateConsole(ctx: FeatureContext): ConsoleFeed {
   const feed = new ConsoleFeed();
-  ctx.extension.subscriptions.push(feed, vscode.commands.registerCommand('jbGit.log.clearConsole', () => feed.clearAll()));
+  ctx.extension.subscriptions.push(feed, vscode.commands.registerCommand('gitPrism.log.clearConsole', () => feed.clearAll()));
   return feed;
 }

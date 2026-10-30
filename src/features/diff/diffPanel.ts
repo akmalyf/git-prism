@@ -26,7 +26,7 @@ import {
 import { openDocument, readWorktree, worktreeSize, writeWorktree } from './files';
 import type { DiffInit, DiffPayload, DiffViewSettings } from './protocol';
 
-const SETTINGS_KEY = 'jbGit.diff.settings';
+const SETTINGS_KEY = 'gitPrism.diff.settings';
 /** a pending edit of the working tree side is written after this much idle time (and on Cmd/Ctrl+S, switch, close) */
 const WRITE_DELAY = 500;
 
@@ -103,7 +103,7 @@ export class DiffPanel implements vscode.Disposable {
     this.requested = index;
     this.title = req.title;
     const ext = ctx.extension.extensionUri;
-    this.panel = vscode.window.createWebviewPanel('jbGit.diff', this.tabTitle(index), req.beside ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, webviewOptions(ext));
+    this.panel = vscode.window.createWebviewPanel('gitPrism.diff', this.tabTitle(index), req.beside ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, webviewOptions(ext));
     this.panel.iconPath = new vscode.ThemeIcon('diff');
     const init: DiffInit = {
       files: files.map((f) => ({ path: f.path, oldPath: f.oldPath, kind: f.kind })),

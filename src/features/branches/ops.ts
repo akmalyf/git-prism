@@ -109,7 +109,7 @@ async function smartRun(repo: Repository, args: string[], what: string, operatio
           'Local changes were restored with conflicts. Your uncommitted changes were saved to stash. Unstash is not complete, you have unresolved merges in your working tree. Resolve conflicts and drop the stash.',
           'Resolve conflicts…',
         );
-        if (pick) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+        if (pick) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
       } else await showGitError(e, 'Could not unstash local changes (they are kept in the stash)');
     }
   }
@@ -249,7 +249,7 @@ export async function checkoutAndRebase(repo: Repository, ref: string): Promise<
 
 /** "Checkout and Update": checkout, then update the branch from its tracked branch. */
 export async function checkoutAndUpdate(repo: Repository, branch: string): Promise<void> {
-  if (await checkout(repo, branch)) invoke('jbGit.updateProject', { repoRoot: repo.root });
+  if (await checkout(repo, branch)) invoke('gitPrism.updateProject', { repoRoot: repo.root });
 }
 
 /** "Checkout Tag or Revision…" */
@@ -448,7 +448,7 @@ export async function deleteLocalBranch(repo: Repository, name: string, state?: 
       await showGitError(e, `Could not Restore ${name}`);
     }
   } else if (pick === 'View Commits') {
-    invoke('jbGit.log.show', { repoRoot: repo.root, revision: hash });
+    invoke('gitPrism.log.show', { repoRoot: repo.root, revision: hash });
   } else if (pick === 'Delete Tracked Branch' && upstream) {
     await deleteRemoteBranch(repo, upstream);
   }
@@ -603,7 +603,7 @@ export async function pushTag(repo: Repository, tag: string, remote: string): Pr
 export async function updateBranch(repo: Repository, branch: string, state?: RepoState): Promise<void> {
   const s = state ?? (await loadState(repo));
   if (branch === s.current) {
-    invoke('jbGit.updateProject', { repoRoot: repo.root });
+    invoke('gitPrism.updateProject', { repoRoot: repo.root });
     return;
   }
   const remote = await repo.config(`branch.${branch}.remote`);

@@ -22,8 +22,8 @@ async function reportFailure(repo: Repository, e: unknown, title: string): Promi
   const op = repo.operationState();
   if (op !== 'none') {
     const pick = await vscode.window.showWarningMessage(`${title}: conflicts need to be resolved.`, 'Resolve Conflicts…', 'Abort');
-    if (pick === 'Resolve Conflicts…') await invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
-    else if (pick === 'Abort') await invoke('jbGit.operation.abort', { repoRoot: repo.root });
+    if (pick === 'Resolve Conflicts…') await invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
+    else if (pick === 'Abort') await invoke('gitPrism.operation.abort', { repoRoot: repo.root });
     return;
   }
   await showGitError(e, title);
@@ -62,7 +62,7 @@ export async function checkoutAndRebase(repo: Repository, ref: string): Promise<
 /** "Update" of a branch: the current one → Update Project; another → `git fetch <remote> <merge>:refs/heads/<b>`. */
 export async function updateBranch(repo: Repository, branch: string): Promise<void> {
   if (branch === (await repo.currentBranch())) {
-    await invoke('jbGit.updateProject', { repoRoot: repo.root });
+    await invoke('gitPrism.updateProject', { repoRoot: repo.root });
     return;
   }
   const remote = await repo.config(`branch.${branch}.remote`);

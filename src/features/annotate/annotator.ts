@@ -62,7 +62,7 @@ interface Settings {
 }
 
 export function settings(): Settings {
-  const c = vscode.workspace.getConfiguration('jbGit.annotate');
+  const c = vscode.workspace.getConfiguration('gitPrism.annotate');
   // same flags as IntelliJ's GitAnnotationProvider (movement detection is one option: none / within file / across files)
   const flags = ['--encoding=UTF-8'];
   if (c.get<boolean>('ignoreWhitespaces', true)) flags.push('-w');
@@ -117,8 +117,8 @@ export class Annotator implements vscode.Disposable {
         for (const a of this.items.values()) if (a.repo === repo && !a.rev) this.schedule(a);
       }),
       vscode.workspace.onDidChangeConfiguration((e) => {
-        if (!e.affectsConfiguration('jbGit.annotate')) return;
-        const reblame = BLAME_SETTINGS.some((k) => e.affectsConfiguration(`jbGit.annotate.${k}`));
+        if (!e.affectsConfiguration('gitPrism.annotate')) return;
+        const reblame = BLAME_SETTINGS.some((k) => e.affectsConfiguration(`gitPrism.annotate.${k}`));
         if (reblame) for (const a of this.items.values()) this.schedule(a, 0);
         else this.renderAll();
       }),
@@ -307,9 +307,9 @@ export class Annotator implements vscode.Disposable {
   }
 
   /**
-   * `jbGit.annotate.active`: the active editor is annotated (command palette, keybindings).
-   * `jbGit.annotate.paths`: paths of all annotated documents, so menus of other editors/tabs can use
-   * `resourcePath in jbGit.annotate.paths`.
+   * `gitPrism.annotate.active`: the active editor is annotated (command palette, keybindings).
+   * `gitPrism.annotate.paths`: paths of all annotated documents, so menus of other editors/tabs can use
+   * `resourcePath in gitPrism.annotate.paths`.
    */
   private updateContext(): void {
     const active = !!this.get(vscode.window.activeTextEditor?.document.uri);
@@ -318,8 +318,8 @@ export class Annotator implements vscode.Disposable {
       paths.add(a.uri.fsPath);
       paths.add(a.uri.path);
     }
-    vscode.commands.executeCommand('setContext', 'jbGit.annotate.active', active);
-    vscode.commands.executeCommand('setContext', 'jbGit.annotate.paths', [...paths]);
+    vscode.commands.executeCommand('setContext', 'gitPrism.annotate.active', active);
+    vscode.commands.executeCommand('setContext', 'gitPrism.annotate.paths', [...paths]);
   }
 
   /** The editor showing `uri` (opened if necessary), else the active one. */
@@ -387,10 +387,10 @@ export class Annotator implements vscode.Disposable {
     const c = t.commit;
     if (!c || isUncommitted(c.hash)) {
       md.appendMarkdown('**Not Committed Yet**\n\n');
-      md.appendMarkdown([link('Show Diff', 'jbGit.annotate.showDiff'), link('Annotate Previous Revision', 'jbGit.annotate.previousRevision')].join(' &nbsp;|&nbsp; '));
+      md.appendMarkdown([link('Show Diff', 'gitPrism.annotate.showDiff'), link('Annotate Previous Revision', 'gitPrism.annotate.previousRevision')].join(' &nbsp;|&nbsp; '));
       return new vscode.Hover(md, new vscode.Range(pos.line, 0, pos.line, 0));
     }
-    md.appendMarkdown(`commit ${link(c.hash, 'jbGit.annotate.showCommitInLog')}  \n`);
+    md.appendMarkdown(`commit ${link(c.hash, 'gitPrism.annotate.showCommitInLog')}  \n`);
     md.appendText(`Author: ${exactUser(c.author, c.authorMail)}`);
     md.appendMarkdown('  \n');
     md.appendText(`Date: ${formatDateTime(commitTime(c, columns.commitDate), columns.locale)}`);
@@ -405,11 +405,11 @@ export class Annotator implements vscode.Disposable {
     md.appendCodeblock(msg, 'text');
     md.appendMarkdown('\n---\n\n');
     const links = [
-      link('Show in Git Log', 'jbGit.annotate.showCommitInLog'),
-      link('Show Diff', 'jbGit.annotate.showDiff'),
-      link('Show Affected Files', 'jbGit.annotate.showAffectedFiles'),
-      ...(c.previous ? [link('Annotate Previous Revision', 'jbGit.annotate.previousRevision')] : []),
-      link('Copy Revision Number', 'jbGit.annotate.copyRevision'),
+      link('Show in Git Log', 'gitPrism.annotate.showCommitInLog'),
+      link('Show Diff', 'gitPrism.annotate.showDiff'),
+      link('Show Affected Files', 'gitPrism.annotate.showAffectedFiles'),
+      ...(c.previous ? [link('Annotate Previous Revision', 'gitPrism.annotate.previousRevision')] : []),
+      link('Copy Revision Number', 'gitPrism.annotate.copyRevision'),
     ];
     md.appendMarkdown(links.join(' &nbsp;|&nbsp; '));
     return new vscode.Hover(md, new vscode.Range(pos.line, 0, pos.line, 0));
@@ -435,7 +435,7 @@ export class Annotator implements vscode.Disposable {
     const kind = 'empty' in left ? 'A' : c?.previous && c.previous.path !== rightPath ? 'R' : 'M';
     const oldPath = 'path' in left && left.path !== rightPath ? left.path : undefined;
     try {
-      await invoke('jbGit.diff.show', { files: [{ repoRoot: a.repo.root, path: rightPath, oldPath, kind, left, right }] });
+      await invoke('gitPrism.diff.show', { files: [{ repoRoot: a.repo.root, path: rightPath, oldPath, kind, left, right }] });
     } catch (e) {
       showGitError(e, 'Cannot load data to show diff');
     }
@@ -445,12 +445,12 @@ export class Annotator implements vscode.Disposable {
   async showAffectedFiles(t: LineTarget): Promise<void> {
     const c = t.commit;
     if (!c || isUncommitted(c.hash)) {
-      invoke('jbGit.changes.show', { repoRoot: t.a.repo.root, from: 'HEAD' });
+      invoke('gitPrism.changes.show', { repoRoot: t.a.repo.root, from: 'HEAD' });
       return;
     }
     try {
       const from = (await t.a.repo.run(['rev-parse', '--verify', '--quiet', `${c.hash}^`], { quiet: true, allowFail: true })).stdout.trim() || (await emptyTree(t.a.repo));
-      await invoke('jbGit.changes.show', { repoRoot: t.a.repo.root, from, to: c.hash, title: c.summary });
+      await invoke('gitPrism.changes.show', { repoRoot: t.a.repo.root, from, to: c.hash, title: c.summary });
     } catch (e) {
       showGitError(e, `Cannot load affected files for path '${t.a.path}' in revision '${c.hash.slice(0, 8)}'`);
     }
@@ -496,7 +496,7 @@ export class Annotator implements vscode.Disposable {
     return h ? { hash: h, path: a.path } : undefined;
   }
 
-  /** jbGit.annotate.revision: opens the file at `rev` (read-only) and annotates it. */
+  /** gitPrism.annotate.revision: opens the file at `rev` (read-only) and annotates it. */
   async annotateRevision(args: { repoRoot: string; path: string; rev: string }, line?: number): Promise<void> {
     if (!args?.repoRoot || !args.path || !args.rev) return;
     const repo = this.ctx.repos.get(args.repoRoot) ?? (await this.ctx.repos.open(args.repoRoot));
@@ -511,8 +511,8 @@ export class Annotator implements vscode.Disposable {
     }
     let editor: vscode.TextEditor | undefined;
     try {
-      // the compare feature opens `jbgit-rev:` documents and resolves the revision to a hash
-      await invoke('jbGit.openFileAtRevision', args);
+      // the compare feature opens `gitprism-rev:` documents and resolves the revision to a hash
+      await invoke('gitPrism.openFileAtRevision', args);
       const now = vscode.window.activeTextEditor;
       const q = now && revisionQueryOf(now.document.uri);
       if (now && q && q.path === args.path && path.resolve(q.repoRoot) === repo.root) editor = now;
@@ -546,12 +546,12 @@ export class Annotator implements vscode.Disposable {
 }
 
 export const HOVER_COMMANDS = [
-  'jbGit.annotate.currentRevision',
-  'jbGit.annotate.showCommitInLog',
-  'jbGit.annotate.showDiff',
-  'jbGit.annotate.showAffectedFiles',
-  'jbGit.annotate.previousRevision',
-  'jbGit.annotate.copyRevision',
+  'gitPrism.annotate.currentRevision',
+  'gitPrism.annotate.showCommitInLog',
+  'gitPrism.annotate.showDiff',
+  'gitPrism.annotate.showAffectedFiles',
+  'gitPrism.annotate.previousRevision',
+  'gitPrism.annotate.copyRevision',
 ];
 
 async function emptyTree(repo: Repository): Promise<string> {

@@ -1,5 +1,5 @@
 // Merge/Rebase status bar widget ("Rebasing main", "Merging feature", "Cherry-picking in main", "Reverting in main")
-// with the ongoing operation's actions, the jbGit.hasConflicts / jbGit.operation.* context keys and the
+// with the ongoing operation's actions, the gitPrism.hasConflicts / gitPrism.operation.* context keys and the
 // "Merge Conflicts" notification when unmerged files appear.
 import * as vscode from 'vscode';
 import type { FeatureContext } from '../../core/context';
@@ -26,7 +26,7 @@ const ICONS: Partial<Record<OperationState, string>> = {
 };
 
 export class OperationWidget implements vscode.Disposable {
-  private readonly item = vscode.window.createStatusBarItem('jbGit.operation', vscode.StatusBarAlignment.Left, 99);
+  private readonly item = vscode.window.createStatusBarItem('gitPrism.operation', vscode.StatusBarAlignment.Left, 99);
   private readonly snapshots = new Map<string, RepoSnapshot>();
   private readonly disposables: vscode.Disposable[] = [this.item];
   private timer: NodeJS.Timeout | undefined;
@@ -37,7 +37,7 @@ export class OperationWidget implements vscode.Disposable {
     private readonly ops: Operations,
   ) {
     this.item.name = 'Git Merge/Rebase';
-    this.item.command = 'jbGit.conflicts.operationActions';
+    this.item.command = 'gitPrism.conflicts.operationActions';
     this.disposables.push(
       ctx.repos.onDidChangeRepository(() => this.schedule()),
       ctx.repos.onDidChangeRepositories(() => this.schedule()),
@@ -73,14 +73,14 @@ export class OperationWidget implements vscode.Disposable {
     for (const root of [...this.snapshots.keys()]) if (!seen.has(root)) this.snapshots.delete(root);
     const all = [...this.snapshots.values()];
     const setCtx = (key: string, v: unknown) => vscode.commands.executeCommand('setContext', key, v);
-    setCtx('jbGit.hasConflicts', all.some((s) => s.conflicts > 0));
-    setCtx('jbGit.operationInProgress', all.some((s) => s.op !== 'none'));
-    setCtx('jbGit.operation.rebase', all.some((s) => s.op === 'rebase'));
-    setCtx('jbGit.operation.merge', all.some((s) => s.op === 'merge'));
-    setCtx('jbGit.operation.cherryPick', all.some((s) => s.op === 'cherry-pick'));
-    setCtx('jbGit.operation.revert', all.some((s) => s.op === 'revert'));
-    setCtx('jbGit.operation.mergeCommit', all.some((s) => s.op === 'merge' && !s.conflicts));
-    setCtx('jbGit.operation.cherryPickContinue', all.some((s) => s.op === 'cherry-pick' && !s.conflicts));
+    setCtx('gitPrism.hasConflicts', all.some((s) => s.conflicts > 0));
+    setCtx('gitPrism.operationInProgress', all.some((s) => s.op !== 'none'));
+    setCtx('gitPrism.operation.rebase', all.some((s) => s.op === 'rebase'));
+    setCtx('gitPrism.operation.merge', all.some((s) => s.op === 'merge'));
+    setCtx('gitPrism.operation.cherryPick', all.some((s) => s.op === 'cherry-pick'));
+    setCtx('gitPrism.operation.revert', all.some((s) => s.op === 'revert'));
+    setCtx('gitPrism.operation.mergeCommit', all.some((s) => s.op === 'merge' && !s.conflicts));
+    setCtx('gitPrism.operation.cherryPickContinue', all.some((s) => s.op === 'cherry-pick' && !s.conflicts));
     this.render();
   }
 
@@ -150,7 +150,7 @@ export class OperationWidget implements vscode.Disposable {
 
   /** "Merge Conflicts" → Resolve… / Abort <Operation>; skipped while the Conflicts dialog already shows this repository. */
   private notifyConflicts(repo: Repository): void {
-    if (!vscode.workspace.getConfiguration('jbGit.conflicts').get<boolean>('showNotification', true)) return;
+    if (!vscode.workspace.getConfiguration('gitPrism.conflicts').get<boolean>('showNotification', true)) return;
     // let the feature that started the operation show its own "… stopped due to conflicts" first
     setTimeout(async () => {
       if (ConflictsPanel.isOpenFor(repo.root) || this.ops.recentlyNotified(repo.root)) return;
@@ -165,7 +165,7 @@ export class OperationWidget implements vscode.Disposable {
         `Merge Conflicts${this.ops.mention(repo)}: There are unresolved conflicts in the working tree (${what}).`,
         ...buttons,
       );
-      if (pick === resolve) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+      if (pick === resolve) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
       else if (pick && pick === abort) this.ops.abort(repo);
     }, 1500);
   }
@@ -179,7 +179,7 @@ export class OperationWidget implements vscode.Disposable {
 export async function runAction(ops: Operations, repo: Repository, a: OpAction): Promise<void> {
   switch (a) {
     case 'resolve':
-      await invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+      await invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
       break;
     case 'rebaseContinue':
     case 'cherryPickContinue':

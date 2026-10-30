@@ -28,7 +28,7 @@ export function openDialog<T>(
   }
   return new Promise((resolve) => {
     const ext = ctx.extension.extensionUri;
-    const panel = vscode.window.createWebviewPanel(`jbGit.${opts.bundle}`, opts.title, vscode.ViewColumn.Active, webviewOptions(ext));
+    const panel = vscode.window.createWebviewPanel(`gitPrism.${opts.bundle}`, opts.title, vscode.ViewColumn.Active, webviewOptions(ext));
     panel.iconPath = new vscode.ThemeIcon(opts.icon);
     open.set(opts.key, panel);
     let settled = false;

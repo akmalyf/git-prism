@@ -112,7 +112,7 @@ export class LineActions {
       line: first ? first.start : c.editor.selection.active.line,
     };
     try {
-      await invoke('jbGit.diff.show', req);
+      await invoke('gitPrism.diff.show', req);
     } catch (e) {
       showGitError(e, 'Cannot show diff');
     }

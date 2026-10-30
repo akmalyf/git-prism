@@ -89,7 +89,7 @@ async function changesOf(repo: Repository, commits: PushCommit[]): Promise<Squas
   return squashChanges([...commits].reverse().map((c) => ({ hash: c.hash, root: !c.parents.length, files: files.get(c.hash) ?? [] })));
 }
 
-/** `branch`: a local branch to push instead of the current one (jbGit.sync.pushBranch); limits the dialog to one repository. */
+/** `branch`: a local branch to push instead of the current one (gitPrism.sync.pushBranch); limits the dialog to one repository. */
 export async function push(ctx: FeatureContext, args: (SyncArgs & { upTo?: string; force?: boolean; branch?: string }) | vscode.Uri | undefined): Promise<void> {
   const a = args instanceof vscode.Uri ? undefined : args;
   let repos = await reposOf(ctx, args);
@@ -105,9 +105,9 @@ export async function push(ctx: FeatureContext, args: (SyncArgs & { upTo?: strin
     const init: PushInit = {
       title: repos.length === 1 ? `Push Commits to ${repos[0].name}` : 'Push Commits',
       repos: items,
-      pushTags: state.get('jbGit.push.tags', false),
-      tagMode: state.get<'all' | 'current'>('jbGit.push.tagMode', 'all'),
-      runHooks: state.get('jbGit.push.runHooks', true),
+      pushTags: state.get('gitPrism.push.tags', false),
+      tagMode: state.get<'all' | 'current'>('gitPrism.push.tagMode', 'all'),
+      runHooks: state.get('gitPrism.push.runHooks', true),
       forceDefault: !!a?.force,
       protectedPatterns: protectedPatterns(),
       locale: vscode.env.language,
@@ -131,7 +131,7 @@ export async function push(ctx: FeatureContext, args: (SyncArgs & { upTo?: strin
           rightTitle: c.last.slice(0, 8),
         }));
         const index = Math.max(0, files.findIndex((f) => f.path === q.path));
-        await invoke('jbGit.diff.show', { files, index, title: q.path.split('/').pop() });
+        await invoke('gitPrism.diff.show', { files, index, title: q.path.split('/').pop() });
       },
       defineRemote: async (q: { root: string; name: string; url: string }) => {
         const repo = get(q.root);
@@ -145,9 +145,9 @@ export async function push(ctx: FeatureContext, args: (SyncArgs & { upTo?: strin
       push: (r: PushRequest) => done(r),
     }));
     if (!req) return;
-    await state.update('jbGit.push.tags', req.pushTags);
-    await state.update('jbGit.push.tagMode', req.tagMode);
-    await state.update('jbGit.push.runHooks', req.runHooks);
+    await state.update('gitPrism.push.tags', req.pushTags);
+    await state.update('gitPrism.push.tagMode', req.tagMode);
+    await state.update('gitPrism.push.runHooks', req.runHooks);
     await runPush(ctx, req, items, a?.upTo);
   } catch (e) {
     await reportError(e, 'Push failed');

@@ -1,23 +1,23 @@
 {
   "commands": [
     {
-      "command": "jbGit.commit.focus",
+      "command": "gitPrism.commit.focus",
       "title": "Commit\u2026",
       "category": "Git",
       "icon": "$(git-commit)"
     },
     {
-      "command": "jbGit.add",
+      "command": "gitPrism.add",
       "title": "Add",
       "category": "Git"
     },
     {
-      "command": "jbGit.addToGitignore",
+      "command": "gitPrism.addToGitignore",
       "title": "Add to .gitignore",
       "category": "Git"
     },
     {
-      "command": "jbGit.rollback",
+      "command": "gitPrism.rollback",
       "title": "Rollback\u2026",
       "category": "Git"
     }
@@ -25,29 +25,29 @@
   "menus": {
     "commandPalette": [
       {
-        "command": "jbGit.add",
-        "when": "jbGit.active"
+        "command": "gitPrism.add",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.addToGitignore",
-        "when": "jbGit.active"
+        "command": "gitPrism.addToGitignore",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.rollback",
-        "when": "jbGit.active"
+        "command": "gitPrism.rollback",
+        "when": "gitPrism.active"
       }
     ],
-    "jbGit.fileMenu": [
+    "gitPrism.fileMenu": [
       {
-        "command": "jbGit.add",
+        "command": "gitPrism.add",
         "group": "1_commit@2"
       },
       {
-        "command": "jbGit.addToGitignore",
+        "command": "gitPrism.addToGitignore",
         "group": "1_commit@3"
       },
       {
-        "command": "jbGit.rollback",
+        "command": "gitPrism.rollback",
         "group": "3_rollback@1"
       }
     ]

@@ -43,7 +43,7 @@ import { hasAnyFilter, parseFollowNames, parseShortlog, pathsInRoot, recentBranc
 import { toRefItem } from './refs';
 import { readSettings, RELOAD_KEYS, writeSetting } from './settings';
 
-const FAVORITES_KEY = 'jbGit.log.favorites';
+const FAVORITES_KEY = 'gitPrism.log.favorites';
 const DEFAULT_OPTIONS: LogViewOptions = { showChangesToParents: false, showOnlyAffectedChanges: true };
 
 export interface ControllerOptions {
@@ -107,10 +107,10 @@ export class LogController implements vscode.Disposable {
       ctx.repos.onDidChangeRepository((repo) => this.onRepoChanged(repo)),
       ctx.repos.onDidChangeRepositories(() => this.request('refresh')),
       vscode.workspace.onDidChangeConfiguration((e) => {
-        if (!e.affectsConfiguration('jbGit.log')) return;
+        if (!e.affectsConfiguration('gitPrism.log')) return;
         const settings = readSettings();
         this.bridge.emit('settings', settings);
-        if (RELOAD_KEYS.some((k) => e.affectsConfiguration(`jbGit.log.${k}`))) this.request('reload');
+        if (RELOAD_KEYS.some((k) => e.affectsConfiguration(`gitPrism.log.${k}`))) this.request('reload');
         else this.emitState();
       }),
     );
@@ -261,7 +261,7 @@ export class LogController implements vscode.Disposable {
     if (this.opts.persistKey) this.ctx.extension.workspaceState.update(this.opts.persistKey, { filters: this.filters, options: this.options } satisfies Persisted);
   }
 
-  /** Replaces the filters (jbGit.log.show) and reloads. */
+  /** Replaces the filters (gitPrism.log.show) and reloads. */
   async setFilters(filters: LogFilters): Promise<LogState> {
     this.filters = normalizeFilters(filters);
     this.persist();
@@ -375,10 +375,10 @@ export class LogController implements vscode.Disposable {
         return computeChanges(this.data, p, p.showChangesToParents ?? this.options.showChangesToParents, affected);
       },
       showDiff: guard('Cannot show diff', (p: ShowDiffRequest) => showDiff(p)),
-      openFileAtRevision: guard('Cannot open file', (p: FileAtRevision) => invoke('jbGit.openFileAtRevision', { repoRoot: p.root, path: p.path, rev: p.rev })),
-      annotate: guard('Cannot annotate', (p: FileAtRevision) => vscode.commands.executeCommand('jbGit.annotate.revision', { repoRoot: p.root, path: p.path, rev: p.rev })),
+      openFileAtRevision: guard('Cannot open file', (p: FileAtRevision) => invoke('gitPrism.openFileAtRevision', { repoRoot: p.root, path: p.path, rev: p.rev })),
+      annotate: guard('Cannot annotate', (p: FileAtRevision) => vscode.commands.executeCommand('gitPrism.annotate.revision', { repoRoot: p.root, path: p.path, rev: p.rev })),
       showHistory: guard('Cannot show history', (p: { root: string; path: string; revision?: string }) =>
-        invoke('jbGit.log.show', { repoRoot: p.root, paths: [p.path], editorTab: true, revision: p.revision }),
+        invoke('gitPrism.log.show', { repoRoot: p.root, paths: [p.path], editorTab: true, revision: p.revision }),
       ),
       historyUpTo: guard('Cannot show history', (p: HistoryUpToRequest) => this.historyUpTo(p)),
       historyInfo: async (p: CommitId) => {
@@ -389,7 +389,7 @@ export class LogController implements vscode.Disposable {
         await this.ready;
         return this.fileHistory.run(p);
       }),
-      compareWithLocalFile: guard('Cannot compare', (p: FileAtRevision) => invoke('jbGit.compare.fileWithRevision', { repoRoot: p.root, path: p.path, rev: p.rev })),
+      compareWithLocalFile: guard('Cannot compare', (p: FileAtRevision) => invoke('gitPrism.compare.fileWithRevision', { repoRoot: p.root, path: p.path, rev: p.rev })),
       openFile: guard('Cannot open file', async (p: { root: string; path: string }) => {
         const uri = vscode.Uri.file(this.repoOf(p.root).abs(p.path));
         await vscode.window.showTextDocument(uri, { preview: true });
@@ -400,7 +400,7 @@ export class LogController implements vscode.Disposable {
       commitOp: guard('Operation failed', (p: CommitOpRequest) => this.commitOp(p)),
       refOp: guard('Operation failed', (p: RefOpRequest) => this.refOp(p)),
       compareVersions: guard('Cannot compare', (p: { commits: CommitId[] }) => this.compareVersions(p.commits)),
-      compareWithLocal: guard('Cannot compare', (p: CommitId) => invoke('jbGit.changes.show', { repoRoot: p.root, from: p.hash, title: `${p.hash.slice(0, 8)} ↔ Local Changes` })),
+      compareWithLocal: guard('Cannot compare', (p: CommitId) => invoke('gitPrism.changes.show', { repoRoot: p.root, from: p.hash, title: `${p.hash.slice(0, 8)} ↔ Local Changes` })),
       refs: () => this.ready.then(() => this.refs()),
       toggleFavorite: (p: { root: string; name: string }) => this.toggleFavorite(p.root, p.name),
       users: () => this.ready.then(() => this.users()),
@@ -431,7 +431,7 @@ export class LogController implements vscode.Disposable {
       openInEditorTab: () => this.opts.openEditor(this.filters),
       showConsole: () => this.expandConsole(),
       /** empty log "Commit local changes" link */
-      commitLocalChanges: () => invoke('jbGit.commit.focus', {}),
+      commitLocalChanges: () => invoke('gitPrism.commit.focus', {}),
     };
   }
 
@@ -442,8 +442,8 @@ export class LogController implements vscode.Disposable {
       return;
     }
     const args = { repoRoot: p.commits[0].root, hashes: p.commits.map((c) => c.hash) };
-    if (p.op === 'repoAtRevision') return invoke('jbGit.repoAtRevision', args);
-    const id = `jbGit.commit.${p.op}` as keyof Commands;
+    if (p.op === 'repoAtRevision') return invoke('gitPrism.repoAtRevision', args);
+    const id = `gitPrism.commit.${p.op}` as keyof Commands;
     return vscode.commands.executeCommand(id, args);
   }
 
@@ -451,40 +451,40 @@ export class LogController implements vscode.Disposable {
     const a = { repoRoot: p.root, ref: p.ref };
     switch (p.op) {
       case 'actions':
-        return invoke('jbGit.branch.actions', a);
+        return invoke('gitPrism.branch.actions', a);
       case 'checkout':
-        return invoke('jbGit.branch.checkout', a);
+        return invoke('gitPrism.branch.checkout', a);
       case 'newBranch':
-        return invoke('jbGit.branch.new', a);
+        return invoke('gitPrism.branch.new', a);
       case 'newTag':
-        return invoke('jbGit.tag.new', a);
+        return invoke('gitPrism.tag.new', a);
       case 'delete':
-        return invoke('jbGit.branch.delete', a);
+        return invoke('gitPrism.branch.delete', a);
       case 'deleteTag':
-        return invoke('jbGit.tag.delete', a);
+        return invoke('gitPrism.tag.delete', a);
       case 'rename':
-        return invoke('jbGit.branch.rename', a);
+        return invoke('gitPrism.branch.rename', a);
       case 'merge':
-        return invoke('jbGit.merge', a);
+        return invoke('gitPrism.merge', a);
       case 'rebase':
-        return invoke('jbGit.rebase', a);
+        return invoke('gitPrism.rebase', a);
       case 'compareWithCurrent':
-        return invoke('jbGit.compare.withCurrent', a);
+        return invoke('gitPrism.compare.withCurrent', a);
       case 'push':
-        // a local branch node pushes that branch (jbGit.sync.pushBranch); HEAD / no ref pushes the current branch
+        // a local branch node pushes that branch (gitPrism.sync.pushBranch); HEAD / no ref pushes the current branch
         return p.ref && p.ref !== 'HEAD'
-          ? vscode.commands.executeCommand('jbGit.sync.pushBranch', { repoRoot: p.root, branch: p.ref })
-          : invoke('jbGit.push', { repoRoot: p.root });
+          ? vscode.commands.executeCommand('gitPrism.sync.pushBranch', { repoRoot: p.root, branch: p.ref })
+          : invoke('gitPrism.push', { repoRoot: p.root });
       case 'fetch':
-        return invoke('jbGit.fetch', { repoRoot: p.root });
+        return invoke('gitPrism.fetch', { repoRoot: p.root });
       case 'pull':
-        return invoke('jbGit.pull', { repoRoot: p.root });
+        return invoke('gitPrism.pull', { repoRoot: p.root });
       case 'updateProject':
-        return invoke('jbGit.updateProject', { repoRoot: p.root });
+        return invoke('gitPrism.updateProject', { repoRoot: p.root });
       case 'checkoutAndRebase':
         return p.ref && checkoutAndRebase(this.repoOf(p.root), p.ref);
       case 'showDiffWithWorkingTree':
-        return vscode.commands.executeCommand('jbGit.compare.withWorkingTree', a);
+        return vscode.commands.executeCommand('gitPrism.compare.withWorkingTree', a);
       case 'update':
         return p.ref && updateBranch(this.repoOf(p.root), p.ref);
       case 'pullRebase':
@@ -499,7 +499,7 @@ export class LogController implements vscode.Disposable {
     const rd = this.data.roots.find((r) => r.repo.root === p.root);
     const current = this.opts.init.mode === 'history' && rd && rd.paths.length && !rd.paths.includes('.') && rd.paths.includes(p.path) && this.opts.init.historyPaths?.length === 1 ? rd.paths[0] : p.path;
     const base = current.slice(current.lastIndexOf('/') + 1) || current;
-    return invoke('jbGit.log.show', {
+    return invoke('gitPrism.log.show', {
       repoRoot: p.root,
       paths: [current],
       editorTab: true,
@@ -517,7 +517,7 @@ export class LogController implements vscode.Disposable {
     }
     const [a, b] = commits.map((c) => ({ c, row: this.data.row(c.root, c.hash) }));
     const [newer, older] = a.row >= 0 && b.row >= 0 && b.row < a.row ? [b.c, a.c] : [a.c, b.c];
-    return invoke('jbGit.changes.show', {
+    return invoke('gitPrism.changes.show', {
       repoRoot: newer.root,
       from: older.hash,
       to: newer.hash,

@@ -110,7 +110,7 @@ export class LineStatusTrackers implements vscode.Disposable {
       ctx.repos.onDidChangeRepository((r) => this.repoChanged(r)),
       ctx.repos.onDidChangeRepositories(() => this.syncVisible()),
       vscode.workspace.onDidChangeConfiguration((e) => {
-        if (!e.affectsConfiguration('jbGit.diff.gutterMarkers')) return;
+        if (!e.affectsConfiguration('gitPrism.diff.gutterMarkers')) return;
         this.enabled = this.config();
         for (const k of [...this.tracked.keys()]) this.untrack(k);
         for (const e of vscode.window.visibleTextEditors) for (const d of Object.values(this.types)) e.setDecorations(d, []);
@@ -128,7 +128,7 @@ export class LineStatusTrackers implements vscode.Disposable {
   }
 
   private config(): boolean {
-    return vscode.workspace.getConfiguration('jbGit.diff').get<boolean>('gutterMarkers', true);
+    return vscode.workspace.getConfiguration('gitPrism.diff').get<boolean>('gutterMarkers', true);
   }
 
   private async compareLines(): Promise<CompareLines> {
@@ -321,14 +321,14 @@ export class LineStatusTrackers implements vscode.Disposable {
       `[$(${icon})](command:${cmd}${withArg ? `?${arg}` : ''} "${title}")`;
     const md = new vscode.MarkdownString(undefined, true);
     md.isTrusted = {
-      enabledCommands: ['jbGit.diff.previousChange', 'jbGit.diff.nextChange', 'jbGit.diff.rollbackChange', 'jbGit.diff.showChangeDiff', 'jbGit.diff.copyChange'],
+      enabledCommands: ['gitPrism.diff.previousChange', 'gitPrism.diff.nextChange', 'gitPrism.diff.rollbackChange', 'gitPrism.diff.showChangeDiff', 'gitPrism.diff.copyChange'],
     };
     const tools = [
-      link('arrow-up', 'Previous Change', 'jbGit.diff.previousChange', false),
-      link('arrow-down', 'Next Change', 'jbGit.diff.nextChange', false),
-      link('discard', 'Rollback Lines', 'jbGit.diff.rollbackChange'),
-      link('diff', 'Show Diff', 'jbGit.diff.showChangeDiff'),
-      ...(r.vcsLine1 < r.vcsLine2 ? [link('copy', 'Copy', 'jbGit.diff.copyChange')] : []),
+      link('arrow-up', 'Previous Change', 'gitPrism.diff.previousChange', false),
+      link('arrow-down', 'Next Change', 'gitPrism.diff.nextChange', false),
+      link('discard', 'Rollback Lines', 'gitPrism.diff.rollbackChange'),
+      link('diff', 'Show Diff', 'gitPrism.diff.showChangeDiff'),
+      ...(r.vcsLine1 < r.vcsLine2 ? [link('copy', 'Copy', 'gitPrism.diff.copyChange')] : []),
     ];
     md.appendMarkdown(tools.join('&nbsp;&nbsp;'));
     const original = originalText(t.base, r);
@@ -383,7 +383,7 @@ export class LineStatusTrackers implements vscode.Disposable {
       line: Math.min(r.line1, Math.max(0, doc.lineCount - 1)),
     };
     try {
-      await invoke('jbGit.diff.show', req);
+      await invoke('gitPrism.diff.show', req);
     } catch (e) {
       showGitError(e, 'Cannot show diff');
     }

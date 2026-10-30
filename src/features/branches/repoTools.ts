@@ -169,7 +169,7 @@ export async function unshallow(repo: Repository): Promise<void> {
 export async function checkShallow(ctx: Ctx, repo: Repository, notified: Set<string>): Promise<void> {
   if (notified.has(repo.root)) return;
   notified.add(repo.root);
-  const key = `jbGit.branches.unshallowDismissed:${repo.root}`;
+  const key = `gitPrism.branches.unshallowDismissed:${repo.root}`;
   if (ctx.extension.workspaceState.get<boolean>(key)) return;
   if (!(await isShallow(repo))) return;
   const pick = await vscode.window.showInformationMessage(
@@ -302,31 +302,31 @@ interface Op {
 }
 
 const OPS: (Op | '-')[] = [
-  { label: 'Commit…', ids: ['jbGit.commit.focus'], icon: 'check' },
-  { label: 'Push…', ids: ['jbGit.push'], icon: 'arrow-up' },
-  { label: 'Update Project…', ids: ['jbGit.updateProject'], icon: 'sync' },
-  { label: 'Pull…', ids: ['jbGit.pull'], icon: 'arrow-down' },
-  { label: 'Fetch', ids: ['jbGit.fetch'], icon: 'repo-fetch' },
+  { label: 'Commit…', ids: ['gitPrism.commit.focus'], icon: 'check' },
+  { label: 'Push…', ids: ['gitPrism.push'], icon: 'arrow-up' },
+  { label: 'Update Project…', ids: ['gitPrism.updateProject'], icon: 'sync' },
+  { label: 'Pull…', ids: ['gitPrism.pull'], icon: 'arrow-down' },
+  { label: 'Fetch', ids: ['gitPrism.fetch'], icon: 'repo-fetch' },
   '-',
-  { label: 'Merge…', ids: ['jbGit.merge'], icon: 'git-merge' },
-  { label: 'Rebase…', ids: ['jbGit.rebase'] },
+  { label: 'Merge…', ids: ['gitPrism.merge'], icon: 'git-merge' },
+  { label: 'Rebase…', ids: ['gitPrism.rebase'] },
   '-',
-  { label: 'Branches…', ids: ['jbGit.branches.show'], icon: 'git-branch' },
-  { label: 'New Branch…', ids: ['jbGit.branch.new'] },
-  { label: 'New Tag…', ids: ['jbGit.tag.new'], icon: 'tag' },
+  { label: 'Branches…', ids: ['gitPrism.branches.show'], icon: 'git-branch' },
+  { label: 'New Branch…', ids: ['gitPrism.branch.new'] },
+  { label: 'New Tag…', ids: ['gitPrism.tag.new'], icon: 'tag' },
   '-',
-  { label: 'Reset HEAD…', ids: ['jbGit.resetHead'] },
-  { label: 'Stash Changes…', ids: ['jbGit.stash.create'] },
-  { label: 'Unstash Changes…', ids: ['jbGit.stash.unstash'] },
+  { label: 'Reset HEAD…', ids: ['gitPrism.resetHead'] },
+  { label: 'Stash Changes…', ids: ['gitPrism.stash.create'] },
+  { label: 'Unstash Changes…', ids: ['gitPrism.stash.unstash'] },
   '-',
-  { label: 'Annotate with Git Blame', ids: ['jbGit.annotate.toggle'] },
-  { label: 'Show History', ids: ['jbGit.showHistory'], icon: 'history' },
-  { label: 'Compare with Branch or Tag…', ids: ['jbGit.compareWithBranch'] },
-  { label: 'Rollback…', ids: ['jbGit.commit.rollback', 'jbGit.rollback', 'jbGit.changes.rollback', 'jbGit.commit.rollbackAll'], icon: 'discard' },
+  { label: 'Annotate with Git Blame', ids: ['gitPrism.annotate.toggle'] },
+  { label: 'Show History', ids: ['gitPrism.showHistory'], icon: 'history' },
+  { label: 'Compare with Branch or Tag…', ids: ['gitPrism.compareWithBranch'] },
+  { label: 'Rollback…', ids: ['gitPrism.commit.rollback', 'gitPrism.rollback', 'gitPrism.changes.rollback', 'gitPrism.commit.rollbackAll'], icon: 'discard' },
   '-',
-  { label: 'Show Git Log', ids: ['jbGit.log.show'], icon: 'git-commit' },
-  { label: 'Clone…', ids: ['jbGit.clone'] },
-  { label: 'Manage Remotes…', ids: ['jbGit.remotes.manage'] },
+  { label: 'Show Git Log', ids: ['gitPrism.log.show'], icon: 'git-commit' },
+  { label: 'Clone…', ids: ['gitPrism.clone'] },
+  { label: 'Manage Remotes…', ids: ['gitPrism.remotes.manage'] },
 ];
 
 export async function vcsOperations(): Promise<void> {

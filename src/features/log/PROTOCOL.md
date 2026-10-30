@@ -17,9 +17,9 @@ rpc.on<LogState>('state', (s) => …);
 
 | where | init.mode | init.editorTab | filters persisted |
 |---|---|---|---|
-| Git panel → view `jbGit.logView` ("Log") | `log` | false | yes (workspaceState `jbGit.log.view`) |
-| `jbGit.log.show {editorTab:true}` without paths, "Open New Git Log Editor Tab" (`openInEditorTab`) | `log` | true | no |
-| `jbGit.log.show {editorTab:true, paths}` → "History: <file>" | `history` | true | no |
+| Git panel → view `gitPrism.logView` ("Log") | `log` | false | yes (workspaceState `gitPrism.log.view`) |
+| `gitPrism.log.show {editorTab:true}` without paths, "Open New Git Log Editor Tab" (`openInEditorTab`) | `log` | true | no |
+| `gitPrism.log.show {editorTab:true, paths}` → "History: <file>" | `history` | true | no |
 
 History view: the host always applies `init.historyPaths` as the path filter (a single file also follows its
 renames); `LogState.filters.paths` stays empty there, so the UI shows Branch/User/Date/Text filters only and hides
@@ -73,26 +73,26 @@ IntelliJ PrintElement semantics, row height H, lane width W (IntelliJ: 24 px row
 | `refresh` | — | `LogState` | Refresh (keeps loaded range) |
 | `setFilters` | `LogFilters` (replaces all) | `LogState` | persisted for the panel view |
 | `setOptions` | `Partial<LogViewOptions>` | `LogState` | Show Changes to Parents, Show Only Affected Changes |
-| `setSetting` | `{key: LogSettingKey, value}` | void | writes `jbGit.log.<key>` (global); a `settings` + `state` event follows |
+| `setSetting` | `{key: LogSettingKey, value}` | void | writes `gitPrism.log.<key>` (global); a `settings` + `state` event follows |
 | `details` | `{commits: CommitId[]}` | `CommitDetails[]` | full message (`message`), committer, refs; for the details pane |
 | `containingBranches` | `CommitId` | `ContainingBranches` | lazy "In N branches: …"; show "In branches: loading…" until it resolves; `[]` → "Not in any branch" |
 | `changes` | `ChangesRequest {commits, showChangesToParents?}` | `ChangesResult {groups, merge, affectedOnly}` | one commit → 1 group (parent → commit); a merge → files changed vs ALL parents, or with Show Changes to Parents one group per parent titled "Changes to <hash>"; several commits of one repo → combined `oldest^..newest`; several repos → one group per repo |
-| `showDiff` | `ShowDiffRequest {group, path, mode?, beside?}` | void | opens `jbGit.diff.show` with ALL files of the group (prev/next file); mode `commit` (Show Diff), `local` (Compare with Local), `beforeLocal` (Compare Before with Local) |
+| `showDiff` | `ShowDiffRequest {group, path, mode?, beside?}` | void | opens `gitPrism.diff.show` with ALL files of the group (prev/next file); mode `commit` (Show Diff), `local` (Compare with Local), `beforeLocal` (Compare Before with Local) |
 | `openFileAtRevision` | `FileAtRevision {root, path, rev}` | void | Show File at Revision (use `group.to`, or `group.from` for deleted files) |
-| `annotate` | `FileAtRevision` | void | Annotate (`jbGit.annotate.revision`) |
+| `annotate` | `FileAtRevision` | void | Annotate (`gitPrism.annotate.revision`) |
 | `showHistory` | `{root, path, revision?}` | void | Show History for the file (new History tab) |
 | `historyUpTo` | `HistoryUpToRequest` | void | History Up to Here: new History tab whose branch filter is the revision |
 | `historyInfo` | `CommitId` | `HistoryFileInfo` | history view: the history file in that commit (path at revision, deleted, dir) |
 | `historyAction` | `HistoryActionRequest` | void | history view actions (Vcs.FileHistory.ContextMenu / Toolbar): showDiff, showDiffNewTab, compareWithLocal, openFile, annotate, get, showAllAffected, selectInLog |
-| `compareWithLocalFile` | `FileAtRevision` | void | `jbGit.compare.fileWithRevision` |
+| `compareWithLocalFile` | `FileAtRevision` | void | `gitPrism.compare.fileWithRevision` |
 | `openFile` | `{root, path}` | void | Jump to Source (working tree file) |
 | `getFromRevision` | `FilesAtRevision {root, paths, rev}` | void | "Get": asks for confirmation, restores the files' content from `rev` (files absent there are deleted) |
 | `revertSelectedChanges` | `FilesAtRevision {root, paths, rev, from}` | void | reverse-applies `from..rev` for those files (merges with local changes, reports conflicts) |
 | `cherryPickSelectedChanges` | `FilesAtRevision {root, paths, rev, from}` | void | applies `from..rev` for those files |
-| `commitOp` | `CommitOpRequest {op, commits}` | unknown | invokes `jbGit.commit.<op>` / `jbGit.repoAtRevision` with `{repoRoot, hashes}` (commits newest first, single repo) |
+| `commitOp` | `CommitOpRequest {op, commits}` | unknown | invokes `gitPrism.commit.<op>` / `gitPrism.repoAtRevision` with `{repoRoot, hashes}` (commits newest first, single repo) |
 | `refOp` | `RefOpRequest {op, root, ref?}` | unknown | branch/tag actions, see below |
-| `compareVersions` | `{commits: [CommitId, CommitId]}` | void | Compare Versions → `jbGit.changes.show` older → newer |
-| `compareWithLocal` | `CommitId` | void | changes between the commit and the working tree (`jbGit.changes.show`) |
+| `compareVersions` | `{commits: [CommitId, CommitId]}` | void | Compare Versions → `gitPrism.changes.show` older → newer |
+| `compareWithLocal` | `CommitId` | void | changes between the commit and the working tree (`gitPrism.changes.show`) |
 | `refs` | — | `RefsInfo[]` | per root: current, head, detached, local/remote/tags (`RefItem`), recent (reflog), favorites — branch filter popup ("HEAD", Local, Remote, Tags, Recent, Favorites) and branches tree |
 | `toggleFavorite` | `{root, name}` | void | ★ in the branches tree (defaults: main/master, origin/main/master) |
 | `users` | — | `UsersResult {users, me}` | User filter popup (shortlog, most commits first); offer "me" first |
@@ -106,18 +106,18 @@ IntelliJ PrintElement semantics, row height H, lane width W (IntelliJ: 24 px row
 | `fileContents` | `FileContentsRequest {root, path, oldPath?, kind, from, to}` | `FileContentsResult {original, modified, binary?, tooLarge?}` | both sides of a file for the embedded diff preview (> 2 MB → `tooLarge`) |
 | `cherryPicked` | `CherryPickedRequest {root, branch}` | `string[]` | "Not Cherry-Picked Commits": commits of `branch` already applied to HEAD (`git cherry HEAD branch`, `-` lines) |
 | `selectFolders` | — | `string[]` | Paths filter "Select in Tree…" (open dialog; absolute paths, forward slashes) |
-| `commitLocalChanges` | — | void | empty log link "Commit local changes" → `jbGit.commit.focus` |
+| `commitLocalChanges` | — | void | empty log link "Commit local changes" → `gitPrism.commit.focus` |
 
 `RefOp` → contract command (`{repoRoot: root, ref}`):
-`actions` → `jbGit.branch.actions` (the Branches-popup action list for a ref), `checkout` → `jbGit.branch.checkout`,
-`newBranch` → `jbGit.branch.new` (New Branch from 'ref'…), `newTag` → `jbGit.tag.new`, `delete` →
-`jbGit.branch.delete`, `deleteTag` → `jbGit.tag.delete`, `rename` → `jbGit.branch.rename`, `merge` → `jbGit.merge`,
-`rebase` → `jbGit.rebase`, `compareWithCurrent` → `jbGit.compare.withCurrent`, `push` / `fetch` / `pull` /
-`updateProject` → `jbGit.push` / `jbGit.fetch` / `jbGit.pull` / `jbGit.updateProject` (`{repoRoot}` only).
+`actions` → `gitPrism.branch.actions` (the Branches-popup action list for a ref), `checkout` → `gitPrism.branch.checkout`,
+`newBranch` → `gitPrism.branch.new` (New Branch from 'ref'…), `newTag` → `gitPrism.tag.new`, `delete` →
+`gitPrism.branch.delete`, `deleteTag` → `gitPrism.tag.delete`, `rename` → `gitPrism.branch.rename`, `merge` → `gitPrism.merge`,
+`rebase` → `gitPrism.rebase`, `compareWithCurrent` → `gitPrism.compare.withCurrent`, `push` / `fetch` / `pull` /
+`updateProject` → `gitPrism.push` / `gitPrism.fetch` / `gitPrism.pull` / `gitPrism.updateProject` (`{repoRoot}` only).
 Implemented by the log itself (`branchops.ts`): `checkoutAndRebase` ("Checkout and Rebase onto Current",
 `git rebase <current> <ref>`, a remote ref gets a local tracking branch first), `update` (current branch → Update
 Project, another → `git fetch <remote> <merge>:refs/heads/<b>` fast-forward), `pullRebase` / `pullMerge` ("Pull into
-Current Using Rebase/Merge" from a remote branch); `showDiffWithWorkingTree` → `jbGit.compare.withWorkingTree`.
+Current Using Rebase/Merge" from a remote branch); `showDiffWithWorkingTree` → `gitPrism.compare.withWorkingTree`.
 Failed rebases/pulls that leave an operation in progress offer "Resolve Conflicts…" / "Abort".
 
 `CommitOp` values: `checkoutRevision`, `resetToHere`, `revert`, `cherryPick`, `undo`, `reword`, `fixup`,
@@ -129,8 +129,8 @@ Failed rebases/pulls that leave an operation in progress offer "Resolve Conflict
 | event | data | when |
 |---|---|---|
 | `state` | `LogState` | any load start/end, filters/options/settings change |
-| `settings` | `LogSettings` | a `jbGit.log.*` setting changed (re-render; refetch rows if `showLongEdges` changed) |
-| `select` | `{row, hash, root}` | host wants a commit selected and scrolled into view (`jbGit.log.show {revision}`, Go To command) |
+| `settings` | `LogSettings` | a `gitPrism.log.*` setting changed (re-render; refetch rows if `showLongEdges` changed) |
+| `select` | `{row, hash, root}` | host wants a commit selected and scrolled into view (`gitPrism.log.show {revision}`, Go To command) |
 | `refs` | — | after every load: re-request `refs` for the branches tree / branch filter |
 | `focusTextFilter` | — | command "Focus Text Filter" |
 
@@ -146,7 +146,7 @@ Failed rebases/pulls that leave an operation in progress offer "Resolve Conflict
   (7–40 hex chars) commits whose hash starts with it are matched too.
 - Text, user and date filters are structure-changing (`state.linear`).
 
-## Settings (`LogSettings` = VS Code `jbGit.log.*`)
+## Settings (`LogSettings` = VS Code `gitPrism.log.*`)
 
 `sortType` ('topological' "Topologically" / 'date' "By Commit Date"), `firstParent` ("First Parent"),
 `showLongEdges` ("Long Edges"), `columns` (order + visibility of 'author' | 'subject' | 'date' | 'hash' | 'root';

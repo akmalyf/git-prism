@@ -70,7 +70,7 @@ after(() => {
 });
 
 function newRepo(commit = true): { root: string; repo: Repository } {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'jbgit-stash-test-'));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'gitprism-stash-test-'));
   roots.push(root);
   run(root, ['init', '-q', '-b', 'main']);
   run(root, ['config', 'user.email', 't@t']);

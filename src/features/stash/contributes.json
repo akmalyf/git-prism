@@ -1,59 +1,59 @@
 {
   "commands": [
     {
-      "command": "jbGit.stash.create",
+      "command": "gitPrism.stash.create",
       "title": "Stash Changes\u2026",
       "category": "Git",
       "icon": "$(git-stash)"
     },
     {
-      "command": "jbGit.stash.silently",
+      "command": "gitPrism.stash.silently",
       "title": "Stash Silently",
       "category": "Git"
     },
     {
-      "command": "jbGit.stash.unstash",
+      "command": "gitPrism.stash.unstash",
       "title": "Unstash Changes\u2026",
       "category": "Git",
       "icon": "$(git-stash-pop)"
     },
     {
-      "command": "jbGit.patch.create",
+      "command": "gitPrism.patch.create",
       "title": "Create Patch\u2026",
       "category": "Git"
     },
     {
-      "command": "jbGit.patch.copyToClipboard",
+      "command": "gitPrism.patch.copyToClipboard",
       "title": "Copy as Patch to Clipboard",
       "category": "Git"
     },
     {
-      "command": "jbGit.patch.apply",
+      "command": "gitPrism.patch.apply",
       "title": "Apply Patch\u2026",
       "category": "Git"
     },
     {
-      "command": "jbGit.patch.applyFromClipboard",
+      "command": "gitPrism.patch.applyFromClipboard",
       "title": "Apply Patch from Clipboard\u2026",
       "category": "Git"
     }
   ],
   "menus": {
-    "jbGit.fileMenu": [
+    "gitPrism.fileMenu": [
       {
-        "command": "jbGit.stash.create",
+        "command": "gitPrism.stash.create",
         "group": "6_stash@1"
       },
       {
-        "command": "jbGit.stash.unstash",
+        "command": "gitPrism.stash.unstash",
         "group": "6_stash@2"
       },
       {
-        "command": "jbGit.patch.create",
+        "command": "gitPrism.patch.create",
         "group": "6_stash@5"
       },
       {
-        "command": "jbGit.patch.apply",
+        "command": "gitPrism.patch.apply",
         "group": "6_stash@6"
       }
     ]

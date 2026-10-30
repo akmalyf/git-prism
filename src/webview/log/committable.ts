@@ -1,5 +1,5 @@
 // The commit table of the log (IntelliJ VcsLogGraphTable): virtualized 24 px rows over lazily fetched LogRows,
-// columns Root / Author / Subject (graph + reference labels) / Date / Hash from the jbGit.log.columns setting,
+// columns Root / Author / Subject (graph + reference labels) / Date / Hash from the gitPrism.log.columns setting,
 // highlighters, tooltips (graph arrows, references, truncated text), clickable arrows, speed search through the
 // host, Cmd/Ctrl+C, Cmd/Ctrl+D, ←/→ (parent/child), selection kept by commit across reloads.
 import type { CommitId, LogColumn, LogRow, LogSettings } from '../../features/log/protocol';

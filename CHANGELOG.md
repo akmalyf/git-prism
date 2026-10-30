@@ -4,7 +4,7 @@
 
 First release.
 
-- **Git panel › Log**: branches tree, commit graph with IntelliJ's commit ordering (by commit date or IntelliSort),
+- **Git panel › Log**: branches tree, commit graph with stable commit ordering (by commit date or topological),
   lane colors and row highlights, filter bar (text/hash, Branch, User, Date, Paths), changed files tree, commit
   details, diff preview and a collapsible Console pane with every git command.
 - **Commit operations** from the log: Cherry-Pick, Revert, Reset Current Branch to Here, Undo Commit, Edit Commit

@@ -1,11 +1,11 @@
-// What a document annotates: a working tree file, or a file at a revision (read-only `jbgit-rev:` documents of
+// What a document annotates: a working tree file, or a file at a revision (read-only `gitprism-rev:` documents of
 // the compare feature, or this feature's own fallback scheme). Pure except for the vscode.Uri type.
 import type * as vscode from 'vscode';
 
 /** Schemes of read-only "file at revision" documents whose query carries {repoRoot, rev, path}. */
-export const REV_SCHEMES = ['jbgit-rev', 'jbgit-annotate'];
-/** this feature's own read-only content scheme, used when jbGit.openFileAtRevision isn't available */
-export const OWN_SCHEME = 'jbgit-annotate';
+export const REV_SCHEMES = ['gitprism-rev', 'gitprism-annotate'];
+/** this feature's own read-only content scheme, used when gitPrism.openFileAtRevision isn't available */
+export const OWN_SCHEME = 'gitprism-annotate';
 
 export interface RevisionQuery {
   repoRoot: string;

@@ -1,33 +1,33 @@
 {
   "commands": [
-    { "command": "jbGit.diff.show", "title": "Show Diff", "category": "Git" },
-    { "command": "jbGit.conflicts.mergeFile", "title": "Merge Revisions", "category": "Git" },
-    { "command": "jbGit.diff.nextChange", "title": "Next Change", "category": "Git", "icon": "$(arrow-down)" },
-    { "command": "jbGit.diff.previousChange", "title": "Previous Change", "category": "Git", "icon": "$(arrow-up)" },
-    { "command": "jbGit.diff.changeUnderCaret", "title": "Change Under Caret", "category": "Git" },
-    { "command": "jbGit.diff.rollbackChange", "title": "Rollback Lines", "category": "Git", "icon": "$(discard)" },
-    { "command": "jbGit.diff.showChangeDiff", "title": "Show Diff", "category": "Git", "icon": "$(diff)" },
-    { "command": "jbGit.diff.copyChange", "title": "Copy", "category": "Git", "icon": "$(copy)" }
+    { "command": "gitPrism.diff.show", "title": "Show Diff", "category": "Git" },
+    { "command": "gitPrism.conflicts.mergeFile", "title": "Merge Revisions", "category": "Git" },
+    { "command": "gitPrism.diff.nextChange", "title": "Next Change", "category": "Git", "icon": "$(arrow-down)" },
+    { "command": "gitPrism.diff.previousChange", "title": "Previous Change", "category": "Git", "icon": "$(arrow-up)" },
+    { "command": "gitPrism.diff.changeUnderCaret", "title": "Change Under Caret", "category": "Git" },
+    { "command": "gitPrism.diff.rollbackChange", "title": "Rollback Lines", "category": "Git", "icon": "$(discard)" },
+    { "command": "gitPrism.diff.showChangeDiff", "title": "Show Diff", "category": "Git", "icon": "$(diff)" },
+    { "command": "gitPrism.diff.copyChange", "title": "Copy", "category": "Git", "icon": "$(copy)" }
   ],
   "menus": {
     "commandPalette": [
-      { "command": "jbGit.diff.show", "when": "false" },
-      { "command": "jbGit.conflicts.mergeFile", "when": "false" },
-      { "command": "jbGit.diff.nextChange", "when": "editorIsOpen && resourceScheme == file" },
-      { "command": "jbGit.diff.previousChange", "when": "editorIsOpen && resourceScheme == file" },
-      { "command": "jbGit.diff.changeUnderCaret", "when": "editorIsOpen && resourceScheme == file" },
-      { "command": "jbGit.diff.rollbackChange", "when": "false" },
-      { "command": "jbGit.diff.showChangeDiff", "when": "false" },
-      { "command": "jbGit.diff.copyChange", "when": "false" }
+      { "command": "gitPrism.diff.show", "when": "false" },
+      { "command": "gitPrism.conflicts.mergeFile", "when": "false" },
+      { "command": "gitPrism.diff.nextChange", "when": "editorIsOpen && resourceScheme == file" },
+      { "command": "gitPrism.diff.previousChange", "when": "editorIsOpen && resourceScheme == file" },
+      { "command": "gitPrism.diff.changeUnderCaret", "when": "editorIsOpen && resourceScheme == file" },
+      { "command": "gitPrism.diff.rollbackChange", "when": "false" },
+      { "command": "gitPrism.diff.showChangeDiff", "when": "false" },
+      { "command": "gitPrism.diff.copyChange", "when": "false" }
     ]
   },
   "keybindings": [
-    { "command": "jbGit.diff.nextChange", "key": "ctrl+alt+shift+down", "mac": "ctrl+alt+shift+down", "when": "editorTextFocus && resourceScheme == file" },
-    { "command": "jbGit.diff.previousChange", "key": "ctrl+alt+shift+up", "mac": "ctrl+alt+shift+up", "when": "editorTextFocus && resourceScheme == file" }
+    { "command": "gitPrism.diff.nextChange", "key": "ctrl+alt+shift+down", "mac": "ctrl+alt+shift+down", "when": "editorTextFocus && resourceScheme == file" },
+    { "command": "gitPrism.diff.previousChange", "key": "ctrl+alt+shift+up", "mac": "ctrl+alt+shift+up", "when": "editorTextFocus && resourceScheme == file" }
   ],
   "configuration": {
     "properties": {
-      "jbGit.diff.gutterMarkers": {
+      "gitPrism.diff.gutterMarkers": {
         "type": "boolean",
         "default": true,
         "description": "Highlight modified lines in the gutter (added, modified and deleted lines against HEAD) and in the overview ruler. Consider setting `scm.diffDecorations` to `none` to avoid duplicate markers."

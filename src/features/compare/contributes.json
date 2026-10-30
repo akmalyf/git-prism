@@ -1,43 +1,43 @@
 {
   "commands": [
-    { "command": "jbGit.showDiffWithHead", "title": "Show Diff", "category": "Git", "icon": "$(diff)" },
-    { "command": "jbGit.compareWithRevision", "title": "Compare with Revision…", "category": "Git" },
-    { "command": "jbGit.compareWithBranch", "title": "Compare with Branch or Tag…", "category": "Git" },
-    { "command": "jbGit.compareWithLatest", "title": "Compare with Latest Repository Version", "category": "Git" },
-    { "command": "jbGit.showHistory", "title": "Show History", "category": "Git", "icon": "$(history)" },
-    { "command": "jbGit.showHistoryForSelection", "title": "Show History for Selection…", "category": "Git" },
-    { "command": "jbGit.changes.show", "title": "Show Changes", "category": "Git" },
-    { "command": "jbGit.compare.withCurrent", "title": "Compare with Current", "category": "Git" },
-    { "command": "jbGit.compare.withWorkingTree", "title": "Show Diff with Working Tree", "category": "Git" },
-    { "command": "jbGit.repoAtRevision", "title": "Show Repository at Revision", "category": "Git" },
-    { "command": "jbGit.compare.fileWithRevision", "title": "Compare with Local", "category": "Git" },
-    { "command": "jbGit.openFileAtRevision", "title": "Show File at Revision", "category": "Git" },
-    { "command": "jbGit.compare.showCurrentRevision", "title": "Show Current Revision", "category": "Git" }
+    { "command": "gitPrism.showDiffWithHead", "title": "Show Diff", "category": "Git", "icon": "$(diff)" },
+    { "command": "gitPrism.compareWithRevision", "title": "Compare with Revision…", "category": "Git" },
+    { "command": "gitPrism.compareWithBranch", "title": "Compare with Branch or Tag…", "category": "Git" },
+    { "command": "gitPrism.compareWithLatest", "title": "Compare with Latest Repository Version", "category": "Git" },
+    { "command": "gitPrism.showHistory", "title": "Show History", "category": "Git", "icon": "$(history)" },
+    { "command": "gitPrism.showHistoryForSelection", "title": "Show History for Selection…", "category": "Git" },
+    { "command": "gitPrism.changes.show", "title": "Show Changes", "category": "Git" },
+    { "command": "gitPrism.compare.withCurrent", "title": "Compare with Current", "category": "Git" },
+    { "command": "gitPrism.compare.withWorkingTree", "title": "Show Diff with Working Tree", "category": "Git" },
+    { "command": "gitPrism.repoAtRevision", "title": "Show Repository at Revision", "category": "Git" },
+    { "command": "gitPrism.compare.fileWithRevision", "title": "Compare with Local", "category": "Git" },
+    { "command": "gitPrism.openFileAtRevision", "title": "Show File at Revision", "category": "Git" },
+    { "command": "gitPrism.compare.showCurrentRevision", "title": "Show Current Revision", "category": "Git" }
   ],
   "menus": {
-    "jbGit.fileMenu": [
-      { "command": "jbGit.showDiffWithHead", "group": "2_diff@1", "when": "resourceScheme == file" },
-      { "command": "jbGit.compareWithRevision", "group": "2_diff@2", "when": "resourceScheme == file && !explorerResourceIsFolder" },
-      { "command": "jbGit.compareWithBranch", "group": "2_diff@3", "when": "resourceScheme == file" },
-      { "command": "jbGit.compareWithLatest", "group": "2_diff@4", "when": "resourceScheme == file" },
-      { "command": "jbGit.showHistory", "group": "2_diff@5", "when": "resourceScheme == file || resourceScheme == jbgit-rev" },
-      { "command": "jbGit.showHistoryForSelection", "group": "2_diff@6", "when": "(resourceScheme == file || resourceScheme == jbgit-rev) && !explorerViewletFocus && !explorerResourceIsFolder" },
-      { "command": "jbGit.compare.showCurrentRevision", "group": "3_rollback@0", "when": "(resourceScheme == file || resourceScheme == jbgit-rev) && !explorerResourceIsFolder" }
+    "gitPrism.fileMenu": [
+      { "command": "gitPrism.showDiffWithHead", "group": "2_diff@1", "when": "resourceScheme == file" },
+      { "command": "gitPrism.compareWithRevision", "group": "2_diff@2", "when": "resourceScheme == file && !explorerResourceIsFolder" },
+      { "command": "gitPrism.compareWithBranch", "group": "2_diff@3", "when": "resourceScheme == file" },
+      { "command": "gitPrism.compareWithLatest", "group": "2_diff@4", "when": "resourceScheme == file" },
+      { "command": "gitPrism.showHistory", "group": "2_diff@5", "when": "resourceScheme == file || resourceScheme == gitprism-rev" },
+      { "command": "gitPrism.showHistoryForSelection", "group": "2_diff@6", "when": "(resourceScheme == file || resourceScheme == gitprism-rev) && !explorerViewletFocus && !explorerResourceIsFolder" },
+      { "command": "gitPrism.compare.showCurrentRevision", "group": "3_rollback@0", "when": "(resourceScheme == file || resourceScheme == gitprism-rev) && !explorerResourceIsFolder" }
     ],
     "commandPalette": [
-      { "command": "jbGit.showDiffWithHead", "when": "jbGit.active && resourceScheme == file" },
-      { "command": "jbGit.compareWithRevision", "when": "jbGit.active && resourceScheme == file" },
-      { "command": "jbGit.compareWithBranch", "when": "jbGit.active" },
-      { "command": "jbGit.compareWithLatest", "when": "jbGit.active && resourceScheme == file" },
-      { "command": "jbGit.showHistory", "when": "jbGit.active" },
-      { "command": "jbGit.showHistoryForSelection", "when": "jbGit.active && editorIsOpen" },
-      { "command": "jbGit.changes.show", "when": "false" },
-      { "command": "jbGit.compare.withCurrent", "when": "jbGit.active" },
-      { "command": "jbGit.compare.withWorkingTree", "when": "jbGit.active" },
-      { "command": "jbGit.repoAtRevision", "when": "jbGit.active" },
-      { "command": "jbGit.compare.fileWithRevision", "when": "false" },
-      { "command": "jbGit.openFileAtRevision", "when": "false" },
-      { "command": "jbGit.compare.showCurrentRevision", "when": "jbGit.active && resourceScheme == file" }
+      { "command": "gitPrism.showDiffWithHead", "when": "gitPrism.active && resourceScheme == file" },
+      { "command": "gitPrism.compareWithRevision", "when": "gitPrism.active && resourceScheme == file" },
+      { "command": "gitPrism.compareWithBranch", "when": "gitPrism.active" },
+      { "command": "gitPrism.compareWithLatest", "when": "gitPrism.active && resourceScheme == file" },
+      { "command": "gitPrism.showHistory", "when": "gitPrism.active" },
+      { "command": "gitPrism.showHistoryForSelection", "when": "gitPrism.active && editorIsOpen" },
+      { "command": "gitPrism.changes.show", "when": "false" },
+      { "command": "gitPrism.compare.withCurrent", "when": "gitPrism.active" },
+      { "command": "gitPrism.compare.withWorkingTree", "when": "gitPrism.active" },
+      { "command": "gitPrism.repoAtRevision", "when": "gitPrism.active" },
+      { "command": "gitPrism.compare.fileWithRevision", "when": "false" },
+      { "command": "gitPrism.openFileAtRevision", "when": "false" },
+      { "command": "gitPrism.compare.showCurrentRevision", "when": "gitPrism.active && resourceScheme == file" }
     ]
   }
 }

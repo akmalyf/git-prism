@@ -1,4 +1,4 @@
-// Read-only file contents at a revision: the `jbgit-rev:` TextDocumentContentProvider and 'jbGit.openFileAtRevision'
+// Read-only file contents at a revision: the `gitprism-rev:` TextDocumentContentProvider and 'gitPrism.openFileAtRevision'
 // (editor tab "<file> (<short hash>)" with the language of the file name).
 import * as vscode from 'vscode';
 import type { RepositoryManager } from '../../core/repository';

@@ -1,19 +1,19 @@
 {
-  "name": "jetbrains-git-tools",
-  "displayName": "JetBrains Git Tools",
-  "description": "PhpStorm / IntelliJ-style Git log for VS Code: branches tree, commit graph with IntelliJ ordering and colors, changed files, and the IDE's Git actions (compare, history, annotate, rebase, merge, conflicts, stash) in the editor menu.",
+  "name": "git-prism",
+  "displayName": "Git Prism",
+  "description": "IDE-style Git log for VS Code: branches tree, commit graph with stable ordering and lane colors, changed files per commit, and a full set of Git actions (compare, history, blame, rebase, merge, conflicts, stash) in the editor menu.",
   "version": "0.1.0",
   "publisher": "akmalyf",
   "license": "MIT",
   "icon": "resources/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akmalyf/vscode-git-tools.git"
+    "url": "https://github.com/akmalyf/git-prism.git"
   },
   "bugs": {
-    "url": "https://github.com/akmalyf/vscode-git-tools/issues"
+    "url": "https://github.com/akmalyf/git-prism/issues"
   },
-  "homepage": "https://github.com/akmalyf/vscode-git-tools#readme",
+  "homepage": "https://github.com/akmalyf/git-prism#readme",
   "galleryBanner": {
     "color": "#1E1F22",
     "theme": "dark"
@@ -29,13 +29,12 @@
     "git",
     "git log",
     "git graph",
-    "jetbrains",
-    "phpstorm",
-    "intellij",
+    "commit graph",
     "blame",
     "rebase",
     "merge",
-    "history"
+    "history",
+    "branches"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
@@ -46,7 +45,7 @@
     "viewsContainers": {
       "panel": [
         {
-          "id": "jbGitPanel",
+          "id": "gitPrismPanel",
           "title": "Git",
           "icon": "$(git-branch)"
         }
@@ -54,1174 +53,1174 @@
     },
     "commands": [
       {
-        "command": "jbGit.console.show",
+        "command": "gitPrism.console.show",
         "title": "Show Git Console",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.toggle",
+        "command": "gitPrism.annotate.toggle",
         "title": "Annotate with Git Blame",
         "category": "Git",
         "icon": "$(git-commit)"
       },
       {
-        "command": "jbGit.annotate.close",
+        "command": "gitPrism.annotate.close",
         "title": "Close Annotations",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.revision",
+        "command": "gitPrism.annotate.revision",
         "title": "Annotate Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.currentRevision",
+        "command": "gitPrism.annotate.currentRevision",
         "title": "Annotate Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.previous",
+        "command": "gitPrism.annotate.previous",
         "title": "Annotate Previous Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.previousRevision",
+        "command": "gitPrism.annotate.previousRevision",
         "title": "Annotate Previous Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.showDiff",
+        "command": "gitPrism.annotate.showDiff",
         "title": "Show Diff",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.showAffectedFiles",
+        "command": "gitPrism.annotate.showAffectedFiles",
         "title": "Show Affected Files",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.showCommitInLog",
+        "command": "gitPrism.annotate.showCommitInLog",
         "title": "Show in Git Log",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.copyRevision",
+        "command": "gitPrism.annotate.copyRevision",
         "title": "Copy Revision Number",
         "category": "Git"
       },
       {
-        "command": "jbGit.annotate.view.revision",
+        "command": "gitPrism.annotate.view.revision",
         "title": "Revision",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.showRevision"
+        "toggled": "config.gitPrism.annotate.showRevision"
       },
       {
-        "command": "jbGit.annotate.view.date",
+        "command": "gitPrism.annotate.view.date",
         "title": "Date",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.showDate"
+        "toggled": "config.gitPrism.annotate.showDate"
       },
       {
-        "command": "jbGit.annotate.view.author",
+        "command": "gitPrism.annotate.view.author",
         "title": "Author",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.showAuthor"
+        "toggled": "config.gitPrism.annotate.showAuthor"
       },
       {
-        "command": "jbGit.annotate.view.subject",
+        "command": "gitPrism.annotate.view.subject",
         "title": "Commit Subject",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.showSubject"
+        "toggled": "config.gitPrism.annotate.showSubject"
       },
       {
-        "command": "jbGit.annotate.names.initials",
+        "command": "gitPrism.annotate.names.initials",
         "title": "Initials",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.names == 'initials'"
+        "toggled": "config.gitPrism.annotate.names == 'initials'"
       },
       {
-        "command": "jbGit.annotate.names.lastName",
+        "command": "gitPrism.annotate.names.lastName",
         "title": "Last Name",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.names == 'lastName'"
+        "toggled": "config.gitPrism.annotate.names == 'lastName'"
       },
       {
-        "command": "jbGit.annotate.names.firstName",
+        "command": "gitPrism.annotate.names.firstName",
         "title": "First Name",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.names == 'firstName'"
+        "toggled": "config.gitPrism.annotate.names == 'firstName'"
       },
       {
-        "command": "jbGit.annotate.names.fullName",
+        "command": "gitPrism.annotate.names.fullName",
         "title": "Full Name",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.names == 'fullName'"
+        "toggled": "config.gitPrism.annotate.names == 'fullName'"
       },
       {
-        "command": "jbGit.annotate.names.email",
+        "command": "gitPrism.annotate.names.email",
         "title": "Email",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.names == 'email'"
+        "toggled": "config.gitPrism.annotate.names == 'email'"
       },
       {
-        "command": "jbGit.annotate.colors.order",
+        "command": "gitPrism.annotate.colors.order",
         "title": "Order",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.colors == 'order'"
+        "toggled": "config.gitPrism.annotate.colors == 'order'"
       },
       {
-        "command": "jbGit.annotate.colors.author",
+        "command": "gitPrism.annotate.colors.author",
         "title": "Author",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.colors == 'author'"
+        "toggled": "config.gitPrism.annotate.colors == 'author'"
       },
       {
-        "command": "jbGit.annotate.colors.hide",
+        "command": "gitPrism.annotate.colors.hide",
         "title": "Hide",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.colors == 'hide'"
+        "toggled": "config.gitPrism.annotate.colors == 'hide'"
       },
       {
-        "command": "jbGit.annotate.option.ignoreWhitespaces",
+        "command": "gitPrism.annotate.option.ignoreWhitespaces",
         "title": "Ignore Whitespaces",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.ignoreWhitespaces"
+        "toggled": "config.gitPrism.annotate.ignoreWhitespaces"
       },
       {
-        "command": "jbGit.annotate.option.detectWithinFile",
+        "command": "gitPrism.annotate.option.detectWithinFile",
         "title": "Detect Movements Within File",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.detectMovements == 'inner' || config.jbGit.annotate.detectMovements == 'outer'"
+        "toggled": "config.gitPrism.annotate.detectMovements == 'inner' || config.gitPrism.annotate.detectMovements == 'outer'"
       },
       {
-        "command": "jbGit.annotate.option.detectAcrossFiles",
+        "command": "gitPrism.annotate.option.detectAcrossFiles",
         "title": "Detect Movements Across Files",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.detectMovements == 'outer'"
+        "toggled": "config.gitPrism.annotate.detectMovements == 'outer'"
       },
       {
-        "command": "jbGit.annotate.option.commitTimestamp",
+        "command": "gitPrism.annotate.option.commitTimestamp",
         "title": "Show Commit Timestamp",
         "category": "Git",
-        "toggled": "config.jbGit.annotate.preferCommitTimestamp"
+        "toggled": "config.gitPrism.annotate.preferCommitTimestamp"
       },
       {
-        "command": "jbGit.rollbackLines",
+        "command": "gitPrism.rollbackLines",
         "title": "Rollback Lines",
         "category": "Git"
       },
       {
-        "command": "jbGit.showDiffForLines",
+        "command": "gitPrism.showDiffForLines",
         "title": "Show Diff for Lines",
         "category": "Git"
       },
       {
-        "command": "jbGit.copyHunkOriginal",
+        "command": "gitPrism.copyHunkOriginal",
         "title": "Copy Original Lines",
         "category": "Git"
       },
       {
-        "command": "jbGit.branches.show",
+        "command": "gitPrism.branches.show",
         "title": "Branches…",
         "category": "Git",
         "icon": "$(git-branch)"
       },
       {
-        "command": "jbGit.branch.new",
+        "command": "gitPrism.branch.new",
         "title": "New Branch…",
         "category": "Git",
         "icon": "$(add)"
       },
       {
-        "command": "jbGit.branch.checkout",
+        "command": "gitPrism.branch.checkout",
         "title": "Checkout",
         "category": "Git"
       },
       {
-        "command": "jbGit.branch.rename",
+        "command": "gitPrism.branch.rename",
         "title": "Rename Branch…",
         "category": "Git"
       },
       {
-        "command": "jbGit.branch.delete",
+        "command": "gitPrism.branch.delete",
         "title": "Delete Branch…",
         "category": "Git"
       },
       {
-        "command": "jbGit.branch.actions",
+        "command": "gitPrism.branch.actions",
         "title": "Branch Actions",
         "category": "Git"
       },
       {
-        "command": "jbGit.tag.new",
+        "command": "gitPrism.tag.new",
         "title": "New Tag…",
         "category": "Git",
         "icon": "$(tag)"
       },
       {
-        "command": "jbGit.tag.delete",
+        "command": "gitPrism.tag.delete",
         "title": "Delete Tag…",
         "category": "Git"
       },
       {
-        "command": "jbGit.checkoutRevision",
+        "command": "gitPrism.checkoutRevision",
         "title": "Checkout Tag or Revision…",
         "category": "Git"
       },
       {
-        "command": "jbGit.cleanupBranches",
+        "command": "gitPrism.cleanupBranches",
         "title": "Clean Up Branches…",
         "category": "Git"
       },
       {
-        "command": "jbGit.findMergedBranches",
+        "command": "gitPrism.findMergedBranches",
         "title": "Find Merged Branches…",
         "category": "Git"
       },
       {
-        "command": "jbGit.remotes.manage",
+        "command": "gitPrism.remotes.manage",
         "title": "Manage Remotes…",
         "category": "Git"
       },
       {
-        "command": "jbGit.worktrees",
+        "command": "gitPrism.worktrees",
         "title": "Worktrees…",
         "category": "Git"
       },
       {
-        "command": "jbGit.clone",
+        "command": "gitPrism.clone",
         "title": "Clone…",
         "category": "Git"
       },
       {
-        "command": "jbGit.init",
+        "command": "gitPrism.init",
         "title": "Create Git Repository…",
         "category": "Git"
       },
       {
-        "command": "jbGit.unshallow",
+        "command": "gitPrism.unshallow",
         "title": "Unshallow repository",
         "category": "Git"
       },
       {
-        "command": "jbGit.copyBranchName",
+        "command": "gitPrism.copyBranchName",
         "title": "Copy Branch Name",
         "category": "Git"
       },
       {
-        "command": "jbGit.vcsOperations",
+        "command": "gitPrism.vcsOperations",
         "title": "VCS Operations Popup…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.focus",
+        "command": "gitPrism.commit.focus",
         "title": "Commit…",
         "category": "Git",
         "icon": "$(git-commit)"
       },
       {
-        "command": "jbGit.add",
+        "command": "gitPrism.add",
         "title": "Add",
         "category": "Git"
       },
       {
-        "command": "jbGit.addToGitignore",
+        "command": "gitPrism.addToGitignore",
         "title": "Add to .gitignore",
         "category": "Git"
       },
       {
-        "command": "jbGit.rollback",
+        "command": "gitPrism.rollback",
         "title": "Rollback…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.copyHash",
+        "command": "gitPrism.commit.copyHash",
         "title": "Copy Revision Number",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.createPatch",
+        "command": "gitPrism.commit.createPatch",
         "title": "Create Patch…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.cherryPick",
+        "command": "gitPrism.commit.cherryPick",
         "title": "Cherry-Pick",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.checkoutRevision",
+        "command": "gitPrism.commit.checkoutRevision",
         "title": "Checkout Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.resetToHere",
+        "command": "gitPrism.commit.resetToHere",
         "title": "Reset Current Branch to Here…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.revert",
+        "command": "gitPrism.commit.revert",
         "title": "Revert Commit",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.undo",
+        "command": "gitPrism.commit.undo",
         "title": "Undo Commit…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.reword",
+        "command": "gitPrism.commit.reword",
         "title": "Edit Commit Message…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.fixup",
+        "command": "gitPrism.commit.fixup",
         "title": "Fixup…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.squashInto",
+        "command": "gitPrism.commit.squashInto",
         "title": "Squash Into…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.squash",
+        "command": "gitPrism.commit.squash",
         "title": "Squash Commits…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.drop",
+        "command": "gitPrism.commit.drop",
         "title": "Drop Commits",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.interactiveRebase",
+        "command": "gitPrism.commit.interactiveRebase",
         "title": "Interactively Rebase from Here…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.pushUpTo",
+        "command": "gitPrism.commit.pushUpTo",
         "title": "Push All up to Here…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.newBranch",
+        "command": "gitPrism.commit.newBranch",
         "title": "New Branch…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.newTag",
+        "command": "gitPrism.commit.newTag",
         "title": "New Tag…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commitOps.dropSelectedChanges",
+        "command": "gitPrism.commitOps.dropSelectedChanges",
         "title": "Drop Selected Changes",
         "category": "Git"
       },
       {
-        "command": "jbGit.commitOps.extractSelectedChanges",
+        "command": "gitPrism.commitOps.extractSelectedChanges",
         "title": "Extract Selected Changes to Separate Commit…",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.dropSelectedChanges",
+        "command": "gitPrism.commit.dropSelectedChanges",
         "title": "Drop Selected Changes",
         "category": "Git"
       },
       {
-        "command": "jbGit.commit.extractSelectedChanges",
+        "command": "gitPrism.commit.extractSelectedChanges",
         "title": "Extract Selected Changes to Separate Commit…",
         "category": "Git"
       },
       {
-        "command": "jbGit.showDiffWithHead",
+        "command": "gitPrism.showDiffWithHead",
         "title": "Show Diff",
         "category": "Git",
         "icon": "$(diff)"
       },
       {
-        "command": "jbGit.compareWithRevision",
+        "command": "gitPrism.compareWithRevision",
         "title": "Compare with Revision…",
         "category": "Git"
       },
       {
-        "command": "jbGit.compareWithBranch",
+        "command": "gitPrism.compareWithBranch",
         "title": "Compare with Branch or Tag…",
         "category": "Git"
       },
       {
-        "command": "jbGit.compareWithLatest",
+        "command": "gitPrism.compareWithLatest",
         "title": "Compare with Latest Repository Version",
         "category": "Git"
       },
       {
-        "command": "jbGit.showHistory",
+        "command": "gitPrism.showHistory",
         "title": "Show History",
         "category": "Git",
         "icon": "$(history)"
       },
       {
-        "command": "jbGit.showHistoryForSelection",
+        "command": "gitPrism.showHistoryForSelection",
         "title": "Show History for Selection…",
         "category": "Git"
       },
       {
-        "command": "jbGit.changes.show",
+        "command": "gitPrism.changes.show",
         "title": "Show Changes",
         "category": "Git"
       },
       {
-        "command": "jbGit.compare.withCurrent",
+        "command": "gitPrism.compare.withCurrent",
         "title": "Compare with Current",
         "category": "Git"
       },
       {
-        "command": "jbGit.compare.withWorkingTree",
+        "command": "gitPrism.compare.withWorkingTree",
         "title": "Show Diff with Working Tree",
         "category": "Git"
       },
       {
-        "command": "jbGit.repoAtRevision",
+        "command": "gitPrism.repoAtRevision",
         "title": "Show Repository at Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.compare.fileWithRevision",
+        "command": "gitPrism.compare.fileWithRevision",
         "title": "Compare with Local",
         "category": "Git"
       },
       {
-        "command": "jbGit.openFileAtRevision",
+        "command": "gitPrism.openFileAtRevision",
         "title": "Show File at Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.compare.showCurrentRevision",
+        "command": "gitPrism.compare.showCurrentRevision",
         "title": "Show Current Revision",
         "category": "Git"
       },
       {
-        "command": "jbGit.conflicts.resolve",
+        "command": "gitPrism.conflicts.resolve",
         "title": "Resolve Conflicts…",
         "category": "Git",
         "icon": "$(git-merge)",
-        "enablement": "jbGit.hasConflicts"
+        "enablement": "gitPrism.hasConflicts"
       },
       {
-        "command": "jbGit.operation.continue",
+        "command": "gitPrism.operation.continue",
         "title": "Continue",
         "category": "Git"
       },
       {
-        "command": "jbGit.operation.abort",
+        "command": "gitPrism.operation.abort",
         "title": "Abort",
         "category": "Git"
       },
       {
-        "command": "jbGit.operation.skip",
+        "command": "gitPrism.operation.skip",
         "title": "Skip Commit",
         "category": "Git"
       },
       {
-        "command": "jbGit.conflicts.operationActions",
+        "command": "gitPrism.conflicts.operationActions",
         "title": "Merge/Rebase Actions",
         "category": "Git"
       },
       {
-        "command": "jbGit.conflicts.rebaseContinue",
+        "command": "gitPrism.conflicts.rebaseContinue",
         "title": "Continue Rebase",
         "category": "Git",
         "icon": "$(debug-continue)"
       },
       {
-        "command": "jbGit.conflicts.rebaseSkip",
+        "command": "gitPrism.conflicts.rebaseSkip",
         "title": "Skip Commit",
         "category": "Git",
         "icon": "$(debug-step-over)"
       },
       {
-        "command": "jbGit.conflicts.rebaseAbort",
+        "command": "gitPrism.conflicts.rebaseAbort",
         "title": "Abort Rebase",
         "category": "Git",
         "icon": "$(debug-stop)"
       },
       {
-        "command": "jbGit.conflicts.mergeCommit",
+        "command": "gitPrism.conflicts.mergeCommit",
         "title": "Commit merge",
         "category": "Git",
         "icon": "$(check)"
       },
       {
-        "command": "jbGit.conflicts.mergeAbort",
+        "command": "gitPrism.conflicts.mergeAbort",
         "title": "Abort Merge",
         "category": "Git",
         "icon": "$(debug-stop)"
       },
       {
-        "command": "jbGit.conflicts.cherryPickContinue",
+        "command": "gitPrism.conflicts.cherryPickContinue",
         "title": "Continue Cherry-Pick",
         "category": "Git",
         "icon": "$(debug-continue)"
       },
       {
-        "command": "jbGit.conflicts.cherryPickAbort",
+        "command": "gitPrism.conflicts.cherryPickAbort",
         "title": "Abort Cherry-Pick",
         "category": "Git",
         "icon": "$(debug-stop)"
       },
       {
-        "command": "jbGit.conflicts.revertAbort",
+        "command": "gitPrism.conflicts.revertAbort",
         "title": "Abort Revert",
         "category": "Git",
         "icon": "$(debug-stop)"
       },
       {
-        "command": "jbGit.diff.show",
+        "command": "gitPrism.diff.show",
         "title": "Show Diff",
         "category": "Git"
       },
       {
-        "command": "jbGit.conflicts.mergeFile",
+        "command": "gitPrism.conflicts.mergeFile",
         "title": "Merge Revisions",
         "category": "Git"
       },
       {
-        "command": "jbGit.diff.nextChange",
+        "command": "gitPrism.diff.nextChange",
         "title": "Next Change",
         "category": "Git",
         "icon": "$(arrow-down)"
       },
       {
-        "command": "jbGit.diff.previousChange",
+        "command": "gitPrism.diff.previousChange",
         "title": "Previous Change",
         "category": "Git",
         "icon": "$(arrow-up)"
       },
       {
-        "command": "jbGit.diff.changeUnderCaret",
+        "command": "gitPrism.diff.changeUnderCaret",
         "title": "Change Under Caret",
         "category": "Git"
       },
       {
-        "command": "jbGit.diff.rollbackChange",
+        "command": "gitPrism.diff.rollbackChange",
         "title": "Rollback Lines",
         "category": "Git",
         "icon": "$(discard)"
       },
       {
-        "command": "jbGit.diff.showChangeDiff",
+        "command": "gitPrism.diff.showChangeDiff",
         "title": "Show Diff",
         "category": "Git",
         "icon": "$(diff)"
       },
       {
-        "command": "jbGit.diff.copyChange",
+        "command": "gitPrism.diff.copyChange",
         "title": "Copy",
         "category": "Git",
         "icon": "$(copy)"
       },
       {
-        "command": "jbGit.log.show",
+        "command": "gitPrism.log.show",
         "title": "Show VCS Log",
         "category": "Git",
         "icon": "$(git-commit)"
       },
       {
-        "command": "jbGit.log.refresh",
+        "command": "gitPrism.log.refresh",
         "title": "Refresh",
         "category": "Git",
         "icon": "$(refresh)"
       },
       {
-        "command": "jbGit.log.openInEditor",
+        "command": "gitPrism.log.openInEditor",
         "title": "Open New Git Log Editor Tab",
         "category": "Git",
         "icon": "$(add)"
       },
       {
-        "command": "jbGit.log.goToRef",
+        "command": "gitPrism.log.goToRef",
         "title": "Go To Hash/Branch/Tag",
         "category": "Git"
       },
       {
-        "command": "jbGit.log.focusTextFilter",
+        "command": "gitPrism.log.focusTextFilter",
         "title": "Focus Text Filter",
         "category": "Git"
       },
       {
-        "command": "jbGit.log.showConsoleTab",
+        "command": "gitPrism.log.showConsoleTab",
         "title": "Show Git Console",
         "category": "Git"
       },
       {
-        "command": "jbGit.log.clearConsole",
+        "command": "gitPrism.log.clearConsole",
         "title": "Clear All",
         "category": "Git",
         "icon": "$(clear-all)"
       },
       {
-        "command": "jbGit.stash.create",
+        "command": "gitPrism.stash.create",
         "title": "Stash Changes…",
         "category": "Git",
         "icon": "$(git-stash)"
       },
       {
-        "command": "jbGit.stash.silently",
+        "command": "gitPrism.stash.silently",
         "title": "Stash Silently",
         "category": "Git"
       },
       {
-        "command": "jbGit.stash.unstash",
+        "command": "gitPrism.stash.unstash",
         "title": "Unstash Changes…",
         "category": "Git",
         "icon": "$(git-stash-pop)"
       },
       {
-        "command": "jbGit.patch.create",
+        "command": "gitPrism.patch.create",
         "title": "Create Patch…",
         "category": "Git"
       },
       {
-        "command": "jbGit.patch.copyToClipboard",
+        "command": "gitPrism.patch.copyToClipboard",
         "title": "Copy as Patch to Clipboard",
         "category": "Git"
       },
       {
-        "command": "jbGit.patch.apply",
+        "command": "gitPrism.patch.apply",
         "title": "Apply Patch…",
         "category": "Git"
       },
       {
-        "command": "jbGit.patch.applyFromClipboard",
+        "command": "gitPrism.patch.applyFromClipboard",
         "title": "Apply Patch from Clipboard…",
         "category": "Git"
       },
       {
-        "command": "jbGit.push",
+        "command": "gitPrism.push",
         "title": "Push…",
         "category": "Git",
         "icon": "$(arrow-up)"
       },
       {
-        "command": "jbGit.pull",
+        "command": "gitPrism.pull",
         "title": "Pull…",
         "category": "Git",
         "icon": "$(arrow-down)"
       },
       {
-        "command": "jbGit.fetch",
+        "command": "gitPrism.fetch",
         "title": "Fetch",
         "category": "Git",
         "icon": "$(repo-fetch)"
       },
       {
-        "command": "jbGit.updateProject",
+        "command": "gitPrism.updateProject",
         "title": "Update Project…",
         "category": "Git",
         "icon": "$(arrow-down)"
       },
       {
-        "command": "jbGit.merge",
+        "command": "gitPrism.merge",
         "title": "Merge…",
         "category": "Git",
         "icon": "$(git-merge)"
       },
       {
-        "command": "jbGit.rebase",
+        "command": "gitPrism.rebase",
         "title": "Rebase…",
         "category": "Git"
       },
       {
-        "command": "jbGit.resetHead",
+        "command": "gitPrism.resetHead",
         "title": "Reset HEAD…",
         "category": "Git"
       },
       {
-        "command": "jbGit.m.changes.main.showDiff",
+        "command": "gitPrism.m.changes.main.showDiff",
         "title": "Show Diff"
       },
       {
-        "command": "jbGit.m.changes.main.compareWithLocal",
+        "command": "gitPrism.m.changes.main.compareWithLocal",
         "title": "Compare with Local"
       },
       {
-        "command": "jbGit.m.changes.main.get",
+        "command": "gitPrism.m.changes.main.get",
         "title": "Get"
       },
       {
-        "command": "jbGit.m.changes.main.showHistory",
+        "command": "gitPrism.m.changes.main.showHistory",
         "title": "Show History"
       },
       {
-        "command": "jbGit.m.changes.main.jumpToSource",
+        "command": "gitPrism.m.changes.main.jumpToSource",
         "title": "Jump to Source"
       },
       {
-        "command": "jbGit.m.compare-branches.main.showDiff",
+        "command": "gitPrism.m.compare-branches.main.showDiff",
         "title": "Show Diff"
       },
       {
-        "command": "jbGit.m.compare-branches.main.compareWithLocal",
+        "command": "gitPrism.m.compare-branches.main.compareWithLocal",
         "title": "Compare with Local"
       },
       {
-        "command": "jbGit.m.compare-branches.main.get",
+        "command": "gitPrism.m.compare-branches.main.get",
         "title": "Get"
       },
       {
-        "command": "jbGit.m.compare-branches.main.showHistory",
+        "command": "gitPrism.m.compare-branches.main.showHistory",
         "title": "Show History"
       },
       {
-        "command": "jbGit.m.compare-branches.main.jumpToSource",
+        "command": "gitPrism.m.compare-branches.main.jumpToSource",
         "title": "Jump to Source"
       },
       {
-        "command": "jbGit.m.conflicts.main.acceptYours",
+        "command": "gitPrism.m.conflicts.main.acceptYours",
         "title": "Accept Yours"
       },
       {
-        "command": "jbGit.m.conflicts.main.acceptTheirs",
+        "command": "gitPrism.m.conflicts.main.acceptTheirs",
         "title": "Accept Theirs"
       },
       {
-        "command": "jbGit.m.conflicts.main.merge",
+        "command": "gitPrism.m.conflicts.main.merge",
         "title": "Merge…"
       },
       {
-        "command": "jbGit.m.conflicts.main.openInEditor",
+        "command": "gitPrism.m.conflicts.main.openInEditor",
         "title": "Open in Editor"
       },
       {
-        "command": "jbGit.m.history-selection.main.showDiff",
+        "command": "gitPrism.m.history-selection.main.showDiff",
         "title": "Show Diff"
       },
       {
-        "command": "jbGit.m.history-selection.main.compareWithLocal",
+        "command": "gitPrism.m.history-selection.main.compareWithLocal",
         "title": "Compare with Local"
       },
       {
-        "command": "jbGit.m.history-selection.main.showFileAtRevision",
+        "command": "gitPrism.m.history-selection.main.showFileAtRevision",
         "title": "Show File at Revision"
       },
       {
-        "command": "jbGit.m.history-selection.main.showInGitLog",
+        "command": "gitPrism.m.history-selection.main.showInGitLog",
         "title": "Show in Git Log"
       },
       {
-        "command": "jbGit.m.history-selection.main.copyRevisionNumber",
+        "command": "gitPrism.m.history-selection.main.copyRevisionNumber",
         "title": "Copy Revision Number"
       },
       {
-        "command": "jbGit.m.history-selection.main.copyCommitSubject",
+        "command": "gitPrism.m.history-selection.main.copyCommitSubject",
         "title": "Copy Commit Subject"
       },
       {
-        "command": "jbGit.m.log.commits.copyHash",
+        "command": "gitPrism.m.log.commits.copyHash",
         "title": "Copy Revision Number"
       },
       {
-        "command": "jbGit.m.log.commits.createPatch",
+        "command": "gitPrism.m.log.commits.createPatch",
         "title": "Create Patch…"
       },
       {
-        "command": "jbGit.m.log.commits.cherryPick",
+        "command": "gitPrism.m.log.commits.cherryPick",
         "title": "Cherry-Pick"
       },
       {
-        "command": "jbGit.m.log.commits.checkoutRevision",
+        "command": "gitPrism.m.log.commits.checkoutRevision",
         "title": "Checkout Revision"
       },
       {
-        "command": "jbGit.m.log.commits.checkout_branch",
+        "command": "gitPrism.m.log.commits.checkout_branch",
         "title": "Branch…"
       },
       {
-        "command": "jbGit.m.log.commits.checkout_revision",
+        "command": "gitPrism.m.log.commits.checkout_revision",
         "title": "Revision"
       },
       {
-        "command": "jbGit.m.log.commits.repoAtRevision",
+        "command": "gitPrism.m.log.commits.repoAtRevision",
         "title": "Show Repository at Revision"
       },
       {
-        "command": "jbGit.m.log.commits.compareVersions",
+        "command": "gitPrism.m.log.commits.compareVersions",
         "title": "Compare Versions"
       },
       {
-        "command": "jbGit.m.log.commits.compareWithLocal",
+        "command": "gitPrism.m.log.commits.compareWithLocal",
         "title": "Compare with Local"
       },
       {
-        "command": "jbGit.m.log.commits.resetToHere",
+        "command": "gitPrism.m.log.commits.resetToHere",
         "title": "Reset Current Branch to Here…"
       },
       {
-        "command": "jbGit.m.log.commits.revert",
+        "command": "gitPrism.m.log.commits.revert",
         "title": "Revert Commit"
       },
       {
-        "command": "jbGit.m.log.commits.undo",
+        "command": "gitPrism.m.log.commits.undo",
         "title": "Undo Commit…"
       },
       {
-        "command": "jbGit.m.log.commits.reword",
+        "command": "gitPrism.m.log.commits.reword",
         "title": "Edit Commit Message…"
       },
       {
-        "command": "jbGit.m.log.commits.fixup",
+        "command": "gitPrism.m.log.commits.fixup",
         "title": "Fixup…"
       },
       {
-        "command": "jbGit.m.log.commits.squashInto",
+        "command": "gitPrism.m.log.commits.squashInto",
         "title": "Squash Into…"
       },
       {
-        "command": "jbGit.m.log.commits.drop",
+        "command": "gitPrism.m.log.commits.drop",
         "title": "Drop Commits"
       },
       {
-        "command": "jbGit.m.log.commits.squash",
+        "command": "gitPrism.m.log.commits.squash",
         "title": "Squash Commits…"
       },
       {
-        "command": "jbGit.m.log.commits.interactiveRebase",
+        "command": "gitPrism.m.log.commits.interactiveRebase",
         "title": "Interactively Rebase from Here…"
       },
       {
-        "command": "jbGit.m.log.commits.pushUpTo",
+        "command": "gitPrism.m.log.commits.pushUpTo",
         "title": "Push All up to Here…"
       },
       {
-        "command": "jbGit.m.log.commits.branchActions",
+        "command": "gitPrism.m.log.commits.branchActions",
         "title": "Branch Actions…"
       },
       {
-        "command": "jbGit.m.log.commits.newBranch",
+        "command": "gitPrism.m.log.commits.newBranch",
         "title": "New Branch…"
       },
       {
-        "command": "jbGit.m.log.commits.newTag",
+        "command": "gitPrism.m.log.commits.newTag",
         "title": "New Tag…"
       },
       {
-        "command": "jbGit.m.log.commits.goToChild",
+        "command": "gitPrism.m.log.commits.goToChild",
         "title": "Go to Child Commit"
       },
       {
-        "command": "jbGit.m.log.commits.goToParent",
+        "command": "gitPrism.m.log.commits.goToParent",
         "title": "Go to Parent Commit"
       },
       {
-        "command": "jbGit.m.log.history.copyHash",
+        "command": "gitPrism.m.log.history.copyHash",
         "title": "Copy Revision Number"
       },
       {
-        "command": "jbGit.m.log.history.createPatch",
+        "command": "gitPrism.m.log.history.createPatch",
         "title": "Create Patch…"
       },
       {
-        "command": "jbGit.m.log.history.cherryPick",
+        "command": "gitPrism.m.log.history.cherryPick",
         "title": "Cherry-Pick"
       },
       {
-        "command": "jbGit.m.log.history.get",
+        "command": "gitPrism.m.log.history.get",
         "title": "Get"
       },
       {
-        "command": "jbGit.m.log.history.openFile",
+        "command": "gitPrism.m.log.history.openFile",
         "title": "Show File at Revision"
       },
       {
-        "command": "jbGit.m.log.history.compareWithLocal",
+        "command": "gitPrism.m.log.history.compareWithLocal",
         "title": "Compare with Local"
       },
       {
-        "command": "jbGit.m.log.history.showDiff",
+        "command": "gitPrism.m.log.history.showDiff",
         "title": "Show Diff"
       },
       {
-        "command": "jbGit.m.log.history.compare",
+        "command": "gitPrism.m.log.history.compare",
         "title": "Compare"
       },
       {
-        "command": "jbGit.m.log.history.showDiffNewTab",
+        "command": "gitPrism.m.log.history.showDiffNewTab",
         "title": "Show Diff in a New Tab"
       },
       {
-        "command": "jbGit.m.log.history.showAllAffected",
+        "command": "gitPrism.m.log.history.showAllAffected",
         "title": "Show All Affected Files"
       },
       {
-        "command": "jbGit.m.log.history.annotate",
+        "command": "gitPrism.m.log.history.annotate",
         "title": "Annotate"
       },
       {
-        "command": "jbGit.m.log.history.selectInLog",
+        "command": "gitPrism.m.log.history.selectInLog",
         "title": "Show in Git Log"
       },
       {
-        "command": "jbGit.m.log.history.revert",
+        "command": "gitPrism.m.log.history.revert",
         "title": "Revert Commit"
       },
       {
-        "command": "jbGit.m.log.history.fixup",
+        "command": "gitPrism.m.log.history.fixup",
         "title": "Fixup…"
       },
       {
-        "command": "jbGit.m.log.history.squashInto",
+        "command": "gitPrism.m.log.history.squashInto",
         "title": "Squash Into…"
       },
       {
-        "command": "jbGit.m.log.history.newTag",
+        "command": "gitPrism.m.log.history.newTag",
         "title": "New Tag…"
       },
       {
-        "command": "jbGit.m.log.files.showDiff",
+        "command": "gitPrism.m.log.files.showDiff",
         "title": "Show Diff"
       },
       {
-        "command": "jbGit.m.log.files.compareWithLocal",
+        "command": "gitPrism.m.log.files.compareWithLocal",
         "title": "Compare with Local"
       },
       {
-        "command": "jbGit.m.log.files.compareBeforeWithLocal",
+        "command": "gitPrism.m.log.files.compareBeforeWithLocal",
         "title": "Compare Before with Local"
       },
       {
-        "command": "jbGit.m.log.files.jumpToSource",
+        "command": "gitPrism.m.log.files.jumpToSource",
         "title": "Jump to Source"
       },
       {
-        "command": "jbGit.m.log.files.showFileAtRevision",
+        "command": "gitPrism.m.log.files.showFileAtRevision",
         "title": "Show File at Revision"
       },
       {
-        "command": "jbGit.m.log.files.revertSelectedChanges",
+        "command": "gitPrism.m.log.files.revertSelectedChanges",
         "title": "Revert Selected Changes"
       },
       {
-        "command": "jbGit.m.log.files.cherryPickSelectedChanges",
+        "command": "gitPrism.m.log.files.cherryPickSelectedChanges",
         "title": "Cherry-Pick Selected Changes"
       },
       {
-        "command": "jbGit.m.log.files.dropSelectedChanges",
+        "command": "gitPrism.m.log.files.dropSelectedChanges",
         "title": "Drop Selected Changes"
       },
       {
-        "command": "jbGit.m.log.files.extractSelectedChangesToSeparateCommit",
+        "command": "gitPrism.m.log.files.extractSelectedChangesToSeparateCommit",
         "title": "Extract Selected Changes to Separate Commit…"
       },
       {
-        "command": "jbGit.m.log.files.get",
+        "command": "gitPrism.m.log.files.get",
         "title": "Get"
       },
       {
-        "command": "jbGit.m.log.files.historyUpToHere",
+        "command": "gitPrism.m.log.files.historyUpToHere",
         "title": "History Up to Here"
       },
       {
-        "command": "jbGit.m.log.files.annotate",
+        "command": "gitPrism.m.log.files.annotate",
         "title": "Annotate"
       },
       {
-        "command": "jbGit.m.log.files.copyPathReference_absolutePath",
+        "command": "gitPrism.m.log.files.copyPathReference_absolutePath",
         "title": "Absolute Path"
       },
       {
-        "command": "jbGit.m.log.files.copyPathReference_pathFromRepositoryRoot",
+        "command": "gitPrism.m.log.files.copyPathReference_pathFromRepositoryRoot",
         "title": "Path From Repository Root"
       },
       {
-        "command": "jbGit.m.log.files.copyPathReference_fileName",
+        "command": "gitPrism.m.log.files.copyPathReference_fileName",
         "title": "File Name"
       },
       {
-        "command": "jbGit.m.log.files.showChangesToParents",
+        "command": "gitPrism.m.log.files.showChangesToParents",
         "title": "Show Changes to Parents",
         "toggled": "jbmc_showChangesToParents"
       },
       {
-        "command": "jbGit.m.log.branches.updateBranchFilterInLog",
+        "command": "gitPrism.m.log.branches.updateBranchFilterInLog",
         "title": "Update Branch Filter in Log"
       },
       {
-        "command": "jbGit.m.log.branches.navigateLogToSelectedBranchHead",
+        "command": "gitPrism.m.log.branches.navigateLogToSelectedBranchHead",
         "title": "Navigate Log to Selected Branch Head"
       },
       {
-        "command": "jbGit.m.log.branches.newBranchFromCurrent",
+        "command": "gitPrism.m.log.branches.newBranchFromCurrent",
         "title": "New Branch from Current…"
       },
       {
-        "command": "jbGit.m.log.branches.checkout",
+        "command": "gitPrism.m.log.branches.checkout",
         "title": "Checkout"
       },
       {
-        "command": "jbGit.m.log.branches.newBranchFromSelected",
+        "command": "gitPrism.m.log.branches.newBranchFromSelected",
         "title": "New Branch from Selected…"
       },
       {
-        "command": "jbGit.m.log.branches.checkoutAndRebase",
+        "command": "gitPrism.m.log.branches.checkoutAndRebase",
         "title": "Checkout and Rebase onto Current"
       },
       {
-        "command": "jbGit.m.log.branches.compareWithCurrent",
+        "command": "gitPrism.m.log.branches.compareWithCurrent",
         "title": "Compare with Current"
       },
       {
-        "command": "jbGit.m.log.branches.showDiffWithWorkingTree",
+        "command": "gitPrism.m.log.branches.showDiffWithWorkingTree",
         "title": "Show Diff with Working Tree"
       },
       {
-        "command": "jbGit.m.log.branches.rebaseCurrentOntoSelected",
+        "command": "gitPrism.m.log.branches.rebaseCurrentOntoSelected",
         "title": "Rebase Current onto Selected"
       },
       {
-        "command": "jbGit.m.log.branches.mergeIntoCurrent",
+        "command": "gitPrism.m.log.branches.mergeIntoCurrent",
         "title": "Merge into Current Branch"
       },
       {
-        "command": "jbGit.m.log.branches.pullRebase",
+        "command": "gitPrism.m.log.branches.pullRebase",
         "title": "Pull into Current Using Rebase"
       },
       {
-        "command": "jbGit.m.log.branches.pullMerge",
+        "command": "gitPrism.m.log.branches.pullMerge",
         "title": "Pull into Current Using Merge"
       },
       {
-        "command": "jbGit.m.log.branches.update",
+        "command": "gitPrism.m.log.branches.update",
         "title": "Update"
       },
       {
-        "command": "jbGit.m.log.branches.updateSelected",
+        "command": "gitPrism.m.log.branches.updateSelected",
         "title": "Update Selected"
       },
       {
-        "command": "jbGit.m.log.branches.push",
+        "command": "gitPrism.m.log.branches.push",
         "title": "Push…"
       },
       {
-        "command": "jbGit.m.log.branches.rename",
+        "command": "gitPrism.m.log.branches.rename",
         "title": "Rename…"
       },
       {
-        "command": "jbGit.m.log.branches.delete",
+        "command": "gitPrism.m.log.branches.delete",
         "title": "Delete"
       },
       {
-        "command": "jbGit.m.log.branches.markUnmarkAsFavorite",
+        "command": "gitPrism.m.log.branches.markUnmarkAsFavorite",
         "title": "Mark/Unmark As Favorite"
       },
       {
-        "command": "jbGit.m.log.branches.fetch",
+        "command": "gitPrism.m.log.branches.fetch",
         "title": "Fetch"
       },
       {
-        "command": "jbGit.m.log.console.copy",
+        "command": "gitPrism.m.log.console.copy",
         "title": "Copy"
       },
       {
-        "command": "jbGit.m.log.console.copyAll",
+        "command": "gitPrism.m.log.console.copyAll",
         "title": "Copy All"
       },
       {
-        "command": "jbGit.m.log.console.selectAll",
+        "command": "gitPrism.m.log.console.selectAll",
         "title": "Select All"
       },
       {
-        "command": "jbGit.m.log.console.softWrap",
+        "command": "gitPrism.m.log.console.softWrap",
         "title": "Soft-Wrap",
         "toggled": "jbmc_softWrap"
       },
       {
-        "command": "jbGit.m.log.console.scrollToEnd",
+        "command": "gitPrism.m.log.console.scrollToEnd",
         "title": "Scroll to End",
         "toggled": "jbmc_scrollToEnd"
       },
       {
-        "command": "jbGit.m.log.console.clearAll",
+        "command": "gitPrism.m.log.console.clearAll",
         "title": "Clear All"
       },
       {
-        "command": "jbGit.m.log.console.openInOutputPanel",
+        "command": "gitPrism.m.log.console.openInOutputPanel",
         "title": "Open in Output Panel"
       },
       {
-        "command": "jbGit.m.rebase.main.pick",
+        "command": "gitPrism.m.rebase.main.pick",
         "title": "Pick"
       },
       {
-        "command": "jbGit.m.rebase.main.stopToEdit",
+        "command": "gitPrism.m.rebase.main.stopToEdit",
         "title": "Stop to Edit"
       },
       {
-        "command": "jbGit.m.rebase.main.reword",
+        "command": "gitPrism.m.rebase.main.reword",
         "title": "Reword"
       },
       {
-        "command": "jbGit.m.rebase.main.squash",
+        "command": "gitPrism.m.rebase.main.squash",
         "title": "Squash"
       },
       {
-        "command": "jbGit.m.rebase.main.fixup",
+        "command": "gitPrism.m.rebase.main.fixup",
         "title": "Fixup"
       },
       {
-        "command": "jbGit.m.rebase.main.drop",
+        "command": "gitPrism.m.rebase.main.drop",
         "title": "Drop"
       },
       {
-        "command": "jbGit.m.rebase.main.viewGitCommands",
+        "command": "gitPrism.m.rebase.main.viewGitCommands",
         "title": "View Git Commands"
       },
       {
-        "command": "jbGit.m.repo-at-revision.main.showFileAtRevision",
+        "command": "gitPrism.m.repo-at-revision.main.showFileAtRevision",
         "title": "Show File at Revision"
       },
       {
-        "command": "jbGit.m.repo-at-revision.main.compareWithLocal",
+        "command": "gitPrism.m.repo-at-revision.main.compareWithLocal",
         "title": "Compare with Local"
       },
       {
-        "command": "jbGit.m.repo-at-revision.main.showHistory",
+        "command": "gitPrism.m.repo-at-revision.main.showHistory",
         "title": "Show History"
       },
       {
-        "command": "jbGit.m.repo-at-revision.main.copyPath",
+        "command": "gitPrism.m.repo-at-revision.main.copyPath",
         "title": "Copy Path"
       }
     ],
     "configuration": {
-      "title": "JetBrains Git Tools",
+      "title": "Git Prism",
       "properties": {
-        "jbGit.gitPath": {
+        "gitPrism.gitPath": {
           "type": "string",
           "default": "",
           "description": "Path to the git executable. Empty uses `git` from PATH."
         },
-        "jbGit.annotate.showRevision": {
+        "gitPrism.annotate.showRevision": {
           "type": "boolean",
           "default": false,
           "description": "Annotations: show the short commit hash (Revision)."
         },
-        "jbGit.annotate.showDate": {
+        "gitPrism.annotate.showDate": {
           "type": "boolean",
           "default": true,
           "description": "Annotations: show the commit date."
         },
-        "jbGit.annotate.showAuthor": {
+        "gitPrism.annotate.showAuthor": {
           "type": "boolean",
           "default": true,
           "description": "Annotations: show the author."
         },
-        "jbGit.annotate.showSubject": {
+        "gitPrism.annotate.showSubject": {
           "type": "boolean",
           "default": false,
           "description": "Annotations: show the commit subject."
         },
-        "jbGit.annotate.names": {
+        "gitPrism.annotate.names": {
           "type": "string",
           "enum": [
             "initials",
@@ -1240,7 +1239,7 @@
           "default": "lastName",
           "description": "Annotations: how author names are shown."
         },
-        "jbGit.annotate.colors": {
+        "gitPrism.annotate.colors": {
           "type": "string",
           "enum": [
             "order",
@@ -1255,12 +1254,12 @@
           "default": "order",
           "description": "Annotations: background colors."
         },
-        "jbGit.annotate.ignoreWhitespaces": {
+        "gitPrism.annotate.ignoreWhitespaces": {
           "type": "boolean",
           "default": true,
           "description": "Annotations: ignore whitespace changes (git blame -w)."
         },
-        "jbGit.annotate.detectMovements": {
+        "gitPrism.annotate.detectMovements": {
           "type": "string",
           "enum": [
             "none",
@@ -1280,57 +1279,57 @@
           "default": "none",
           "description": "Annotations: detect moved or copied lines."
         },
-        "jbGit.annotate.preferCommitTimestamp": {
+        "gitPrism.annotate.preferCommitTimestamp": {
           "type": "boolean",
           "default": false,
           "description": "Annotations: show the commit timestamp instead of the author timestamp."
         },
-        "jbGit.branches.showTags": {
+        "gitPrism.branches.showTags": {
           "type": "boolean",
           "default": true,
           "description": "Branches popup: show the Tags section."
         },
-        "jbGit.branches.showRecent": {
+        "gitPrism.branches.showRecent": {
           "type": "boolean",
           "default": true,
           "description": "Branches popup: show recently checked out branches."
         },
-        "jbGit.branches.groupByDirectory": {
+        "gitPrism.branches.groupByDirectory": {
           "type": "boolean",
           "default": true,
           "description": "Branches popup: group branches by their '/' prefix."
         },
-        "jbGit.branches.groupByRepository": {
+        "gitPrism.branches.groupByRepository": {
           "type": "boolean",
           "default": false,
           "description": "Branches popup: show branches per repository when the workspace has several repositories."
         },
-        "jbGit.branches.showOnlyFavorites": {
+        "gitPrism.branches.showOnlyFavorites": {
           "type": "boolean",
           "default": false,
           "description": "Branches popup: show only favorite branches."
         },
-        "jbGit.cherryPick.addSuffix": {
+        "gitPrism.cherryPick.addSuffix": {
           "type": "boolean",
           "default": false,
-          "description": "Add the 'cherry-picked from <hash>' suffix when picking commits pushed to protected branches (jbGit.push.protectedBranches)"
+          "description": "Add the 'cherry-picked from <hash>' suffix when picking commits pushed to protected branches (gitPrism.push.protectedBranches)"
         },
-        "jbGit.commitOps.showDropCommitDialog": {
+        "gitPrism.commitOps.showDropCommitDialog": {
           "type": "boolean",
           "default": true,
-          "description": "Show the confirmation dialog before Drop Commits (unset by \"OK, Don't Ask Again\"). Protected branches for history editing are the ones of jbGit.push.protectedBranches."
+          "description": "Show the confirmation dialog before Drop Commits (unset by \"OK, Don't Ask Again\"). Protected branches for history editing are the ones of gitPrism.push.protectedBranches."
         },
-        "jbGit.conflicts.showNotification": {
+        "gitPrism.conflicts.showNotification": {
           "type": "boolean",
           "default": true,
           "description": "Show a \"Merge Conflicts\" notification with \"Resolve…\" when unmerged files appear in a repository."
         },
-        "jbGit.diff.gutterMarkers": {
+        "gitPrism.diff.gutterMarkers": {
           "type": "boolean",
           "default": true,
           "description": "Highlight modified lines in the gutter (added, modified and deleted lines against HEAD) and in the overview ruler. Consider setting `scm.diffDecorations` to `none` to avoid duplicate markers."
         },
-        "jbGit.log.sortType": {
+        "gitPrism.log.sortType": {
           "type": "string",
           "enum": [
             "topological",
@@ -1343,17 +1342,17 @@
           "default": "date",
           "description": "Git Log: commit sort order."
         },
-        "jbGit.log.firstParent": {
+        "gitPrism.log.firstParent": {
           "type": "boolean",
           "default": false,
           "description": "Git Log: First Parent — follow only the first parent commit upon seeing a merge commit."
         },
-        "jbGit.log.showLongEdges": {
+        "gitPrism.log.showLongEdges": {
           "type": "boolean",
           "default": false,
           "description": "Git Log: Long Edges — show long graph edges instead of cutting them behind arrows."
         },
-        "jbGit.log.columns": {
+        "gitPrism.log.columns": {
           "type": "array",
           "items": {
             "type": "string",
@@ -1372,62 +1371,62 @@
           ],
           "description": "Git Log: visible columns in display order (subject holds the graph and references)."
         },
-        "jbGit.log.preferCommitDate": {
+        "gitPrism.log.preferCommitDate": {
           "type": "boolean",
           "default": false,
           "description": "Git Log: Commit Timestamp — show the time when the change was committed rather than authored."
         },
-        "jbGit.log.dateFormat": {
+        "gitPrism.log.dateFormat": {
           "type": "string",
           "default": "",
           "description": "Git Log: date format pattern (yyyy, yy, MM, M, dd, d, HH, H, mm, ss). Empty uses the locale format."
         },
-        "jbGit.log.prettyDates": {
+        "gitPrism.log.prettyDates": {
           "type": "boolean",
           "default": true,
           "description": "Git Log: show recent dates as Today / Yesterday."
         },
-        "jbGit.log.highlightMyCommits": {
+        "gitPrism.log.highlightMyCommits": {
           "type": "boolean",
           "default": true,
           "description": "Git Log: Highlight › My Commits (bold)."
         },
-        "jbGit.log.highlightMergeCommits": {
+        "gitPrism.log.highlightMergeCommits": {
           "type": "boolean",
           "default": true,
           "description": "Git Log: Highlight › Merge Commits (grey)."
         },
-        "jbGit.log.highlightCurrentBranch": {
+        "gitPrism.log.highlightCurrentBranch": {
           "type": "boolean",
           "default": true,
           "description": "Git Log: Highlight › Current Branch."
         },
-        "jbGit.log.showTagNames": {
+        "gitPrism.log.showTagNames": {
           "type": "boolean",
           "default": true,
           "description": "Git Log: Tag Names — show tag names in the table."
         },
-        "jbGit.log.compactReferences": {
+        "gitPrism.log.compactReferences": {
           "type": "boolean",
           "default": false,
           "description": "Git Log: Compact References View — show only the first reference for a commit in the table."
         },
-        "jbGit.log.referencesOnLeft": {
+        "gitPrism.log.referencesOnLeft": {
           "type": "boolean",
           "default": false,
           "description": "Git Log: References on the Left — show references on the left of commit message."
         },
-        "jbGit.log.showDetails": {
+        "gitPrism.log.showDetails": {
           "type": "boolean",
           "default": true,
           "description": "Git Log: Show Details — commit details below the changed files."
         },
-        "jbGit.log.showDiffPreview": {
+        "gitPrism.log.showDiffPreview": {
           "type": "boolean",
           "default": false,
           "description": "Git Log: Show Diff Preview."
         },
-        "jbGit.log.diffPreviewLocation": {
+        "gitPrism.log.diffPreviewLocation": {
           "type": "string",
           "enum": [
             "right",
@@ -1440,27 +1439,27 @@
           "default": "right",
           "description": "Git Log: Diff Preview Location."
         },
-        "jbGit.log.showBranches": {
+        "gitPrism.log.showBranches": {
           "type": "boolean",
           "default": true,
           "description": "Git Log: show the branches tree on the left of the log."
         },
-        "jbGit.push.protectedBranches": {
+        "gitPrism.push.protectedBranches": {
           "type": "string",
           "default": "master, main",
           "description": "Protected branches (comma-separated regular expressions). Force Push to them is prohibited."
         },
-        "jbGit.fetch.prune": {
+        "gitPrism.fetch.prune": {
           "type": "boolean",
           "default": true,
           "description": "Prune obsolete remote-tracking references when fetching (--prune)."
         },
-        "jbGit.update.showDialog": {
+        "gitPrism.update.showDialog": {
           "type": "boolean",
           "default": true,
           "description": "Show the Update Project dialog before updating (uncheck \"Don't show this dialog again\" there to bring it back)."
         },
-        "jbGit.update.method": {
+        "gitPrism.update.method": {
           "type": "string",
           "enum": [
             "merge",
@@ -1475,7 +1474,7 @@
           "default": "merge",
           "description": "Update method of Update Project and of updating after a rejected push."
         },
-        "jbGit.update.saveChangesPolicy": {
+        "gitPrism.update.saveChangesPolicy": {
           "type": "string",
           "enum": [
             "stash",
@@ -1492,1886 +1491,1886 @@
     },
     "submenus": [
       {
-        "id": "jbGit.fileMenu",
+        "id": "gitPrism.fileMenu",
         "label": "Git"
       },
       {
-        "id": "jbGit.annotate.viewMenu",
+        "id": "gitPrism.annotate.viewMenu",
         "label": "View"
       },
       {
-        "id": "jbGit.annotate.namesMenu",
+        "id": "gitPrism.annotate.namesMenu",
         "label": "Names"
       },
       {
-        "id": "jbGit.annotate.colorsMenu",
+        "id": "gitPrism.annotate.colorsMenu",
         "label": "Colors"
       },
       {
-        "id": "jbGit.annotate.optionsMenu",
+        "id": "gitPrism.annotate.optionsMenu",
         "label": "Options"
       },
       {
-        "id": "jbGit.m.log.commits.checkout.menu",
+        "id": "gitPrism.m.log.commits.checkout.menu",
         "label": "Checkout"
       },
       {
-        "id": "jbGit.m.log.files.copyPathReference.menu",
+        "id": "gitPrism.m.log.files.copyPathReference.menu",
         "label": "Copy Path/Reference…"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "submenu": "jbGit.fileMenu",
-          "group": "jbgit@1",
-          "when": "jbGit.active"
+          "submenu": "gitPrism.fileMenu",
+          "group": "gitprism@1",
+          "when": "gitPrism.active"
         }
       ],
       "commandPalette": [
         {
-          "command": "jbGit.annotate.option.commitTimestamp",
+          "command": "gitPrism.annotate.option.commitTimestamp",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.revision",
+          "command": "gitPrism.annotate.revision",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.previous",
+          "command": "gitPrism.annotate.previous",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.view.revision",
+          "command": "gitPrism.annotate.view.revision",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.view.date",
+          "command": "gitPrism.annotate.view.date",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.view.author",
+          "command": "gitPrism.annotate.view.author",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.view.subject",
+          "command": "gitPrism.annotate.view.subject",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.names.initials",
+          "command": "gitPrism.annotate.names.initials",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.names.lastName",
+          "command": "gitPrism.annotate.names.lastName",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.names.firstName",
+          "command": "gitPrism.annotate.names.firstName",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.names.fullName",
+          "command": "gitPrism.annotate.names.fullName",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.names.email",
+          "command": "gitPrism.annotate.names.email",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.colors.order",
+          "command": "gitPrism.annotate.colors.order",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.colors.author",
+          "command": "gitPrism.annotate.colors.author",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.colors.hide",
+          "command": "gitPrism.annotate.colors.hide",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.option.ignoreWhitespaces",
+          "command": "gitPrism.annotate.option.ignoreWhitespaces",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.option.detectWithinFile",
+          "command": "gitPrism.annotate.option.detectWithinFile",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.option.detectAcrossFiles",
+          "command": "gitPrism.annotate.option.detectAcrossFiles",
           "when": "false"
         },
         {
-          "command": "jbGit.annotate.toggle",
-          "when": "editorIsOpen && !jbGit.annotate.active"
+          "command": "gitPrism.annotate.toggle",
+          "when": "editorIsOpen && !gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.annotate.close",
-          "when": "jbGit.annotate.active"
+          "command": "gitPrism.annotate.close",
+          "when": "gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.annotate.previousRevision",
-          "when": "jbGit.annotate.active"
+          "command": "gitPrism.annotate.previousRevision",
+          "when": "gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.annotate.showDiff",
-          "when": "jbGit.annotate.active"
+          "command": "gitPrism.annotate.showDiff",
+          "when": "gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.annotate.showAffectedFiles",
-          "when": "jbGit.annotate.active"
+          "command": "gitPrism.annotate.showAffectedFiles",
+          "when": "gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.annotate.showCommitInLog",
-          "when": "jbGit.annotate.active"
+          "command": "gitPrism.annotate.showCommitInLog",
+          "when": "gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.annotate.copyRevision",
-          "when": "jbGit.annotate.active"
+          "command": "gitPrism.annotate.copyRevision",
+          "when": "gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.rollbackLines",
+          "command": "gitPrism.rollbackLines",
           "when": "editorIsOpen && resourceScheme == file"
         },
         {
-          "command": "jbGit.showDiffForLines",
+          "command": "gitPrism.showDiffForLines",
           "when": "editorIsOpen && resourceScheme == file"
         },
         {
-          "command": "jbGit.copyHunkOriginal",
+          "command": "gitPrism.copyHunkOriginal",
           "when": "editorIsOpen && resourceScheme == file"
         },
         {
-          "command": "jbGit.annotate.currentRevision",
-          "when": "jbGit.annotate.active"
+          "command": "gitPrism.annotate.currentRevision",
+          "when": "gitPrism.annotate.active"
         },
         {
-          "command": "jbGit.branches.show",
-          "when": "jbGit.active"
+          "command": "gitPrism.branches.show",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.branch.new",
-          "when": "jbGit.active"
+          "command": "gitPrism.branch.new",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.branch.checkout",
+          "command": "gitPrism.branch.checkout",
           "when": "false"
         },
         {
-          "command": "jbGit.branch.rename",
-          "when": "jbGit.active"
+          "command": "gitPrism.branch.rename",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.branch.delete",
-          "when": "jbGit.active"
+          "command": "gitPrism.branch.delete",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.branch.actions",
+          "command": "gitPrism.branch.actions",
           "when": "false"
         },
         {
-          "command": "jbGit.tag.new",
-          "when": "jbGit.active"
+          "command": "gitPrism.tag.new",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.tag.delete",
-          "when": "jbGit.active"
+          "command": "gitPrism.tag.delete",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.checkoutRevision",
-          "when": "jbGit.active"
+          "command": "gitPrism.checkoutRevision",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.cleanupBranches",
-          "when": "jbGit.active"
+          "command": "gitPrism.cleanupBranches",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.findMergedBranches",
-          "when": "jbGit.active"
+          "command": "gitPrism.findMergedBranches",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.remotes.manage",
-          "when": "jbGit.active"
+          "command": "gitPrism.remotes.manage",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.worktrees",
-          "when": "jbGit.active"
+          "command": "gitPrism.worktrees",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.clone",
-          "when": "jbGit.active"
+          "command": "gitPrism.clone",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.init",
-          "when": "jbGit.active"
+          "command": "gitPrism.init",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.unshallow",
-          "when": "jbGit.active"
+          "command": "gitPrism.unshallow",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.copyBranchName",
-          "when": "jbGit.active"
+          "command": "gitPrism.copyBranchName",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.vcsOperations",
-          "when": "jbGit.active"
+          "command": "gitPrism.vcsOperations",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.add",
-          "when": "jbGit.active"
+          "command": "gitPrism.add",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.addToGitignore",
-          "when": "jbGit.active"
+          "command": "gitPrism.addToGitignore",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.rollback",
-          "when": "jbGit.active"
+          "command": "gitPrism.rollback",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.commit.copyHash",
+          "command": "gitPrism.commit.copyHash",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.createPatch",
+          "command": "gitPrism.commit.createPatch",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.cherryPick",
+          "command": "gitPrism.commit.cherryPick",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.checkoutRevision",
+          "command": "gitPrism.commit.checkoutRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.resetToHere",
+          "command": "gitPrism.commit.resetToHere",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.revert",
+          "command": "gitPrism.commit.revert",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.undo",
+          "command": "gitPrism.commit.undo",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.reword",
+          "command": "gitPrism.commit.reword",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.fixup",
+          "command": "gitPrism.commit.fixup",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.squashInto",
+          "command": "gitPrism.commit.squashInto",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.squash",
+          "command": "gitPrism.commit.squash",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.drop",
+          "command": "gitPrism.commit.drop",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.interactiveRebase",
+          "command": "gitPrism.commit.interactiveRebase",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.pushUpTo",
+          "command": "gitPrism.commit.pushUpTo",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.newBranch",
+          "command": "gitPrism.commit.newBranch",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.newTag",
+          "command": "gitPrism.commit.newTag",
           "when": "false"
         },
         {
-          "command": "jbGit.commitOps.dropSelectedChanges",
+          "command": "gitPrism.commitOps.dropSelectedChanges",
           "when": "false"
         },
         {
-          "command": "jbGit.commitOps.extractSelectedChanges",
+          "command": "gitPrism.commitOps.extractSelectedChanges",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.dropSelectedChanges",
+          "command": "gitPrism.commit.dropSelectedChanges",
           "when": "false"
         },
         {
-          "command": "jbGit.commit.extractSelectedChanges",
+          "command": "gitPrism.commit.extractSelectedChanges",
           "when": "false"
         },
         {
-          "command": "jbGit.showDiffWithHead",
-          "when": "jbGit.active && resourceScheme == file"
+          "command": "gitPrism.showDiffWithHead",
+          "when": "gitPrism.active && resourceScheme == file"
         },
         {
-          "command": "jbGit.compareWithRevision",
-          "when": "jbGit.active && resourceScheme == file"
+          "command": "gitPrism.compareWithRevision",
+          "when": "gitPrism.active && resourceScheme == file"
         },
         {
-          "command": "jbGit.compareWithBranch",
-          "when": "jbGit.active"
+          "command": "gitPrism.compareWithBranch",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.compareWithLatest",
-          "when": "jbGit.active && resourceScheme == file"
+          "command": "gitPrism.compareWithLatest",
+          "when": "gitPrism.active && resourceScheme == file"
         },
         {
-          "command": "jbGit.showHistory",
-          "when": "jbGit.active"
+          "command": "gitPrism.showHistory",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.showHistoryForSelection",
-          "when": "jbGit.active && editorIsOpen"
+          "command": "gitPrism.showHistoryForSelection",
+          "when": "gitPrism.active && editorIsOpen"
         },
         {
-          "command": "jbGit.changes.show",
+          "command": "gitPrism.changes.show",
           "when": "false"
         },
         {
-          "command": "jbGit.compare.withCurrent",
-          "when": "jbGit.active"
+          "command": "gitPrism.compare.withCurrent",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.compare.withWorkingTree",
-          "when": "jbGit.active"
+          "command": "gitPrism.compare.withWorkingTree",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.repoAtRevision",
-          "when": "jbGit.active"
+          "command": "gitPrism.repoAtRevision",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.compare.fileWithRevision",
+          "command": "gitPrism.compare.fileWithRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.openFileAtRevision",
+          "command": "gitPrism.openFileAtRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.compare.showCurrentRevision",
-          "when": "jbGit.active && resourceScheme == file"
+          "command": "gitPrism.compare.showCurrentRevision",
+          "when": "gitPrism.active && resourceScheme == file"
         },
         {
-          "command": "jbGit.conflicts.resolve",
-          "when": "jbGit.active"
+          "command": "gitPrism.conflicts.resolve",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.operation.continue",
+          "command": "gitPrism.operation.continue",
           "when": "false"
         },
         {
-          "command": "jbGit.operation.abort",
+          "command": "gitPrism.operation.abort",
           "when": "false"
         },
         {
-          "command": "jbGit.operation.skip",
+          "command": "gitPrism.operation.skip",
           "when": "false"
         },
         {
-          "command": "jbGit.conflicts.operationActions",
-          "when": "jbGit.operationInProgress"
+          "command": "gitPrism.conflicts.operationActions",
+          "when": "gitPrism.operationInProgress"
         },
         {
-          "command": "jbGit.conflicts.rebaseContinue",
-          "when": "jbGit.operation.rebase"
+          "command": "gitPrism.conflicts.rebaseContinue",
+          "when": "gitPrism.operation.rebase"
         },
         {
-          "command": "jbGit.conflicts.rebaseSkip",
-          "when": "jbGit.operation.rebase"
+          "command": "gitPrism.conflicts.rebaseSkip",
+          "when": "gitPrism.operation.rebase"
         },
         {
-          "command": "jbGit.conflicts.rebaseAbort",
-          "when": "jbGit.operation.rebase"
+          "command": "gitPrism.conflicts.rebaseAbort",
+          "when": "gitPrism.operation.rebase"
         },
         {
-          "command": "jbGit.conflicts.mergeCommit",
-          "when": "jbGit.operation.mergeCommit"
+          "command": "gitPrism.conflicts.mergeCommit",
+          "when": "gitPrism.operation.mergeCommit"
         },
         {
-          "command": "jbGit.conflicts.mergeAbort",
-          "when": "jbGit.operation.merge"
+          "command": "gitPrism.conflicts.mergeAbort",
+          "when": "gitPrism.operation.merge"
         },
         {
-          "command": "jbGit.conflicts.cherryPickContinue",
-          "when": "jbGit.operation.cherryPickContinue"
+          "command": "gitPrism.conflicts.cherryPickContinue",
+          "when": "gitPrism.operation.cherryPickContinue"
         },
         {
-          "command": "jbGit.conflicts.cherryPickAbort",
-          "when": "jbGit.operation.cherryPick"
+          "command": "gitPrism.conflicts.cherryPickAbort",
+          "when": "gitPrism.operation.cherryPick"
         },
         {
-          "command": "jbGit.conflicts.revertAbort",
-          "when": "jbGit.operation.revert"
+          "command": "gitPrism.conflicts.revertAbort",
+          "when": "gitPrism.operation.revert"
         },
         {
-          "command": "jbGit.diff.show",
+          "command": "gitPrism.diff.show",
           "when": "false"
         },
         {
-          "command": "jbGit.conflicts.mergeFile",
+          "command": "gitPrism.conflicts.mergeFile",
           "when": "false"
         },
         {
-          "command": "jbGit.diff.nextChange",
+          "command": "gitPrism.diff.nextChange",
           "when": "editorIsOpen && resourceScheme == file"
         },
         {
-          "command": "jbGit.diff.previousChange",
+          "command": "gitPrism.diff.previousChange",
           "when": "editorIsOpen && resourceScheme == file"
         },
         {
-          "command": "jbGit.diff.changeUnderCaret",
+          "command": "gitPrism.diff.changeUnderCaret",
           "when": "editorIsOpen && resourceScheme == file"
         },
         {
-          "command": "jbGit.diff.rollbackChange",
+          "command": "gitPrism.diff.rollbackChange",
           "when": "false"
         },
         {
-          "command": "jbGit.diff.showChangeDiff",
+          "command": "gitPrism.diff.showChangeDiff",
           "when": "false"
         },
         {
-          "command": "jbGit.diff.copyChange",
+          "command": "gitPrism.diff.copyChange",
           "when": "false"
         },
         {
-          "command": "jbGit.log.show",
-          "when": "jbGit.active"
+          "command": "gitPrism.log.show",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.log.refresh",
-          "when": "jbGit.active"
+          "command": "gitPrism.log.refresh",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.log.openInEditor",
-          "when": "jbGit.active"
+          "command": "gitPrism.log.openInEditor",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.log.goToRef",
-          "when": "jbGit.active"
+          "command": "gitPrism.log.goToRef",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.log.focusTextFilter",
-          "when": "jbGit.active"
+          "command": "gitPrism.log.focusTextFilter",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.log.showConsoleTab",
-          "when": "jbGit.active"
+          "command": "gitPrism.log.showConsoleTab",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.log.clearConsole",
+          "command": "gitPrism.log.clearConsole",
           "when": "false"
         },
         {
-          "command": "jbGit.push",
-          "when": "jbGit.active"
+          "command": "gitPrism.push",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.pull",
-          "when": "jbGit.active"
+          "command": "gitPrism.pull",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.fetch",
-          "when": "jbGit.active"
+          "command": "gitPrism.fetch",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.updateProject",
-          "when": "jbGit.active"
+          "command": "gitPrism.updateProject",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.merge",
-          "when": "jbGit.active"
+          "command": "gitPrism.merge",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.rebase",
-          "when": "jbGit.active"
+          "command": "gitPrism.rebase",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.resetHead",
-          "when": "jbGit.active"
+          "command": "gitPrism.resetHead",
+          "when": "gitPrism.active"
         },
         {
-          "command": "jbGit.m.changes.main.showDiff",
+          "command": "gitPrism.m.changes.main.showDiff",
           "when": "false"
         },
         {
-          "command": "jbGit.m.changes.main.compareWithLocal",
+          "command": "gitPrism.m.changes.main.compareWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.changes.main.get",
+          "command": "gitPrism.m.changes.main.get",
           "when": "false"
         },
         {
-          "command": "jbGit.m.changes.main.showHistory",
+          "command": "gitPrism.m.changes.main.showHistory",
           "when": "false"
         },
         {
-          "command": "jbGit.m.changes.main.jumpToSource",
+          "command": "gitPrism.m.changes.main.jumpToSource",
           "when": "false"
         },
         {
-          "command": "jbGit.m.compare-branches.main.showDiff",
+          "command": "gitPrism.m.compare-branches.main.showDiff",
           "when": "false"
         },
         {
-          "command": "jbGit.m.compare-branches.main.compareWithLocal",
+          "command": "gitPrism.m.compare-branches.main.compareWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.compare-branches.main.get",
+          "command": "gitPrism.m.compare-branches.main.get",
           "when": "false"
         },
         {
-          "command": "jbGit.m.compare-branches.main.showHistory",
+          "command": "gitPrism.m.compare-branches.main.showHistory",
           "when": "false"
         },
         {
-          "command": "jbGit.m.compare-branches.main.jumpToSource",
+          "command": "gitPrism.m.compare-branches.main.jumpToSource",
           "when": "false"
         },
         {
-          "command": "jbGit.m.conflicts.main.acceptYours",
+          "command": "gitPrism.m.conflicts.main.acceptYours",
           "when": "false"
         },
         {
-          "command": "jbGit.m.conflicts.main.acceptTheirs",
+          "command": "gitPrism.m.conflicts.main.acceptTheirs",
           "when": "false"
         },
         {
-          "command": "jbGit.m.conflicts.main.merge",
+          "command": "gitPrism.m.conflicts.main.merge",
           "when": "false"
         },
         {
-          "command": "jbGit.m.conflicts.main.openInEditor",
+          "command": "gitPrism.m.conflicts.main.openInEditor",
           "when": "false"
         },
         {
-          "command": "jbGit.m.history-selection.main.showDiff",
+          "command": "gitPrism.m.history-selection.main.showDiff",
           "when": "false"
         },
         {
-          "command": "jbGit.m.history-selection.main.compareWithLocal",
+          "command": "gitPrism.m.history-selection.main.compareWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.history-selection.main.showFileAtRevision",
+          "command": "gitPrism.m.history-selection.main.showFileAtRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.m.history-selection.main.showInGitLog",
+          "command": "gitPrism.m.history-selection.main.showInGitLog",
           "when": "false"
         },
         {
-          "command": "jbGit.m.history-selection.main.copyRevisionNumber",
+          "command": "gitPrism.m.history-selection.main.copyRevisionNumber",
           "when": "false"
         },
         {
-          "command": "jbGit.m.history-selection.main.copyCommitSubject",
+          "command": "gitPrism.m.history-selection.main.copyCommitSubject",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.copyHash",
+          "command": "gitPrism.m.log.commits.copyHash",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.createPatch",
+          "command": "gitPrism.m.log.commits.createPatch",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.cherryPick",
+          "command": "gitPrism.m.log.commits.cherryPick",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.checkoutRevision",
+          "command": "gitPrism.m.log.commits.checkoutRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.checkout_branch",
+          "command": "gitPrism.m.log.commits.checkout_branch",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.checkout_revision",
+          "command": "gitPrism.m.log.commits.checkout_revision",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.repoAtRevision",
+          "command": "gitPrism.m.log.commits.repoAtRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.compareVersions",
+          "command": "gitPrism.m.log.commits.compareVersions",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.compareWithLocal",
+          "command": "gitPrism.m.log.commits.compareWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.resetToHere",
+          "command": "gitPrism.m.log.commits.resetToHere",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.revert",
+          "command": "gitPrism.m.log.commits.revert",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.undo",
+          "command": "gitPrism.m.log.commits.undo",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.reword",
+          "command": "gitPrism.m.log.commits.reword",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.fixup",
+          "command": "gitPrism.m.log.commits.fixup",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.squashInto",
+          "command": "gitPrism.m.log.commits.squashInto",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.drop",
+          "command": "gitPrism.m.log.commits.drop",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.squash",
+          "command": "gitPrism.m.log.commits.squash",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.interactiveRebase",
+          "command": "gitPrism.m.log.commits.interactiveRebase",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.pushUpTo",
+          "command": "gitPrism.m.log.commits.pushUpTo",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.branchActions",
+          "command": "gitPrism.m.log.commits.branchActions",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.newBranch",
+          "command": "gitPrism.m.log.commits.newBranch",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.newTag",
+          "command": "gitPrism.m.log.commits.newTag",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.goToChild",
+          "command": "gitPrism.m.log.commits.goToChild",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.commits.goToParent",
+          "command": "gitPrism.m.log.commits.goToParent",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.copyHash",
+          "command": "gitPrism.m.log.history.copyHash",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.createPatch",
+          "command": "gitPrism.m.log.history.createPatch",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.cherryPick",
+          "command": "gitPrism.m.log.history.cherryPick",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.get",
+          "command": "gitPrism.m.log.history.get",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.openFile",
+          "command": "gitPrism.m.log.history.openFile",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.compareWithLocal",
+          "command": "gitPrism.m.log.history.compareWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.showDiff",
+          "command": "gitPrism.m.log.history.showDiff",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.compare",
+          "command": "gitPrism.m.log.history.compare",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.showDiffNewTab",
+          "command": "gitPrism.m.log.history.showDiffNewTab",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.showAllAffected",
+          "command": "gitPrism.m.log.history.showAllAffected",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.annotate",
+          "command": "gitPrism.m.log.history.annotate",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.selectInLog",
+          "command": "gitPrism.m.log.history.selectInLog",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.revert",
+          "command": "gitPrism.m.log.history.revert",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.fixup",
+          "command": "gitPrism.m.log.history.fixup",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.squashInto",
+          "command": "gitPrism.m.log.history.squashInto",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.history.newTag",
+          "command": "gitPrism.m.log.history.newTag",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.showDiff",
+          "command": "gitPrism.m.log.files.showDiff",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.compareWithLocal",
+          "command": "gitPrism.m.log.files.compareWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.compareBeforeWithLocal",
+          "command": "gitPrism.m.log.files.compareBeforeWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.jumpToSource",
+          "command": "gitPrism.m.log.files.jumpToSource",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.showFileAtRevision",
+          "command": "gitPrism.m.log.files.showFileAtRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.revertSelectedChanges",
+          "command": "gitPrism.m.log.files.revertSelectedChanges",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.cherryPickSelectedChanges",
+          "command": "gitPrism.m.log.files.cherryPickSelectedChanges",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.dropSelectedChanges",
+          "command": "gitPrism.m.log.files.dropSelectedChanges",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.extractSelectedChangesToSeparateCommit",
+          "command": "gitPrism.m.log.files.extractSelectedChangesToSeparateCommit",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.get",
+          "command": "gitPrism.m.log.files.get",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.historyUpToHere",
+          "command": "gitPrism.m.log.files.historyUpToHere",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.annotate",
+          "command": "gitPrism.m.log.files.annotate",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.copyPathReference_absolutePath",
+          "command": "gitPrism.m.log.files.copyPathReference_absolutePath",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.copyPathReference_pathFromRepositoryRoot",
+          "command": "gitPrism.m.log.files.copyPathReference_pathFromRepositoryRoot",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.copyPathReference_fileName",
+          "command": "gitPrism.m.log.files.copyPathReference_fileName",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.files.showChangesToParents",
+          "command": "gitPrism.m.log.files.showChangesToParents",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.updateBranchFilterInLog",
+          "command": "gitPrism.m.log.branches.updateBranchFilterInLog",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.navigateLogToSelectedBranchHead",
+          "command": "gitPrism.m.log.branches.navigateLogToSelectedBranchHead",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.newBranchFromCurrent",
+          "command": "gitPrism.m.log.branches.newBranchFromCurrent",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.checkout",
+          "command": "gitPrism.m.log.branches.checkout",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.newBranchFromSelected",
+          "command": "gitPrism.m.log.branches.newBranchFromSelected",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.checkoutAndRebase",
+          "command": "gitPrism.m.log.branches.checkoutAndRebase",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.compareWithCurrent",
+          "command": "gitPrism.m.log.branches.compareWithCurrent",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.showDiffWithWorkingTree",
+          "command": "gitPrism.m.log.branches.showDiffWithWorkingTree",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.rebaseCurrentOntoSelected",
+          "command": "gitPrism.m.log.branches.rebaseCurrentOntoSelected",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.mergeIntoCurrent",
+          "command": "gitPrism.m.log.branches.mergeIntoCurrent",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.pullRebase",
+          "command": "gitPrism.m.log.branches.pullRebase",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.pullMerge",
+          "command": "gitPrism.m.log.branches.pullMerge",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.update",
+          "command": "gitPrism.m.log.branches.update",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.updateSelected",
+          "command": "gitPrism.m.log.branches.updateSelected",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.push",
+          "command": "gitPrism.m.log.branches.push",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.rename",
+          "command": "gitPrism.m.log.branches.rename",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.delete",
+          "command": "gitPrism.m.log.branches.delete",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.markUnmarkAsFavorite",
+          "command": "gitPrism.m.log.branches.markUnmarkAsFavorite",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.branches.fetch",
+          "command": "gitPrism.m.log.branches.fetch",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.console.copy",
+          "command": "gitPrism.m.log.console.copy",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.console.copyAll",
+          "command": "gitPrism.m.log.console.copyAll",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.console.selectAll",
+          "command": "gitPrism.m.log.console.selectAll",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.console.softWrap",
+          "command": "gitPrism.m.log.console.softWrap",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.console.scrollToEnd",
+          "command": "gitPrism.m.log.console.scrollToEnd",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.console.clearAll",
+          "command": "gitPrism.m.log.console.clearAll",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log.console.openInOutputPanel",
+          "command": "gitPrism.m.log.console.openInOutputPanel",
           "when": "false"
         },
         {
-          "command": "jbGit.m.rebase.main.pick",
+          "command": "gitPrism.m.rebase.main.pick",
           "when": "false"
         },
         {
-          "command": "jbGit.m.rebase.main.stopToEdit",
+          "command": "gitPrism.m.rebase.main.stopToEdit",
           "when": "false"
         },
         {
-          "command": "jbGit.m.rebase.main.reword",
+          "command": "gitPrism.m.rebase.main.reword",
           "when": "false"
         },
         {
-          "command": "jbGit.m.rebase.main.squash",
+          "command": "gitPrism.m.rebase.main.squash",
           "when": "false"
         },
         {
-          "command": "jbGit.m.rebase.main.fixup",
+          "command": "gitPrism.m.rebase.main.fixup",
           "when": "false"
         },
         {
-          "command": "jbGit.m.rebase.main.drop",
+          "command": "gitPrism.m.rebase.main.drop",
           "when": "false"
         },
         {
-          "command": "jbGit.m.rebase.main.viewGitCommands",
+          "command": "gitPrism.m.rebase.main.viewGitCommands",
           "when": "false"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.showFileAtRevision",
+          "command": "gitPrism.m.repo-at-revision.main.showFileAtRevision",
           "when": "false"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.compareWithLocal",
+          "command": "gitPrism.m.repo-at-revision.main.compareWithLocal",
           "when": "false"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.showHistory",
+          "command": "gitPrism.m.repo-at-revision.main.showHistory",
           "when": "false"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.copyPath",
+          "command": "gitPrism.m.repo-at-revision.main.copyPath",
           "when": "false"
         }
       ],
       "editor/lineNumber/context": [
         {
-          "command": "jbGit.annotate.toggle",
+          "command": "gitPrism.annotate.toggle",
           "group": "1_annotate@1",
-          "when": "!(resourcePath in jbGit.annotate.paths) && (resourceScheme == file || resourceScheme == jbgit-rev || resourceScheme == jbgit-annotate)"
+          "when": "!(resourcePath in gitPrism.annotate.paths) && (resourceScheme == file || resourceScheme == gitprism-rev || resourceScheme == gitprism-annotate)"
         },
         {
-          "command": "jbGit.annotate.showDiff",
+          "command": "gitPrism.annotate.showDiff",
           "group": "1_annotate@1",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "submenu": "jbGit.annotate.viewMenu",
+          "submenu": "gitPrism.annotate.viewMenu",
           "group": "1_annotate@2",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.annotate.copyRevision",
+          "command": "gitPrism.annotate.copyRevision",
           "group": "1_annotate@3",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.annotate.currentRevision",
+          "command": "gitPrism.annotate.currentRevision",
           "group": "2_revision@1",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.annotate.previousRevision",
+          "command": "gitPrism.annotate.previousRevision",
           "group": "2_revision@2",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "submenu": "jbGit.annotate.optionsMenu",
+          "submenu": "gitPrism.annotate.optionsMenu",
           "group": "3_extensions@1",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.annotate.showAffectedFiles",
+          "command": "gitPrism.annotate.showAffectedFiles",
           "group": "3_extensions@2",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.annotate.showCommitInLog",
+          "command": "gitPrism.annotate.showCommitInLog",
           "group": "3_extensions@3",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.annotate.close",
+          "command": "gitPrism.annotate.close",
           "group": "4_close@1",
-          "when": "resourcePath in jbGit.annotate.paths"
+          "when": "resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.rollbackLines",
+          "command": "gitPrism.rollbackLines",
           "group": "5_changes@1",
           "when": "resourceScheme == file && !editorReadonly"
         },
         {
-          "command": "jbGit.showDiffForLines",
+          "command": "gitPrism.showDiffForLines",
           "group": "5_changes@2",
           "when": "resourceScheme == file"
         },
         {
-          "command": "jbGit.copyHunkOriginal",
+          "command": "gitPrism.copyHunkOriginal",
           "group": "5_changes@3",
           "when": "resourceScheme == file"
         }
       ],
-      "jbGit.fileMenu": [
+      "gitPrism.fileMenu": [
         {
-          "command": "jbGit.annotate.toggle",
+          "command": "gitPrism.annotate.toggle",
           "group": "2_diff@0",
-          "when": "!explorerResourceIsFolder && !(resourcePath in jbGit.annotate.paths)"
+          "when": "!explorerResourceIsFolder && !(resourcePath in gitPrism.annotate.paths)"
         },
         {
-          "command": "jbGit.annotate.close",
+          "command": "gitPrism.annotate.close",
           "group": "2_diff@0",
-          "when": "!explorerResourceIsFolder && resourcePath in jbGit.annotate.paths"
+          "when": "!explorerResourceIsFolder && resourcePath in gitPrism.annotate.paths"
         },
         {
-          "command": "jbGit.branches.show",
+          "command": "gitPrism.branches.show",
           "group": "5_branch@1"
         },
         {
-          "command": "jbGit.branch.new",
+          "command": "gitPrism.branch.new",
           "group": "5_branch@2"
         },
         {
-          "command": "jbGit.tag.new",
+          "command": "gitPrism.tag.new",
           "group": "5_branch@3"
         },
         {
-          "command": "jbGit.checkoutRevision",
+          "command": "gitPrism.checkoutRevision",
           "group": "5_branch@4"
         },
         {
-          "command": "jbGit.cleanupBranches",
+          "command": "gitPrism.cleanupBranches",
           "group": "5_branch@5"
         },
         {
-          "command": "jbGit.remotes.manage",
+          "command": "gitPrism.remotes.manage",
           "group": "7_repo@1"
         },
         {
-          "command": "jbGit.worktrees",
+          "command": "gitPrism.worktrees",
           "group": "7_repo@2"
         },
         {
-          "command": "jbGit.clone",
+          "command": "gitPrism.clone",
           "group": "7_repo@3"
         },
         {
-          "command": "jbGit.init",
+          "command": "gitPrism.init",
           "group": "7_repo@4"
         },
         {
-          "command": "jbGit.unshallow",
+          "command": "gitPrism.unshallow",
           "group": "7_repo@5"
         },
         {
-          "command": "jbGit.add",
+          "command": "gitPrism.add",
           "group": "1_commit@2"
         },
         {
-          "command": "jbGit.addToGitignore",
+          "command": "gitPrism.addToGitignore",
           "group": "1_commit@3"
         },
         {
-          "command": "jbGit.rollback",
+          "command": "gitPrism.rollback",
           "group": "3_rollback@1"
         },
         {
-          "command": "jbGit.showDiffWithHead",
+          "command": "gitPrism.showDiffWithHead",
           "group": "2_diff@1",
           "when": "resourceScheme == file"
         },
         {
-          "command": "jbGit.compareWithRevision",
+          "command": "gitPrism.compareWithRevision",
           "group": "2_diff@2",
           "when": "resourceScheme == file && !explorerResourceIsFolder"
         },
         {
-          "command": "jbGit.compareWithBranch",
+          "command": "gitPrism.compareWithBranch",
           "group": "2_diff@3",
           "when": "resourceScheme == file"
         },
         {
-          "command": "jbGit.compareWithLatest",
+          "command": "gitPrism.compareWithLatest",
           "group": "2_diff@4",
           "when": "resourceScheme == file"
         },
         {
-          "command": "jbGit.showHistory",
+          "command": "gitPrism.showHistory",
           "group": "2_diff@5",
-          "when": "resourceScheme == file || resourceScheme == jbgit-rev"
+          "when": "resourceScheme == file || resourceScheme == gitprism-rev"
         },
         {
-          "command": "jbGit.showHistoryForSelection",
+          "command": "gitPrism.showHistoryForSelection",
           "group": "2_diff@6",
-          "when": "(resourceScheme == file || resourceScheme == jbgit-rev) && !explorerViewletFocus && !explorerResourceIsFolder"
+          "when": "(resourceScheme == file || resourceScheme == gitprism-rev) && !explorerViewletFocus && !explorerResourceIsFolder"
         },
         {
-          "command": "jbGit.compare.showCurrentRevision",
+          "command": "gitPrism.compare.showCurrentRevision",
           "group": "3_rollback@0",
-          "when": "(resourceScheme == file || resourceScheme == jbgit-rev) && !explorerResourceIsFolder"
+          "when": "(resourceScheme == file || resourceScheme == gitprism-rev) && !explorerResourceIsFolder"
         },
         {
-          "command": "jbGit.conflicts.mergeCommit",
+          "command": "gitPrism.conflicts.mergeCommit",
           "group": "5_branch@0.11",
-          "when": "jbGit.operation.mergeCommit"
+          "when": "gitPrism.operation.mergeCommit"
         },
         {
-          "command": "jbGit.conflicts.mergeAbort",
+          "command": "gitPrism.conflicts.mergeAbort",
           "group": "5_branch@0.12",
-          "when": "jbGit.operation.merge"
+          "when": "gitPrism.operation.merge"
         },
         {
-          "command": "jbGit.conflicts.rebaseAbort",
+          "command": "gitPrism.conflicts.rebaseAbort",
           "group": "5_branch@0.21",
-          "when": "jbGit.operation.rebase"
+          "when": "gitPrism.operation.rebase"
         },
         {
-          "command": "jbGit.conflicts.rebaseContinue",
+          "command": "gitPrism.conflicts.rebaseContinue",
           "group": "5_branch@0.22",
-          "when": "jbGit.operation.rebase"
+          "when": "gitPrism.operation.rebase"
         },
         {
-          "command": "jbGit.conflicts.rebaseSkip",
+          "command": "gitPrism.conflicts.rebaseSkip",
           "group": "5_branch@0.23",
-          "when": "jbGit.operation.rebase"
+          "when": "gitPrism.operation.rebase"
         },
         {
-          "command": "jbGit.conflicts.resolve",
+          "command": "gitPrism.conflicts.resolve",
           "group": "3_rollback@9"
         },
         {
-          "command": "jbGit.conflicts.revertAbort",
+          "command": "gitPrism.conflicts.revertAbort",
           "group": "9_operation@1",
-          "when": "jbGit.operation.revert"
+          "when": "gitPrism.operation.revert"
         },
         {
-          "command": "jbGit.conflicts.cherryPickAbort",
+          "command": "gitPrism.conflicts.cherryPickAbort",
           "group": "9_operation@2",
-          "when": "jbGit.operation.cherryPick"
+          "when": "gitPrism.operation.cherryPick"
         },
         {
-          "command": "jbGit.conflicts.cherryPickContinue",
+          "command": "gitPrism.conflicts.cherryPickContinue",
           "group": "9_operation@3",
-          "when": "jbGit.operation.cherryPickContinue"
+          "when": "gitPrism.operation.cherryPickContinue"
         },
         {
-          "command": "jbGit.stash.create",
+          "command": "gitPrism.stash.create",
           "group": "6_stash@1"
         },
         {
-          "command": "jbGit.stash.unstash",
+          "command": "gitPrism.stash.unstash",
           "group": "6_stash@2"
         },
         {
-          "command": "jbGit.patch.create",
+          "command": "gitPrism.patch.create",
           "group": "6_stash@5"
         },
         {
-          "command": "jbGit.patch.apply",
+          "command": "gitPrism.patch.apply",
           "group": "6_stash@6"
         },
         {
-          "command": "jbGit.push",
+          "command": "gitPrism.push",
           "group": "4_remote@1"
         },
         {
-          "command": "jbGit.updateProject",
+          "command": "gitPrism.updateProject",
           "group": "4_remote@4"
         },
         {
-          "command": "jbGit.pull",
+          "command": "gitPrism.pull",
           "group": "4_remote@2"
         },
         {
-          "command": "jbGit.fetch",
+          "command": "gitPrism.fetch",
           "group": "4_remote@3"
         },
         {
-          "command": "jbGit.merge",
+          "command": "gitPrism.merge",
           "group": "5_branch@0.1"
         },
         {
-          "command": "jbGit.rebase",
+          "command": "gitPrism.rebase",
           "group": "5_branch@0.2"
         },
         {
-          "command": "jbGit.resetHead",
+          "command": "gitPrism.resetHead",
           "group": "5_branch@3.5"
         }
       ],
-      "jbGit.annotate.viewMenu": [
+      "gitPrism.annotate.viewMenu": [
         {
-          "command": "jbGit.annotate.view.revision",
+          "command": "gitPrism.annotate.view.revision",
           "group": "1_aspects@0"
         },
         {
-          "command": "jbGit.annotate.view.date",
+          "command": "gitPrism.annotate.view.date",
           "group": "1_aspects@1"
         },
         {
-          "command": "jbGit.annotate.view.author",
+          "command": "gitPrism.annotate.view.author",
           "group": "1_aspects@2"
         },
         {
-          "command": "jbGit.annotate.view.subject",
+          "command": "gitPrism.annotate.view.subject",
           "group": "1_aspects@3"
         },
         {
-          "submenu": "jbGit.annotate.colorsMenu",
+          "submenu": "gitPrism.annotate.colorsMenu",
           "group": "2_presentation@0"
         },
         {
-          "submenu": "jbGit.annotate.namesMenu",
+          "submenu": "gitPrism.annotate.namesMenu",
           "group": "2_presentation@1"
         }
       ],
-      "jbGit.annotate.namesMenu": [
+      "gitPrism.annotate.namesMenu": [
         {
-          "command": "jbGit.annotate.names.initials",
+          "command": "gitPrism.annotate.names.initials",
           "group": "1@0"
         },
         {
-          "command": "jbGit.annotate.names.lastName",
+          "command": "gitPrism.annotate.names.lastName",
           "group": "1@1"
         },
         {
-          "command": "jbGit.annotate.names.firstName",
+          "command": "gitPrism.annotate.names.firstName",
           "group": "1@2"
         },
         {
-          "command": "jbGit.annotate.names.fullName",
+          "command": "gitPrism.annotate.names.fullName",
           "group": "1@3"
         },
         {
-          "command": "jbGit.annotate.names.email",
+          "command": "gitPrism.annotate.names.email",
           "group": "1@4"
         }
       ],
-      "jbGit.annotate.colorsMenu": [
+      "gitPrism.annotate.colorsMenu": [
         {
-          "command": "jbGit.annotate.colors.order",
+          "command": "gitPrism.annotate.colors.order",
           "group": "1@0"
         },
         {
-          "command": "jbGit.annotate.colors.author",
+          "command": "gitPrism.annotate.colors.author",
           "group": "1@1"
         },
         {
-          "command": "jbGit.annotate.colors.hide",
+          "command": "gitPrism.annotate.colors.hide",
           "group": "1@2"
         }
       ],
-      "jbGit.annotate.optionsMenu": [
+      "gitPrism.annotate.optionsMenu": [
         {
-          "command": "jbGit.annotate.option.ignoreWhitespaces",
+          "command": "gitPrism.annotate.option.ignoreWhitespaces",
           "group": "1@0"
         },
         {
-          "command": "jbGit.annotate.option.detectWithinFile",
+          "command": "gitPrism.annotate.option.detectWithinFile",
           "group": "1@1"
         },
         {
-          "command": "jbGit.annotate.option.detectAcrossFiles",
+          "command": "gitPrism.annotate.option.detectAcrossFiles",
           "group": "1@2"
         },
         {
-          "command": "jbGit.annotate.option.commitTimestamp",
+          "command": "gitPrism.annotate.option.commitTimestamp",
           "group": "1@3"
         }
       ],
       "view/title": [
         {
-          "command": "jbGit.log.openInEditor",
-          "when": "view == jbGit.logView",
+          "command": "gitPrism.log.openInEditor",
+          "when": "view == gitPrism.logView",
           "group": "navigation@1"
         }
       ],
       "webview/context": [
         {
-          "command": "jbGit.m.changes.main.showDiff",
+          "command": "gitPrism.m.changes.main.showDiff",
           "group": "00_changes@0",
           "when": "jbmMenu == 'changes.main' && jbm_showDiff"
         },
         {
-          "command": "jbGit.m.changes.main.compareWithLocal",
+          "command": "gitPrism.m.changes.main.compareWithLocal",
           "group": "00_changes@1",
           "when": "jbmMenu == 'changes.main' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.m.changes.main.get",
+          "command": "gitPrism.m.changes.main.get",
           "group": "00_changes@2",
           "when": "jbmMenu == 'changes.main' && jbm_get"
         },
         {
-          "command": "jbGit.m.changes.main.showHistory",
+          "command": "gitPrism.m.changes.main.showHistory",
           "group": "01_changes@0",
           "when": "jbmMenu == 'changes.main' && jbm_showHistory"
         },
         {
-          "command": "jbGit.m.changes.main.jumpToSource",
+          "command": "gitPrism.m.changes.main.jumpToSource",
           "group": "01_changes@1",
           "when": "jbmMenu == 'changes.main' && jbm_jumpToSource"
         },
         {
-          "command": "jbGit.m.compare-branches.main.showDiff",
+          "command": "gitPrism.m.compare-branches.main.showDiff",
           "group": "00_compare-branches@0",
           "when": "jbmMenu == 'compare-branches.main' && jbm_showDiff"
         },
         {
-          "command": "jbGit.m.compare-branches.main.compareWithLocal",
+          "command": "gitPrism.m.compare-branches.main.compareWithLocal",
           "group": "00_compare-branches@1",
           "when": "jbmMenu == 'compare-branches.main' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.m.compare-branches.main.get",
+          "command": "gitPrism.m.compare-branches.main.get",
           "group": "00_compare-branches@2",
           "when": "jbmMenu == 'compare-branches.main' && jbm_get"
         },
         {
-          "command": "jbGit.m.compare-branches.main.showHistory",
+          "command": "gitPrism.m.compare-branches.main.showHistory",
           "group": "01_compare-branches@0",
           "when": "jbmMenu == 'compare-branches.main' && jbm_showHistory"
         },
         {
-          "command": "jbGit.m.compare-branches.main.jumpToSource",
+          "command": "gitPrism.m.compare-branches.main.jumpToSource",
           "group": "01_compare-branches@1",
           "when": "jbmMenu == 'compare-branches.main' && jbm_jumpToSource"
         },
         {
-          "command": "jbGit.m.conflicts.main.acceptYours",
+          "command": "gitPrism.m.conflicts.main.acceptYours",
           "group": "00_conflicts@0",
           "when": "jbmMenu == 'conflicts.main' && jbm_acceptYours"
         },
         {
-          "command": "jbGit.m.conflicts.main.acceptTheirs",
+          "command": "gitPrism.m.conflicts.main.acceptTheirs",
           "group": "00_conflicts@1",
           "when": "jbmMenu == 'conflicts.main' && jbm_acceptTheirs"
         },
         {
-          "command": "jbGit.m.conflicts.main.merge",
+          "command": "gitPrism.m.conflicts.main.merge",
           "group": "00_conflicts@2",
           "when": "jbmMenu == 'conflicts.main' && jbm_merge"
         },
         {
-          "command": "jbGit.m.conflicts.main.openInEditor",
+          "command": "gitPrism.m.conflicts.main.openInEditor",
           "group": "01_conflicts@0",
           "when": "jbmMenu == 'conflicts.main' && jbm_openInEditor"
         },
         {
-          "command": "jbGit.m.history-selection.main.showDiff",
+          "command": "gitPrism.m.history-selection.main.showDiff",
           "group": "00_history-selection@0",
           "when": "jbmMenu == 'history-selection.main' && jbm_showDiff"
         },
         {
-          "command": "jbGit.m.history-selection.main.compareWithLocal",
+          "command": "gitPrism.m.history-selection.main.compareWithLocal",
           "group": "00_history-selection@1",
           "when": "jbmMenu == 'history-selection.main' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.m.history-selection.main.showFileAtRevision",
+          "command": "gitPrism.m.history-selection.main.showFileAtRevision",
           "group": "00_history-selection@2",
           "when": "jbmMenu == 'history-selection.main' && jbm_showFileAtRevision"
         },
         {
-          "command": "jbGit.m.history-selection.main.showInGitLog",
+          "command": "gitPrism.m.history-selection.main.showInGitLog",
           "group": "01_history-selection@0",
           "when": "jbmMenu == 'history-selection.main' && jbm_showInGitLog"
         },
         {
-          "command": "jbGit.m.history-selection.main.copyRevisionNumber",
+          "command": "gitPrism.m.history-selection.main.copyRevisionNumber",
           "group": "01_history-selection@1",
           "when": "jbmMenu == 'history-selection.main' && jbm_copyRevisionNumber"
         },
         {
-          "command": "jbGit.m.history-selection.main.copyCommitSubject",
+          "command": "gitPrism.m.history-selection.main.copyCommitSubject",
           "group": "01_history-selection@2",
           "when": "jbmMenu == 'history-selection.main' && jbm_copyCommitSubject"
         },
         {
-          "command": "jbGit.m.log.commits.copyHash",
+          "command": "gitPrism.m.log.commits.copyHash",
           "group": "00_log@0",
           "when": "jbmMenu == 'log.commits' && jbm_copyHash"
         },
         {
-          "command": "jbGit.m.log.commits.createPatch",
+          "command": "gitPrism.m.log.commits.createPatch",
           "group": "00_log@1",
           "when": "jbmMenu == 'log.commits' && jbm_createPatch"
         },
         {
-          "command": "jbGit.m.log.commits.cherryPick",
+          "command": "gitPrism.m.log.commits.cherryPick",
           "group": "00_log@2",
           "when": "jbmMenu == 'log.commits' && jbm_cherryPick"
         },
         {
-          "command": "jbGit.m.log.commits.checkoutRevision",
+          "command": "gitPrism.m.log.commits.checkoutRevision",
           "group": "01_log@0",
           "when": "jbmMenu == 'log.commits' && jbm_checkoutRevision"
         },
         {
-          "submenu": "jbGit.m.log.commits.checkout.menu",
+          "submenu": "gitPrism.m.log.commits.checkout.menu",
           "group": "01_log@1",
           "when": "jbmMenu == 'log.commits' && jbm_checkout"
         },
         {
-          "command": "jbGit.m.log.commits.repoAtRevision",
+          "command": "gitPrism.m.log.commits.repoAtRevision",
           "group": "01_log@2",
           "when": "jbmMenu == 'log.commits' && jbm_repoAtRevision"
         },
         {
-          "command": "jbGit.m.log.commits.compareVersions",
+          "command": "gitPrism.m.log.commits.compareVersions",
           "group": "01_log@3",
           "when": "jbmMenu == 'log.commits' && jbm_compareVersions"
         },
         {
-          "command": "jbGit.m.log.commits.compareWithLocal",
+          "command": "gitPrism.m.log.commits.compareWithLocal",
           "group": "01_log@4",
           "when": "jbmMenu == 'log.commits' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.m.log.commits.resetToHere",
+          "command": "gitPrism.m.log.commits.resetToHere",
           "group": "02_log@0",
           "when": "jbmMenu == 'log.commits' && jbm_resetToHere"
         },
         {
-          "command": "jbGit.m.log.commits.revert",
+          "command": "gitPrism.m.log.commits.revert",
           "group": "02_log@1",
           "when": "jbmMenu == 'log.commits' && jbm_revert"
         },
         {
-          "command": "jbGit.m.log.commits.undo",
+          "command": "gitPrism.m.log.commits.undo",
           "group": "02_log@2",
           "when": "jbmMenu == 'log.commits' && jbm_undo"
         },
         {
-          "command": "jbGit.m.log.commits.reword",
+          "command": "gitPrism.m.log.commits.reword",
           "group": "03_log@0",
           "when": "jbmMenu == 'log.commits' && jbm_reword"
         },
         {
-          "command": "jbGit.m.log.commits.fixup",
+          "command": "gitPrism.m.log.commits.fixup",
           "group": "03_log@1",
           "when": "jbmMenu == 'log.commits' && jbm_fixup"
         },
         {
-          "command": "jbGit.m.log.commits.squashInto",
+          "command": "gitPrism.m.log.commits.squashInto",
           "group": "03_log@2",
           "when": "jbmMenu == 'log.commits' && jbm_squashInto"
         },
         {
-          "command": "jbGit.m.log.commits.drop",
+          "command": "gitPrism.m.log.commits.drop",
           "group": "03_log@3",
           "when": "jbmMenu == 'log.commits' && jbm_drop"
         },
         {
-          "command": "jbGit.m.log.commits.squash",
+          "command": "gitPrism.m.log.commits.squash",
           "group": "03_log@4",
           "when": "jbmMenu == 'log.commits' && jbm_squash"
         },
         {
-          "command": "jbGit.m.log.commits.interactiveRebase",
+          "command": "gitPrism.m.log.commits.interactiveRebase",
           "group": "03_log@5",
           "when": "jbmMenu == 'log.commits' && jbm_interactiveRebase"
         },
         {
-          "command": "jbGit.m.log.commits.pushUpTo",
+          "command": "gitPrism.m.log.commits.pushUpTo",
           "group": "03_log@6",
           "when": "jbmMenu == 'log.commits' && jbm_pushUpTo"
         },
         {
-          "command": "jbGit.m.log.commits.branchActions",
+          "command": "gitPrism.m.log.commits.branchActions",
           "group": "04_log@0",
           "when": "jbmMenu == 'log.commits' && jbm_branchActions"
         },
         {
-          "command": "jbGit.m.log.commits.newBranch",
+          "command": "gitPrism.m.log.commits.newBranch",
           "group": "04_log@1",
           "when": "jbmMenu == 'log.commits' && jbm_newBranch"
         },
         {
-          "command": "jbGit.m.log.commits.newTag",
+          "command": "gitPrism.m.log.commits.newTag",
           "group": "04_log@2",
           "when": "jbmMenu == 'log.commits' && jbm_newTag"
         },
         {
-          "command": "jbGit.m.log.commits.goToChild",
+          "command": "gitPrism.m.log.commits.goToChild",
           "group": "05_log@0",
           "when": "jbmMenu == 'log.commits' && jbm_goToChild"
         },
         {
-          "command": "jbGit.m.log.commits.goToParent",
+          "command": "gitPrism.m.log.commits.goToParent",
           "group": "05_log@1",
           "when": "jbmMenu == 'log.commits' && jbm_goToParent"
         },
         {
-          "command": "jbGit.m.log.history.copyHash",
+          "command": "gitPrism.m.log.history.copyHash",
           "group": "00_log@0",
           "when": "jbmMenu == 'log.history' && jbm_copyHash"
         },
         {
-          "command": "jbGit.m.log.history.createPatch",
+          "command": "gitPrism.m.log.history.createPatch",
           "group": "00_log@1",
           "when": "jbmMenu == 'log.history' && jbm_createPatch"
         },
         {
-          "command": "jbGit.m.log.history.cherryPick",
+          "command": "gitPrism.m.log.history.cherryPick",
           "group": "00_log@2",
           "when": "jbmMenu == 'log.history' && jbm_cherryPick"
         },
         {
-          "command": "jbGit.m.log.history.get",
+          "command": "gitPrism.m.log.history.get",
           "group": "01_log@0",
           "when": "jbmMenu == 'log.history' && jbm_get"
         },
         {
-          "command": "jbGit.m.log.history.openFile",
+          "command": "gitPrism.m.log.history.openFile",
           "group": "01_log@1",
           "when": "jbmMenu == 'log.history' && jbm_openFile"
         },
         {
-          "command": "jbGit.m.log.history.compareWithLocal",
+          "command": "gitPrism.m.log.history.compareWithLocal",
           "group": "01_log@2",
           "when": "jbmMenu == 'log.history' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.m.log.history.showDiff",
+          "command": "gitPrism.m.log.history.showDiff",
           "group": "01_log@3",
           "when": "jbmMenu == 'log.history' && jbm_showDiff"
         },
         {
-          "command": "jbGit.m.log.history.compare",
+          "command": "gitPrism.m.log.history.compare",
           "group": "01_log@4",
           "when": "jbmMenu == 'log.history' && jbm_compare"
         },
         {
-          "command": "jbGit.m.log.history.showDiffNewTab",
+          "command": "gitPrism.m.log.history.showDiffNewTab",
           "group": "01_log@5",
           "when": "jbmMenu == 'log.history' && jbm_showDiffNewTab"
         },
         {
-          "command": "jbGit.m.log.history.showAllAffected",
+          "command": "gitPrism.m.log.history.showAllAffected",
           "group": "01_log@6",
           "when": "jbmMenu == 'log.history' && jbm_showAllAffected"
         },
         {
-          "command": "jbGit.m.log.history.annotate",
+          "command": "gitPrism.m.log.history.annotate",
           "group": "01_log@7",
           "when": "jbmMenu == 'log.history' && jbm_annotate"
         },
         {
-          "command": "jbGit.m.log.history.selectInLog",
+          "command": "gitPrism.m.log.history.selectInLog",
           "group": "01_log@8",
           "when": "jbmMenu == 'log.history' && jbm_selectInLog"
         },
         {
-          "command": "jbGit.m.log.history.revert",
+          "command": "gitPrism.m.log.history.revert",
           "group": "02_log@0",
           "when": "jbmMenu == 'log.history' && jbm_revert"
         },
         {
-          "command": "jbGit.m.log.history.fixup",
+          "command": "gitPrism.m.log.history.fixup",
           "group": "02_log@1",
           "when": "jbmMenu == 'log.history' && jbm_fixup"
         },
         {
-          "command": "jbGit.m.log.history.squashInto",
+          "command": "gitPrism.m.log.history.squashInto",
           "group": "02_log@2",
           "when": "jbmMenu == 'log.history' && jbm_squashInto"
         },
         {
-          "command": "jbGit.m.log.history.newTag",
+          "command": "gitPrism.m.log.history.newTag",
           "group": "03_log@0",
           "when": "jbmMenu == 'log.history' && jbm_newTag"
         },
         {
-          "command": "jbGit.m.log.files.showDiff",
+          "command": "gitPrism.m.log.files.showDiff",
           "group": "00_log@0",
           "when": "jbmMenu == 'log.files' && jbm_showDiff"
         },
         {
-          "command": "jbGit.m.log.files.compareWithLocal",
+          "command": "gitPrism.m.log.files.compareWithLocal",
           "group": "00_log@1",
           "when": "jbmMenu == 'log.files' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.m.log.files.compareBeforeWithLocal",
+          "command": "gitPrism.m.log.files.compareBeforeWithLocal",
           "group": "00_log@2",
           "when": "jbmMenu == 'log.files' && jbm_compareBeforeWithLocal"
         },
         {
-          "command": "jbGit.m.log.files.jumpToSource",
+          "command": "gitPrism.m.log.files.jumpToSource",
           "group": "01_log@0",
           "when": "jbmMenu == 'log.files' && jbm_jumpToSource"
         },
         {
-          "command": "jbGit.m.log.files.showFileAtRevision",
+          "command": "gitPrism.m.log.files.showFileAtRevision",
           "group": "01_log@1",
           "when": "jbmMenu == 'log.files' && jbm_showFileAtRevision"
         },
         {
-          "command": "jbGit.m.log.files.revertSelectedChanges",
+          "command": "gitPrism.m.log.files.revertSelectedChanges",
           "group": "02_log@0",
           "when": "jbmMenu == 'log.files' && jbm_revertSelectedChanges"
         },
         {
-          "command": "jbGit.m.log.files.cherryPickSelectedChanges",
+          "command": "gitPrism.m.log.files.cherryPickSelectedChanges",
           "group": "02_log@1",
           "when": "jbmMenu == 'log.files' && jbm_cherryPickSelectedChanges"
         },
         {
-          "command": "jbGit.m.log.files.dropSelectedChanges",
+          "command": "gitPrism.m.log.files.dropSelectedChanges",
           "group": "02_log@2",
           "when": "jbmMenu == 'log.files' && jbm_dropSelectedChanges"
         },
         {
-          "command": "jbGit.m.log.files.extractSelectedChangesToSeparateCommit",
+          "command": "gitPrism.m.log.files.extractSelectedChangesToSeparateCommit",
           "group": "02_log@3",
           "when": "jbmMenu == 'log.files' && jbm_extractSelectedChangesToSeparateCommit"
         },
         {
-          "command": "jbGit.m.log.files.get",
+          "command": "gitPrism.m.log.files.get",
           "group": "02_log@4",
           "when": "jbmMenu == 'log.files' && jbm_get"
         },
         {
-          "command": "jbGit.m.log.files.historyUpToHere",
+          "command": "gitPrism.m.log.files.historyUpToHere",
           "group": "02_log@5",
           "when": "jbmMenu == 'log.files' && jbm_historyUpToHere"
         },
         {
-          "command": "jbGit.m.log.files.annotate",
+          "command": "gitPrism.m.log.files.annotate",
           "group": "03_log@0",
           "when": "jbmMenu == 'log.files' && jbm_annotate"
         },
         {
-          "submenu": "jbGit.m.log.files.copyPathReference.menu",
+          "submenu": "gitPrism.m.log.files.copyPathReference.menu",
           "group": "04_log@0",
           "when": "jbmMenu == 'log.files' && jbm_copyPathReference"
         },
         {
-          "command": "jbGit.m.log.files.showChangesToParents",
+          "command": "gitPrism.m.log.files.showChangesToParents",
           "group": "05_log@0",
           "when": "jbmMenu == 'log.files' && jbm_showChangesToParents"
         },
         {
-          "command": "jbGit.m.log.branches.updateBranchFilterInLog",
+          "command": "gitPrism.m.log.branches.updateBranchFilterInLog",
           "group": "00_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_updateBranchFilterInLog"
         },
         {
-          "command": "jbGit.m.log.branches.navigateLogToSelectedBranchHead",
+          "command": "gitPrism.m.log.branches.navigateLogToSelectedBranchHead",
           "group": "00_log@1",
           "when": "jbmMenu == 'log.branches' && jbm_navigateLogToSelectedBranchHead"
         },
         {
-          "command": "jbGit.m.log.branches.newBranchFromCurrent",
+          "command": "gitPrism.m.log.branches.newBranchFromCurrent",
           "group": "01_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_newBranchFromCurrent"
         },
         {
-          "command": "jbGit.m.log.branches.checkout",
+          "command": "gitPrism.m.log.branches.checkout",
           "group": "01_log@1",
           "when": "jbmMenu == 'log.branches' && jbm_checkout"
         },
         {
-          "command": "jbGit.m.log.branches.newBranchFromSelected",
+          "command": "gitPrism.m.log.branches.newBranchFromSelected",
           "group": "01_log@2",
           "when": "jbmMenu == 'log.branches' && jbm_newBranchFromSelected"
         },
         {
-          "command": "jbGit.m.log.branches.checkoutAndRebase",
+          "command": "gitPrism.m.log.branches.checkoutAndRebase",
           "group": "01_log@3",
           "when": "jbmMenu == 'log.branches' && jbm_checkoutAndRebase"
         },
         {
-          "command": "jbGit.m.log.branches.compareWithCurrent",
+          "command": "gitPrism.m.log.branches.compareWithCurrent",
           "group": "02_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_compareWithCurrent"
         },
         {
-          "command": "jbGit.m.log.branches.showDiffWithWorkingTree",
+          "command": "gitPrism.m.log.branches.showDiffWithWorkingTree",
           "group": "02_log@1",
           "when": "jbmMenu == 'log.branches' && jbm_showDiffWithWorkingTree"
         },
         {
-          "command": "jbGit.m.log.branches.rebaseCurrentOntoSelected",
+          "command": "gitPrism.m.log.branches.rebaseCurrentOntoSelected",
           "group": "03_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_rebaseCurrentOntoSelected"
         },
         {
-          "command": "jbGit.m.log.branches.mergeIntoCurrent",
+          "command": "gitPrism.m.log.branches.mergeIntoCurrent",
           "group": "03_log@1",
           "when": "jbmMenu == 'log.branches' && jbm_mergeIntoCurrent"
         },
         {
-          "command": "jbGit.m.log.branches.pullRebase",
+          "command": "gitPrism.m.log.branches.pullRebase",
           "group": "04_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_pullRebase"
         },
         {
-          "command": "jbGit.m.log.branches.pullMerge",
+          "command": "gitPrism.m.log.branches.pullMerge",
           "group": "04_log@1",
           "when": "jbmMenu == 'log.branches' && jbm_pullMerge"
         },
         {
-          "command": "jbGit.m.log.branches.update",
+          "command": "gitPrism.m.log.branches.update",
           "group": "05_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_update"
         },
         {
-          "command": "jbGit.m.log.branches.updateSelected",
+          "command": "gitPrism.m.log.branches.updateSelected",
           "group": "05_log@1",
           "when": "jbmMenu == 'log.branches' && jbm_updateSelected"
         },
         {
-          "command": "jbGit.m.log.branches.push",
+          "command": "gitPrism.m.log.branches.push",
           "group": "05_log@2",
           "when": "jbmMenu == 'log.branches' && jbm_push"
         },
         {
-          "command": "jbGit.m.log.branches.rename",
+          "command": "gitPrism.m.log.branches.rename",
           "group": "06_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_rename"
         },
         {
-          "command": "jbGit.m.log.branches.delete",
+          "command": "gitPrism.m.log.branches.delete",
           "group": "06_log@1",
           "when": "jbmMenu == 'log.branches' && jbm_delete"
         },
         {
-          "command": "jbGit.m.log.branches.markUnmarkAsFavorite",
+          "command": "gitPrism.m.log.branches.markUnmarkAsFavorite",
           "group": "07_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_markUnmarkAsFavorite"
         },
         {
-          "command": "jbGit.m.log.branches.fetch",
+          "command": "gitPrism.m.log.branches.fetch",
           "group": "08_log@0",
           "when": "jbmMenu == 'log.branches' && jbm_fetch"
         },
         {
-          "command": "jbGit.m.log.console.copy",
+          "command": "gitPrism.m.log.console.copy",
           "group": "00_log@0",
           "when": "jbmMenu == 'log.console' && jbm_copy"
         },
         {
-          "command": "jbGit.m.log.console.copyAll",
+          "command": "gitPrism.m.log.console.copyAll",
           "group": "00_log@1",
           "when": "jbmMenu == 'log.console' && jbm_copyAll"
         },
         {
-          "command": "jbGit.m.log.console.selectAll",
+          "command": "gitPrism.m.log.console.selectAll",
           "group": "00_log@2",
           "when": "jbmMenu == 'log.console' && jbm_selectAll"
         },
         {
-          "command": "jbGit.m.log.console.softWrap",
+          "command": "gitPrism.m.log.console.softWrap",
           "group": "01_log@0",
           "when": "jbmMenu == 'log.console' && jbm_softWrap"
         },
         {
-          "command": "jbGit.m.log.console.scrollToEnd",
+          "command": "gitPrism.m.log.console.scrollToEnd",
           "group": "01_log@1",
           "when": "jbmMenu == 'log.console' && jbm_scrollToEnd"
         },
         {
-          "command": "jbGit.m.log.console.clearAll",
+          "command": "gitPrism.m.log.console.clearAll",
           "group": "02_log@0",
           "when": "jbmMenu == 'log.console' && jbm_clearAll"
         },
         {
-          "command": "jbGit.m.log.console.openInOutputPanel",
+          "command": "gitPrism.m.log.console.openInOutputPanel",
           "group": "03_log@0",
           "when": "jbmMenu == 'log.console' && jbm_openInOutputPanel"
         },
         {
-          "command": "jbGit.m.rebase.main.pick",
+          "command": "gitPrism.m.rebase.main.pick",
           "group": "00_rebase@0",
           "when": "jbmMenu == 'rebase.main' && jbm_pick"
         },
         {
-          "command": "jbGit.m.rebase.main.stopToEdit",
+          "command": "gitPrism.m.rebase.main.stopToEdit",
           "group": "00_rebase@1",
           "when": "jbmMenu == 'rebase.main' && jbm_stopToEdit"
         },
         {
-          "command": "jbGit.m.rebase.main.reword",
+          "command": "gitPrism.m.rebase.main.reword",
           "group": "00_rebase@2",
           "when": "jbmMenu == 'rebase.main' && jbm_reword"
         },
         {
-          "command": "jbGit.m.rebase.main.squash",
+          "command": "gitPrism.m.rebase.main.squash",
           "group": "00_rebase@3",
           "when": "jbmMenu == 'rebase.main' && jbm_squash"
         },
         {
-          "command": "jbGit.m.rebase.main.fixup",
+          "command": "gitPrism.m.rebase.main.fixup",
           "group": "00_rebase@4",
           "when": "jbmMenu == 'rebase.main' && jbm_fixup"
         },
         {
-          "command": "jbGit.m.rebase.main.drop",
+          "command": "gitPrism.m.rebase.main.drop",
           "group": "00_rebase@5",
           "when": "jbmMenu == 'rebase.main' && jbm_drop"
         },
         {
-          "command": "jbGit.m.rebase.main.viewGitCommands",
+          "command": "gitPrism.m.rebase.main.viewGitCommands",
           "group": "01_rebase@0",
           "when": "jbmMenu == 'rebase.main' && jbm_viewGitCommands"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.showFileAtRevision",
+          "command": "gitPrism.m.repo-at-revision.main.showFileAtRevision",
           "group": "00_repo-at-revision@0",
           "when": "jbmMenu == 'repo-at-revision.main' && jbm_showFileAtRevision"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.compareWithLocal",
+          "command": "gitPrism.m.repo-at-revision.main.compareWithLocal",
           "group": "00_repo-at-revision@1",
           "when": "jbmMenu == 'repo-at-revision.main' && jbm_compareWithLocal"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.showHistory",
+          "command": "gitPrism.m.repo-at-revision.main.showHistory",
           "group": "01_repo-at-revision@0",
           "when": "jbmMenu == 'repo-at-revision.main' && jbm_showHistory"
         },
         {
-          "command": "jbGit.m.repo-at-revision.main.copyPath",
+          "command": "gitPrism.m.repo-at-revision.main.copyPath",
           "group": "01_repo-at-revision@1",
           "when": "jbmMenu == 'repo-at-revision.main' && jbm_copyPath"
         }
       ],
-      "jbGit.m.log.commits.checkout.menu": [
+      "gitPrism.m.log.commits.checkout.menu": [
         {
-          "command": "jbGit.m.log.commits.checkout_branch",
+          "command": "gitPrism.m.log.commits.checkout_branch",
           "group": "00_log@0",
           "when": "jbmMenu == 'log.commits' && jbm_checkout_branch"
         },
         {
-          "command": "jbGit.m.log.commits.checkout_revision",
+          "command": "gitPrism.m.log.commits.checkout_revision",
           "group": "00_log@1",
           "when": "jbmMenu == 'log.commits' && jbm_checkout_revision"
         }
       ],
-      "jbGit.m.log.files.copyPathReference.menu": [
+      "gitPrism.m.log.files.copyPathReference.menu": [
         {
-          "command": "jbGit.m.log.files.copyPathReference_absolutePath",
+          "command": "gitPrism.m.log.files.copyPathReference_absolutePath",
           "group": "00_log@0",
           "when": "jbmMenu == 'log.files' && jbm_copyPathReference_absolutePath"
         },
         {
-          "command": "jbGit.m.log.files.copyPathReference_pathFromRepositoryRoot",
+          "command": "gitPrism.m.log.files.copyPathReference_pathFromRepositoryRoot",
           "group": "00_log@1",
           "when": "jbmMenu == 'log.files' && jbm_copyPathReference_pathFromRepositoryRoot"
         },
         {
-          "command": "jbGit.m.log.files.copyPathReference_fileName",
+          "command": "gitPrism.m.log.files.copyPathReference_fileName",
           "group": "00_log@2",
           "when": "jbmMenu == 'log.files' && jbm_copyPathReference_fileName"
         }
@@ -3379,36 +3378,36 @@
     },
     "keybindings": [
       {
-        "command": "jbGit.rollbackLines",
+        "command": "gitPrism.rollbackLines",
         "key": "ctrl+alt+z",
         "mac": "cmd+alt+z",
         "when": "editorTextFocus && !editorReadonly && resourceScheme == file"
       },
       {
-        "command": "jbGit.vcsOperations",
+        "command": "gitPrism.vcsOperations",
         "key": "ctrl+v",
-        "when": "isMac && jbGit.active && !terminalFocus"
+        "when": "isMac && gitPrism.active && !terminalFocus"
       },
       {
-        "command": "jbGit.diff.nextChange",
+        "command": "gitPrism.diff.nextChange",
         "key": "ctrl+alt+shift+down",
         "mac": "ctrl+alt+shift+down",
         "when": "editorTextFocus && resourceScheme == file"
       },
       {
-        "command": "jbGit.diff.previousChange",
+        "command": "gitPrism.diff.previousChange",
         "key": "ctrl+alt+shift+up",
         "mac": "ctrl+alt+shift+up",
         "when": "editorTextFocus && resourceScheme == file"
       }
     ],
     "views": {
-      "jbGitPanel": [
+      "gitPrismPanel": [
         {
           "type": "webview",
-          "id": "jbGit.logView",
+          "id": "gitPrism.logView",
           "name": "Log",
-          "when": "jbGit.active"
+          "when": "gitPrism.active"
         }
       ]
     }

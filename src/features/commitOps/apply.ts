@@ -100,18 +100,18 @@ async function unstash(repo: Repository, op: string): Promise<void> {
     if (retry.code === 0) return;
   }
   if ((await unmergedFiles(repo)).length) {
-    void invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+    void invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
     const resolve = 'Resolve…';
     const pick = await vscode.window.showWarningMessage(
       `Your uncommitted changes were saved to stash. Unstash after ${op} is not complete, you have unresolved merges in your working tree. Resolve conflicts and drop the stash.`,
       resolve,
     );
-    if (pick === resolve) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+    if (pick === resolve) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
     return;
   }
   const view = 'View Stash…';
   const pick = await vscode.window.showErrorMessage(`Before ${op} your uncommitted changes were saved to stash. ${retry.stderr.trim()}`, view);
-  if (pick === view) invoke('jbGit.stash.unstash', { repoRoot: repo.root });
+  if (pick === view) invoke('gitPrism.stash.unstash', { repoRoot: repo.root });
 }
 
 // ---------- Cherry-Pick / Revert ----------
@@ -210,12 +210,12 @@ async function applyCommits(ctx: FeatureContext, args: CommitsArgs, kind: ApplyK
     if (state === kind || (await unmergedFiles(repo)).length) {
       const stopped = ordered[processed.length] ?? ordered[ordered.length - 1];
       // IntelliJ opens the conflict resolver right away
-      void invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+      void invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
       const resolve = 'Resolve…';
       const msg = `${n.title} was performed with conflicts: ${short(stopped.hash)} ${stopped.subject}. There are unresolved conflicts in the working tree.${successPart}`;
       const pick = await vscode.window.showWarningMessage(msg, resolve, n.abort);
-      if (pick === resolve) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
-      else if (pick === n.abort) invoke('jbGit.operation.abort', { repoRoot: repo.root });
+      if (pick === resolve) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
+      else if (pick === n.abort) invoke('gitPrism.operation.abort', { repoRoot: repo.root });
       return false;
     }
     await quitSequencer(repo, kind);
@@ -270,13 +270,13 @@ async function stashAndRetry(ctx: FeatureContext, repo: Repository, args: Commit
   } else {
     const view = 'View Stash…';
     const pick = await vscode.window.showInformationMessage(`Restore local changes: Local changes were saved before ${NAMES[kind].op}`, view);
-    if (pick === view) invoke('jbGit.stash.unstash', { repoRoot: repo.root });
+    if (pick === view) invoke('gitPrism.stash.unstash', { repoRoot: repo.root });
   }
 }
 
-/** jbGit.cherryPick.addSuffix: -x for commits pushed to a protected branch (IntelliJ setting text). */
+/** gitPrism.cherryPick.addSuffix: -x for commits pushed to a protected branch (IntelliJ setting text). */
 async function needsSuffix(repo: Repository, hashes: string[]): Promise<boolean> {
-  if (!vscode.workspace.getConfiguration('jbGit').get<boolean>('cherryPick.addSuffix', false)) return false;
+  if (!vscode.workspace.getConfiguration('gitPrism').get<boolean>('cherryPick.addSuffix', false)) return false;
   for (const h of hashes) if (await protectedBranchContaining(repo, h)) return true;
   return false;
 }

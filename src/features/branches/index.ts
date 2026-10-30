@@ -36,39 +36,39 @@ export function activate(ctx: FeatureContext): void {
 
   // contract commands
   subs.push(
-    implement('jbGit.branches.show', safe((a) => showBranchesPopup(ctx, a.repoRoot ?? (a.uri ? ctx.repos.forUri(a.uri)?.root : undefined)))),
-    implement('jbGit.branch.new', withRepo((repo, a) => newBranch(repo, a.ref))),
+    implement('gitPrism.branches.show', safe((a) => showBranchesPopup(ctx, a.repoRoot ?? (a.uri ? ctx.repos.forUri(a.uri)?.root : undefined)))),
+    implement('gitPrism.branch.new', withRepo((repo, a) => newBranch(repo, a.ref))),
     implement(
-      'jbGit.branch.checkout',
+      'gitPrism.branch.checkout',
       withRepo((repo, a) => (a.ref ? checkout(repo, a.ref) : checkoutRevision(repo))),
     ),
-    implement('jbGit.tag.new', withRepo((repo, a) => newTag(repo, a.ref))),
-    implement('jbGit.branch.rename', withRepo((repo, a) => renameBranch(repo, a.ref))),
-    implement('jbGit.branch.delete', withRepo((repo, a) => deleteRef(repo, a.ref))),
+    implement('gitPrism.tag.new', withRepo((repo, a) => newTag(repo, a.ref))),
+    implement('gitPrism.branch.rename', withRepo((repo, a) => renameBranch(repo, a.ref))),
+    implement('gitPrism.branch.delete', withRepo((repo, a) => deleteRef(repo, a.ref))),
     implement(
-      'jbGit.tag.delete',
+      'gitPrism.tag.delete',
       withRepo(async (repo, a) => {
         const tag = a.ref ?? (await pickTag(repo, 'Select a tag to delete'));
         if (tag) await deleteTag(repo, tag.replace(/^refs\/tags\//, ''));
       }),
     ),
     implement(
-      'jbGit.branch.actions',
+      'gitPrism.branch.actions',
       withRepo((repo, a) => (a.ref ? showBranchActions(ctx, repo, a.ref) : showBranchesPopup(ctx, repo.root))),
     ),
   );
 
   // feature commands
-  reg('jbGit.checkoutRevision', withRepo((repo) => checkoutRevision(repo)));
-  reg('jbGit.cleanupBranches', withRepo((repo) => cleanupBranches(repo)));
-  reg('jbGit.findMergedBranches', withRepo((repo) => findMergedBranches(ctx, repo)));
-  reg('jbGit.remotes.manage', withRepo((repo) => manageRemotes(repo)));
-  reg('jbGit.worktrees', withRepo((repo) => showWorktrees(repo)));
-  reg('jbGit.clone', safe(() => cloneRepository(ctx)));
-  reg('jbGit.init', safe((a) => initRepository(ctx, a.uri)));
-  reg('jbGit.unshallow', withRepo((repo) => unshallow(repo)));
-  reg('jbGit.copyBranchName', withRepo((repo, a) => copyBranchName(repo, a.ref)));
-  reg('jbGit.vcsOperations', safe(() => vcsOperations()));
+  reg('gitPrism.checkoutRevision', withRepo((repo) => checkoutRevision(repo)));
+  reg('gitPrism.cleanupBranches', withRepo((repo) => cleanupBranches(repo)));
+  reg('gitPrism.findMergedBranches', withRepo((repo) => findMergedBranches(ctx, repo)));
+  reg('gitPrism.remotes.manage', withRepo((repo) => manageRemotes(repo)));
+  reg('gitPrism.worktrees', withRepo((repo) => showWorktrees(repo)));
+  reg('gitPrism.clone', safe(() => cloneRepository(ctx)));
+  reg('gitPrism.init', safe((a) => initRepository(ctx, a.uri)));
+  reg('gitPrism.unshallow', withRepo((repo) => unshallow(repo)));
+  reg('gitPrism.copyBranchName', withRepo((repo, a) => copyBranchName(repo, a.ref)));
+  reg('gitPrism.vcsOperations', safe(() => vcsOperations()));
 
 
   // "Shallow repository detected" hint

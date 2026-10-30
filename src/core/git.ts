@@ -34,7 +34,7 @@ export class GitError extends Error {
 }
 
 export function gitPath(): string {
-  return vscode.workspace.getConfiguration('jbGit').get<string>('gitPath') || 'git';
+  return vscode.workspace.getConfiguration('gitPrism').get<string>('gitPath') || 'git';
 }
 
 /** Runs git in `cwd`; returns raw stdout bytes. */
@@ -85,5 +85,5 @@ export async function git(cwd: string, args: string[], opts: RunOptions = {}): P
 export async function showGitError(e: unknown, prefix?: string): Promise<void> {
   const msg = e instanceof Error ? e.message : String(e);
   const pick = await vscode.window.showErrorMessage(prefix ? `${prefix}: ${msg}` : msg, 'Show Console');
-  if (pick) vscode.commands.executeCommand('jbGit.console.show');
+  if (pick) vscode.commands.executeCommand('gitPrism.console.show');
 }

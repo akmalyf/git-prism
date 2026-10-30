@@ -1,5 +1,5 @@
-// Conflict resolution & in-progress operations: implements jbGit.conflicts.resolve (the "Conflicts" dialog) and
-// jbGit.operation.continue / abort / skip, the Git menu actions of IntelliJ's Merge/Rebase groups and the status bar widget.
+// Conflict resolution & in-progress operations: implements gitPrism.conflicts.resolve (the "Conflicts" dialog) and
+// gitPrism.operation.continue / abort / skip, the Git menu actions of IntelliJ's Merge/Rebase groups and the status bar widget.
 import * as vscode from 'vscode';
 import type { FeatureContext } from '../../core/context';
 import { implement } from '../../core/contracts';
@@ -62,18 +62,18 @@ export function activate(ctx: FeatureContext): void {
   ctx.extension.subscriptions.push(
     widget,
     // from menus the argument is the clicked resource: show every repository with conflicts, like IntelliJ
-    implement('jbGit.conflicts.resolve', (args) => resolve(args instanceof vscode.Uri ? undefined : args?.repoRoot)),
-    implement('jbGit.operation.continue', anyOp((r) => ops.continue(r))),
-    implement('jbGit.operation.abort', anyOp((r) => ops.abort(r))),
-    implement('jbGit.operation.skip', anyOp((r) => ops.skip(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.operationActions', (args?: { repoRoot?: string }) => widget.showActions(args?.repoRoot)),
-    vscode.commands.registerCommand('jbGit.conflicts.rebaseContinue', forState('rebase', noRebase, (r) => ops.continue(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.rebaseSkip', forState('rebase', noRebase, (r) => ops.skip(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.rebaseAbort', forState('rebase', noRebase, (r) => ops.abort(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.mergeCommit', forState('merge', noMerge, (r) => ops.commitMerge(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.mergeAbort', forState('merge', noMerge, (r) => ops.abort(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.cherryPickContinue', forState('cherry-pick', noPick, (r) => ops.continue(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.cherryPickAbort', forState('cherry-pick', noPick, (r) => ops.abort(r))),
-    vscode.commands.registerCommand('jbGit.conflicts.revertAbort', forState('revert', noRevert, (r) => ops.abort(r))),
+    implement('gitPrism.conflicts.resolve', (args) => resolve(args instanceof vscode.Uri ? undefined : args?.repoRoot)),
+    implement('gitPrism.operation.continue', anyOp((r) => ops.continue(r))),
+    implement('gitPrism.operation.abort', anyOp((r) => ops.abort(r))),
+    implement('gitPrism.operation.skip', anyOp((r) => ops.skip(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.operationActions', (args?: { repoRoot?: string }) => widget.showActions(args?.repoRoot)),
+    vscode.commands.registerCommand('gitPrism.conflicts.rebaseContinue', forState('rebase', noRebase, (r) => ops.continue(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.rebaseSkip', forState('rebase', noRebase, (r) => ops.skip(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.rebaseAbort', forState('rebase', noRebase, (r) => ops.abort(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.mergeCommit', forState('merge', noMerge, (r) => ops.commitMerge(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.mergeAbort', forState('merge', noMerge, (r) => ops.abort(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.cherryPickContinue', forState('cherry-pick', noPick, (r) => ops.continue(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.cherryPickAbort', forState('cherry-pick', noPick, (r) => ops.abort(r))),
+    vscode.commands.registerCommand('gitPrism.conflicts.revertAbort', forState('revert', noRevert, (r) => ops.abort(r))),
   );
 }

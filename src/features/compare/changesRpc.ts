@@ -15,7 +15,7 @@ export function historyTitle(rel: string): string {
 }
 
 export function showHistory(repo: Repository, paths: string[], title: string): Thenable<unknown> {
-  return invoke('jbGit.log.show', { repoRoot: repo.root, paths, editorTab: true, title });
+  return invoke('gitPrism.log.show', { repoRoot: repo.root, paths, editorTab: true, title });
 }
 
 export async function loadChanges(repo: Repository, src: ChangesSource): Promise<FileChange[]> {
@@ -34,17 +34,17 @@ export function changesHandlers(repo: Repository, diffTitle: (src: ChangesSource
 
     'changes.diff': async (p: ChangesSource & { files: FileChange[]; index: number }) => {
       if (!p.files.length) return;
-      await invoke('jbGit.diff.show', { title: diffTitle(p), files: diffFiles(repo, p, p.files), index: p.index });
+      await invoke('gitPrism.diff.show', { title: diffTitle(p), files: diffFiles(repo, p, p.files), index: p.index });
     },
 
     'changes.compareWithLocal': async (p: ChangesSource & { file: FileChange }) => {
       const after = p.swapped ? p.from : p.to;
       const f = p.file;
       if (!after) {
-        await invoke('jbGit.diff.show', { files: diffFiles(repo, p, [f]) });
+        await invoke('gitPrism.diff.show', { files: diffFiles(repo, p, [f]) });
         return;
       }
-      await invoke('jbGit.diff.show', {
+      await invoke('gitPrism.diff.show', {
         files: [{
           repoRoot: repo.root,
           path: f.path,

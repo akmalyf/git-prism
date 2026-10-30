@@ -126,7 +126,7 @@ export function undoCommit(ctx: FeatureContext, args: CommitsArgs): Promise<void
     });
     vscode.window.showInformationMessage('Undo commit successful');
     // IntelliJ puts the undone commit's message into the commit message field
-    void invoke('jbGit.commit.focus', { repoRoot: repo.root, message });
+    void invoke('gitPrism.commit.focus', { repoRoot: repo.root, message });
   });
 }
 
@@ -172,7 +172,7 @@ export function reword(ctx: FeatureContext, args: CommitsArgs): Promise<void> {
 }
 
 async function amendMessage(repo: Repository, message: string): Promise<void> {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jbgit-reword-'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gitprism-reword-'));
   const file = path.join(dir, 'COMMIT_MSG');
   fs.writeFileSync(file, message + '\n', 'utf8');
   try {
@@ -235,7 +235,7 @@ export function drop(ctx: FeatureContext, args: CommitsArgs): Promise<void> {
   return guarded(ctx, args, 'Could not Drop Commits', async (repo, hashes) => {
     const r = await editableRange(repo, hashes, 'drop');
     const n = hashes.length;
-    const cfg = vscode.workspace.getConfiguration('jbGit');
+    const cfg = vscode.workspace.getConfiguration('gitPrism');
     if (cfg.get<boolean>('commitOps.showDropCommitDialog', true)) {
       const branch = await repo.currentBranch();
       const ok = 'OK';
@@ -279,6 +279,6 @@ export function prepareFixup(ctx: FeatureContext, args: CommitsArgs, kind: 'fixu
       return;
     }
     const subject = subjectOf(await fullMessage(repo, hash));
-    await invoke('jbGit.commit.focus', { repoRoot: repo.root, message: `${kind}! ${subject}` });
+    await invoke('gitPrism.commit.focus', { repoRoot: repo.root, message: `${kind}! ${subject}` });
   });
 }

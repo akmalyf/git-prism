@@ -31,7 +31,7 @@ test('consecutive chain', () => {
 });
 
 function repo(): { dir: string; sh: (...args: string[]) => string; git: ObjectGit } {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jbgit-inmem-'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gitprism-inmem-'));
   const env = { ...process.env, GIT_CONFIG_GLOBAL: '/dev/null', GIT_CONFIG_NOSYSTEM: '1', GIT_AUTHOR_NAME: 'T', GIT_AUTHOR_EMAIL: 't@x', GIT_COMMITTER_NAME: 'T', GIT_COMMITTER_EMAIL: 't@x' };
   const sh = (...args: string[]) => {
     const r = spawnSync('git', args, { cwd: dir, env, encoding: 'utf8' });
@@ -114,7 +114,7 @@ test('split a commit: drop and extract selected changes', async () => {
   commit(r, 'a', '3', 'c3');
   r.sh('merge', '-q', '--no-ff', 'side', '-m', 'merge side');
   const head = r.sh('rev-parse', 'HEAD');
-  const idx = path.join(r.dir, '.git', 'jbgit-split-index');
+  const idx = path.join(r.dir, '.git', 'gitprism-split-index');
   const split = await splitCommit(r.git, c2, ['d/b', 'd/nëw'], idx);
   // selected paths are back at the parent's state: d/b = 1, d/nëw removed
   assert.deepEqual(r.sh('-c', 'core.quotepath=false', 'ls-tree', '-r', '--name-only', split.remaining).split('\n'), ['a', 'd/b']);

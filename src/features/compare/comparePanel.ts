@@ -1,4 +1,4 @@
-// 'jbGit.compare.withCurrent': IntelliJ's branch compare ("Comparing <current> with <ref>") with a Log tab (commits
+// 'gitPrism.compare.withCurrent': IntelliJ's branch compare ("Comparing <current> with <ref>") with a Log tab (commits
 // in one branch but not the other, swappable) and a Files tab (difference between <ref> and the working tree).
 import * as vscode from 'vscode';
 import { invoke, type RefArgs } from '../../core/contracts';
@@ -39,7 +39,7 @@ export async function compareWithCurrent(ctx: FeatureContext, args: RefArgs): Pr
     }
     const titleFor = (cur: string) => (ctx.repos.all.length > 1 ? `Comparing ${cur} with ${ref} in root ${repo.name}` : `Comparing ${cur} with ${ref}`);
     const title = titleFor(current);
-    const panel = vscode.window.createWebviewPanel('jbGit.compareBranches', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
+    const panel = vscode.window.createWebviewPanel('gitPrism.compareBranches', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
     panel.iconPath = new vscode.ThemeIcon('git-compare');
     const init: CompareInit = { repoRoot: repo.root, current, currentRev: 'HEAD', ref };
     panel.webview.html = webviewHtml(panel.webview, ctx.extension.extensionUri, 'compare-branches', init, title);
@@ -67,7 +67,7 @@ export async function compareWithCurrent(ctx: FeatureContext, args: RefArgs): Pr
         const branches = contains.stdout.split('\n').filter((l) => l && l.endsWith('\t')).map((l) => l.slice(0, -1));
         return { commit, branches, parent: commit.parents[0] ?? (await emptyTree(repo)) };
       },
-      'compare.showInLog': (p: { hash: string }) => invoke('jbGit.log.show', { repoRoot: repo.root, revision: p.hash }),
+      'compare.showInLog': (p: { hash: string }) => invoke('gitPrism.log.show', { repoRoot: repo.root, revision: p.hash }),
       'compare.copyHash': (p: { hash: string }) => vscode.env.clipboard.writeText(p.hash),
     });
     const sub = ctx.repos.onDidChangeRepository((r) => {
@@ -91,7 +91,7 @@ export async function compareWithWorkingTree(ctx: FeatureContext, args: RefArgs)
     if (!repo) return;
     const ref = args.ref ?? (await pickRef(repo, { title: 'Select Branch to Compare' }));
     if (!ref) return;
-    await invoke('jbGit.changes.show', { repoRoot: repo.root, from: ref });
+    await invoke('gitPrism.changes.show', { repoRoot: repo.root, from: ref });
   } catch (e) {
     showGitError(e, 'Cannot Show Changes');
   }

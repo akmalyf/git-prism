@@ -16,20 +16,20 @@ export function activate(ctx: FeatureContext): void {
   const reg = (id: string, fn: (...a: any[]) => unknown) => vscode.commands.registerCommand(id, fn);
   ctx.extension.subscriptions.push(
     vscode.workspace.registerTextDocumentContentProvider(REV_SCHEME, new RevisionContentProvider(ctx.repos)),
-    implement('jbGit.changes.show', (a) => showChanges(ctx, a)),
-    implement('jbGit.compare.withCurrent', (a) => compareWithCurrent(ctx, a)),
-    implement('jbGit.repoAtRevision', (a) => showRepoAtRevision(ctx, a)),
-    implement('jbGit.compare.fileWithRevision', (a) => compareFileWithRevision(ctx, a)),
-    implement('jbGit.openFileAtRevision', (a) =>
+    implement('gitPrism.changes.show', (a) => showChanges(ctx, a)),
+    implement('gitPrism.compare.withCurrent', (a) => compareWithCurrent(ctx, a)),
+    implement('gitPrism.repoAtRevision', (a) => showRepoAtRevision(ctx, a)),
+    implement('gitPrism.compare.fileWithRevision', (a) => compareFileWithRevision(ctx, a)),
+    implement('gitPrism.openFileAtRevision', (a) =>
       openFileAtRevision(ctx.repos, a).catch((e) => showGitError(e, 'Cannot open file at revision')),
     ),
-    reg('jbGit.compare.withWorkingTree', (a?: { repoRoot?: string; ref?: string }) => compareWithWorkingTree(ctx, a ?? {})),
-    reg('jbGit.showDiffWithHead', (uri?: unknown, uris?: unknown) => showDiffWithHead(ctx, uri, uris)),
-    reg('jbGit.compareWithRevision', (uri?: unknown) => compareWithRevision(ctx, uri)),
-    reg('jbGit.compareWithBranch', (uri?: unknown) => compareWithBranch(ctx, uri)),
-    reg('jbGit.compareWithLatest', (uri?: unknown) => compareWithLatest(ctx, uri)),
-    reg('jbGit.showHistory', (uri?: unknown, uris?: unknown) => showFileHistory(ctx, uri, uris)),
-    reg('jbGit.compare.showCurrentRevision', (uri?: unknown) => showCurrentRevision(ctx, uri)),
-    reg('jbGit.showHistoryForSelection', (uri?: unknown, uris?: unknown) => showHistoryForSelection(ctx, uri, uris)),
+    reg('gitPrism.compare.withWorkingTree', (a?: { repoRoot?: string; ref?: string }) => compareWithWorkingTree(ctx, a ?? {})),
+    reg('gitPrism.showDiffWithHead', (uri?: unknown, uris?: unknown) => showDiffWithHead(ctx, uri, uris)),
+    reg('gitPrism.compareWithRevision', (uri?: unknown) => compareWithRevision(ctx, uri)),
+    reg('gitPrism.compareWithBranch', (uri?: unknown) => compareWithBranch(ctx, uri)),
+    reg('gitPrism.compareWithLatest', (uri?: unknown) => compareWithLatest(ctx, uri)),
+    reg('gitPrism.showHistory', (uri?: unknown, uris?: unknown) => showFileHistory(ctx, uri, uris)),
+    reg('gitPrism.compare.showCurrentRevision', (uri?: unknown) => showCurrentRevision(ctx, uri)),
+    reg('gitPrism.showHistoryForSelection', (uri?: unknown, uris?: unknown) => showHistoryForSelection(ctx, uri, uris)),
   );
 }

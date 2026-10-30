@@ -1,4 +1,4 @@
-// Changes browser webview ('jbGit.changes.show'): "Changes between <from> and <to>" header with a swap button
+// Changes browser webview ('gitPrism.changes.show'): "Changes between <from> and <to>" header with a swap button
 // and the shared changes tree (Show Diff, Get, Expand/Collapse, Group By, context menu).
 import type { ChangesInit, ChangesSource } from '../../features/compare/protocol';
 import { init, rpc, viewState } from '../shared/rpc';

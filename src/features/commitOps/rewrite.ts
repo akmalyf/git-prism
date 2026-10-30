@@ -43,7 +43,7 @@ export async function runRebase(repo: Repository, o: RebaseRun): Promise<boolean
     vscode.window.showErrorMessage(`${o.failureTitle}: repository state was changed`);
     return false;
   }
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jbgit-rebase-'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gitprism-rebase-'));
   let result: { code: number; stdout: string; stderr: string } | undefined;
   try {
     const todo = o.onto && !o.entries.length ? { text: 'noop\n', messages: [] } : buildTodo(o.entries, (id) => posix(path.join(dir, `msg-${id}.txt`)));

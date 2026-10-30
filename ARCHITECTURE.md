@@ -1,14 +1,14 @@
 # Architecture
 
-VS Code extension that recreates PhpStorm's Git log and Git actions. Behavior, labels and menu order follow
-PhpStorm 2026.2; the IntelliJ sources are open (github.com/JetBrains/intellij-community: `plugins/git4idea`,
-`platform/vcs-log`, `platform/vcs-impl`) and are the reference for exact behavior.
+VS Code extension with a desktop-IDE-style Git log and Git actions. The commit ordering and graph coloring are
+ports of Apache-2.0 code from github.com/JetBrains/intellij-community (`platform/vcs-log`); that code base is the
+reference for their exact behavior.
 
 ## Layout
 
 ```
 src/extension.ts              activates every feature
-src/contributes.base.json     panel container "jbGitPanel" (Git), the editor "Git" submenu
+src/contributes.base.json     panel container "gitPrismPanel" (Git), the editor "Git" submenu
 src/core/                     shared infrastructure
   git.ts         git(cwd, args, opts) / gitRaw / GitError / showGitError — every git call goes through here
   repository.ts  Repository (status, refs, log, show, changes, remotes, stashes, operationState, exec() =
@@ -30,7 +30,7 @@ src/webview/<bundle>/menus.json
                               native VS Code context menus of that webview (generated into package.json)
 ```
 
-Features: `log` (Git panel, commit list, graph engine, IntelliSort port, console), `commitOps` (log context menu
+Features: `log` (Git panel, commit list, graph engine, commit sorting, console), `commitOps` (log context menu
 operations, interactive rebase), `compare` (compare / history / repository at revision), `annotate` (blame, gutter
 markers), `branches` (branches popup, branch / tag / remote / worktree management), `sync` (push / pull / fetch /
 update / merge / rebase / reset dialogs), `conflicts` (conflicts dialog, continue / abort / skip), `diff` (diff and
@@ -40,7 +40,7 @@ merge viewers on @ide-diff/viewer), `stash` (stash dialogs, patches), `commit` (
 
 - TypeScript strict, ES2022. Extension host: `module Node16`. Webviews: DOM, vanilla TS + the shared UI kit.
 - 2-space indent, single quotes, semicolons, a short header comment per file.
-- Command ids `jbGit.*`, category "Git", titles = PhpStorm labels. Context keys `jbGit.*`. Settings `jbGit.<feature>.*`.
+- Command ids `gitPrism.*`, category "Git". Context keys `gitPrism.*`. Settings `gitPrism.<feature>.*`.
 - Repo-relative paths use forward slashes (`repo.abs()` / `repo.rel()`).
 - Mutating git commands go through `repo.exec([...])` (fires a refresh); read-only ones through `repo.run([...], { quiet: true })` when polled.
 - Errors: `showGitError(e, 'Push failed')`; long operations: `vscode.window.withProgress`.

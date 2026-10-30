@@ -57,7 +57,7 @@ export async function interactiveRebase(ctx: FeatureContext, args: CommitsArgs):
 function showPanel(ctx: FeatureContext, repo: Repository, init: RebaseInit, head: string, root: boolean): void {
   const ext = ctx.extension.extensionUri;
   const title = 'Rebasing Commits';
-  const panel = vscode.window.createWebviewPanel('jbGit.rebase', `${title}: ${repo.name}`, vscode.ViewColumn.Active, webviewOptions(ext));
+  const panel = vscode.window.createWebviewPanel('gitPrism.rebase', `${title}: ${repo.name}`, vscode.ViewColumn.Active, webviewOptions(ext));
   panel.iconPath = new vscode.ThemeIcon('git-pull-request-draft');
   open.set(repo.root, panel);
   const rows = new Map(init.rows.map((r) => [r.hash, r]));
@@ -130,5 +130,5 @@ async function showDiff(repo: Repository, p: { hash: string; path: string; paths
     leftTitle: parent ? parent.slice(0, 8) : undefined,
     rightTitle: c.hash.slice(0, 8),
   }));
-  await invoke('jbGit.diff.show', { files, index: Math.max(0, p.paths.findIndex((f) => f.path === p.path)) });
+  await invoke('gitPrism.diff.show', { files, index: Math.max(0, p.paths.findIndex((f) => f.path === p.path)) });
 }

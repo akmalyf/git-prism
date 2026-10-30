@@ -2,7 +2,7 @@
   "viewsContainers": {
     "panel": [
       {
-        "id": "jbGitPanel",
+        "id": "gitPrismPanel",
         "title": "Git",
         "icon": "$(git-branch)"
       }
@@ -10,14 +10,14 @@
   },
   "commands": [
     {
-      "command": "jbGit.console.show",
+      "command": "gitPrism.console.show",
       "title": "Show Git Console",
       "category": "Git"
     }
   ],
   "configuration": {
     "properties": {
-      "jbGit.gitPath": {
+      "gitPrism.gitPath": {
         "type": "string",
         "default": "",
         "description": "Path to the git executable. Empty uses `git` from PATH."
@@ -26,16 +26,16 @@
   },
   "submenus": [
     {
-      "id": "jbGit.fileMenu",
+      "id": "gitPrism.fileMenu",
       "label": "Git"
     }
   ],
   "menus": {
     "editor/context": [
       {
-        "submenu": "jbGit.fileMenu",
-        "group": "jbgit@1",
-        "when": "jbGit.active"
+        "submenu": "gitPrism.fileMenu",
+        "group": "gitprism@1",
+        "when": "gitPrism.active"
       }
     ]
   }

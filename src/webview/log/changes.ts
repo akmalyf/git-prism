@@ -145,7 +145,7 @@ export class ChangesPanel {
     const c = this.editableCommit(items);
     const g = this.sameGroup(items);
     if (!c || !g) return;
-    // the host's commitOp request forwards hashes only: jbGit.commit.<op> takes [commit, ...paths]
+    // the host's commitOp request forwards hashes only: gitPrism.commit.<op> takes [commit, ...paths]
     void rpc.call('commitOp', { op: op as string as CommitOp, commits: [c, ...g.paths.map((p) => ({ root: c.root, hash: p }))] });
   }
 

@@ -31,7 +31,7 @@ import { dropChangesCommit, extractChangesInMemory, splitCommit, SplitError, typ
 import { offerUndo, runRebase } from './rewrite';
 import { cleanMessage } from './todo';
 
-/** Args of jbGit.commitOps.dropSelectedChanges / jbGit.commitOps.extractSelectedChanges. */
+/** Args of gitPrism.commitOps.dropSelectedChanges / gitPrism.commitOps.extractSelectedChanges. */
 export interface SelectedChangesArgs {
   repoRoot: string;
   /** full hash of the commit */
@@ -42,7 +42,7 @@ export interface SelectedChangesArgs {
 
 /**
  * The Log webview reaches commitOps through its generic `commitOp` request, which only forwards hashes:
- * jbGit.commit.dropSelectedChanges / extractSelectedChanges take `hashes = [commit, ...paths]`.
+ * gitPrism.commit.dropSelectedChanges / extractSelectedChanges take `hashes = [commit, ...paths]`.
  */
 export function fromCommitsArgs(a: CommitsArgs | undefined): SelectedChangesArgs | undefined {
   const [hash, ...paths] = a?.hashes ?? [];
@@ -72,7 +72,7 @@ async function checkCommit(repo: Repository, hash: string) {
 }
 
 async function split(repo: Repository, hash: string, paths: string[], allSelected: string): Promise<CommitSplit> {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jbgit-split-'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gitprism-split-'));
   try {
     const s = await splitCommit(objectGit(repo), hash, paths, path.join(dir, 'index'));
     if (s.remaining === s.parentTree) throw new OpError(allSelected);

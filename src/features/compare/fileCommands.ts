@@ -1,5 +1,5 @@
 // Commands of the "Git" file/editor submenu (diff group): Show Diff, Compare with Revision…, Compare with Branch or
-// Tag…, Compare with Latest Repository Version, Show History, plus the 'jbGit.compare.fileWithRevision' contract.
+// Tag…, Compare with Latest Repository Version, Show History, plus the 'gitPrism.compare.fileWithRevision' contract.
 import * as fs from 'node:fs';
 import * as vscode from 'vscode';
 import { invoke, type DiffFile } from '../../core/contracts';
@@ -23,7 +23,7 @@ function localSide(repo: Repository, rel: string): DiffFile['right'] {
 /** Diff of `rel` at `rev` (left) against the working tree (right). */
 export async function diffWithLocal(repo: Repository, rel: string, rev: string, revPath = rel, leftTitle?: string): Promise<void> {
   const exists = !!(await repo.show(rev, revPath));
-  await invoke('jbGit.diff.show', {
+  await invoke('gitPrism.diff.show', {
     files: [{ repoRoot: repo.root, path: rel, oldPath: revPath !== rel ? revPath : undefined, left: exists ? { rev, path: revPath } : { empty: true }, right: localSide(repo, rel), leftTitle }],
   });
 }
@@ -35,7 +35,7 @@ export async function showDiffWithHead(ctx: FeatureContext, arg?: unknown, all?:
       const head = await repo.headHash();
       if (ts.some((t) => t.isDir)) {
         if (!head) throw new Error(`The repository ${repo.name} has no commits yet.`);
-        await invoke('jbGit.changes.show', { repoRoot: repo.root, from: 'HEAD', paths: ts.map((t) => t.rel).filter(Boolean) });
+        await invoke('gitPrism.changes.show', { repoRoot: repo.root, from: 'HEAD', paths: ts.map((t) => t.rel).filter(Boolean) });
         continue;
       }
       const changes = head ? await diffNameStatus(repo, 'HEAD', undefined, ts.map((t) => t.rel)) : [];
@@ -53,7 +53,7 @@ export async function showDiffWithHead(ctx: FeatureContext, arg?: unknown, all?:
           right: localSide(repo, t.rel),
         });
       }
-      await invoke('jbGit.diff.show', { files });
+      await invoke('gitPrism.diff.show', { files });
     }
   } catch (e) {
     showGitError(e, 'Cannot show diff');
@@ -70,7 +70,7 @@ export async function compareWithRevision(ctx: FeatureContext, arg?: unknown): P
     }
     const rev = await pickFileRevision(t.repo, t.rel, baseName(t.rel, t.repo));
     if (!rev) return;
-    await invoke('jbGit.diff.show', {
+    await invoke('gitPrism.diff.show', {
       files: [{
         repoRoot: t.repo.root,
         path: t.rel,
@@ -100,7 +100,7 @@ export async function compareWithBranch(ctx: FeatureContext, arg?: unknown): Pro
       return;
     }
     if (t.isDir || !t.rel) {
-      await invoke('jbGit.changes.show', { repoRoot: t.repo.root, from: ref, paths: t.rel ? [t.rel] : [] });
+      await invoke('gitPrism.changes.show', { repoRoot: t.repo.root, from: ref, paths: t.rel ? [t.rel] : [] });
       return;
     }
     await diffWithLocal(t.repo, t.rel, ref, t.rel, ref);
@@ -118,7 +118,7 @@ export async function compareWithLatest(ctx: FeatureContext, arg?: unknown): Pro
     const latest = up.code === 0 && up.stdout.trim() ? up.stdout.trim() : 'HEAD';
     if (!(await t.repo.headHash())) throw new Error(`The repository ${t.repo.name} has no commits yet.`);
     if (t.isDir || !t.rel) {
-      await invoke('jbGit.changes.show', { repoRoot: t.repo.root, from: latest, paths: t.rel ? [t.rel] : [] });
+      await invoke('gitPrism.changes.show', { repoRoot: t.repo.root, from: latest, paths: t.rel ? [t.rel] : [] });
       return;
     }
     const last = (await t.repo.run([LITERAL, 'log', '-n1', '--format=%H', latest, '--', t.rel], { quiet: true })).stdout.trim();
@@ -160,13 +160,13 @@ export async function showCurrentRevision(ctx: FeatureContext, arg?: unknown): P
       vscode.window.showWarningMessage(`Cannot find the current revision for ${t.uri.fsPath}`);
       return;
     }
-    await invoke('jbGit.log.show', { repoRoot: t.repo.root, revision: hash });
+    await invoke('gitPrism.log.show', { repoRoot: t.repo.root, revision: hash });
   } catch (e) {
     showGitError(e, 'Failed to fetch current revision');
   }
 }
 
-/** Contract 'jbGit.compare.fileWithRevision'. */
+/** Contract 'gitPrism.compare.fileWithRevision'. */
 export async function compareFileWithRevision(ctx: FeatureContext, args: { repoRoot: string; path: string; rev: string }): Promise<void> {
   try {
     await ctx.repos.ready();

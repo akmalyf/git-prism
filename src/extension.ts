@@ -18,7 +18,7 @@ const FEATURES: Record<string, Feature> = { diff, conflicts, commit, log, commit
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
   const repos = new RepositoryManager();
-  context.subscriptions.push(repos, gitConsole(), vscode.commands.registerCommand('jbGit.console.show', () => vscode.commands.executeCommand('jbGit.log.showConsoleTab')));
+  context.subscriptions.push(repos, gitConsole(), vscode.commands.registerCommand('gitPrism.console.show', () => vscode.commands.executeCommand('gitPrism.log.showConsoleTab')));
   registerWebviewMenus(context);
   const ctx: FeatureContext = { extension: context, repos };
   for (const [name, f] of Object.entries(FEATURES)) {
@@ -28,7 +28,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       gitConsole().error(`feature ${name} failed to activate: ${e instanceof Error ? (e.stack ?? e.message) : e}`);
     }
   }
-  vscode.commands.executeCommand('setContext', 'jbGit.active', true);
+  vscode.commands.executeCommand('setContext', 'gitPrism.active', true);
   repos.discover();
 }
 

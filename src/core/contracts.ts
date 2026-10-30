@@ -80,70 +80,70 @@ export interface ChangesShowArgs {
 /** Command ids → argument type. Owner feature in the comment. */
 export interface Commands {
   // diff
-  'jbGit.diff.show': DiffRequest;
+  'gitPrism.diff.show': DiffRequest;
   // conflicts
-  'jbGit.conflicts.resolve': { repoRoot?: string };
-  'jbGit.conflicts.mergeFile': { repoRoot: string; path: string };
+  'gitPrism.conflicts.resolve': { repoRoot?: string };
+  'gitPrism.conflicts.mergeFile': { repoRoot: string; path: string };
   // log
-  'jbGit.log.show': LogShowArgs;
+  'gitPrism.log.show': LogShowArgs;
   // commitOps (log context menu operations)
-  'jbGit.commit.checkoutRevision': CommitsArgs;
-  'jbGit.commit.resetToHere': CommitsArgs;
-  'jbGit.commit.revert': CommitsArgs;
-  'jbGit.commit.cherryPick': CommitsArgs;
-  'jbGit.commit.undo': CommitsArgs;
-  'jbGit.commit.reword': CommitsArgs;
-  'jbGit.commit.fixup': CommitsArgs;
-  'jbGit.commit.squashInto': CommitsArgs;
-  'jbGit.commit.squash': CommitsArgs;
-  'jbGit.commit.drop': CommitsArgs;
-  'jbGit.commit.interactiveRebase': CommitsArgs;
-  'jbGit.commit.pushUpTo': CommitsArgs;
-  'jbGit.commit.newBranch': CommitsArgs;
-  'jbGit.commit.newTag': CommitsArgs;
-  'jbGit.commit.createPatch': CommitsArgs;
-  'jbGit.commit.copyHash': CommitsArgs;
+  'gitPrism.commit.checkoutRevision': CommitsArgs;
+  'gitPrism.commit.resetToHere': CommitsArgs;
+  'gitPrism.commit.revert': CommitsArgs;
+  'gitPrism.commit.cherryPick': CommitsArgs;
+  'gitPrism.commit.undo': CommitsArgs;
+  'gitPrism.commit.reword': CommitsArgs;
+  'gitPrism.commit.fixup': CommitsArgs;
+  'gitPrism.commit.squashInto': CommitsArgs;
+  'gitPrism.commit.squash': CommitsArgs;
+  'gitPrism.commit.drop': CommitsArgs;
+  'gitPrism.commit.interactiveRebase': CommitsArgs;
+  'gitPrism.commit.pushUpTo': CommitsArgs;
+  'gitPrism.commit.newBranch': CommitsArgs;
+  'gitPrism.commit.newTag': CommitsArgs;
+  'gitPrism.commit.createPatch': CommitsArgs;
+  'gitPrism.commit.copyHash': CommitsArgs;
   // compare
-  'jbGit.changes.show': ChangesShowArgs;
-  'jbGit.compare.withCurrent': RefArgs;
-  'jbGit.repoAtRevision': CommitsArgs;
-  'jbGit.compare.fileWithRevision': { repoRoot: string; path: string; rev: string };
+  'gitPrism.changes.show': ChangesShowArgs;
+  'gitPrism.compare.withCurrent': RefArgs;
+  'gitPrism.repoAtRevision': CommitsArgs;
+  'gitPrism.compare.fileWithRevision': { repoRoot: string; path: string; rev: string };
   /** opens a read-only editor with the file content at `rev` */
-  'jbGit.openFileAtRevision': { repoRoot: string; path: string; rev: string };
+  'gitPrism.openFileAtRevision': { repoRoot: string; path: string; rev: string };
   // sync dialogs
-  'jbGit.push': { repoRoot?: string; upTo?: string; force?: boolean };
-  'jbGit.pull': { repoRoot?: string };
-  'jbGit.fetch': { repoRoot?: string };
-  'jbGit.merge': RefArgs;
-  'jbGit.rebase': RefArgs;
-  'jbGit.updateProject': { repoRoot?: string };
+  'gitPrism.push': { repoRoot?: string; upTo?: string; force?: boolean };
+  'gitPrism.pull': { repoRoot?: string };
+  'gitPrism.fetch': { repoRoot?: string };
+  'gitPrism.merge': RefArgs;
+  'gitPrism.rebase': RefArgs;
+  'gitPrism.updateProject': { repoRoot?: string };
   /** Reset HEAD dialog; `target` prefills "To commit" (used by the log's "Reset Current Branch to Here…") */
-  'jbGit.resetHead': { repoRoot?: string; target?: string };
+  'gitPrism.resetHead': { repoRoot?: string; target?: string };
   // branches
-  'jbGit.branches.show': { repoRoot?: string };
-  'jbGit.branch.new': RefArgs;
-  'jbGit.branch.checkout': RefArgs;
-  'jbGit.tag.new': RefArgs;
-  'jbGit.branch.rename': RefArgs;
-  'jbGit.branch.delete': RefArgs;
-  'jbGit.tag.delete': RefArgs;
+  'gitPrism.branches.show': { repoRoot?: string };
+  'gitPrism.branch.new': RefArgs;
+  'gitPrism.branch.checkout': RefArgs;
+  'gitPrism.tag.new': RefArgs;
+  'gitPrism.branch.rename': RefArgs;
+  'gitPrism.branch.delete': RefArgs;
+  'gitPrism.tag.delete': RefArgs;
   /** the per-branch action list of the Branches popup (Checkout, New Branch from…, Compare with…, Merge…, …) */
-  'jbGit.branch.actions': RefArgs;
+  'gitPrism.branch.actions': RefArgs;
   // conflicts (ongoing merge/rebase/cherry-pick/revert)
-  'jbGit.operation.continue': { repoRoot?: string };
-  'jbGit.operation.abort': { repoRoot?: string };
-  'jbGit.operation.skip': { repoRoot?: string };
+  'gitPrism.operation.continue': { repoRoot?: string };
+  'gitPrism.operation.abort': { repoRoot?: string };
+  'gitPrism.operation.skip': { repoRoot?: string };
   // commit tool window
   /** reveals the Commit view; `message` prefills the commit message (e.g. "fixup! …") */
-  'jbGit.commit.focus': { repoRoot?: string; message?: string };
+  'gitPrism.commit.focus': { repoRoot?: string; message?: string };
   // stash
   /** Stash Changes dialog; `paths` limits the stash to these repo-relative paths */
-  'jbGit.stash.create': { repoRoot?: string; paths?: string[] };
-  'jbGit.stash.unstash': { repoRoot?: string };
-  'jbGit.patch.create': { repoRoot?: string; paths?: string[] };
-  'jbGit.patch.apply': { repoRoot?: string };
+  'gitPrism.stash.create': { repoRoot?: string; paths?: string[] };
+  'gitPrism.stash.unstash': { repoRoot?: string };
+  'gitPrism.patch.create': { repoRoot?: string; paths?: string[] };
+  'gitPrism.patch.apply': { repoRoot?: string };
   // core
-  'jbGit.console.show': undefined;
+  'gitPrism.console.show': undefined;
 }
 
 export type CommandId = keyof Commands;

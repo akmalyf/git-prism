@@ -55,7 +55,7 @@ export class ConflictsPanel {
   ) {
     this.roots = roots;
     const ext = ctx.extension.extensionUri;
-    this.panel = vscode.window.createWebviewPanel('jbGit.conflicts', 'Conflicts', vscode.ViewColumn.Active, webviewOptions(ext));
+    this.panel = vscode.window.createWebviewPanel('gitPrism.conflicts', 'Conflicts', vscode.ViewColumn.Active, webviewOptions(ext));
     this.panel.iconPath = new vscode.ThemeIcon('git-merge');
     this.bridge = new RpcBridge(this.panel.webview, {
       load: () => this.state(),
@@ -195,7 +195,7 @@ export class ConflictsPanel {
   /** Merge…: the 3-way merge window for each selected file in turn; stops when one is cancelled. */
   private async merge(files: { repoRoot: string; path: string }[]): Promise<ConflictsState> {
     for (const f of files) {
-      const ok = await invoke('jbGit.conflicts.mergeFile', { repoRoot: f.repoRoot, path: f.path });
+      const ok = await invoke('gitPrism.conflicts.mergeFile', { repoRoot: f.repoRoot, path: f.path });
       if (ok !== true) break;
     }
     return this.state();

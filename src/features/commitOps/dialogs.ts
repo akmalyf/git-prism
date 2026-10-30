@@ -15,7 +15,7 @@ function openDialog<T>(
 ): Promise<T | undefined> {
   return new Promise((resolve) => {
     const ext = ctx.extension.extensionUri;
-    const panel = vscode.window.createWebviewPanel(`jbGit.${bundle}`, title, vscode.ViewColumn.Active, webviewOptions(ext));
+    const panel = vscode.window.createWebviewPanel(`gitPrism.${bundle}`, title, vscode.ViewColumn.Active, webviewOptions(ext));
     panel.iconPath = new vscode.ThemeIcon('git-commit');
     let settled = false;
     const done = (v: T | undefined) => {
@@ -57,7 +57,7 @@ export function smartOperationDialog(ctx: FeatureContext, repoRoot: string, init
   return openDialog<SmartChoice>(ctx, 'commitops-smart', init.title, init, (done) => ({
     choose: (c: SmartChoice) => done(c),
     showDiff: (p: { path: string; index: number }) =>
-      invoke('jbGit.diff.show', {
+      invoke('gitPrism.diff.show', {
         files: init.files.map((f) => ({ repoRoot, path: f, left: { rev: 'HEAD', path: f }, right: { worktree: true, path: f } })),
         index: p.index,
         beside: true,

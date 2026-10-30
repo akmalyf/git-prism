@@ -1,5 +1,5 @@
 // Stash and patches: Stash Changes… / Unstash Changes… dialogs, Create / Apply Patch, and the contract commands
-// jbGit.stash.create, jbGit.stash.unstash, jbGit.patch.create and jbGit.patch.apply.
+// gitPrism.stash.create, gitPrism.stash.unstash, gitPrism.patch.create and gitPrism.patch.apply.
 import * as vscode from 'vscode';
 import type { FeatureContext } from '../../core/context';
 import type { Repository } from '../../core/repository';
@@ -37,20 +37,20 @@ export function activate(ctx: FeatureContext): void {
   const reg = (id: string, fn: (...args: any[]) => unknown) => sub.push(vscode.commands.registerCommand(id, fn));
 
   // contract commands
-  reg('jbGit.stash.create', async (a?: unknown, b?: unknown) => stash.create(await pathArgs(a, b)));
-  reg('jbGit.stash.unstash', async (a?: unknown) => stash.unstashDialog(await pathArgs(a)));
-  reg('jbGit.patch.create', async (a?: unknown, b?: unknown) => patch.create(await pathArgs(a, b)));
-  reg('jbGit.patch.apply', async (a?: unknown) => {
+  reg('gitPrism.stash.create', async (a?: unknown, b?: unknown) => stash.create(await pathArgs(a, b)));
+  reg('gitPrism.stash.unstash', async (a?: unknown) => stash.unstashDialog(await pathArgs(a)));
+  reg('gitPrism.patch.create', async (a?: unknown, b?: unknown) => patch.create(await pathArgs(a, b)));
+  reg('gitPrism.patch.apply', async (a?: unknown) => {
     const args = await pathArgs(a);
     const file = a instanceof vscode.Uri && /\.(patch|diff)$/i.test(a.fsPath) ? a.fsPath : undefined;
     return patch.apply({ repoRoot: args.repoRoot, file });
   });
 
   // extra commands of this feature
-  reg('jbGit.stash.silently', () => stash.silently());
-  reg('jbGit.patch.copyToClipboard', async (a?: unknown, b?: unknown) => {
+  reg('gitPrism.stash.silently', () => stash.silently());
+  reg('gitPrism.patch.copyToClipboard', async (a?: unknown, b?: unknown) => {
     const args = await pathArgs(a, b);
     return patch.copyToClipboard(args.repoRoot, args.paths ?? []);
   });
-  reg('jbGit.patch.applyFromClipboard', async (a?: unknown) => patch.applyFromClipboard(await pathArgs(a)));
+  reg('gitPrism.patch.applyFromClipboard', async (a?: unknown) => patch.applyFromClipboard(await pathArgs(a)));
 }

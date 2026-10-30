@@ -1,5 +1,5 @@
 // Rebase dialog ("Rebase"): git rebase [--onto <new base>] <upstream>|--root [<branch>] with IntelliJ's options.
-// --interactive is delegated to the Interactive Rebase dialog (jbGit.commit.interactiveRebase) when the upstream is
+// --interactive is delegated to the Interactive Rebase dialog (gitPrism.commit.interactiveRebase) when the upstream is
 // below HEAD; otherwise (a new base is needed) `git rebase -i` runs in a terminal with the user's editor.
 import * as vscode from 'vscode';
 import type { FeatureContext } from '../../core/context';
@@ -89,7 +89,7 @@ async function interactive(repo: Repository, req: RebaseRequest): Promise<void> 
       }
     }
     if (oldest) {
-      await invoke('jbGit.commit.interactiveRebase', { repoRoot: repo.root, hashes: [oldest] });
+      await invoke('gitPrism.commit.interactiveRebase', { repoRoot: repo.root, hashes: [oldest] });
       return;
     }
   }

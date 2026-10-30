@@ -10,17 +10,17 @@ import type { FileChange } from '../../core/types';
 import type { ChangesSource } from './protocol';
 import { parseRevQuery } from './parse';
 
-export const REV_SCHEME = 'jbgit-rev';
+export const REV_SCHEME = 'gitprism-rev';
 
 export interface Target {
   repo: Repository;
   /** repo-relative path ('' = repository root) */
   rel: string;
   uri: vscode.Uri;
-  /** the uri the command was invoked on (a jbgit-rev uri for revision documents) */
+  /** the uri the command was invoked on (a gitprism-rev uri for revision documents) */
   source: vscode.Uri;
   isDir: boolean;
-  /** the revision shown when the target is a jbgit-rev document */
+  /** the revision shown when the target is a gitprism-rev document */
   rev?: string;
 }
 

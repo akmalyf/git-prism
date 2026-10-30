@@ -114,14 +114,14 @@ export class RpcBridge implements vscode.Disposable {
 }
 
 /**
- * Registers the jbGit.m.<bundle>.<section>.<key> commands generated from src/webview/<bundle>/menus.json: VS Code
+ * Registers the gitPrism.m.<bundle>.<section>.<key> commands generated from src/webview/<bundle>/menus.json: VS Code
  * runs them from a webview's native context menu and they hand the item key back to that webview.
  */
 export function registerWebviewMenus(context: vscode.ExtensionContext): void {
   context.subscriptions.push(onDidChangeIconTheme(() => RpcBridge.refreshIconTheme()));
   const commands: { command: string }[] = context.extension.packageJSON.contributes?.commands ?? [];
   for (const { command } of commands) {
-    if (!command.startsWith('jbGit.m.')) continue;
+    if (!command.startsWith('gitPrism.m.')) continue;
     const key = command.split('.').slice(4).join('.');
     context.subscriptions.push(vscode.commands.registerCommand(command, () => RpcBridge.menuTarget?.emit('__menuAction', key)));
   }

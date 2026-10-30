@@ -25,7 +25,7 @@ const LINE_LOG_ARGS = ['log', LINE_LOG_FORMAT, '--no-color', '--no-ext-diff', '-
 
 /** `git diff --no-index -U0` of two texts through temp files (no objects are written to the repository). */
 async function diffTexts(repo: Repository, before: string, after: string): Promise<string> {
-  const dir = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'jbgit-sel-'));
+  const dir = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'gitprism-sel-'));
   try {
     const a = path.join(dir, 'a');
     const b = path.join(dir, 'b');
@@ -104,7 +104,7 @@ export async function showHistoryForSelection(ctx: FeatureContext, arg?: unknown
     if (!t.rev && !(await repo.headHash())) throw new Error(`The repository ${repo.name} has no commits yet.`);
     const name = baseName(t.rel, repo);
     const title = start === end ? `History for Selection: ${name}:${start}` : `History for Selection: ${name}:${start}-${end}`;
-    const panel = vscode.window.createWebviewPanel('jbGit.historySelection', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
+    const panel = vscode.window.createWebviewPanel('gitPrism.historySelection', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
     panel.iconPath = new vscode.ThemeIcon('history');
     const init: HistorySelectionInit = { repoRoot: repo.root, path: t.rel, start, end, language: editor.document.languageId, rev: t.rev };
     panel.webview.html = webviewHtml(panel.webview, ctx.extension.extensionUri, 'history-selection', init, title);
@@ -113,11 +113,11 @@ export async function showHistoryForSelection(ctx: FeatureContext, arg?: unknown
       load: () => loadBlockHistory(repo, t.rel, doc, start, end, t.rev),
       showDiff: (p: { hash: string; parent?: string; path: string; oldPath?: string }) => {
         if (!p.hash) {
-          return invoke('jbGit.diff.show', {
+          return invoke('gitPrism.diff.show', {
             files: [{ repoRoot: repo.root, path: p.path, left: p.parent ? { rev: p.parent, path: p.oldPath ?? p.path } : { empty: true }, right: { worktree: true, path: p.path }, rightTitle: 'Local Changes' }],
           });
         }
-        return invoke('jbGit.diff.show', {
+        return invoke('gitPrism.diff.show', {
           files: [{
             repoRoot: repo.root,
             path: p.path,
@@ -127,10 +127,10 @@ export async function showHistoryForSelection(ctx: FeatureContext, arg?: unknown
           }],
         });
       },
-      compareWithLocal: (p: { hash: string }) => invoke('jbGit.compare.fileWithRevision', { repoRoot: repo.root, path: t.rel, rev: p.hash || 'HEAD' }),
+      compareWithLocal: (p: { hash: string }) => invoke('gitPrism.compare.fileWithRevision', { repoRoot: repo.root, path: t.rel, rev: p.hash || 'HEAD' }),
       openAtRevision: (p: { hash: string; path: string }) =>
-        p.hash ? invoke('jbGit.openFileAtRevision', { repoRoot: repo.root, path: p.path, rev: p.hash }) : vscode.window.showTextDocument(doc, { selection: new vscode.Range(start - 1, 0, end - 1, 0) }),
-      showInLog: (p: { hash: string }) => invoke('jbGit.log.show', { repoRoot: repo.root, revision: p.hash }),
+        p.hash ? invoke('gitPrism.openFileAtRevision', { repoRoot: repo.root, path: p.path, rev: p.hash }) : vscode.window.showTextDocument(doc, { selection: new vscode.Range(start - 1, 0, end - 1, 0) }),
+      showInLog: (p: { hash: string }) => invoke('gitPrism.log.show', { repoRoot: repo.root, revision: p.hash }),
       copyHash: (p: { hash: string }) => vscode.env.clipboard.writeText(p.hash),
       copySubject: (p: { text: string }) => vscode.env.clipboard.writeText(p.text),
     });

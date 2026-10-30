@@ -77,7 +77,7 @@ export async function clearStashes(repo: Repository): Promise<void> {
 // ------------------------------------------------------------------ patches
 
 async function withTempIndex<T>(repo: Repository, fn: (env: Record<string, string>) => Promise<T>): Promise<T> {
-  const tmp = path.join(os.tmpdir(), `jbgit-index-${crypto.randomBytes(6).toString('hex')}`);
+  const tmp = path.join(os.tmpdir(), `gitprism-index-${crypto.randomBytes(6).toString('hex')}`);
   const real = path.join(repo.gitDir, 'index');
   try {
     if (fs.existsSync(real)) await fs.promises.copyFile(real, tmp);

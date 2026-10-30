@@ -1,50 +1,50 @@
 {
   "views": {
-    "jbGitPanel": [
+    "gitPrismPanel": [
       {
         "type": "webview",
-        "id": "jbGit.logView",
+        "id": "gitPrism.logView",
         "name": "Log",
-        "when": "jbGit.active"
+        "when": "gitPrism.active"
       }
     ]
   },
   "commands": [
     {
-      "command": "jbGit.log.show",
+      "command": "gitPrism.log.show",
       "title": "Show VCS Log",
       "category": "Git",
       "icon": "$(git-commit)"
     },
     {
-      "command": "jbGit.log.refresh",
+      "command": "gitPrism.log.refresh",
       "title": "Refresh",
       "category": "Git",
       "icon": "$(refresh)"
     },
     {
-      "command": "jbGit.log.openInEditor",
+      "command": "gitPrism.log.openInEditor",
       "title": "Open New Git Log Editor Tab",
       "category": "Git",
       "icon": "$(add)"
     },
     {
-      "command": "jbGit.log.goToRef",
+      "command": "gitPrism.log.goToRef",
       "title": "Go To Hash/Branch/Tag",
       "category": "Git"
     },
     {
-      "command": "jbGit.log.focusTextFilter",
+      "command": "gitPrism.log.focusTextFilter",
       "title": "Focus Text Filter",
       "category": "Git"
     },
     {
-      "command": "jbGit.log.showConsoleTab",
+      "command": "gitPrism.log.showConsoleTab",
       "title": "Show Git Console",
       "category": "Git"
     },
     {
-      "command": "jbGit.log.clearConsole",
+      "command": "gitPrism.log.clearConsole",
       "title": "Clear All",
       "category": "Git",
       "icon": "$(clear-all)"
@@ -53,45 +53,45 @@
   "menus": {
     "commandPalette": [
       {
-        "command": "jbGit.log.show",
-        "when": "jbGit.active"
+        "command": "gitPrism.log.show",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.log.refresh",
-        "when": "jbGit.active"
+        "command": "gitPrism.log.refresh",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.log.openInEditor",
-        "when": "jbGit.active"
+        "command": "gitPrism.log.openInEditor",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.log.goToRef",
-        "when": "jbGit.active"
+        "command": "gitPrism.log.goToRef",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.log.focusTextFilter",
-        "when": "jbGit.active"
+        "command": "gitPrism.log.focusTextFilter",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.log.showConsoleTab",
-        "when": "jbGit.active"
+        "command": "gitPrism.log.showConsoleTab",
+        "when": "gitPrism.active"
       },
       {
-        "command": "jbGit.log.clearConsole",
+        "command": "gitPrism.log.clearConsole",
         "when": "false"
       }
     ],
     "view/title": [
       {
-        "command": "jbGit.log.openInEditor",
-        "when": "view == jbGit.logView",
+        "command": "gitPrism.log.openInEditor",
+        "when": "view == gitPrism.logView",
         "group": "navigation@1"
       }
     ]
   },
   "configuration": {
     "properties": {
-      "jbGit.log.sortType": {
+      "gitPrism.log.sortType": {
         "type": "string",
         "enum": [
           "topological",
@@ -104,17 +104,17 @@
         "default": "date",
         "description": "Git Log: commit sort order."
       },
-      "jbGit.log.firstParent": {
+      "gitPrism.log.firstParent": {
         "type": "boolean",
         "default": false,
         "description": "Git Log: First Parent \u2014 follow only the first parent commit upon seeing a merge commit."
       },
-      "jbGit.log.showLongEdges": {
+      "gitPrism.log.showLongEdges": {
         "type": "boolean",
         "default": false,
         "description": "Git Log: Long Edges \u2014 show long graph edges instead of cutting them behind arrows."
       },
-      "jbGit.log.columns": {
+      "gitPrism.log.columns": {
         "type": "array",
         "items": {
           "type": "string",
@@ -133,62 +133,62 @@
         ],
         "description": "Git Log: visible columns in display order (subject holds the graph and references)."
       },
-      "jbGit.log.preferCommitDate": {
+      "gitPrism.log.preferCommitDate": {
         "type": "boolean",
         "default": false,
         "description": "Git Log: Commit Timestamp \u2014 show the time when the change was committed rather than authored."
       },
-      "jbGit.log.dateFormat": {
+      "gitPrism.log.dateFormat": {
         "type": "string",
         "default": "",
         "description": "Git Log: date format pattern (yyyy, yy, MM, M, dd, d, HH, H, mm, ss). Empty uses the locale format."
       },
-      "jbGit.log.prettyDates": {
+      "gitPrism.log.prettyDates": {
         "type": "boolean",
         "default": true,
         "description": "Git Log: show recent dates as Today / Yesterday."
       },
-      "jbGit.log.highlightMyCommits": {
+      "gitPrism.log.highlightMyCommits": {
         "type": "boolean",
         "default": true,
         "description": "Git Log: Highlight \u203a My Commits (bold)."
       },
-      "jbGit.log.highlightMergeCommits": {
+      "gitPrism.log.highlightMergeCommits": {
         "type": "boolean",
         "default": true,
         "description": "Git Log: Highlight \u203a Merge Commits (grey)."
       },
-      "jbGit.log.highlightCurrentBranch": {
+      "gitPrism.log.highlightCurrentBranch": {
         "type": "boolean",
         "default": true,
         "description": "Git Log: Highlight \u203a Current Branch."
       },
-      "jbGit.log.showTagNames": {
+      "gitPrism.log.showTagNames": {
         "type": "boolean",
         "default": true,
         "description": "Git Log: Tag Names \u2014 show tag names in the table."
       },
-      "jbGit.log.compactReferences": {
+      "gitPrism.log.compactReferences": {
         "type": "boolean",
         "default": false,
         "description": "Git Log: Compact References View \u2014 show only the first reference for a commit in the table."
       },
-      "jbGit.log.referencesOnLeft": {
+      "gitPrism.log.referencesOnLeft": {
         "type": "boolean",
         "default": false,
         "description": "Git Log: References on the Left \u2014 show references on the left of commit message."
       },
-      "jbGit.log.showDetails": {
+      "gitPrism.log.showDetails": {
         "type": "boolean",
         "default": true,
         "description": "Git Log: Show Details \u2014 commit details below the changed files."
       },
-      "jbGit.log.showDiffPreview": {
+      "gitPrism.log.showDiffPreview": {
         "type": "boolean",
         "default": false,
         "description": "Git Log: Show Diff Preview."
       },
-      "jbGit.log.diffPreviewLocation": {
+      "gitPrism.log.diffPreviewLocation": {
         "type": "string",
         "enum": [
           "right",
@@ -201,7 +201,7 @@
         "default": "right",
         "description": "Git Log: Diff Preview Location."
       },
-      "jbGit.log.showBranches": {
+      "gitPrism.log.showBranches": {
         "type": "boolean",
         "default": true,
         "description": "Git Log: show the branches tree on the left of the log."

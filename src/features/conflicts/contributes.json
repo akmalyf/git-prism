@@ -1,22 +1,22 @@
 {
   "commands": [
-    { "command": "jbGit.conflicts.resolve", "title": "Resolve Conflicts…", "category": "Git", "icon": "$(git-merge)", "enablement": "jbGit.hasConflicts" },
-    { "command": "jbGit.operation.continue", "title": "Continue", "category": "Git" },
-    { "command": "jbGit.operation.abort", "title": "Abort", "category": "Git" },
-    { "command": "jbGit.operation.skip", "title": "Skip Commit", "category": "Git" },
-    { "command": "jbGit.conflicts.operationActions", "title": "Merge/Rebase Actions", "category": "Git" },
-    { "command": "jbGit.conflicts.rebaseContinue", "title": "Continue Rebase", "category": "Git", "icon": "$(debug-continue)" },
-    { "command": "jbGit.conflicts.rebaseSkip", "title": "Skip Commit", "category": "Git", "icon": "$(debug-step-over)" },
-    { "command": "jbGit.conflicts.rebaseAbort", "title": "Abort Rebase", "category": "Git", "icon": "$(debug-stop)" },
-    { "command": "jbGit.conflicts.mergeCommit", "title": "Commit merge", "category": "Git", "icon": "$(check)" },
-    { "command": "jbGit.conflicts.mergeAbort", "title": "Abort Merge", "category": "Git", "icon": "$(debug-stop)" },
-    { "command": "jbGit.conflicts.cherryPickContinue", "title": "Continue Cherry-Pick", "category": "Git", "icon": "$(debug-continue)" },
-    { "command": "jbGit.conflicts.cherryPickAbort", "title": "Abort Cherry-Pick", "category": "Git", "icon": "$(debug-stop)" },
-    { "command": "jbGit.conflicts.revertAbort", "title": "Abort Revert", "category": "Git", "icon": "$(debug-stop)" }
+    { "command": "gitPrism.conflicts.resolve", "title": "Resolve Conflicts…", "category": "Git", "icon": "$(git-merge)", "enablement": "gitPrism.hasConflicts" },
+    { "command": "gitPrism.operation.continue", "title": "Continue", "category": "Git" },
+    { "command": "gitPrism.operation.abort", "title": "Abort", "category": "Git" },
+    { "command": "gitPrism.operation.skip", "title": "Skip Commit", "category": "Git" },
+    { "command": "gitPrism.conflicts.operationActions", "title": "Merge/Rebase Actions", "category": "Git" },
+    { "command": "gitPrism.conflicts.rebaseContinue", "title": "Continue Rebase", "category": "Git", "icon": "$(debug-continue)" },
+    { "command": "gitPrism.conflicts.rebaseSkip", "title": "Skip Commit", "category": "Git", "icon": "$(debug-step-over)" },
+    { "command": "gitPrism.conflicts.rebaseAbort", "title": "Abort Rebase", "category": "Git", "icon": "$(debug-stop)" },
+    { "command": "gitPrism.conflicts.mergeCommit", "title": "Commit merge", "category": "Git", "icon": "$(check)" },
+    { "command": "gitPrism.conflicts.mergeAbort", "title": "Abort Merge", "category": "Git", "icon": "$(debug-stop)" },
+    { "command": "gitPrism.conflicts.cherryPickContinue", "title": "Continue Cherry-Pick", "category": "Git", "icon": "$(debug-continue)" },
+    { "command": "gitPrism.conflicts.cherryPickAbort", "title": "Abort Cherry-Pick", "category": "Git", "icon": "$(debug-stop)" },
+    { "command": "gitPrism.conflicts.revertAbort", "title": "Abort Revert", "category": "Git", "icon": "$(debug-stop)" }
   ],
   "configuration": {
     "properties": {
-      "jbGit.conflicts.showNotification": {
+      "gitPrism.conflicts.showNotification": {
         "type": "boolean",
         "default": true,
         "description": "Show a \"Merge Conflicts\" notification with \"Resolve…\" when unmerged files appear in a repository."
@@ -25,30 +25,30 @@
   },
   "menus": {
     "commandPalette": [
-      { "command": "jbGit.conflicts.resolve", "when": "jbGit.active" },
-      { "command": "jbGit.operation.continue", "when": "false" },
-      { "command": "jbGit.operation.abort", "when": "false" },
-      { "command": "jbGit.operation.skip", "when": "false" },
-      { "command": "jbGit.conflicts.operationActions", "when": "jbGit.operationInProgress" },
-      { "command": "jbGit.conflicts.rebaseContinue", "when": "jbGit.operation.rebase" },
-      { "command": "jbGit.conflicts.rebaseSkip", "when": "jbGit.operation.rebase" },
-      { "command": "jbGit.conflicts.rebaseAbort", "when": "jbGit.operation.rebase" },
-      { "command": "jbGit.conflicts.mergeCommit", "when": "jbGit.operation.mergeCommit" },
-      { "command": "jbGit.conflicts.mergeAbort", "when": "jbGit.operation.merge" },
-      { "command": "jbGit.conflicts.cherryPickContinue", "when": "jbGit.operation.cherryPickContinue" },
-      { "command": "jbGit.conflicts.cherryPickAbort", "when": "jbGit.operation.cherryPick" },
-      { "command": "jbGit.conflicts.revertAbort", "when": "jbGit.operation.revert" }
+      { "command": "gitPrism.conflicts.resolve", "when": "gitPrism.active" },
+      { "command": "gitPrism.operation.continue", "when": "false" },
+      { "command": "gitPrism.operation.abort", "when": "false" },
+      { "command": "gitPrism.operation.skip", "when": "false" },
+      { "command": "gitPrism.conflicts.operationActions", "when": "gitPrism.operationInProgress" },
+      { "command": "gitPrism.conflicts.rebaseContinue", "when": "gitPrism.operation.rebase" },
+      { "command": "gitPrism.conflicts.rebaseSkip", "when": "gitPrism.operation.rebase" },
+      { "command": "gitPrism.conflicts.rebaseAbort", "when": "gitPrism.operation.rebase" },
+      { "command": "gitPrism.conflicts.mergeCommit", "when": "gitPrism.operation.mergeCommit" },
+      { "command": "gitPrism.conflicts.mergeAbort", "when": "gitPrism.operation.merge" },
+      { "command": "gitPrism.conflicts.cherryPickContinue", "when": "gitPrism.operation.cherryPickContinue" },
+      { "command": "gitPrism.conflicts.cherryPickAbort", "when": "gitPrism.operation.cherryPick" },
+      { "command": "gitPrism.conflicts.revertAbort", "when": "gitPrism.operation.revert" }
     ],
-    "jbGit.fileMenu": [
-      { "command": "jbGit.conflicts.mergeCommit", "group": "5_branch@0.11", "when": "jbGit.operation.mergeCommit" },
-      { "command": "jbGit.conflicts.mergeAbort", "group": "5_branch@0.12", "when": "jbGit.operation.merge" },
-      { "command": "jbGit.conflicts.rebaseAbort", "group": "5_branch@0.21", "when": "jbGit.operation.rebase" },
-      { "command": "jbGit.conflicts.rebaseContinue", "group": "5_branch@0.22", "when": "jbGit.operation.rebase" },
-      { "command": "jbGit.conflicts.rebaseSkip", "group": "5_branch@0.23", "when": "jbGit.operation.rebase" },
-      { "command": "jbGit.conflicts.resolve", "group": "3_rollback@9" },
-      { "command": "jbGit.conflicts.revertAbort", "group": "9_operation@1", "when": "jbGit.operation.revert" },
-      { "command": "jbGit.conflicts.cherryPickAbort", "group": "9_operation@2", "when": "jbGit.operation.cherryPick" },
-      { "command": "jbGit.conflicts.cherryPickContinue", "group": "9_operation@3", "when": "jbGit.operation.cherryPickContinue" }
+    "gitPrism.fileMenu": [
+      { "command": "gitPrism.conflicts.mergeCommit", "group": "5_branch@0.11", "when": "gitPrism.operation.mergeCommit" },
+      { "command": "gitPrism.conflicts.mergeAbort", "group": "5_branch@0.12", "when": "gitPrism.operation.merge" },
+      { "command": "gitPrism.conflicts.rebaseAbort", "group": "5_branch@0.21", "when": "gitPrism.operation.rebase" },
+      { "command": "gitPrism.conflicts.rebaseContinue", "group": "5_branch@0.22", "when": "gitPrism.operation.rebase" },
+      { "command": "gitPrism.conflicts.rebaseSkip", "group": "5_branch@0.23", "when": "gitPrism.operation.rebase" },
+      { "command": "gitPrism.conflicts.resolve", "group": "3_rollback@9" },
+      { "command": "gitPrism.conflicts.revertAbort", "group": "9_operation@1", "when": "gitPrism.operation.revert" },
+      { "command": "gitPrism.conflicts.cherryPickAbort", "group": "9_operation@2", "when": "gitPrism.operation.cherryPick" },
+      { "command": "gitPrism.conflicts.cherryPickContinue", "group": "9_operation@3", "when": "gitPrism.operation.cherryPickContinue" }
     ]
   }
 }

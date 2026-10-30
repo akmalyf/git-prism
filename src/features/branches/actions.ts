@@ -1,4 +1,4 @@
-// The per-ref action list of the Branches popup ('jbGit.branch.actions'), in IntelliJ's order and wording
+// The per-ref action list of the Branches popup ('gitPrism.branch.actions'), in IntelliJ's order and wording
 // (Git.Branch.Backend.Checkout + Git.Branch.Backend groups): Checkout, New Branch from 'x'…, Compare with…, Merge…, …
 import * as vscode from 'vscode';
 import { invoke } from '../../core/contracts';
@@ -52,20 +52,20 @@ export async function buildActions(ctx: Ctx, s: RepoState, ref: string, reopen: 
       if (!detached && !wt) add(`Checkout and Rebase onto ${qc}`, () => checkoutAndRebase(repo, c.name));
       if (c.ref?.upstream && !wt) add('Checkout and Update', () => checkoutAndUpdate(repo, c.name), `Checkout ${c.name}, fetch its tracked branch ${c.ref?.upstream}, and update it in one step`);
       items.push(sep());
-      add(`Compare with ${qc}`, () => invoke('jbGit.compare.withCurrent', compareArgs));
-      add('Show Diff with Working Tree', () => vscode.commands.executeCommand('jbGit.compare.withWorkingTree', compareArgs));
+      add(`Compare with ${qc}`, () => invoke('gitPrism.compare.withCurrent', compareArgs));
+      add('Show Diff with Working Tree', () => vscode.commands.executeCommand('gitPrism.compare.withWorkingTree', compareArgs));
       items.push(sep());
-      if (!detached) add(`Rebase ${qc} onto ${qn}`, () => invoke('jbGit.rebase', compareArgs));
-      add(`Merge ${qn} into ${qc}`, () => invoke('jbGit.merge', compareArgs));
+      if (!detached) add(`Rebase ${qc} onto ${qn}`, () => invoke('gitPrism.rebase', compareArgs));
+      add(`Merge ${qn} into ${qc}`, () => invoke('gitPrism.merge', compareArgs));
     } else {
       items.push(sep());
-      add('Show Diff with Working Tree', () => vscode.commands.executeCommand('jbGit.compare.withWorkingTree', compareArgs));
+      add('Show Diff with Working Tree', () => vscode.commands.executeCommand('gitPrism.compare.withWorkingTree', compareArgs));
     }
     items.push(sep());
     add(`New Worktree from ${qn}…`, () => newWorktree(repo, c.name));
     items.push(sep());
     if (s.remotes.length && (c.ref?.upstream || isCurrent)) add('Update', () => updateBranch(repo, c.name, s), wt ? `Branch cannot be updated, as it is checked out in worktree ${wt.path}` : undefined);
-    add('Push…', () => (isCurrent ? invoke('jbGit.push', { repoRoot: repo.root }) : vscode.commands.executeCommand('jbGit.sync.pushBranch', { repoRoot: repo.root, branch: c.name })));
+    add('Push…', () => (isCurrent ? invoke('gitPrism.push', { repoRoot: repo.root }) : vscode.commands.executeCommand('gitPrism.sync.pushBranch', { repoRoot: repo.root, branch: c.name })));
     const up = c.ref?.upstream;
     if (up && s.refs.some((r) => r.type === 'remote' && r.short === up)) {
       add(`Tracked Branch ${q(up)}`, () => showBranchActions(ctx, repo, up, reopen), '$(chevron-right)');
@@ -80,11 +80,11 @@ export async function buildActions(ctx: Ctx, s: RepoState, ref: string, reopen: 
     });
     if (!detached) add(`Checkout and Rebase onto ${qc}`, () => checkoutAndRebase(repo, c.name));
     items.push(sep());
-    add(`Compare with ${qc}`, () => invoke('jbGit.compare.withCurrent', compareArgs));
-    add('Show Diff with Working Tree', () => vscode.commands.executeCommand('jbGit.compare.withWorkingTree', compareArgs));
+    add(`Compare with ${qc}`, () => invoke('gitPrism.compare.withCurrent', compareArgs));
+    add('Show Diff with Working Tree', () => vscode.commands.executeCommand('gitPrism.compare.withWorkingTree', compareArgs));
     items.push(sep());
-    if (!detached) add(`Rebase ${qc} onto ${qn}`, () => invoke('jbGit.rebase', compareArgs));
-    add(`Merge ${qn} into ${qc}`, () => invoke('jbGit.merge', compareArgs));
+    if (!detached) add(`Rebase ${qc} onto ${qn}`, () => invoke('gitPrism.rebase', compareArgs));
+    add(`Merge ${qn} into ${qc}`, () => invoke('gitPrism.merge', compareArgs));
     items.push(sep());
     add(`New Worktree from ${qn}…`, () => newWorktree(repo, c.name));
     items.push(sep());
@@ -99,11 +99,11 @@ export async function buildActions(ctx: Ctx, s: RepoState, ref: string, reopen: 
       if ((await newBranch(repo, c.name, { back: true })) === 'back') reopen();
     });
     items.push(sep());
-    add(`Compare with ${qc}`, () => invoke('jbGit.compare.withCurrent', compareArgs));
-    add('Show Diff with Working Tree', () => vscode.commands.executeCommand('jbGit.compare.withWorkingTree', compareArgs));
+    add(`Compare with ${qc}`, () => invoke('gitPrism.compare.withCurrent', compareArgs));
+    add('Show Diff with Working Tree', () => vscode.commands.executeCommand('gitPrism.compare.withWorkingTree', compareArgs));
     items.push(sep());
-    if (!detached && c.kind === 'revision') add(`Rebase ${qc} onto ${qn}`, () => invoke('jbGit.rebase', compareArgs));
-    add(`Merge ${qn} into ${qc}`, () => invoke('jbGit.merge', compareArgs));
+    if (!detached && c.kind === 'revision') add(`Rebase ${qc} onto ${qn}`, () => invoke('gitPrism.rebase', compareArgs));
+    add(`Merge ${qn} into ${qc}`, () => invoke('gitPrism.merge', compareArgs));
     items.push(sep());
     add(`New Worktree from ${qn}…`, () => newWorktree(repo, c.name));
     if (c.kind === 'tag') {

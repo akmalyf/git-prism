@@ -95,7 +95,7 @@ export async function hasConflicts(repo: Repository): Promise<boolean> {
 export async function reportOperationFailure(repo: Repository, e: unknown, title: string): Promise<void> {
   if (await hasConflicts(repo)) {
     const pick = await vscode.window.showWarningMessage(`${title}: there are conflicts to resolve.`, 'Resolve Conflicts…');
-    if (pick) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+    if (pick) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
     return;
   }
   await showGitError(e, title);
@@ -109,7 +109,7 @@ export async function blockedByUnmerged(repo: Repository, operation: string): Pr
     `Cannot ${operation} because of unmerged files. You need to resolve all merge conflicts before ${operation}.`,
     'Resolve conflicts…',
   );
-  if (pick) invoke('jbGit.conflicts.resolve', { repoRoot: repo.root });
+  if (pick) invoke('gitPrism.conflicts.resolve', { repoRoot: repo.root });
   return true;
 }
 
@@ -121,7 +121,7 @@ interface FavMarks {
 }
 
 function favKey(repo: Repository): string {
-  return `jbGit.branches.favorites:${repo.commonDir}`;
+  return `gitPrism.branches.favorites:${repo.commonDir}`;
 }
 
 export function favorites(ctx: Ctx, repo: Repository): FavMarks {
@@ -149,11 +149,11 @@ const DEFAULTS: Record<PopupSetting, boolean> = {
 };
 
 export function setting(name: PopupSetting): boolean {
-  return vscode.workspace.getConfiguration('jbGit.branches').get<boolean>(name, DEFAULTS[name]);
+  return vscode.workspace.getConfiguration('gitPrism.branches').get<boolean>(name, DEFAULTS[name]);
 }
 
 export async function toggleSetting(name: PopupSetting): Promise<void> {
-  await vscode.workspace.getConfiguration('jbGit.branches').update(name, !setting(name), vscode.ConfigurationTarget.Global);
+  await vscode.workspace.getConfiguration('gitPrism.branches').update(name, !setting(name), vscode.ConfigurationTarget.Global);
 }
 
 // ---- input box with toggle buttons ----

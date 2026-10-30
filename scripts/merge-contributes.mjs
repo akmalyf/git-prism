@@ -29,11 +29,11 @@ for (const f of fragments) {
   if (frag.configuration && !Array.isArray(frag.configuration)) frag = { ...frag, configuration: { properties: frag.configuration.properties ?? {} } };
   contributes = merge(contributes, frag, path.relative(root, f));
 }
-if (contributes.configuration) contributes.configuration = { title: 'JetBrains Git Tools', ...contributes.configuration };
+if (contributes.configuration) contributes.configuration = { title: 'Git Prism', ...contributes.configuration };
 
 // Native webview context menus: src/webview/<bundle>/menus.json is { "<section>": [item | "-", ...] } where
 // item = { "id", "title", "toggle"? } or a submenu { "id", "title", "items": [...] }. Each item becomes a hidden
-// command jbGit.m.<bundle>.<section>.<key> shown in "webview/context" when the webview published jbm_<key>
+// command gitPrism.m.<bundle>.<section>.<key> shown in "webview/context" when the webview published jbm_<key>
 // (see src/webview/shared/ui/menu.ts); "-" starts a new group. Submenu item keys are "<submenu>_<id>".
 const webviewDir = path.join(root, 'src/webview');
 for (const bundle of fs.readdirSync(webviewDir).sort()) {
@@ -60,13 +60,13 @@ for (const bundle of fs.readdirSync(webviewDir).sort()) {
         const when = `${scope} && jbm_${key}`;
         const g = `${String(group).padStart(2, '0')}_${bundle}@${order++}`;
         if (it.items) {
-          const sub = `jbGit.m.${bundle}.${section}.${key}.menu`;
+          const sub = `gitPrism.m.${bundle}.${section}.${key}.menu`;
           submenus.push({ id: sub, label: it.title });
           target.push({ submenu: sub, group: g, when });
           emit(it.items, sub, `${key}_`);
           continue;
         }
-        const command = `jbGit.m.${bundle}.${section}.${key}`;
+        const command = `gitPrism.m.${bundle}.${section}.${key}`;
         const c = { command, title: it.title };
         if (it.toggle) c.toggled = `jbmc_${key}`;
         commands.push(c);

@@ -97,7 +97,7 @@ export async function runUpdate(repos: Repository[], method: UpdateMethod | 'bra
   const stashConflicts = ok.filter((r) => (r.outcome as { stashConflict?: boolean }).stashConflict);
   for (const r of stashConflicts) {
     void vscode.window.showWarningMessage('Local changes were restored with conflicts. Uncommitted changes that were stashed before update have conflicts with updated files.', 'Resolve Conflicts…').then((pick) => {
-      if (pick) invoke('jbGit.conflicts.resolve', { repoRoot: r.repo.root });
+      if (pick) invoke('gitPrism.conflicts.resolve', { repoRoot: r.repo.root });
     });
   }
   void notifyUpdated(

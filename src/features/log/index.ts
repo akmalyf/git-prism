@@ -1,5 +1,5 @@
 // Git Log feature: the "Log" webview view in the Git panel, "Show Git Log" / "History: <file>" editor tabs
-// (same 'log' webview bundle), the jbGit.log.show contract command and the Git Console pane at the bottom of the Log
+// (same 'log' webview bundle), the gitPrism.log.show contract command and the Git Console pane at the bottom of the Log
 // view (consoleview.ts).
 import * as path from 'node:path';
 import * as vscode from 'vscode';
@@ -10,8 +10,8 @@ import { activateConsole, type ConsoleFeed } from './consoleview';
 import { LogController } from './controller';
 import type { LogFilters, LogInit } from './protocol';
 
-const VIEW_ID = 'jbGit.logView';
-const VIEW_STATE_KEY = 'jbGit.log.view';
+const VIEW_ID = 'gitPrism.logView';
+const VIEW_STATE_KEY = 'gitPrism.log.view';
 
 const fwd = (p: string) => p.split(path.sep).join('/');
 
@@ -66,7 +66,7 @@ class LogHost implements vscode.WebviewViewProvider, vscode.Disposable {
     });
   }
 
-  /** jbGit.log.show */
+  /** gitPrism.log.show */
   async show(args: LogShowArgs): Promise<void> {
     await this.ctx.repos.ready();
     const firstAbs = args.paths?.find((p) => path.isAbsolute(p));
@@ -118,7 +118,7 @@ class LogHost implements vscode.WebviewViewProvider, vscode.Disposable {
       historyPaths: o.historyPaths,
       editorTab: true,
     };
-    const panel = vscode.window.createWebviewPanel('jbGit.log', o.title, vscode.ViewColumn.Active, webviewOptions(ext));
+    const panel = vscode.window.createWebviewPanel('gitPrism.log', o.title, vscode.ViewColumn.Active, webviewOptions(ext));
     panel.iconPath = new vscode.ThemeIcon(o.historyPaths ? 'history' : 'git-commit');
     panel.webview.html = webviewHtml(panel.webview, ext, 'log', init, o.title);
     const controller = new LogController(this.ctx, panel.webview, {
@@ -161,14 +161,14 @@ export function activate(ctx: FeatureContext): void {
   ctx.extension.subscriptions.push(
     host,
     vscode.window.registerWebviewViewProvider(VIEW_ID, host, { webviewOptions: { retainContextWhenHidden: true } }),
-    implement('jbGit.log.show', (args) => host.show(args)),
-    vscode.commands.registerCommand('jbGit.log.refresh', async () => {
+    implement('gitPrism.log.show', (args) => host.show(args)),
+    vscode.commands.registerCommand('gitPrism.log.refresh', async () => {
       await (await host.activeController())?.refresh();
     }),
-    vscode.commands.registerCommand('jbGit.log.showConsoleTab', () => host.showConsole()),
-    vscode.commands.registerCommand('jbGit.log.openInEditor', () => host.openEditor({ filters: {}, title: 'Log' })),
-    vscode.commands.registerCommand('jbGit.log.focusTextFilter', async () => (await host.activeController())?.focusTextFilter()),
-    vscode.commands.registerCommand('jbGit.log.goToRef', async () => {
+    vscode.commands.registerCommand('gitPrism.log.showConsoleTab', () => host.showConsole()),
+    vscode.commands.registerCommand('gitPrism.log.openInEditor', () => host.openEditor({ filters: {}, title: 'Log' })),
+    vscode.commands.registerCommand('gitPrism.log.focusTextFilter', async () => (await host.activeController())?.focusTextFilter()),
+    vscode.commands.registerCommand('gitPrism.log.goToRef', async () => {
       const c = await host.activeController();
       if (!c) return;
       const text = await vscode.window.showInputBox({ title: 'Go To Hash/Branch/Tag', prompt: 'Enter hash or branch/tag name:' });

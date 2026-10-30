@@ -1,6 +1,6 @@
 // Pure helpers of the Compare & History feature: parsers for `git log --follow`, `git log -L`, `git ls-tree`,
 // line-range mapping between the working tree and HEAD, change inversion (swap sides), language lookup and the
-// jbgit-rev uri query. No vscode/node imports: unit-tested and shared with the webviews.
+// gitprism-rev uri query. No vscode/node imports: unit-tested and shared with the webviews.
 import type { ChangeKind, FileChange } from '../../core/types';
 
 export const FOLLOW_FORMAT = '--format=%x1e%H%x1f%P%x1f%an%x1f%ae%x1f%at%x1f%s';
@@ -299,7 +299,7 @@ export interface RevUriData {
   path: string;
 }
 
-/** Path + query of a `jbgit-rev:` uri; the path ends with "<file> (<short>)" so the editor tab reads like IntelliJ. */
+/** Path + query of a `gitprism-rev:` uri; the path ends with "<file> (<short>)" so the editor tab reads like IntelliJ. */
 export function revUriParts(d: RevUriData, label: string): { path: string; query: string } {
   return { path: `/${d.path} (${label})`, query: JSON.stringify(d) };
 }

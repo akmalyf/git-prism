@@ -1,4 +1,4 @@
-// 'jbGit.changes.show': the Changes browser editor tab ("Changes Between <from> and <to | Current Working Tree>")
+// 'gitPrism.changes.show': the Changes browser editor tab ("Changes Between <from> and <to | Current Working Tree>")
 // listing the files changed between two revisions or a revision and the working tree.
 import * as vscode from 'vscode';
 import type { ChangesShowArgs } from '../../core/contracts';
@@ -35,7 +35,7 @@ export async function showChanges(ctx: FeatureContext, args: ChangesShowArgs): P
       return;
     }
     const title = args.title ?? changesTitle(args.from, args.to, paths);
-    const panel = vscode.window.createWebviewPanel('jbGit.changes', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
+    const panel = vscode.window.createWebviewPanel('gitPrism.changes', title, vscode.ViewColumn.Active, webviewOptions(ctx.extension.extensionUri));
     panel.iconPath = new vscode.ThemeIcon('diff-multiple');
     const init: ChangesInit = {
       repoRoot: repo.root,
