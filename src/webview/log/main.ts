@@ -19,17 +19,19 @@ import {
 } from '../shared/ui';
 import { BranchesPanel, branchActions } from './branches';
 import { ChangesPanel } from './changes';
+import { ConsolePane } from './console';
 import { buildCommitMenu, type CommitAction, type CommitMenuEntry, type MenuCommit } from './commitmenu';
 import { CommitTable } from './committable';
 import { DetailsPane } from './details';
 import { FilterBar } from './filterbar';
 import { buildFileHistoryMenu, fileHistoryToolbar, type FileHistoryMenuEntry } from './historymenu';
+import consoleCss from './console.css';
 import css from './log.css';
 import { LogModel } from './model';
 import { DiffPreview } from './preview';
 
 ensureStyles();
-document.head.appendChild(h('style', null, css));
+document.head.appendChild(h('style', null, css + consoleCss));
 
 const boot = init<LogInit>() ?? { mode: 'log', title: 'Log', hideBranches: false, editorTab: false };
 const history = boot.mode === 'history';
@@ -225,7 +227,10 @@ const branchesIsland = island('lg-branches-island', ...(branches ? [branches.ele
 const branchSplit = new Splitter(null, { first: branchesIsland, second: rest, fixed: 'first', size: 250, min: 150, minOther: 420, stateKey: 'log.split.branches', collapsible: true });
 const outer = new Splitter(null, { orientation: 'vertical', first: branchSplit.element, second: bottomPreviewHost, fixed: 'second', size: 300, min: 120, minOther: 200, stateKey: 'log.split.bottom', collapsible: true });
 for (const s of [detailsSplit, rightSplit, restSplit, branchSplit, outer]) s.element.classList.add('jb-islands');
-document.getElementById('app')!.appendChild(h('div.jb-app.lg-app', { class: { 'lg-editor-tab': boot.editorTab } }, outer.element));
+const consolePane = boot.console ? new ConsolePane(() => preview.layout()) : undefined;
+document
+  .getElementById('app')!
+  .appendChild(h('div.jb-app.lg-app', { class: { 'lg-editor-tab': boot.editorTab, 'lg-with-console': !!consolePane } }, outer.element, ...(consolePane ? [consolePane.element] : [])));
 for (const s of [rightSplit, outer, detailsSplit]) s.onDidResize(() => preview.layout());
 
 function applyLayout(): void {

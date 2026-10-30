@@ -1,39 +1,102 @@
 {
   "views": {
     "jbGitPanel": [
-      { "type": "webview", "id": "jbGit.logView", "name": "Log", "when": "jbGit.active" },
-      { "type": "webview", "id": "jbGit.consoleView", "name": "Console", "when": "jbGit.active", "visibility": "collapsed" }
+      {
+        "type": "webview",
+        "id": "jbGit.logView",
+        "name": "Log",
+        "when": "jbGit.active"
+      }
     ]
   },
   "commands": [
-    { "command": "jbGit.log.show", "title": "Show VCS Log", "category": "Git", "icon": "$(git-commit)" },
-    { "command": "jbGit.log.refresh", "title": "Refresh", "category": "Git", "icon": "$(refresh)" },
-    { "command": "jbGit.log.openInEditor", "title": "Open New Git Log Editor Tab", "category": "Git", "icon": "$(add)" },
-    { "command": "jbGit.log.goToRef", "title": "Go To Hash/Branch/Tag", "category": "Git" },
-    { "command": "jbGit.log.focusTextFilter", "title": "Focus Text Filter", "category": "Git" },
-    { "command": "jbGit.log.showConsoleTab", "title": "Show VCS Console Tab", "category": "Git" },
-    { "command": "jbGit.log.clearConsole", "title": "Clear All", "category": "Git", "icon": "$(clear-all)" }
+    {
+      "command": "jbGit.log.show",
+      "title": "Show VCS Log",
+      "category": "Git",
+      "icon": "$(git-commit)"
+    },
+    {
+      "command": "jbGit.log.refresh",
+      "title": "Refresh",
+      "category": "Git",
+      "icon": "$(refresh)"
+    },
+    {
+      "command": "jbGit.log.openInEditor",
+      "title": "Open New Git Log Editor Tab",
+      "category": "Git",
+      "icon": "$(add)"
+    },
+    {
+      "command": "jbGit.log.goToRef",
+      "title": "Go To Hash/Branch/Tag",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.log.focusTextFilter",
+      "title": "Focus Text Filter",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.log.showConsoleTab",
+      "title": "Show Git Console",
+      "category": "Git"
+    },
+    {
+      "command": "jbGit.log.clearConsole",
+      "title": "Clear All",
+      "category": "Git",
+      "icon": "$(clear-all)"
+    }
   ],
   "menus": {
     "commandPalette": [
-      { "command": "jbGit.log.show", "when": "jbGit.active" },
-      { "command": "jbGit.log.refresh", "when": "jbGit.active" },
-      { "command": "jbGit.log.openInEditor", "when": "jbGit.active" },
-      { "command": "jbGit.log.goToRef", "when": "jbGit.active" },
-      { "command": "jbGit.log.focusTextFilter", "when": "jbGit.active" },
-      { "command": "jbGit.log.showConsoleTab", "when": "jbGit.active" },
-      { "command": "jbGit.log.clearConsole", "when": "false" }
+      {
+        "command": "jbGit.log.show",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.log.refresh",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.log.openInEditor",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.log.goToRef",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.log.focusTextFilter",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.log.showConsoleTab",
+        "when": "jbGit.active"
+      },
+      {
+        "command": "jbGit.log.clearConsole",
+        "when": "false"
+      }
     ],
     "view/title": [
-      { "command": "jbGit.log.openInEditor", "when": "view == jbGit.logView", "group": "navigation@1" },
-      { "command": "jbGit.log.clearConsole", "when": "view == jbGit.consoleView", "group": "navigation@1" }
+      {
+        "command": "jbGit.log.openInEditor",
+        "when": "view == jbGit.logView",
+        "group": "navigation@1"
+      }
     ]
   },
   "configuration": {
     "properties": {
       "jbGit.log.sortType": {
         "type": "string",
-        "enum": ["topological", "date"],
+        "enum": [
+          "topological",
+          "date"
+        ],
         "enumDescriptions": [
           "Topologically: in case of merge, show incoming commits first, directly below merge commit",
           "By Commit Date: sort commits topologically and by commit date"
@@ -44,23 +107,36 @@
       "jbGit.log.firstParent": {
         "type": "boolean",
         "default": false,
-        "description": "Git Log: First Parent — follow only the first parent commit upon seeing a merge commit."
+        "description": "Git Log: First Parent \u2014 follow only the first parent commit upon seeing a merge commit."
       },
       "jbGit.log.showLongEdges": {
         "type": "boolean",
         "default": false,
-        "description": "Git Log: Long Edges — show long graph edges instead of cutting them behind arrows."
+        "description": "Git Log: Long Edges \u2014 show long graph edges instead of cutting them behind arrows."
       },
       "jbGit.log.columns": {
         "type": "array",
-        "items": { "type": "string", "enum": ["author", "subject", "date", "hash", "root"] },
-        "default": ["author", "subject", "date"],
+        "items": {
+          "type": "string",
+          "enum": [
+            "author",
+            "subject",
+            "date",
+            "hash",
+            "root"
+          ]
+        },
+        "default": [
+          "author",
+          "subject",
+          "date"
+        ],
         "description": "Git Log: visible columns in display order (subject holds the graph and references)."
       },
       "jbGit.log.preferCommitDate": {
         "type": "boolean",
         "default": false,
-        "description": "Git Log: Commit Timestamp — show the time when the change was committed rather than authored."
+        "description": "Git Log: Commit Timestamp \u2014 show the time when the change was committed rather than authored."
       },
       "jbGit.log.dateFormat": {
         "type": "string",
@@ -75,37 +151,37 @@
       "jbGit.log.highlightMyCommits": {
         "type": "boolean",
         "default": true,
-        "description": "Git Log: Highlight › My Commits (bold)."
+        "description": "Git Log: Highlight \u203a My Commits (bold)."
       },
       "jbGit.log.highlightMergeCommits": {
         "type": "boolean",
         "default": true,
-        "description": "Git Log: Highlight › Merge Commits (grey)."
+        "description": "Git Log: Highlight \u203a Merge Commits (grey)."
       },
       "jbGit.log.highlightCurrentBranch": {
         "type": "boolean",
         "default": false,
-        "description": "Git Log: Highlight › Current Branch."
+        "description": "Git Log: Highlight \u203a Current Branch."
       },
       "jbGit.log.showTagNames": {
         "type": "boolean",
         "default": true,
-        "description": "Git Log: Tag Names — show tag names in the table."
+        "description": "Git Log: Tag Names \u2014 show tag names in the table."
       },
       "jbGit.log.compactReferences": {
         "type": "boolean",
         "default": false,
-        "description": "Git Log: Compact References View — show only the first reference for a commit in the table."
+        "description": "Git Log: Compact References View \u2014 show only the first reference for a commit in the table."
       },
       "jbGit.log.referencesOnLeft": {
         "type": "boolean",
         "default": false,
-        "description": "Git Log: References on the Left — show references on the left of commit message."
+        "description": "Git Log: References on the Left \u2014 show references on the left of commit message."
       },
       "jbGit.log.showDetails": {
         "type": "boolean",
         "default": true,
-        "description": "Git Log: Show Details — commit details below the changed files."
+        "description": "Git Log: Show Details \u2014 commit details below the changed files."
       },
       "jbGit.log.showDiffPreview": {
         "type": "boolean",
@@ -114,8 +190,14 @@
       },
       "jbGit.log.diffPreviewLocation": {
         "type": "string",
-        "enum": ["right", "bottom"],
-        "enumDescriptions": ["Right", "Bottom"],
+        "enum": [
+          "right",
+          "bottom"
+        ],
+        "enumDescriptions": [
+          "Right",
+          "Bottom"
+        ],
         "default": "right",
         "description": "Git Log: Diff Preview Location."
       },

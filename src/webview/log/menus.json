@@ -1,110 +1,379 @@
 {
   "commits": [
-    { "id": "copyHash", "title": "Copy Revision Number" },
-    { "id": "createPatch", "title": "Create Patch…" },
-    { "id": "cherryPick", "title": "Cherry-Pick" },
+    {
+      "id": "copyHash",
+      "title": "Copy Revision Number"
+    },
+    {
+      "id": "createPatch",
+      "title": "Create Patch\u2026"
+    },
+    {
+      "id": "cherryPick",
+      "title": "Cherry-Pick"
+    },
     "-",
-    { "id": "checkoutRevision", "title": "Checkout Revision" },
-    { "id": "checkout", "title": "Checkout", "items": [
-      { "id": "branch", "title": "Branch…" },
-      { "id": "revision", "title": "Revision" }
-    ] },
-    { "id": "repoAtRevision", "title": "Show Repository at Revision" },
-    { "id": "compareVersions", "title": "Compare Versions" },
-    { "id": "compareWithLocal", "title": "Compare with Local" },
+    {
+      "id": "checkoutRevision",
+      "title": "Checkout Revision"
+    },
+    {
+      "id": "checkout",
+      "title": "Checkout",
+      "items": [
+        {
+          "id": "branch",
+          "title": "Branch\u2026"
+        },
+        {
+          "id": "revision",
+          "title": "Revision"
+        }
+      ]
+    },
+    {
+      "id": "repoAtRevision",
+      "title": "Show Repository at Revision"
+    },
+    {
+      "id": "compareVersions",
+      "title": "Compare Versions"
+    },
+    {
+      "id": "compareWithLocal",
+      "title": "Compare with Local"
+    },
     "-",
-    { "id": "resetToHere", "title": "Reset Current Branch to Here…" },
-    { "id": "revert", "title": "Revert Commit" },
-    { "id": "undo", "title": "Undo Commit…" },
+    {
+      "id": "resetToHere",
+      "title": "Reset Current Branch to Here\u2026"
+    },
+    {
+      "id": "revert",
+      "title": "Revert Commit"
+    },
+    {
+      "id": "undo",
+      "title": "Undo Commit\u2026"
+    },
     "-",
-    { "id": "reword", "title": "Edit Commit Message…" },
-    { "id": "fixup", "title": "Fixup…" },
-    { "id": "squashInto", "title": "Squash Into…" },
-    { "id": "drop", "title": "Drop Commits" },
-    { "id": "squash", "title": "Squash Commits…" },
-    { "id": "interactiveRebase", "title": "Interactively Rebase from Here…" },
-    { "id": "pushUpTo", "title": "Push All up to Here…" },
+    {
+      "id": "reword",
+      "title": "Edit Commit Message\u2026"
+    },
+    {
+      "id": "fixup",
+      "title": "Fixup\u2026"
+    },
+    {
+      "id": "squashInto",
+      "title": "Squash Into\u2026"
+    },
+    {
+      "id": "drop",
+      "title": "Drop Commits"
+    },
+    {
+      "id": "squash",
+      "title": "Squash Commits\u2026"
+    },
+    {
+      "id": "interactiveRebase",
+      "title": "Interactively Rebase from Here\u2026"
+    },
+    {
+      "id": "pushUpTo",
+      "title": "Push All up to Here\u2026"
+    },
     "-",
-    { "id": "branchActions", "title": "Branch Actions…" },
-    { "id": "newBranch", "title": "New Branch…" },
-    { "id": "newTag", "title": "New Tag…" },
+    {
+      "id": "branchActions",
+      "title": "Branch Actions\u2026"
+    },
+    {
+      "id": "newBranch",
+      "title": "New Branch\u2026"
+    },
+    {
+      "id": "newTag",
+      "title": "New Tag\u2026"
+    },
     "-",
-    { "id": "goToChild", "title": "Go to Child Commit" },
-    { "id": "goToParent", "title": "Go to Parent Commit" }
+    {
+      "id": "goToChild",
+      "title": "Go to Child Commit"
+    },
+    {
+      "id": "goToParent",
+      "title": "Go to Parent Commit"
+    }
   ],
   "history": [
-    { "id": "copyHash", "title": "Copy Revision Number" },
-    { "id": "createPatch", "title": "Create Patch…" },
-    { "id": "cherryPick", "title": "Cherry-Pick" },
+    {
+      "id": "copyHash",
+      "title": "Copy Revision Number"
+    },
+    {
+      "id": "createPatch",
+      "title": "Create Patch\u2026"
+    },
+    {
+      "id": "cherryPick",
+      "title": "Cherry-Pick"
+    },
     "-",
-    { "id": "get", "title": "Get" },
-    { "id": "openFile", "title": "Show File at Revision" },
-    { "id": "compareWithLocal", "title": "Compare with Local" },
-    { "id": "showDiff", "title": "Show Diff" },
-    { "id": "compare", "title": "Compare" },
-    { "id": "showDiffNewTab", "title": "Show Diff in a New Tab" },
-    { "id": "showAllAffected", "title": "Show All Affected Files" },
-    { "id": "annotate", "title": "Annotate" },
-    { "id": "selectInLog", "title": "Show in Git Log" },
+    {
+      "id": "get",
+      "title": "Get"
+    },
+    {
+      "id": "openFile",
+      "title": "Show File at Revision"
+    },
+    {
+      "id": "compareWithLocal",
+      "title": "Compare with Local"
+    },
+    {
+      "id": "showDiff",
+      "title": "Show Diff"
+    },
+    {
+      "id": "compare",
+      "title": "Compare"
+    },
+    {
+      "id": "showDiffNewTab",
+      "title": "Show Diff in a New Tab"
+    },
+    {
+      "id": "showAllAffected",
+      "title": "Show All Affected Files"
+    },
+    {
+      "id": "annotate",
+      "title": "Annotate"
+    },
+    {
+      "id": "selectInLog",
+      "title": "Show in Git Log"
+    },
     "-",
-    { "id": "revert", "title": "Revert Commit" },
-    { "id": "fixup", "title": "Fixup…" },
-    { "id": "squashInto", "title": "Squash Into…" },
+    {
+      "id": "revert",
+      "title": "Revert Commit"
+    },
+    {
+      "id": "fixup",
+      "title": "Fixup\u2026"
+    },
+    {
+      "id": "squashInto",
+      "title": "Squash Into\u2026"
+    },
     "-",
-    { "id": "newTag", "title": "New Tag…" }
+    {
+      "id": "newTag",
+      "title": "New Tag\u2026"
+    }
   ],
   "files": [
-    { "id": "showDiff", "title": "Show Diff" },
-    { "id": "compareWithLocal", "title": "Compare with Local" },
-    { "id": "compareBeforeWithLocal", "title": "Compare Before with Local" },
+    {
+      "id": "showDiff",
+      "title": "Show Diff"
+    },
+    {
+      "id": "compareWithLocal",
+      "title": "Compare with Local"
+    },
+    {
+      "id": "compareBeforeWithLocal",
+      "title": "Compare Before with Local"
+    },
     "-",
-    { "id": "jumpToSource", "title": "Jump to Source" },
-    { "id": "showFileAtRevision", "title": "Show File at Revision" },
+    {
+      "id": "jumpToSource",
+      "title": "Jump to Source"
+    },
+    {
+      "id": "showFileAtRevision",
+      "title": "Show File at Revision"
+    },
     "-",
-    { "id": "revertSelectedChanges", "title": "Revert Selected Changes" },
-    { "id": "cherryPickSelectedChanges", "title": "Cherry-Pick Selected Changes" },
-    { "id": "dropSelectedChanges", "title": "Drop Selected Changes" },
-    { "id": "extractSelectedChangesToSeparateCommit", "title": "Extract Selected Changes to Separate Commit…" },
-    { "id": "get", "title": "Get" },
-    { "id": "historyUpToHere", "title": "History Up to Here" },
+    {
+      "id": "revertSelectedChanges",
+      "title": "Revert Selected Changes"
+    },
+    {
+      "id": "cherryPickSelectedChanges",
+      "title": "Cherry-Pick Selected Changes"
+    },
+    {
+      "id": "dropSelectedChanges",
+      "title": "Drop Selected Changes"
+    },
+    {
+      "id": "extractSelectedChangesToSeparateCommit",
+      "title": "Extract Selected Changes to Separate Commit\u2026"
+    },
+    {
+      "id": "get",
+      "title": "Get"
+    },
+    {
+      "id": "historyUpToHere",
+      "title": "History Up to Here"
+    },
     "-",
-    { "id": "annotate", "title": "Annotate" },
+    {
+      "id": "annotate",
+      "title": "Annotate"
+    },
     "-",
-    { "id": "copyPathReference", "title": "Copy Path/Reference…", "items": [
-      { "id": "absolutePath", "title": "Absolute Path" },
-      { "id": "pathFromRepositoryRoot", "title": "Path From Repository Root" },
-      { "id": "fileName", "title": "File Name" }
-    ] },
+    {
+      "id": "copyPathReference",
+      "title": "Copy Path/Reference\u2026",
+      "items": [
+        {
+          "id": "absolutePath",
+          "title": "Absolute Path"
+        },
+        {
+          "id": "pathFromRepositoryRoot",
+          "title": "Path From Repository Root"
+        },
+        {
+          "id": "fileName",
+          "title": "File Name"
+        }
+      ]
+    },
     "-",
-    { "id": "showChangesToParents", "title": "Show Changes to Parents", "toggle": true }
+    {
+      "id": "showChangesToParents",
+      "title": "Show Changes to Parents",
+      "toggle": true
+    }
   ],
   "branches": [
-    { "id": "updateBranchFilterInLog", "title": "Update Branch Filter in Log" },
-    { "id": "navigateLogToSelectedBranchHead", "title": "Navigate Log to Selected Branch Head" },
+    {
+      "id": "updateBranchFilterInLog",
+      "title": "Update Branch Filter in Log"
+    },
+    {
+      "id": "navigateLogToSelectedBranchHead",
+      "title": "Navigate Log to Selected Branch Head"
+    },
     "-",
-    { "id": "newBranchFromCurrent", "title": "New Branch from Current…" },
-    { "id": "checkout", "title": "Checkout" },
-    { "id": "newBranchFromSelected", "title": "New Branch from Selected…" },
-    { "id": "checkoutAndRebase", "title": "Checkout and Rebase onto Current" },
+    {
+      "id": "newBranchFromCurrent",
+      "title": "New Branch from Current\u2026"
+    },
+    {
+      "id": "checkout",
+      "title": "Checkout"
+    },
+    {
+      "id": "newBranchFromSelected",
+      "title": "New Branch from Selected\u2026"
+    },
+    {
+      "id": "checkoutAndRebase",
+      "title": "Checkout and Rebase onto Current"
+    },
     "-",
-    { "id": "compareWithCurrent", "title": "Compare with Current" },
-    { "id": "showDiffWithWorkingTree", "title": "Show Diff with Working Tree" },
+    {
+      "id": "compareWithCurrent",
+      "title": "Compare with Current"
+    },
+    {
+      "id": "showDiffWithWorkingTree",
+      "title": "Show Diff with Working Tree"
+    },
     "-",
-    { "id": "rebaseCurrentOntoSelected", "title": "Rebase Current onto Selected" },
-    { "id": "mergeIntoCurrent", "title": "Merge into Current Branch" },
+    {
+      "id": "rebaseCurrentOntoSelected",
+      "title": "Rebase Current onto Selected"
+    },
+    {
+      "id": "mergeIntoCurrent",
+      "title": "Merge into Current Branch"
+    },
     "-",
-    { "id": "pullRebase", "title": "Pull into Current Using Rebase" },
-    { "id": "pullMerge", "title": "Pull into Current Using Merge" },
+    {
+      "id": "pullRebase",
+      "title": "Pull into Current Using Rebase"
+    },
+    {
+      "id": "pullMerge",
+      "title": "Pull into Current Using Merge"
+    },
     "-",
-    { "id": "update", "title": "Update" },
-    { "id": "updateSelected", "title": "Update Selected" },
-    { "id": "push", "title": "Push…" },
+    {
+      "id": "update",
+      "title": "Update"
+    },
+    {
+      "id": "updateSelected",
+      "title": "Update Selected"
+    },
+    {
+      "id": "push",
+      "title": "Push\u2026"
+    },
     "-",
-    { "id": "rename", "title": "Rename…" },
-    { "id": "delete", "title": "Delete" },
+    {
+      "id": "rename",
+      "title": "Rename\u2026"
+    },
+    {
+      "id": "delete",
+      "title": "Delete"
+    },
     "-",
-    { "id": "markUnmarkAsFavorite", "title": "Mark/Unmark As Favorite" },
+    {
+      "id": "markUnmarkAsFavorite",
+      "title": "Mark/Unmark As Favorite"
+    },
     "-",
-    { "id": "fetch", "title": "Fetch" }
+    {
+      "id": "fetch",
+      "title": "Fetch"
+    }
+  ],
+  "console": [
+    {
+      "id": "copy",
+      "title": "Copy"
+    },
+    {
+      "id": "copyAll",
+      "title": "Copy All"
+    },
+    {
+      "id": "selectAll",
+      "title": "Select All"
+    },
+    "-",
+    {
+      "id": "softWrap",
+      "title": "Soft-Wrap",
+      "toggle": true
+    },
+    {
+      "id": "scrollToEnd",
+      "title": "Scroll to End",
+      "toggle": true
+    },
+    "-",
+    {
+      "id": "clearAll",
+      "title": "Clear All"
+    },
+    "-",
+    {
+      "id": "openInOutputPanel",
+      "title": "Open in Output Panel"
+    }
   ]
 }

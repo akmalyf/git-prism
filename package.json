@@ -637,7 +637,7 @@
       },
       {
         "command": "jbGit.log.showConsoleTab",
-        "title": "Show VCS Console Tab",
+        "title": "Show Git Console",
         "category": "Git"
       },
       {
@@ -1105,33 +1105,33 @@
         "title": "Fetch"
       },
       {
-        "command": "jbGit.m.log-console.console.copy",
+        "command": "jbGit.m.log.console.copy",
         "title": "Copy"
       },
       {
-        "command": "jbGit.m.log-console.console.copyAll",
+        "command": "jbGit.m.log.console.copyAll",
         "title": "Copy All"
       },
       {
-        "command": "jbGit.m.log-console.console.selectAll",
+        "command": "jbGit.m.log.console.selectAll",
         "title": "Select All"
       },
       {
-        "command": "jbGit.m.log-console.console.softWrap",
+        "command": "jbGit.m.log.console.softWrap",
         "title": "Soft-Wrap",
         "toggled": "jbmc_softWrap"
       },
       {
-        "command": "jbGit.m.log-console.console.scrollToEnd",
+        "command": "jbGit.m.log.console.scrollToEnd",
         "title": "Scroll to End",
         "toggled": "jbmc_scrollToEnd"
       },
       {
-        "command": "jbGit.m.log-console.console.clearAll",
+        "command": "jbGit.m.log.console.clearAll",
         "title": "Clear All"
       },
       {
-        "command": "jbGit.m.log-console.console.openInOutputPanel",
+        "command": "jbGit.m.log.console.openInOutputPanel",
         "title": "Open in Output Panel"
       },
       {
@@ -2368,31 +2368,31 @@
           "when": "false"
         },
         {
-          "command": "jbGit.m.log-console.console.copy",
+          "command": "jbGit.m.log.console.copy",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log-console.console.copyAll",
+          "command": "jbGit.m.log.console.copyAll",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log-console.console.selectAll",
+          "command": "jbGit.m.log.console.selectAll",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log-console.console.softWrap",
+          "command": "jbGit.m.log.console.softWrap",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log-console.console.scrollToEnd",
+          "command": "jbGit.m.log.console.scrollToEnd",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log-console.console.clearAll",
+          "command": "jbGit.m.log.console.clearAll",
           "when": "false"
         },
         {
-          "command": "jbGit.m.log-console.console.openInOutputPanel",
+          "command": "jbGit.m.log.console.openInOutputPanel",
           "when": "false"
         },
         {
@@ -2778,11 +2778,6 @@
         {
           "command": "jbGit.log.openInEditor",
           "when": "view == jbGit.logView",
-          "group": "navigation@1"
-        },
-        {
-          "command": "jbGit.log.clearConsole",
-          "when": "view == jbGit.consoleView",
           "group": "navigation@1"
         }
       ],
@@ -3248,39 +3243,39 @@
           "when": "jbmMenu == 'log.branches' && jbm_fetch"
         },
         {
-          "command": "jbGit.m.log-console.console.copy",
-          "group": "00_log-console@0",
-          "when": "jbmMenu == 'log-console.console' && jbm_copy"
+          "command": "jbGit.m.log.console.copy",
+          "group": "00_log@0",
+          "when": "jbmMenu == 'log.console' && jbm_copy"
         },
         {
-          "command": "jbGit.m.log-console.console.copyAll",
-          "group": "00_log-console@1",
-          "when": "jbmMenu == 'log-console.console' && jbm_copyAll"
+          "command": "jbGit.m.log.console.copyAll",
+          "group": "00_log@1",
+          "when": "jbmMenu == 'log.console' && jbm_copyAll"
         },
         {
-          "command": "jbGit.m.log-console.console.selectAll",
-          "group": "00_log-console@2",
-          "when": "jbmMenu == 'log-console.console' && jbm_selectAll"
+          "command": "jbGit.m.log.console.selectAll",
+          "group": "00_log@2",
+          "when": "jbmMenu == 'log.console' && jbm_selectAll"
         },
         {
-          "command": "jbGit.m.log-console.console.softWrap",
-          "group": "01_log-console@0",
-          "when": "jbmMenu == 'log-console.console' && jbm_softWrap"
+          "command": "jbGit.m.log.console.softWrap",
+          "group": "01_log@0",
+          "when": "jbmMenu == 'log.console' && jbm_softWrap"
         },
         {
-          "command": "jbGit.m.log-console.console.scrollToEnd",
-          "group": "01_log-console@1",
-          "when": "jbmMenu == 'log-console.console' && jbm_scrollToEnd"
+          "command": "jbGit.m.log.console.scrollToEnd",
+          "group": "01_log@1",
+          "when": "jbmMenu == 'log.console' && jbm_scrollToEnd"
         },
         {
-          "command": "jbGit.m.log-console.console.clearAll",
-          "group": "02_log-console@0",
-          "when": "jbmMenu == 'log-console.console' && jbm_clearAll"
+          "command": "jbGit.m.log.console.clearAll",
+          "group": "02_log@0",
+          "when": "jbmMenu == 'log.console' && jbm_clearAll"
         },
         {
-          "command": "jbGit.m.log-console.console.openInOutputPanel",
-          "group": "03_log-console@0",
-          "when": "jbmMenu == 'log-console.console' && jbm_openInOutputPanel"
+          "command": "jbGit.m.log.console.openInOutputPanel",
+          "group": "03_log@0",
+          "when": "jbmMenu == 'log.console' && jbm_openInOutputPanel"
         },
         {
           "command": "jbGit.m.rebase.main.pick",
@@ -3400,13 +3395,6 @@
           "id": "jbGit.logView",
           "name": "Log",
           "when": "jbGit.active"
-        },
-        {
-          "type": "webview",
-          "id": "jbGit.consoleView",
-          "name": "Console",
-          "when": "jbGit.active",
-          "visibility": "collapsed"
         }
       ]
     }

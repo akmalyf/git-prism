@@ -1,0 +1,97 @@
+/* Git Console pane at the bottom of the Log view (IntelliJ VcsConsoleView). */
+.lg-app.lg-with-console {
+  flex-direction: column;
+  gap: 5px;
+}
+.lg-app.lg-with-console > :first-child {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.cn-pane {
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--vscode-editor-background);
+}
+.cn-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 4px 0 2px;
+}
+.cn-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1 1 auto;
+  height: 22px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--jb-fg);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.cn-title:focus-visible {
+  outline: 1px solid var(--vscode-focusBorder);
+}
+.cn-collapsed .cn-toolbar,
+.cn-collapsed .cn-out {
+  display: none;
+}
+.cn-grip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  cursor: row-resize;
+  z-index: 1;
+}
+.cn-collapsed .cn-grip {
+  cursor: default;
+}
+.cn-out {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 2px 8px 4px;
+  font-family: var(--jb-mono);
+  font-size: var(--jb-mono-size);
+  line-height: 1.45;
+  color: var(--vscode-editor-foreground, var(--jb-fg));
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+  outline: none;
+}
+.cn-line {
+  white-space: pre;
+  min-height: 1.45em;
+}
+.cn-out.cn-wrap .cn-line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.cn-time {
+  color: var(--jb-fg-muted);
+}
+.cn-command .cn-cmd {
+  color: var(--vscode-terminal-ansiBlue, var(--jb-link));
+}
+body.vscode-light .cn-command .cn-cmd {
+  color: var(--vscode-terminal-ansiBlue, #0033b3);
+}
+.cn-error {
+  color: var(--vscode-errorForeground, var(--jb-error));
+}
+.cn-warning {
+  color: var(--vscode-editorWarning-foreground, var(--jb-warning));
+}
+.cn-out ::selection {
+  background: var(--vscode-editor-selectionBackground);
+}

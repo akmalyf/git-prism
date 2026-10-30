@@ -9,6 +9,7 @@ import type { FeatureContext } from '../../core/context';
 import { showGitError } from '../../core/git';
 import type { Repository } from '../../core/repository';
 import { RpcBridge } from '../../core/webview';
+import { consoleHandlers, type ConsoleFeed } from './consoleview';
 import { applySelectedChanges, computeChanges, getFromRevision, showDiff } from './actions';
 import { checkoutAndRebase, cherryPicked, fileContents, pullInto, updateBranch } from './branchops';
 import { LITERAL_PATHSPECS, LogData, type LoadRequest } from './data';
@@ -53,6 +54,8 @@ export interface ControllerOptions {
   filters?: LogFilters;
   /** opens another log editor tab with these filters ("Open New Git Log Editor Tab") */
   openEditor: (filters: LogFilters) => void;
+  /** feeds the bottom Git Console pane */
+  console?: ConsoleFeed;
 }
 
 interface Persisted {
@@ -91,7 +94,14 @@ export class LogController implements vscode.Disposable {
     this.filters = { ...(opts.filters ?? saved?.filters ?? {}) };
     this.options = { ...DEFAULT_OPTIONS, ...(saved?.options ?? {}) };
     this.fileHistory = new FileHistoryActions(this.data, opts.init.historyPaths ?? []);
-    this.bridge = new RpcBridge(webview, this.handlers());
+    this.bridge = new RpcBridge(webview, { ...this.handlers(), ...(opts.console ? consoleHandlers(opts.console) : {}) });
+    if (opts.console)
+      this.disposables.push(
+        opts.console.onDidChange((e) => {
+          if (e.cleared) this.bridge.emit('console.clear');
+          if (e.added) this.bridge.emit('console.append', e.added);
+        }),
+      );
     this.disposables.push(
       this.bridge,
       ctx.repos.onDidChangeRepository((repo) => this.onRepoChanged(repo)),
@@ -419,7 +429,7 @@ export class LogController implements vscode.Disposable {
         return (picked ?? []).map((u) => u.fsPath.split(path.sep).join('/'));
       },
       openInEditorTab: () => this.opts.openEditor(this.filters),
-      showConsole: () => vscode.commands.executeCommand('jbGit.log.showConsoleTab'),
+      showConsole: () => this.expandConsole(),
       /** empty log "Commit local changes" link */
       commitLocalChanges: () => invoke('jbGit.commit.focus', {}),
     };
@@ -599,6 +609,11 @@ export class LogController implements vscode.Disposable {
     }
     out.sort((a, b) => a.score - b.score || a.path.localeCompare(b.path));
     return out.slice(0, limit).map(({ score: _s, ...p }) => p);
+  }
+
+  /** Expands the bottom Git Console pane. */
+  expandConsole(): void {
+    this.bridge.emit('console.expand');
   }
 
   dispose(): void {

@@ -79,6 +79,8 @@ export interface LogInit {
   historyPaths?: string[];
   /** true when shown as an editor tab */
   editorTab: boolean;
+  /** show the collapsible Git Console pane at the bottom (the Log view in the Git panel) */
+  console?: boolean;
 }
 
 export interface UserIdentity {

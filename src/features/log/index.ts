@@ -1,11 +1,12 @@
 // Git Log feature: the "Log" webview view in the Git panel, "Show Git Log" / "History: <file>" editor tabs
-// (same 'log' webview bundle), the jbGit.log.show contract command and the panel's "Console" tab (consoleview.ts).
+// (same 'log' webview bundle), the jbGit.log.show contract command and the Git Console pane at the bottom of the Log
+// view (consoleview.ts).
 import * as path from 'node:path';
 import * as vscode from 'vscode';
 import { implement, type LogShowArgs } from '../../core/contracts';
 import type { FeatureContext } from '../../core/context';
 import { webviewHtml, webviewOptions } from '../../core/webview';
-import { activateConsole } from './consoleview';
+import { activateConsole, type ConsoleFeed } from './consoleview';
 import { LogController } from './controller';
 import type { LogFilters, LogInit } from './protocol';
 
@@ -21,17 +22,21 @@ class LogHost implements vscode.WebviewViewProvider, vscode.Disposable {
   /** the log UI that was focused last (for palette commands) */
   private active: LogController | undefined;
 
-  constructor(private readonly ctx: FeatureContext) {}
+  constructor(
+    private readonly ctx: FeatureContext,
+    private readonly console: ConsoleFeed,
+  ) {}
 
   resolveWebviewView(webviewView: vscode.WebviewView): void {
     const ext = this.ctx.extension.extensionUri;
     webviewView.webview.options = webviewOptions(ext);
-    const init: LogInit = { mode: 'log', title: 'Log', hideBranches: false, editorTab: false };
+    const init: LogInit = { mode: 'log', title: 'Log', hideBranches: false, editorTab: false, console: true };
     webviewView.webview.html = webviewHtml(webviewView.webview, ext, 'log', init, 'Log');
     const controller = new LogController(this.ctx, webviewView.webview, {
       init,
       persistKey: VIEW_STATE_KEY,
       openEditor: (filters) => this.openEditor({ filters, title: 'Log' }),
+      console: this.console,
     });
     this.view = controller;
     this.active = controller;
@@ -140,6 +145,11 @@ class LogHost implements vscode.WebviewViewProvider, vscode.Disposable {
     return this.active ?? (await this.revealView());
   }
 
+  /** Reveals the Log view and expands its Git Console pane. */
+  async showConsole(): Promise<void> {
+    (await this.revealView())?.expandConsole();
+  }
+
   dispose(): void {
     this.view?.dispose();
     for (const p of this.panels.values()) p.panel.dispose();
@@ -147,8 +157,7 @@ class LogHost implements vscode.WebviewViewProvider, vscode.Disposable {
 }
 
 export function activate(ctx: FeatureContext): void {
-  activateConsole(ctx);
-  const host = new LogHost(ctx);
+  const host = new LogHost(ctx, activateConsole(ctx));
   ctx.extension.subscriptions.push(
     host,
     vscode.window.registerWebviewViewProvider(VIEW_ID, host, { webviewOptions: { retainContextWhenHidden: true } }),
@@ -156,6 +165,7 @@ export function activate(ctx: FeatureContext): void {
     vscode.commands.registerCommand('jbGit.log.refresh', async () => {
       await (await host.activeController())?.refresh();
     }),
+    vscode.commands.registerCommand('jbGit.log.showConsoleTab', () => host.showConsole()),
     vscode.commands.registerCommand('jbGit.log.openInEditor', () => host.openEditor({ filters: {}, title: 'Log' })),
     vscode.commands.registerCommand('jbGit.log.focusTextFilter', async () => (await host.activeController())?.focusTextFilter()),
     vscode.commands.registerCommand('jbGit.log.goToRef', async () => {
