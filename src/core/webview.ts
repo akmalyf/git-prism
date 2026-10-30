@@ -2,6 +2,7 @@
 // and a request/response + event bridge (see src/webview/shared/rpc.ts for the other side).
 import * as crypto from 'node:crypto';
 import * as vscode from 'vscode';
+import { iconThemePayload, iconThemeRoots, onDidChangeIconTheme } from './iconTheme';
 
 /** Messages webview → host */
 export interface RpcRequest {
@@ -32,6 +33,9 @@ export function webviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri, b
     `script-src 'nonce-${nonce}'`,
   ].join('; ');
   const json = JSON.stringify(init).replace(/</g, '\\u003c');
+  const icons = iconThemePayload(webview);
+  const iconJson = JSON.stringify(icons ? { ...icons, css: undefined } : null).replace(/</g, '\\u003c');
+  const iconCss = icons ? icons.css.replace(/</g, '\\3c ') : '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,21 +43,22 @@ export function webviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri, b
 <meta http-equiv="Content-Security-Policy" content="${csp}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${codicons}" rel="stylesheet" id="vscode-codicon-stylesheet">
+<style id="jb-icon-theme">${iconCss}</style>
 <title>${title.replace(/</g, '&lt;')}</title>
 </head>
 <body>
 <div id="app"></div>
-<script nonce="${nonce}">window.__INIT__ = ${json};</script>
+<script nonce="${nonce}">window.__INIT__ = ${json}; window.__ICONS__ = ${iconJson};</script>
 <script nonce="${nonce}" src="${script}"></script>
 </body>
 </html>`;
 }
 
-/** Standard webview options: scripts on, resources restricted to dist/media. */
+/** Standard webview options: scripts on, resources restricted to dist/media (+ file icon theme images/fonts). */
 export function webviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions & vscode.WebviewPanelOptions {
   return {
     enableScripts: true,
-    localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'dist', 'media')],
+    localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'dist', 'media'), ...iconThemeRoots()],
     retainContextWhenHidden: true,
   };
 }
@@ -62,6 +67,7 @@ export function webviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions 
 export class RpcBridge implements vscode.Disposable {
   /** the bridge whose webview opened the last native context menu (see registerWebviewMenus) */
   static menuTarget: RpcBridge | undefined;
+  private static readonly live = new Set<RpcBridge>();
   private readonly sub: vscode.Disposable;
 
   constructor(
@@ -69,6 +75,12 @@ export class RpcBridge implements vscode.Disposable {
     private readonly handlers: RpcHandlers,
   ) {
     this.sub = webview.onDidReceiveMessage((m: RpcRequest) => this.handle(m));
+    RpcBridge.live.add(this);
+  }
+
+  /** Sends the current file icon theme to every open webview. */
+  static refreshIconTheme(): void {
+    for (const b of RpcBridge.live) b.emit('__iconTheme', iconThemePayload(b.webview) ?? null);
   }
 
   private async handle(m: RpcRequest): Promise<void> {
@@ -96,6 +108,7 @@ export class RpcBridge implements vscode.Disposable {
 
   dispose(): void {
     if (RpcBridge.menuTarget === this) RpcBridge.menuTarget = undefined;
+    RpcBridge.live.delete(this);
     this.sub.dispose();
   }
 }
@@ -105,6 +118,7 @@ export class RpcBridge implements vscode.Disposable {
  * runs them from a webview's native context menu and they hand the item key back to that webview.
  */
 export function registerWebviewMenus(context: vscode.ExtensionContext): void {
+  context.subscriptions.push(onDidChangeIconTheme(() => RpcBridge.refreshIconTheme()));
   const commands: { command: string }[] = context.extension.packageJSON.contributes?.commands ?? [];
   for (const { command } of commands) {
     if (!command.startsWith('jbGit.m.')) continue;

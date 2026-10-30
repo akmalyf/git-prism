@@ -1,4 +1,6 @@
-// Codicon helpers: icon elements, file-type icons by extension, folder icons, git status classes/labels.
+// Codicon helpers: icon elements, file-type icons by extension, folder icons, git status classes/labels. File and
+// folder icons come from the user's VS Code file icon theme when one is active (see src/core/iconTheme.ts), else
+// from codicons.
 import type { ChangeKind } from '../../../core/types';
 
 export interface IconOptions {
@@ -155,12 +157,90 @@ export function fileIconName(path: string): FileIconSpec {
   return { name: 'file' };
 }
 
+// ------------------------------------------------------------------ VS Code file icon theme
+
+interface IconThemeData {
+  css?: string;
+  assoc: {
+    file?: number;
+    folder?: number;
+    folderExpanded?: number;
+    fileExtensions: Record<string, number>;
+    fileNames: Record<string, number>;
+    folderNames: Record<string, number>;
+    folderNamesExpanded: Record<string, number>;
+    languageIds: Record<string, number>;
+  };
+  extToLang: Record<string, string>;
+  nameToLang: Record<string, string>;
+}
+
+let iconTheme: IconThemeData | null = typeof window !== 'undefined' ? ((window as { __ICONS__?: IconThemeData | null }).__ICONS__ ?? null) : null;
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('message', (e: MessageEvent) => {
+    const m = e.data;
+    if (!m || m.kind !== 'event' || m.event !== '__iconTheme') return;
+    const data = m.data as IconThemeData | null;
+    iconTheme = data;
+    const style = document.getElementById('jb-icon-theme');
+    if (style) style.textContent = data?.css ?? '';
+    window.dispatchEvent(new Event('jb-icontheme'));
+  });
+}
+
+/** Icon theme definition index for a file name, like VS Code: file name, extensions (longest first), language, default. */
+export function themeFileIcon(path: string): number | undefined {
+  const t = iconTheme?.assoc;
+  if (!t || !iconTheme) return undefined;
+  const name = path.slice(path.lastIndexOf('/') + 1).toLowerCase();
+  if (name in t.fileNames) return t.fileNames[name];
+  for (let i = name.indexOf('.'); i >= 0; i = name.indexOf('.', i + 1)) {
+    const ext = name.slice(i + 1);
+    if (ext in t.fileExtensions) return t.fileExtensions[ext];
+  }
+  const dot = name.lastIndexOf('.');
+  const lang = iconTheme.nameToLang[name] ?? (dot >= 0 ? iconTheme.extToLang[name.slice(dot + 1)] : undefined);
+  if (lang && lang in t.languageIds) return t.languageIds[lang];
+  return t.file;
+}
+
+export function themeFolderIcon(name: string, expanded: boolean): number | undefined {
+  const t = iconTheme?.assoc;
+  if (!t) return undefined;
+  const n = name.toLowerCase();
+  if (expanded) return t.folderNamesExpanded[n] ?? t.folderExpanded ?? t.folderNames[n] ?? t.folder;
+  return t.folderNames[n] ?? t.folder;
+}
+
+function themed(index: number, opts: IconOptions): HTMLSpanElement {
+  const el = document.createElement('span');
+  el.className = `jb-ti jbti-${index}${opts.className ? ' ' + opts.className : ''}`;
+  if (opts.title) el.title = opts.title;
+  el.setAttribute('aria-hidden', 'true');
+  return el;
+}
+
+/**
+ * Icon for a tree node spec: "file:<path>" / "folder:<name>" use the file icon theme (codicons as fallback),
+ * anything else is a codicon name.
+ */
+export function nodeIcon(spec: string, expanded: boolean, opts: IconOptions = {}): HTMLSpanElement {
+  if (spec.startsWith('file:')) return fileIcon(spec.slice(5), opts);
+  if (spec.startsWith('folder:')) return folderIcon(expanded, opts, spec.slice(7));
+  return icon(spec, opts);
+}
+
 export function fileIcon(path: string, opts: IconOptions = {}): HTMLSpanElement {
+  const themedIndex = themeFileIcon(path);
+  if (themedIndex !== undefined) return themed(themedIndex, opts);
   const spec = fileIconName(path);
   return icon(spec.name, { color: spec.color, ...opts });
 }
 
-export function folderIcon(open = false, opts: IconOptions = {}): HTMLSpanElement {
+export function folderIcon(open = false, opts: IconOptions = {}, name = ''): HTMLSpanElement {
+  const themedIndex = themeFolderIcon(name, open);
+  if (themedIndex !== undefined) return themed(themedIndex, opts);
   return icon(open ? 'folder-opened' : 'folder', opts);
 }
 

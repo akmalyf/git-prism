@@ -2,7 +2,7 @@
 // single/multi selection, full keyboard support, speed search with match highlighting, activation and context-menu
 // events, per-node icon / colored label / grey description / badge / hover actions; lazy children.
 import { h, listen, DisposableStore, Emitter, highlightText, isCtrlCmd, rafThrottle, uid } from './dom';
-import { icon } from './icons';
+import { icon, nodeIcon } from './icons';
 import { matchText, type MatchRange } from './match';
 import { SelectionModel, type SelectionNav } from './selection';
 import { SpeedSearch } from './speedsearch';
@@ -170,6 +170,10 @@ export class Tree<D = any> {
     this.store.add(listen(this.viewport, 'dblclick', (e) => this.onDblClick(e)));
     this.store.add(listen(this.viewport, 'click', (e) => {
       if ((e.target as HTMLElement).closest('.jb-tree-check')) e.preventDefault();
+    }));
+    this.store.add(listen(window, 'jb-icontheme', () => {
+      this.renderedKey = '';
+      this.scheduleRender();
     }));
     this.store.add(listen(this.viewport, 'contextmenu', (e) => this.onContext(e)));
     this.store.add(listen(this.element, 'focusout', (e) => {
@@ -662,7 +666,7 @@ export class Tree<D = any> {
       parts.push(cb);
     }
     if (r.loading) parts.push(icon('loading', { spin: true }));
-    else if (n.icon) parts.push(icon(n.icon, { color: n.iconColor, className: n.iconClass }));
+    else if (n.icon) parts.push(nodeIcon(n.icon, expanded, { color: n.iconColor, className: n.iconClass }));
     const matches = this.matches(n);
     const label = h('span.jb-tree-label', {
       class: [n.className, { 'jb-bold': n.bold, 'jb-italic': n.italic, 'jb-strike': n.strike, 'jb-muted': n.muted }],

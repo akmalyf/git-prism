@@ -42,9 +42,10 @@
   --jb-accent: var(--vscode-button-background);
   --jb-accent-hover: var(--vscode-button-hoverBackground, var(--vscode-button-background));
   --jb-accent-fg: var(--vscode-button-foreground);
-  --jb-toggle-bg: var(--vscode-inputOption-activeBackground, rgba(53, 116, 240, 0.25));
-  --jb-toggle-border: var(--vscode-inputOption-activeBorder, transparent);
-  --jb-toggle-fg: var(--vscode-inputOption-activeForeground, inherit);
+  /* selected toggles: a neutral tint of the theme's text color, not the theme's (often colored) input option fill */
+  --jb-toggle-bg: color-mix(in srgb, var(--vscode-foreground) 16%, transparent);
+  --jb-toggle-border: color-mix(in srgb, var(--vscode-foreground) 8%, transparent);
+  --jb-toggle-fg: inherit;
 
   --jb-input-bg: var(--vscode-input-background);
   --jb-input-fg: var(--vscode-input-foreground);

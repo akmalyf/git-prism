@@ -82,10 +82,10 @@ let index = new Map<string, DirEntry[]>();
 let files: DirEntry[] = [];
 
 function toNode(e: DirEntry): Node {
-  if (e.type === 'tree') return { id: `d:${e.path}`, label: e.name, icon: 'folder', hasChildren: true, tooltip: e.path, data: e };
+  if (e.type === 'tree') return { id: `d:${e.path}`, label: e.name, icon: `folder:${e.name}`, hasChildren: true, tooltip: e.path, data: e };
   if (e.type === 'commit') return { id: `s:${e.path}`, label: e.name, icon: 'file-submodule', description: 'submodule', tooltip: e.path, data: e };
   const spec = fileIconName(e.path);
-  return { id: `f:${e.path}`, label: e.name, icon: spec.name, iconColor: spec.color, tooltip: e.path, data: e };
+  return { id: `f:${e.path}`, label: e.name, icon: `file:${e.path}`, iconColor: spec.color, tooltip: e.path, data: e };
 }
 
 const treeOptions = {

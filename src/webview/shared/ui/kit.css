@@ -972,3 +972,25 @@ body.jb-resizing-v * {
 .jb-table-row.jb-bold .jb-td {
   font-weight: 600;
 }
+
+/* file / folder icons from the VS Code file icon theme (classes jbti-N come from the host, src/core/iconTheme.ts) */
+.jb-ti {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 13px;
+}
+.jb-ti::before {
+  display: block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-font-smoothing: antialiased;
+}

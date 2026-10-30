@@ -183,7 +183,7 @@ export function pathTreeToNodes<T, D = unknown>(nodes: readonly PathNode<T>[], o
       return {
         id: n.id,
         label: n.name,
-        icon: spec.name,
+        icon: `file:${n.path}`,
         iconColor: spec.color,
         description: showDir && n.dir ? n.dir : undefined,
         tooltip: n.path,
@@ -194,7 +194,7 @@ export function pathTreeToNodes<T, D = unknown>(nodes: readonly PathNode<T>[], o
       return {
         id: n.id,
         label: n.name,
-        icon: 'folder',
+        icon: `folder:${n.name.slice(n.name.lastIndexOf('/') + 1)}`,
         description: pluralize(n.fileCount, 'file'),
         tooltip: n.path,
         children: n.children.map((c) => conv(c, true)),
