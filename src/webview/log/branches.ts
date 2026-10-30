@@ -178,8 +178,6 @@ export class BranchesPanel {
     const fav = one && one.kind !== 'head' && one.kind !== 'tag' ? one.refs!.some((r) => r.item.favorite) : false;
     const s = this.settings;
     this.toolbar.setItems([
-      { id: 'hide', icon: 'chevron-left', tooltip: 'Hide Git Branches', run: () => this.host.hide() },
-      '-',
       { id: 'new', icon: 'add', tooltip: 'New Branch…', disabled: sel.length > 1, run: () => this.newBranch() },
       { id: 'update', icon: 'arrow-circle-down', tooltip: 'Update Selected', disabled: !updatable, run: () => void this.updateSelected() },
       { id: 'delete', icon: 'trash', tooltip: 'Delete', disabled: !deletable, run: () => void this.deleteSelected() },
