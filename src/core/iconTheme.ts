@@ -38,6 +38,8 @@ interface RawAssoc {
 }
 
 interface RawTheme extends RawAssoc {
+  /** SVGs use currentColor: VS Code renders them as a mask filled with the text color */
+  usesCurrentColor?: boolean;
   iconDefinitions?: Record<string, { iconPath?: string; fontCharacter?: string; fontColor?: string; fontSize?: string; fontId?: string }>;
   fonts?: { id: string; src: { path: string; format: string }[]; weight?: string; style?: string; size?: string }[];
   light?: RawAssoc;
@@ -135,7 +137,12 @@ export function iconThemePayload(webview: vscode.Webview): IconThemePayload | un
     const i = index.size;
     index.set(id, i);
     const sel = `.jbti-${i}::before`;
-    if (d.iconPath) css.push(`${sel}{content:'';background-image:url('${uri(d.iconPath)}')}`);
+    if (d.iconPath) {
+      const u = `url('${uri(d.iconPath)}')`;
+      // like VS Code's FileIconThemeData CSS: currentColor themes are masks, others background images
+      if (theme.usesCurrentColor) css.push(`${sel}{content:'';background-color:currentColor;mask:${u} no-repeat center / 16px;-webkit-mask:${u} no-repeat center / 16px}`);
+      else css.push(`${sel}{content:'';background-image:${u}}`);
+    }
     else if (d.fontCharacter) {
       const font = d.fontId ?? defaultFont;
       const size = d.fontSize ?? (font ? fonts.get(font)?.size : undefined);
