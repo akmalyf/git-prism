@@ -1,11 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F4F6FA" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#C9D1E0" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
   <rect width="128" height="128" rx="28" fill="#1E1F22"/>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
-    <path d="M44 30 V98" stroke="#9A783E"/>
-    <path d="M84 40 C84 62 44 60 44 78" stroke="#3E9A3E"/>
-    <path d="M84 40 V26" stroke="#3E9A3E"/>
+  <!-- incoming beam -->
+  <path d="M10 64 H40" stroke="#F4F6FA" stroke-width="7" stroke-linecap="round"/>
+  <!-- refracted lanes -->
+  <g fill="none" stroke-width="7" stroke-linecap="round">
+    <path d="M58 56 C78 56 84 32 102 32" stroke="#E8A33D"/>
+    <path d="M60 64 H102" stroke="#5BB85B"/>
+    <path d="M63 72 C78 72 84 96 102 96" stroke="#4C9BE8"/>
   </g>
-  <circle cx="44" cy="30" r="9" fill="#1E1F22" stroke="#9A783E" stroke-width="7"/>
-  <circle cx="44" cy="98" r="9" fill="#9A783E"/>
-  <circle cx="84" cy="40" r="9" fill="#3E9A3E"/>
+  <!-- commit nodes -->
+  <circle cx="106" cy="32" r="9" fill="#E8A33D"/>
+  <circle cx="106" cy="64" r="9" fill="#5BB85B"/>
+  <circle cx="106" cy="96" r="9" fill="#4C9BE8"/>
+  <!-- prism -->
+  <path d="M52 30 L74 94 H30 Z" fill="url(#glass)" stroke="#F4F6FA" stroke-width="4" stroke-linejoin="round"/>
 </svg>
