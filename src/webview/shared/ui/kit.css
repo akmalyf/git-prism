@@ -994,3 +994,17 @@ body.jb-resizing-v * {
   background-position: center;
   -webkit-font-smoothing: antialiased;
 }
+
+/* vertical toolbars: a dropdown's chevron is a small corner mark (IntelliJ) so every button keeps the same width */
+.jb-toolbar-v .jb-icon-btn {
+  position: relative;
+}
+.jb-toolbar-v .jb-icon-btn .jb-chevron {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 7px;
+  height: 7px;
+  -webkit-mask-size: 7px 7px;
+  mask-size: 7px 7px;
+}
