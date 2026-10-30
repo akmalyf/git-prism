@@ -504,3 +504,29 @@ body .idd-theme-light {
 .lg-filterbar .jb-toolbar-overflow {
   display: none;
 }
+
+/* Log panes are full-bleed: no padding, no rounded "islands", 1px dividers like VS Code's own panels */
+.lg-app,
+.lg-app.lg-editor-tab {
+  padding: 0;
+}
+.lg-app .jb-island,
+.lg-app .lg-island,
+.lg-app .cn-pane {
+  border-radius: 0;
+}
+.lg-app .jb-split.jb-islands > .jb-split-divider {
+  background: var(--jb-border);
+}
+.lg-app .jb-split-h.jb-islands > .jb-split-divider {
+  width: 1px;
+}
+.lg-app .jb-split-v.jb-islands > .jb-split-divider {
+  height: 1px;
+}
+.lg-app.lg-with-console {
+  gap: 0;
+}
+.lg-app.lg-with-console > .cn-pane {
+  border-top: 1px solid var(--jb-border);
+}
